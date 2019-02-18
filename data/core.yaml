@@ -301,7 +301,7 @@ en:
   zoom_in_edit: Zoom in to edit
   login: Log In
   logout: Log Out
-  loading_auth: "Connecting to OpenStreetMap..."
+  loading_auth: "Connecting to OpenHistoricalMap..."
   report_a_bug: Report a bug
   help_translate: Help translate
   sidebar:
@@ -317,8 +317,8 @@ en:
     rateLimit: The API is limiting anonymous connections.  You can fix this by logging in.
   commit:
     title: Upload to OpenStreetMap
-    upload_explanation: "The changes you upload will be visible on all maps that use OpenStreetMap data."
-    upload_explanation_with_user: "The changes you upload as {user} will be visible on all maps that use OpenStreetMap data."
+    upload_explanation: "The changes you upload will be visible on all maps that use OpenHistoricalMap data."
+    upload_explanation_with_user: "The changes you upload as {user} will be visible on all maps that use OpenHistoricalMap data."
     request_review: "I would like someone to review my edits."
     save: Upload
     cancel: Cancel
@@ -572,12 +572,12 @@ en:
     reset: Discard my changes
   save:
     title: Save
-    help: "Review your changes and upload them to OpenStreetMap, making them visible to other users."
+    help: "Review your changes and upload them to OpenHistoricalMap, making them visible to other users."
     no_changes: No changes to save.
     error: Errors occurred while trying to save
     status_code: "Server returned status code {code}"
     unknown_error_details: "Please ensure you are connected to the internet."
-    uploading: Uploading changes to OpenStreetMap...
+    uploading: Uploading changes to OpenHistoricalMap...
     conflict_progress: "Checking for conflicts: {num} of {total}"
     unsaved_changes: You have unsaved changes
     conflict:
@@ -603,7 +603,7 @@ en:
       memberlist: 'Relation members were changed by both you and {user}.'
       tags: 'You changed the <b>{tag}</b> tag to "{local}" and {user} changed it to "{remote}".'
   success:
-    just_edited: "You just edited OpenStreetMap!"
+    just_edited: "You just edited OpenHistoricalMap!"
     thank_you: "Thank you for improving the map."
     thank_you_location: "Thank you for improving the map around {where}."
     help_html: Your changes should appear on OpenStreetMap within a few minutes. It may take longer for maps elsewhere to receive updates.
@@ -621,7 +621,7 @@ en:
     okay: "OK"
     cancel: "Cancel"
   splash:
-    welcome: Welcome to the iD OpenStreetMap editor
+    welcome: Welcome to the iD OpenHistoricalMap editor
     text: "iD is a friendly but powerful tool for contributing to the world's best free world map. This is version {version}. For more information see {website} and report bugs at {github}."
     walkthrough: "Start the Walkthrough"
     start: "Edit now"
@@ -650,7 +650,7 @@ en:
     untagged_area_tooltip: "Select a feature type that describes what this area is."
     untagged_relation: Untagged relation
     untagged_relation_tooltip: "Select a feature type that describes what this relation is."
-    many_deletions: "You're deleting {n} features: {p} nodes, {l} lines, {a} areas, {r} relations. Are you sure you want to do this? This will delete them from the map that everyone else sees on openstreetmap.org."
+    many_deletions: "You're deleting {n} features: {p} nodes, {l} lines, {a} areas, {r} relations. Are you sure you want to do this? This will delete them from the map that everyone else sees on openhistoricalmap.org."
     tag_suggests_area: "The tag {tag} suggests line should be area, but it is not an area"
     deprecated_tags: "Deprecated tags: {tags}"
   zoom:
@@ -1287,7 +1287,7 @@ en:
       chapters: "So far, so good! You can use the buttons below to skip chapters at any time or to restart a chapter if you get stuck. Let's begin! **Click '{next}' to continue.**"
     navigation:
       title: "Navigation"
-      drag: "The main map area shows OpenStreetMap data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**"
+      drag: "The main map area shows OpenHistoricalMap data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**"
       zoom: "You can zoom in or out by scrolling with the mouse wheel or trackpad, or by clicking the {plus} / {minus} buttons. **Zoom the map!**"
       features: "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on OpenStreetMap."
       points_lines_areas: "Map features are represented using *points, lines, or areas.*"
