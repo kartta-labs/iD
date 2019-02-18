@@ -292,7 +292,7 @@ function generatePresets(tstrings, faIcons) {
         var id = stripLeadingUnderscores(file.match(/presets\/presets\/([^.]*)\.json/)[1]);
 
         validate(file, preset, presetSchema);
-        presetSchema = addDateRange(preset)
+        preset = addDateRange(preset)
 
         tstrings.presets[id] = {
             name: preset.name,
