@@ -1228,6 +1228,7 @@
     {"key": "email", "description": "🄵 Email"},
     {"key": "embankment", "description": "🄵 Type, 🄵 Structure"},
     {"key": "emergency", "description": "🄵 Emergency"},
+    {"key": "end_date", "description": "🄵 End Date"},
     {"key": "enforcement", "description": "🄵 Type"},
     {"key": "except", "description": "🄵 Exceptions"},
     {"key": "faces", "description": "🄵 Faces"},
