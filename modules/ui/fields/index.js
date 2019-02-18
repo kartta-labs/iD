@@ -30,6 +30,7 @@ import {
 import {
     uiFieldEmail,
     uiFieldNumber,
+    uiFieldDate,
     uiFieldTel,
     uiFieldText,
     uiFieldUrl
@@ -57,6 +58,7 @@ export var uiFields = {
     check: uiFieldCheck,
     combo: uiFieldCombo,
     cycleway: uiFieldCycleway,
+    date: uiFieldDate,
     defaultCheck: uiFieldDefaultCheck,
     email: uiFieldEmail,
     lanes: uiFieldLanes,

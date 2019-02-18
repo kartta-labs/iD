@@ -19,6 +19,7 @@ import {
 export {
     uiFieldText as uiFieldUrl,
     uiFieldText as uiFieldNumber,
+    uiFieldText as uiFieldDate,
     uiFieldText as uiFieldTel,
     uiFieldText as uiFieldEmail
 };
