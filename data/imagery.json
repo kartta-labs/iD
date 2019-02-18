@@ -6155,16 +6155,6 @@
       "best": true
     },
     {
-      "id": "Bing",
-      "name": "Bing aerial imagery",
-      "type": "bing",
-      "template": "https://www.bing.com/maps",
-      "zoomExtent": [1, 22],
-      "default": true,
-      "description": "Satellite and aerial imagery.",
-      "icon": "https://osmlab.github.io/editor-layer-index/sources/world/Bing.png"
-    },
-    {
       "id": "Bologna-Orthophoto-2017",
       "name": "Bologna ortofoto 2017",
       "type": "tms",
@@ -41227,19 +41217,6 @@
       ],
       "terms_url": "http://www.seplag.al.gov.br",
       "terms_text": "Secretaria de Estado do Planejamento, Gestão e Patrimônio"
-    },
-    {
-      "id": "Mapbox",
-      "name": "Mapbox Satellite",
-      "type": "tms",
-      "template": "https://{switch:a,b,c,d}.tiles.mapbox.com/v4/mapbox.satellite/{zoom}/{x}/{y}@2x.jpg?access_token=pk.eyJ1Ijoib3BlbnN0cmVldG1hcCIsImEiOiJjaml5MjVyb3MwMWV0M3hxYmUzdGdwbzE4In0.q548FjhsSJzvXsGlPsFxAQ",
-      "tileSize": 512,
-      "zoomExtent": [0, 22],
-      "terms_url": "https://www.mapbox.com/about/maps",
-      "terms_text": "Terms & Feedback",
-      "default": true,
-      "description": "Satellite and aerial imagery.",
-      "icon": "https://osmlab.github.io/editor-layer-index/sources/world/MapBoxSatellite.png"
     },
     {
       "id": "Maps4BW-LGL_BW",
