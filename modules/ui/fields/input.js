@@ -118,6 +118,9 @@ export function uiFieldText(field, context) {
             }
 
             wrap.call(isSuggestion ? _brandTip : _brandTip.destroy);
+        }  else if (field.type === 'date') {
+            wrap.selectAll('#' + fieldID)
+                  .attr('placeholder', 'YYYY-MM-DD');
         }
     }
 
