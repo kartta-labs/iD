@@ -1,7 +1,7 @@
 {
-    "key": "start_date",
+    "key": "end_date",
     "type": "date",
     "universal": true,
-    "label": "Start Date",
+    "label": "End Date",
     "placeholder": "YYYY-MM-DD"
 }
