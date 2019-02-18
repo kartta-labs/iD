@@ -611,6 +611,11 @@ en:
       emergency:
         # emergency=*
         label: Emergency
+      end_date:
+        # end_date=*
+        label: End Date
+        # end_date field placeholder
+        placeholder: YYYY-MM-DD
       enforcement:
         # enforcement=*
         label: Type
@@ -1769,6 +1774,8 @@ en:
       start_date:
         # start_date=*
         label: Start Date
+        # start_date field placeholder
+        placeholder: YYYY-MM-DD
       step_count:
         # step_count=*
         label: Number of Steps
