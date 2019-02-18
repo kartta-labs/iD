@@ -261,6 +261,29 @@ function stripLeadingUnderscores(str) {
 }
 
 
+function addDateRange(preset) {
+    // Add the date range to every preset
+
+    // Define the start and end date fields
+    var dateRangeFields = [
+      'start_date',
+      'end_date'
+    ];
+
+    // Make sure the preset can support fields
+    preset = preset || {};
+    preset.fields = preset.fields || [];
+
+    dateRangeFields.forEach(function(field) {
+      if (preset.fields.indexOf(field) === -1) {
+        preset.fields.unshift(field);
+      }
+    });
+
+    return preset;
+}
+
+
 function generatePresets(tstrings, faIcons) {
     var presets = {};
 
@@ -269,6 +292,7 @@ function generatePresets(tstrings, faIcons) {
         var id = stripLeadingUnderscores(file.match(/presets\/presets\/([^.]*)\.json/)[1]);
 
         validate(file, preset, presetSchema);
+        presetSchema = addDateRange(preset)
 
         tstrings.presets[id] = {
             name: preset.name,
