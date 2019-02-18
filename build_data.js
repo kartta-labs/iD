@@ -266,8 +266,8 @@ function addDateRange(preset) {
 
     // Define the start and end date fields
     var dateRangeFields = [
-      'start_date',
-      'end_date'
+      'end_date',
+      'start_date'
     ];
 
     // Make sure the preset can support fields
