@@ -382,7 +382,7 @@
         "zoom_in_edit": "Zoom in to edit",
         "login": "Log In",
         "logout": "Log Out",
-        "loading_auth": "Connecting to OpenStreetMap...",
+        "loading_auth": "Connecting to OpenHistoricalMap...",
         "report_a_bug": "Report a bug",
         "help_translate": "Help translate",
         "sidebar": {
@@ -400,9 +400,9 @@
             "rateLimit": "The API is limiting anonymous connections.  You can fix this by logging in."
         },
         "commit": {
-            "title": "Upload to OpenStreetMap",
-            "upload_explanation": "The changes you upload will be visible on all maps that use OpenStreetMap data.",
-            "upload_explanation_with_user": "The changes you upload as {user} will be visible on all maps that use OpenStreetMap data.",
+            "title": "Upload to OpenHistoricalMap",
+            "upload_explanation": "The changes you upload will be visible on all maps that use OpenHistoricalMap data.",
+            "upload_explanation_with_user": "The changes you upload as {user} will be visible on all maps that use OpenHistoricalMap data.",
             "request_review": "I would like someone to review my edits.",
             "save": "Upload",
             "cancel": "Cancel",
@@ -414,9 +414,9 @@
             "deleted": "Deleted",
             "created": "Created",
             "about_changeset_comments": "About changeset comments",
-            "about_changeset_comments_link": "//wiki.openstreetmap.org/wiki/Good_changeset_comments",
+            "about_changeset_comments_link": "//wiki.openhistoricalmap.org/wiki/Good_changeset_comments",
             "google_warning": "You mentioned Google in this comment: remember that copying from Google Maps is strictly forbidden.",
-            "google_warning_link": "https://www.openstreetmap.org/copyright"
+            "google_warning_link": "https://www.openhistoricalmap.org/copyright"
         },
         "contributors": {
             "list": "Edits by {users}",
@@ -449,12 +449,12 @@
                 "edited_by": "Edited By",
                 "changeset": "Changeset",
                 "unknown": "Unknown",
-                "link_text": "History on openstreetmap.org",
+                "link_text": "History on openhistoricalmap.org",
                 "note_no_history": "No History (New Note)",
                 "note_comments": "Comments",
                 "note_created_date": "Created Date",
                 "note_created_user": "Created By",
-                "note_link_text": "Note on openstreetmap.org"
+                "note_link_text": "Note on openhistoricalmap.org"
             },
             "location": {
                 "key": "L",
@@ -508,7 +508,7 @@
             "no_documentation_combination": "There is no documentation available for this tag combination",
             "no_documentation_key": "There is no documentation available for this key",
             "show_more": "Show More",
-            "view_on_osm": "View on openstreetmap.org",
+            "view_on_osm": "View on openhistoricalmap.org",
             "view_on_keepRight": "View on keepright.at",
             "all_fields": "All fields",
             "all_tags": "All tags",
@@ -519,7 +519,7 @@
             "role": "Role",
             "choose": "Select feature type",
             "results": "{n} results for {search}",
-            "reference": "View on OpenStreetMap Wiki",
+            "reference": "View on OpenHistoricalMap Wiki",
             "edit_reference": "Edit or translate description",
             "wiki_reference": "View documentation",
             "wiki_en_reference": "View documentation in English",
@@ -586,12 +586,12 @@
             "data_layers": "Data Layers",
             "layers": {
                 "osm": {
-                    "tooltip": "Map data from OpenStreetMap",
-                    "title": "OpenStreetMap data"
+                    "tooltip": "Map data from OpenHistoricalMap",
+                    "title": "OpenHistoricalMap data"
                 },
                 "notes": {
-                    "tooltip": "Note data from OpenStreetMap",
-                    "title": "OpenStreetMap notes"
+                    "tooltip": "Note data from OpenHistoricalMap",
+                    "title": "OpenHistoricalMap notes"
                 },
                 "keepRight": {
                     "tooltip": "Automatically detected map issues from keepright.at",
@@ -606,7 +606,7 @@
             "fill_area": "Fill Areas",
             "map_features": "Map Features",
             "autohidden": "These features have been automatically hidden because too many would be shown on the screen.  You can zoom in to edit them.",
-            "osmhidden": "These features have been automatically hidden because the OpenStreetMap layer is hidden."
+            "osmhidden": "These features have been automatically hidden because the OpenHistoricalMap layer is hidden."
         },
         "feature": {
             "points": {
@@ -704,12 +704,12 @@
         },
         "save": {
             "title": "Save",
-            "help": "Review your changes and upload them to OpenStreetMap, making them visible to other users.",
+            "help": "Review your changes and upload them to OpenHistoricalMap, making them visible to other users.",
             "no_changes": "No changes to save.",
             "error": "Errors occurred while trying to save",
             "status_code": "Server returned status code {code}",
             "unknown_error_details": "Please ensure you are connected to the internet.",
-            "uploading": "Uploading changes to OpenStreetMap...",
+            "uploading": "Uploading changes to OpenHistoricalMap...",
             "conflict_progress": "Checking for conflicts: {num} of {total}",
             "unsaved_changes": "You have unsaved changes",
             "conflict": {
@@ -736,15 +736,15 @@
             }
         },
         "success": {
-            "just_edited": "You just edited OpenStreetMap!",
+            "just_edited": "You just edited OpenHistoricalMap!",
             "thank_you": "Thank you for improving the map.",
             "thank_you_location": "Thank you for improving the map around {where}.",
-            "help_html": "Your changes should appear on OpenStreetMap within a few minutes. It may take longer for maps elsewhere to receive updates.",
+            "help_html": "Your changes should appear on OpenHistoricalMap within a few minutes. It may take longer for maps elsewhere to receive updates.",
             "help_link_text": "Details",
             "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F",
             "view_on_osm": "View Changes on OSM",
             "changeset_id": "Your changeset #: {changeset_id}",
-            "like_osm": "Like OpenStreetMap? Connect with others:",
+            "like_osm": "Like OpenHistoricalMap? Connect with others:",
             "more": "More",
             "events": "Events",
             "languages": "Languages: {languages}",
@@ -756,7 +756,7 @@
             "cancel": "Cancel"
         },
         "splash": {
-            "welcome": "Welcome to the iD OpenStreetMap editor",
+            "welcome": "Welcome to the iD OpenHistoricalMap editor",
             "text": "iD is a friendly but powerful tool for contributing to the world's best free world map. This is version {version}. For more information see {website} and report bugs at {github}.",
             "walkthrough": "Start the Walkthrough",
             "start": "Edit now"
@@ -789,7 +789,7 @@
             "untagged_area_tooltip": "Select a feature type that describes what this area is.",
             "untagged_relation": "Untagged relation",
             "untagged_relation_tooltip": "Select a feature type that describes what this relation is.",
-            "many_deletions": "You're deleting {n} features: {p} nodes, {l} lines, {a} areas, {r} relations. Are you sure you want to do this? This will delete them from the map that everyone else sees on openstreetmap.org.",
+            "many_deletions": "You're deleting {n} features: {p} nodes, {l} lines, {a} areas, {r} relations. Are you sure you want to do this? This will delete them from the map that everyone else sees on openhistoricalmap.org.",
             "tag_suggests_area": "The tag {tag} suggests line should be area, but it is not an area",
             "deprecated_tags": "Deprecated tags: {tags}"
         },
@@ -1165,19 +1165,19 @@
             "newDescription": "Describe the issue.",
             "save": "Save Note",
             "login": "You must log in to change or comment on this note.",
-            "upload_explanation": "Your comments will be publicly visible to all OpenStreetMap users.",
-            "upload_explanation_with_user": "Your comments as {user} will be publicly visible to all OpenStreetMap users."
+            "upload_explanation": "Your comments will be publicly visible to all OpenHistoricalMap users.",
+            "upload_explanation_with_user": "Your comments as {user} will be publicly visible to all OpenHistoricalMap users."
         },
         "help": {
             "title": "Help",
             "key": "H",
             "help": {
                 "title": "Help",
-                "welcome": "Welcome to the iD editor for [OpenStreetMap](https://www.openstreetmap.org/). With this editor you can update OpenStreetMap right from your web browser.",
+                "welcome": "Welcome to the iD editor for [OpenHistoricalMap](https://www.openhistoricalmap.org/). With this editor you can update OpenHistoricalMap right from your web browser.",
                 "open_data_h": "Open Data",
-                "open_data": "Edits that you make on this map will be visible to everyone who uses OpenStreetMap. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources, like Google Maps, [is strictly forbidden](https://www.openstreetmap.org/copyright).",
+                "open_data": "Edits that you make on this map will be visible to everyone who uses OpenHistoricalMap. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources, like Google Maps, [is strictly forbidden](https://www.openhistoricalmap.org/copyright).",
                 "before_start_h": "Before you start",
-                "before_start": "You should be familiar with OpenStreetMap and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing OpenStreetMap. Click \"Start the Walkthrough\" on this screen to take the tutorial - it takes only about 15 minutes.",
+                "before_start": "You should be familiar with OpenHistoricalMap and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing OpenHistoricalMap. Click \"Start the Walkthrough\" on this screen to take the tutorial - it takes only about 15 minutes.",
                 "open_source_h": "Open Source",
                 "open_source": "The iD editor is a collaborative open source project, and you are using version {version} now. The source code is available [on GitHub](https://github.com/openstreetmap/iD).",
                 "open_source_help": "You can help iD by [translating](https://github.com/openstreetmap/iD/blob/master/CONTRIBUTING.md#translating) or [reporting bugs](https://github.com/openstreetmap/iD/issues)."
@@ -1188,8 +1188,8 @@
                 "navigation_drag": "You can drag the map by pressing and holding down the {leftclick} left mouse button and moving the mouse around. You can also use the `↓`, `↑`, `←`, `→` arrow keys on your keyboard.",
                 "navigation_zoom": "You can zoom in or out by scrolling with the mouse wheel or trackpad, or by clicking the {plus} / {minus} buttons along the side of the map. You can also use the `+`, `-` keys on your keyboard.",
                 "features_h": "Map Features",
-                "features": "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything in the real world can be mapped as a feature on OpenStreetMap. Map features are represented on the map using *points*, *lines*, or *areas*.",
-                "nodes_ways": "In OpenStreetMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
+                "features": "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything in the real world can be mapped as a feature on OpenHistoricalMap. Map features are represented on the map using *points*, *lines*, or *areas*.",
+                "nodes_ways": "In OpenHistoricalMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
             },
             "editing": {
                 "title": "Editing & Saving",
@@ -1200,12 +1200,12 @@
                 "multiselect_shift_click": "`{shift}`+{leftclick} left-click to select several features together.  This makes it easier to move or delete multiple items.",
                 "multiselect_lasso": "Another way to select multiple features is to hold down the `{shift}` key, then press and hold down the {leftclick} left mouse button and drag the mouse to draw a selection lasso. All of the points inside the lasso area will be selected.",
                 "undo_redo_h": "Undo & Redo",
-                "undo_redo": "Your edits are stored locally in your browser until you choose to save them to the OpenStreetMap server. You can undo edits by clicking the {undo} **Undo** button, and redo them by clicking the {redo} **Redo** button.",
+                "undo_redo": "Your edits are stored locally in your browser until you choose to save them to the OpenHistoricalMap server. You can undo edits by clicking the {undo} **Undo** button, and redo them by clicking the {redo} **Redo** button.",
                 "save_h": "Save",
-                "save": "Click {save} **Save** to finish your edits and send them to OpenStreetMap. You should remember to save your work frequently!",
+                "save": "Click {save} **Save** to finish your edits and send them to OpenHistoricalMap. You should remember to save your work frequently!",
                 "save_validation": "On the save screen, you'll have a chance to review what you've done. iD will also perform some basic checks for missing data and may offer helpful suggestions and warnings if something doesn't seem right.",
                 "upload_h": "Upload",
-                "upload": "Before uploading your changes you must enter a [changeset comment](https://wiki.openstreetmap.org/wiki/Good_changeset_comments). Then click **Upload** to send your changes to OpenStreetMap, where they will be merged into the map and publicly visible to everyone.",
+                "upload": "Before uploading your changes you must enter a [changeset comment](https://wiki.openstreetmap.org/wiki/Good_changeset_comments). Then click **Upload** to send your changes to OpenHistoricalMap, where they will be merged into the map and publicly visible to everyone.",
                 "backups_h": "Automatic Backups",
                 "backups": "If you can't finish your edits in one sitting, for example if your computer crashes or you close the browser tab, your edits are still saved in your browser's storage. You can come back later (on the same browser and computer), and iD will offer to restore your work.",
                 "keyboard_h": "Keyboard Shortcuts",
@@ -1216,15 +1216,15 @@
                 "intro": "The *feature editor* appears alongside the map, and allows you to see and edit all of the information for the selected feature.",
                 "definitions": "The top section displays the feature's type. The middle section contains *fields* showing the feature's attributes, such as its name or address.",
                 "type_h": "Feature Type",
-                "type": "You can click on the feature type to change the feature to a different type. Everything that exists in the real world can be added to OpenStreetMap, so there are thousands of feature types to choose from.",
+                "type": "You can click on the feature type to change the feature to a different type. Everything that exists in the real world can be added to OpenHistoricalMap, so there are thousands of feature types to choose from.",
                 "type_picker": "The type picker displays the most common feature types, such as parks, hospitals, restaurants, roads, and buildings. You can search for anything by typing what you're looking for in the search box. You can also click the {inspect} **Info** icon next to the feature type to learn more about it.",
                 "fields_h": "Fields",
-                "fields_all_fields": "The \"All fields\" section contains all of the feature's details that you may edit. In OpenStreetMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure.",
+                "fields_all_fields": "The \"All fields\" section contains all of the feature's details that you may edit. In OpenHistoricalMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure.",
                 "fields_example": "Each feature type will display different fields. For example, a road may display fields for its surface and speed limit, but a restaurant may display fields for the type of food it serves and the hours it is open.",
                 "fields_add_field": "You can also click the \"Add field\" dropdown to add more fields, such as a description, Wikipedia link, wheelchair access, and more.",
                 "tags_h": "Tags",
-                "tags_all_tags": "Below the fields section, you can expand the \"All tags\" section to edit any of the OpenStreetMap *tags* for the selected feature. Each tag consists of a *key* and *value*, data elements that define all of the features stored in OpenStreetMap.",
-                "tags_resources": "Editing a feature's tags requires intermediate knowledge about OpenStreetMap. You should consult resources like the [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Main_Page) or [Taginfo](https://taginfo.openstreetmap.org/) to learn more about accepted OpenStreetMap tagging practices."
+                "tags_all_tags": "Below the fields section, you can expand the \"All tags\" section to edit any of the OpenHistoricalMap *tags* for the selected feature. Each tag consists of a *key* and *value*, data elements that define all of the features stored in OpenHistoricalMap.",
+                "tags_resources": "Editing a feature's tags requires intermediate knowledge about OpenStreetMap. You should consult resources like the [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Main_Page) or [Taginfo](https://taginfo.openstreetmap.org/) to learn more about accepted OpenHistoricalMap tagging practices."
             },
             "points": {
                 "title": "Points",
@@ -1235,7 +1235,7 @@
                 "move_point_h": "Moving Points",
                 "move_point": "To move a point, place the mouse cursor over the point, then press and hold the {leftclick} left mouse button while dragging the point to its new location.",
                 "delete_point_h": "Deleting Points",
-                "delete_point": "It's OK to delete features that don't exist in the real world. Deleting a feature from OpenStreetMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it.",
+                "delete_point": "It's OK to delete features that don't exist in the real world. Deleting a feature from OpenHistoricalMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it.",
                 "delete_point_command": "To delete a point, {rightclick} right-click on the point to select it and show the edit menu, then use the {delete} **Delete** command."
             },
             "lines": {
@@ -1282,7 +1282,7 @@
             },
             "relations": {
                 "title": "Relations",
-                "intro": "A *relation* is a special type of feature in OpenStreetMap that groups together other features. The features that belong to a relation are called *members*, and each member can have a *role* in the relation.",
+                "intro": "A *relation* is a special type of feature in OpenHistoricalMap that groups together other features. The features that belong to a relation are called *members*, and each member can have a *role* in the relation.",
                 "edit_relation_h": "Editing Relations",
                 "edit_relation": "At the bottom of the feature editor, you can expand the \"All relations\" section to see if the selected feature is a member of any relations. You can then click on the relation to select and edit it.",
                 "edit_relation_add": "To add a feature to a relation, select the feature, then click the {plus} add button in the \"All relations\" section of the feature editor. You can choose from a list of nearby relations, or choose the \"New relation...\" option.",
@@ -1307,14 +1307,14 @@
             },
             "notes": {
                 "title": "Notes",
-                "intro": "*Notes* are used to alert other users that a feature requires fixing or attention. Notes mark a specific location on the map. To view existing notes or add new ones, click the {data} **Map data** panel to enable the OpenStreetMap notes layer.",
+                "intro": "*Notes* are used to alert other users that a feature requires fixing or attention. Notes mark a specific location on the map. To view existing notes or add new ones, click the {data} **Map data** panel to enable the OpenHistoricalMap notes layer.",
                 "add_note_h": "Adding Notes",
                 "add_note": "To add a new note, click the {note} **Note** button on the toolbar above the map, or press the shortcut key `4`. This will change the mouse cursor to a cross symbol. To place the new note on the map, position the mouse cursor where the note should go, then {leftclick} left-click or press `Space`.",
                 "move_note": "Only new notes can be moved. To move a note, place the mouse cursor over the new note, then press and hold the {leftclick} left mouse button while dragging the note to its new location.",
                 "update_note_h": "Closing, Reopening, and Commenting",
                 "update_note": "An existing note can be updated by closing it, reopening it, or adding a comment to it. Closing a note indicates that the problem has been resolved. Reopening a note indicates that the original issue is not resolved.",
                 "save_note_h": "Saving Notes",
-                "save_note": "You must save any note edits individually by clicking the buttons below the note comments. Note edits are **not** included in changesets that you upload to OpenStreetMap."
+                "save_note": "You must save any note edits individually by clicking the buttons below the note comments. Note edits are **not** included in changesets that you upload to OpenHistoricalMap."
             },
             "imagery": {
                 "title": "Background Imagery",
@@ -1336,16 +1336,16 @@
             },
             "gps": {
                 "title": "GPS Traces",
-                "intro": "Collected GPS traces are a valuable source of data for OpenStreetMap. This editor supports *.gpx*, *.geojson*, and *.kml* files on your local computer. You can collect GPS traces with a smartphone, sports watch, or other GPS device.",
+                "intro": "Collected GPS traces are a valuable source of data for OpenHistoricalMap. This editor supports *.gpx*, *.geojson*, and *.kml* files on your local computer. You can collect GPS traces with a smartphone, sports watch, or other GPS device.",
                 "survey": "For information on how to perform a GPS survey, read [Mapping with a smartphone, GPS, or paper](http://learnosm.org/en/mobile-mapping/).",
                 "using_h": "Using GPS Traces",
                 "using": "To use a GPS trace for mapping, drag and drop the data file onto the map editor. If it's recognized, it will be drawn on the map as a bright purple line. Click the {data} **Map data** panel on the side of the map to enable, disable, or zoom to your GPS data.",
-                "tracing": "The GPS track isn't sent to OpenStreetMap - the best way to use it is to draw on the map, using it as a guide for the new features that you add.",
-                "upload": "You can also [upload your GPS data to OpenStreetMap](https://www.openstreetmap.org/trace/create) for other users to use."
+                "tracing": "The GPS track isn't sent to OpenHistoricalMap - the best way to use it is to draw on the map, using it as a guide for the new features that you add.",
+                "upload": "You can also [upload your GPS data to OpenHistoricalMap](https://www.openhistoricalmap.org/trace/create) for other users to use."
             },
             "qa": {
                 "title": "Quality Assurance",
-                "intro": "*Quality Assurance* (Q/A) tools can find improper tags, disconnected roads, and other issues with OpenStreetMap, which mappers can then fix. To view existing Q/A issues, click the {data} **Map data** panel to enable a specific Q/A layer.",
+                "intro": "*Quality Assurance* (Q/A) tools can find improper tags, disconnected roads, and other issues with OpenHistoricalMap, which mappers can then fix. To view existing Q/A issues, click the {data} **Map data** panel to enable a specific Q/A layer.",
                 "tools_h": "Tools",
                 "tools": "The following tools are currently supported: [KeepRight](https://www.keepright.at/). Expect iD to support [Osmose](https://osmose.openstreetmap.fr/), [ImproveOSM](https://improveosm.org/en/), and more Q/A tools in the future.",
                 "issues_h": "Handling Issues",
@@ -1520,7 +1520,7 @@
             },
             "welcome": {
                 "title": "Welcome",
-                "welcome": "Welcome! This walkthrough will teach you the basics of editing on OpenStreetMap.",
+                "welcome": "Welcome! This walkthrough will teach you the basics of editing on OpenHistoricalMap.",
                 "practice": "All of the data in this walkthrough is just for practicing, and any edits that you make in the walkthrough will not be saved.",
                 "words": "This walkthrough will introduce some new words and concepts. When we introduce a new word, we'll use *italics*.",
                 "mouse": "You can use any input device to edit the map, but this walkthrough assumes you have a mouse with left and right buttons. **If you want to attach a mouse, do so now, then click OK.**",
@@ -1530,11 +1530,11 @@
             },
             "navigation": {
                 "title": "Navigation",
-                "drag": "The main map area shows OpenStreetMap data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**",
+                "drag": "The main map area shows OpenHistoricalMap data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**",
                 "zoom": "You can zoom in or out by scrolling with the mouse wheel or trackpad, or by clicking the {plus} / {minus} buttons. **Zoom the map!**",
-                "features": "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on OpenStreetMap.",
+                "features": "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on OpenHistoricalMap.",
                 "points_lines_areas": "Map features are represented using *points, lines, or areas.*",
-                "nodes_ways": "In OpenStreetMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*.",
+                "nodes_ways": "In OpenHistoricalMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*.",
                 "click_townhall": "All features on the map can be selected by clicking on them. **Click on the point to select it.**",
                 "selected_townhall": "Great! The point is now selected. Selected features are drawn with a pulsing glow.",
                 "editor_townhall": "When a feature is selected, the *feature editor* is displayed alongside the map.",
@@ -1545,7 +1545,7 @@
                 "choose_street": "**Choose {name} from the list to select it.**",
                 "selected_street": "Great! {name} is now selected.",
                 "editor_street": "The fields shown for a street are different than the fields that were shown for the town hall.{br}For this selected street, the feature editor shows fields like '{field1}' and '{field2}'. **Close the feature editor by hitting escape or pressing the {button} button.**",
-                "play": "Try moving the map and clicking on some other features to see what kinds of things can be added to OpenStreetMap. **When you are ready to continue to the next chapter, click '{next}'.**"
+                "play": "Try moving the map and clicking on some other features to see what kinds of things can be added to OpenHistoricalMap. **When you are ready to continue to the next chapter, click '{next}'.**"
             },
             "points": {
                 "title": "Points",
@@ -1554,14 +1554,14 @@
                 "search_cafe": "There are many different features that can be represented by points. The point you just added is a cafe. **Search for '{preset}'.**",
                 "choose_cafe": "**Choose {preset} from the list.**",
                 "feature_editor": "The point is now marked as a cafe. Using the feature editor, we can add more information about the cafe.",
-                "add_name": "In OpenStreetMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure.{br}Let's pretend that you have local knowledge of this cafe, and you know its name. **Add a name for the cafe.**",
+                "add_name": "In OpenHistoricalMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure.{br}Let's pretend that you have local knowledge of this cafe, and you know its name. **Add a name for the cafe.**",
                 "add_close": "The feature editor will remember all of your changes automatically. **When you are finished adding the name, hit escape, enter, or click the {button} button to close the feature editor.**",
                 "reselect": "Often points will already exist, but have mistakes or be incomplete. We can edit existing points. **Click to select the cafe you just created.**",
                 "update": "Let's fill in some more details for this cafe. You can change its name, add a cuisine, or add an address. **Change the cafe details.**",
                 "update_close": "**When you are finished updating the cafe, hit escape, enter, or click the {button} button to close the feature editor.**",
                 "rightclick": "You can right-click on any feature to see the *edit menu*, which shows a list of editing operations that can be performed. **Right-click to select the point you created and show the edit menu.**",
-                "delete": "It's OK to delete features that don't exist in the real world.{br}Deleting a feature from OpenStreetMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it. **Click on the {button} button to delete the point.**",
-                "undo": "You can always undo any changes up until you save your edits to OpenStreetMap. **Click on the {button} button to undo the delete and get the point back.**",
+                "delete": "It's OK to delete features that don't exist in the real world.{br}Deleting a feature from OpenHistoricalMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it. **Click on the {button} button to delete the point.**",
+                "undo": "You can always undo any changes up until you save your edits to OpenHistoricalMap. **Click on the {button} button to undo the delete and get the point back.**",
                 "play": "Now that you know how to create and edit points, try creating a few more points for practice! **When you are ready to continue to the next chapter, click '{next}'.**"
             },
             "areas": {
@@ -1576,12 +1576,12 @@
                 "choose_field": "**Choose {field} from the list.**",
                 "retry_add_field": "You didn't select the {field} field. Let's try again.",
                 "describe_playground": "**Add a description, then click the {button} button to close the feature editor.**",
-                "play": "Good job! Try drawing a few more areas, and see what other kinds of area features you can add to OpenStreetMap. **When you are ready to continue to the next chapter, click '{next}'.**"
+                "play": "Good job! Try drawing a few more areas, and see what other kinds of area features you can add to OpenHistoricalMap. **When you are ready to continue to the next chapter, click '{next}'.**"
             },
             "lines": {
                 "title": "Lines",
                 "add_line": "*Lines* are used to represent features such as roads, railroads, and rivers. **Click the {button} Line button to add a new line.**",
-                "start_line": "Here is a road that is missing. Let's add it!{br}In OpenStreetMap, lines should be drawn down the center of the road. You can drag and zoom the map while drawing if necessary. **Start a new line by clicking at the top end of this missing road.**",
+                "start_line": "Here is a road that is missing. Let's add it!{br}In OpenHistoricalMap, lines should be drawn down the center of the road. You can drag and zoom the map while drawing if necessary. **Start a new line by clicking at the top end of this missing road.**",
                 "intersect": "Click or press spacebar to add more nodes to the line.{br}Roads, and many other types of lines, are part of a larger network. It is important for these lines to be connected properly in order for routing applications to work. **Click on {name} to create an intersection connecting the two lines.**",
                 "retry_intersect": "The road needs to intersect {name}. Let's try again!",
                 "continue_line": "Continue drawing the line for the new road. Remember that you can drag and zoom the map if needed.{br}When you are finished drawing, click on the last node again. **Finish drawing the road.**",
@@ -1610,7 +1610,7 @@
             },
             "buildings": {
                 "title": "Buildings",
-                "add_building": "OpenStreetMap is the world's largest database of buildings.{br}You can help improve this database by tracing buildings that aren't already mapped. **Click the {button} Area button to add a new area.**",
+                "add_building": "OpenHistoricalMap is the world's largest database of buildings.{br}You can help improve this database by tracing buildings that aren't already mapped. **Click the {button} Area button to add a new area.**",
                 "start_building": "Let's add this house to the map by tracing its outline.{br}Buildings should be traced around their footprint as accurately as possible. **Click or press spacebar to place a starting node on one of the corners of the building.**",
                 "continue_building": "Continue adding more nodes to trace the outline of the building. Remember that you can zoom in if you want to add more details.{br}Finish the building by pressing enter, or clicking again on either the first or last node. **Finish tracing the building.**",
                 "retry_building": "It looks like you had some trouble placing the nodes at the building corners. Try again!",
@@ -1633,7 +1633,7 @@
             },
             "startediting": {
                 "title": "Start Editing",
-                "help": "You're now ready to edit OpenStreetMap!{br}You can replay this walkthrough anytime or view more documentation by clicking the {button} Help button or pressing the '{key}' key.",
+                "help": "You're now ready to edit OpenHistoricalMap!{br}You can replay this walkthrough anytime or view more documentation by clicking the {button} Help button or pressing the '{key}' key.",
                 "shortcuts": "You can view a list of commands along with their keyboard shortcuts by pressing the '{key}' key.",
                 "save": "Don't forget to regularly save your changes!",
                 "start": "Start mapping!"
@@ -7961,10 +7961,10 @@
             },
             "MAPNIK": {
                 "attribution": {
-                    "text": "© OpenStreetMap contributors, CC-BY-SA"
+                    "text": "© OpenHistoricalMap contributors, CC-BY-SA"
                 },
-                "description": "The default OpenStreetMap layer.",
-                "name": "OpenStreetMap (Standard)"
+                "description": "The default OpenHistoricalMap layer.",
+                "name": "OpenHistoricalMap (Standard)"
             },
             "Mapbox": {
                 "attribution": {
@@ -8335,935 +8335,6 @@
                 "name": "Trafikverket Road Network options"
             }
         },
-        "community": {
-            "bw-facebook": {
-                "name": "Mapping Botswana on Facebook",
-                "description": "Page of OpenStreetMap in Botswana"
-            },
-            "bw-twitter": {
-                "name": "Mapping Botswana on Twitter",
-                "description": "Twitter of OpenStreetMap in Botswana"
-            },
-            "cape-coast-youthmappers": {
-                "name": "University of Cape Coast YouthMappers",
-                "description": "Follow us on Twitter: {url}",
-                "extendedDescription": "This is the official handle for the Youth Mappers chapter of the University of Cape Coast, Ghana. we love maps, open data and helping the vulnerable."
-            },
-            "osm-gh-facebook": {
-                "name": "OpenStreetMap Ghana on Facebook",
-                "description": "Facebook group for people interested in OpenStreetMap.",
-                "extendedDescription": "Mappers in Ghana community, promoting OpenStreetMap and Humanitarian OpenStreetMap Team (HOT) projects in Ghana. Join us."
-            },
-            "osm-gh-twitter": {
-                "name": "OpenStreetMap Ghana on Twitter",
-                "description": "Follow us on Twitter: {url}"
-            },
-            "talk-gh": {
-                "name": "Talk-gh Mailing List",
-                "description": "Talk-gh is the official mailing list for Ghana OSM community."
-            },
-            "osm-mg-facebook": {
-                "name": "OpenStreetMap Madagascar Facebook Group",
-                "description": "Malagasy Facebook group for people interested in OpenStreetMap."
-            },
-            "talk-mg": {
-                "name": "Talk-mg Mailing List",
-                "description": "Place for OpenStreetMap contributors, communities and users in Madagascar to share and discuss."
-            },
-            "OSM-BGD-facebook": {
-                "name": "OpenStreetMap Bangladesh",
-                "description": "Improve OpenStreetMap in Bangladesh",
-                "extendedDescription": "Mapping in Bangladesh? Have questions, want to connect with the community here? Join us at {url}. All are welcome!"
-            },
-            "OSM-India-facebook": {
-                "name": "OpenStreetMap India - Participatory neighborhood mapping",
-                "description": "Improve OpenStreetMap in India",
-                "extendedDescription": "Mapping in India? Have questions, want to connect with the community here? Join us at {url}. All are welcome!",
-                "events": {
-                    "sotmasia2018": {
-                        "name": "State of the Map Asia 2018",
-                        "description": "Join the 2018 OpenStreetMap region-wide event at State of the Map Asia in India",
-                        "where": "Indian Institute of Management, Bangalore, India"
-                    }
-                }
-            },
-            "osm-india-forum": {
-                "name": "OpenStreetMap India forum",
-                "description": "OpenStreetMap India web forum"
-            },
-            "osm-india-github": {
-                "name": "OpenStreetMap India GitHub",
-                "description": "Code with us: {url}"
-            },
-            "OSM-india-mailinglist": {
-                "name": "OpenStreetMap India Mailinglist",
-                "description": "Talk-in is the official Mailinglist for Indian Community"
-            },
-            "osm-india-telegram": {
-                "name": "OpenStreetMap India Telegram",
-                "description": "Join our family: {url}"
-            },
-            "OSM-india-twitter": {
-                "name": "OpenStreetMap India Twitter",
-                "description": "We are just a tweet away: {url}"
-            },
-            "osm-india-website": {
-                "name": "OpenStreetMap India",
-                "description": "Mappers and OpenStreetMap users in India"
-            },
-            "osm-india-wiki": {
-                "name": "OpenStreetMap Wikiproject India",
-                "description": "Everything you need to know about mapping in India: {url}"
-            },
-            "osm-india-youtube": {
-                "name": "OpenStreetMap India Youtube",
-                "description": "Subscribe to our channel: {url}"
-            },
-            "OSM-India-Puducherry-Facebook": {
-                "name": "Free Software Hardware Movement - Facebook",
-                "description": "FSHM Facebook page to know about community events, activities",
-                "extendedDescription": "FSHM organizes events relating to free software/hardware, technology, activism and OpenStreetMap. Its FB page is the best way to keep in contact with its events."
-            },
-            "OSM-Puducherry-Mailing-List": {
-                "name": "Free Software Hardware Movement - Mailing List",
-                "description": "FSHM Puducherry mailing list to discuss mapping in Puducherry and other things.",
-                "extendedDescription": "FSHM organizes events relating to free software/hardware, technology, activism and OpenStreetMap."
-            },
-            "OSM-India-Puducherry-Matrix": {
-                "name": "Free Software Hardware Movement - Matrix",
-                "description": "FSHM Riot group to discuss, share and update mapping activities, events in and around Puducherry",
-                "extendedDescription": "FSHM community members share their OSM mapping updates / experiences through the Riot.im group, this group is also used to discuss things related to free software / hardware, technology and activism."
-            },
-            "OSM-IDN-facebook": {
-                "name": "OpenStreetMap Indonesia",
-                "description": "Improve OpenStreetMap in Indonesia",
-                "extendedDescription": "Mapping in Indonesia? Have questions, want to connect with the community here? Join us at {Url}. All are welcome!"
-            },
-            "osm-iran-aparat": {
-                "name": "OpenStreetMap Iran Aparat",
-                "description": "Subscribe to our channel at {url}",
-                "extendedDescription": "A good resource of videos about anything related to OpenStreetMap. Mainly in Persian."
-            },
-            "osm-iran-forum": {
-                "name": "OpenStreetMap Iran web forum",
-                "description": "OpenStreetMap Iran web forum",
-                "extendedDescription": "A web forum for OpenStreetMap users in Iran. Feel free to ask questions and discuss with others!"
-            },
-            "osm-iran-telegram": {
-                "name": "OpenStreetMap Iran Telegram",
-                "description": "You're welcome to join our Telegram channel at {url}. We also have a supergroup of many OSMers interested in Iran. Find its link in bio of channel."
-            },
-            "OSM-japan-facebook": {
-                "name": "OpenStreetMap Japan Community",
-                "description": "Mappers and OpenStreetMap users in Japan"
-            },
-            "OSM-japan-mailinglist": {
-                "name": "OpenStreetMap Japan Mailinglist",
-                "description": "Talk-ja is an Official Mailinglist for Japanese Community"
-            },
-            "OSM-japan-twitter": {
-                "name": "OpenStreetMap Japan Twitter",
-                "description": "Hashtag on Twitter: {url}"
-            },
-            "OSM-japan-website": {
-                "name": "OpenStreetMap Japan",
-                "description": "Mappers and OpenStreetMap users in Japan"
-            },
-            "OSM-MY-facebook": {
-                "name": "OpenStreetMap Malaysia on Facebook",
-                "description": "For chat about anything related to OpenStreetMap!"
-            },
-            "OSM-MY-forum": {
-                "name": "OpenStreetMap Malaysia Forum",
-                "description": "Official OpenStreetMap Malaysia Forum"
-            },
-            "OSM-MY-matrix": {
-                "name": "OpenStreetMap Malaysia Riot channel",
-                "description": "All mappers are welcome! Sign up at {signupUrl}"
-            },
-            "OSM-MNG-facebook": {
-                "name": "OpenStreetMap Mongolia",
-                "description": "Improve OpenStreetMap in Mongolia",
-                "extendedDescription": "Mapping in Mongolia? Have questions, want to connect with the community here? Join us at {Url}. All are welcome!"
-            },
-            "OSM-MMR-facebook": {
-                "name": "OpenStreetMap Myanmar",
-                "description": "Improve OpenStreetMap in Myanmar",
-                "extendedDescription": "Mapping in Myanmar? Have questions, want to connect with the community here? Join us at {Url}. All are welcome!"
-            },
-            "OSM-Nepal-facebook": {
-                "name": "OpenStreetMap Nepal",
-                "description": "Improve OpenStreetMap in Nepal",
-                "extendedDescription": "Mapping in Nepal? Have questions, want to connect with the community here? Join us at {Url}. All are welcome!"
-            },
-            "OSM-Asia-mailinglist": {
-                "name": "OpenStreetMap Asia Mailinglist",
-                "description": "Talk-asia is the official Mailinglist for Asian Community"
-            },
-            "osm-asia-telegram": {
-                "name": "OpenStreetMap Asia Telegram",
-                "description": "Join our family: {url}"
-            },
-            "OSM-PH-facebook": {
-                "name": "OpenStreetMap PH Facebook",
-                "description": "Welcome to OpenStreetMap Philippines, where we encourage all fellow Filipinos to contribute to the OpenStreetMap project."
-            },
-            "OSM-PH-mailinglist": {
-                "name": "Talk-ph Mailing List",
-                "description": "A mailing list to discuss OpenStreetMap in the Philippines"
-            },
-            "OSM-PH-slack": {
-                "name": "OpenStreetMap PH Slack",
-                "description": "All are welcome! Sign up at {signupUrl}"
-            },
-            "OSM-PH-telegram": {
-                "name": "OpenStreetMap PH Telegram",
-                "description": "Un-official, Telegram local community of OpenStreetMap contributors and friends in the Philippines"
-            },
-            "OSM-RU-forum": {
-                "name": "OpenStreetMap RU forum",
-                "description": "OpenStreetMap Russia web forum"
-            },
-            "OSM-RU-telegram": {
-                "name": "OpenStreetMap RU telegram",
-                "description": "OpenStreetMap Russia telegram chat"
-            },
-            "OSM-south-korea-telegram": {
-                "name": "OSM South Korea Telegram",
-                "description": "Unofficial Channnel for OpenStreetMap contributors, communities, and users in South Korea to share and discuss."
-            },
-            "OSM-sri-lanka-facebook": {
-                "name": "OpenStreetMap Sri Lanka",
-                "description": "Improve OpenStreetMap in Sri Lanka",
-                "extendedDescription": "Mapping in Sri Lanka? Have questions, want to connect with the community here? Join us at {Url}. All are welcome!"
-            },
-            "OSM-TW-facebook": {
-                "name": "OpenStreetMap Taiwan Community",
-                "description": "Facebook Group for Mappers and OpenStreetMap users to discuss matters about Taiwan."
-            },
-            "OSM-TW-mailinglist": {
-                "name": "OpenStreetMap Taiwan Mailinglist",
-                "description": "Talk-tw is an Official Mailinglist for the Communities to dicuss matters about Taiwan"
-            },
-            "OSM-TH-CNX-meetup": {
-                "name": "OSM Meetup Chiang Mai",
-                "description": "Irregular meeting of the OpenStreetMap community in Chiang Mai",
-                "extendedDescription": "Members of the OpenStreetMap community meet every few months in Chiang Mai. Get in contact and check out {url} to see when the next meetup is scheduled"
-            },
-            "OSM-TH-facebook": {
-                "name": "OpenStreetMap TH Facebook group",
-                "description": "Facebook group for OpenStreetMappers in Thailand"
-            },
-            "OSM-TH-forum": {
-                "name": "OpenStreetMap TH forum",
-                "description": "OpenStreetMap Thailand web forum"
-            },
-            "al-forum": {
-                "name": "OSM Albania Forum",
-                "description": "OpenStreetMap Albania Forum"
-            },
-            "al-maptime-tirana": {
-                "name": "Maptime Tirana",
-                "description": "Social events organized around mapping - beginners most welcome!",
-                "extendedDescription": "Maptime is an open learning environment for all levels and degrees of knowledge, offering intentional educational support for the beginner. Maptime is simultaneously flexible and structured, creating space for mapping tutorials, workshops, ongoing projects with a shared goal, and independent/collaborative work time."
-            },
-            "al-telegram": {
-                "name": "OSM Albania Telegram channel",
-                "description": "OpenStreetMap Albania Telegram channel"
-            },
-            "at-forum": {
-                "name": "OpenStreetMap Austria Forum",
-                "description": "The official forum for OpenStreetMap questions in and around Austria"
-            },
-            "at-mailinglist": {
-                "name": "Talk-at Mailing List",
-                "description": "Talk-at is the official mailing list for the Austrian OSM community"
-            },
-            "at-twitter": {
-                "name": "OpenStreetMap Austria Twitter",
-                "description": "OpenStreetMap Austria On Twitter: {url}"
-            },
-            "osmgraz-meetup": {
-                "name": "OSM community meetup Graz",
-                "description": "Monthly meetup of the OpenStreetMap community in Graz"
-            },
-            "osmgraz-twitter": {
-                "name": "OSM community Graz on twitter",
-                "description": "OpenStreetMap community in Graz on twitter"
-            },
-            "osm-at": {
-                "name": "OpenStreetMap Austria",
-                "description": "The platform for information on OpenStreetMap in Austria"
-            },
-            "byosm": {
-                "name": "OpenStreetMap Belarus",
-                "description": "OpenStreetMap Belarus telegram chat"
-            },
-            "be-facebook": {
-                "name": "OpenStreetMap BE Community",
-                "description": "Mappers and OpenStreetMap on Facebook in Belgium"
-            },
-            "be-forum": {
-                "name": "OpenStreetMap BE forum",
-                "description": "OpenStreetMap Belgium web forum"
-            },
-            "be-irc": {
-                "name": "OpenStreetMap Belgium IRC",
-                "description": "Join #osmbe on irc.oftc.net (port 6667)",
-                "extendedDescription": "Join #osmbe on irc.oftc.net (port 6667), it is bridged with the Matrix chat channel"
-            },
-            "be-mailinglist": {
-                "name": "Talk-be Mailing List",
-                "description": "Talk-be is the official mailing list for the Belgian OSM community"
-            },
-            "be-matrix": {
-                "name": "OpenStreetMap BE Matrix channel",
-                "description": "All mappers are welcome!",
-                "extendedDescription": "Most talk is happening at the \"OpenStreetMap Belgium\" channel. You can ask anything there! The other rooms are for specific subjects."
-            },
-            "be-meetup": {
-                "name": "OpenStreetMap Belgium Meetup",
-                "description": "Real life meetups of everyone who is interested in OpenStreetMap",
-                "extendedDescription": "Physical meetups are great to meet other mappers, ask them questions and to learn a lot. Especially new contributors are very welcome!"
-            },
-            "be-twitter": {
-                "name": "OpenStreetMap Belgium Twitter",
-                "description": "OSM Belgium on Twitter: @osm_be"
-            },
-            "hr-facebook": {
-                "name": "OpenStreetMap Croatia Facebook group",
-                "description": "OpenStreetMap Croatia Facebook group"
-            },
-            "hr-irc": {
-                "name": "OpenStreetMap Croatia on IRC",
-                "description": "Join #osm-hr on irc.freenode.org (port 6667)"
-            },
-            "hr-mailinglist": {
-                "name": "Talk-hr Mailing List",
-                "description": "Talk-hr mailing list"
-            },
-            "czech-community": {
-                "name": "Czech OSM community",
-                "description": "Map portal, website and contacts on OSM members in Czechia"
-            },
-            "osmcz-facebook": {
-                "name": "OpenStreetMap CZ on Facebook",
-                "description": "Follow czech community on Facebook - including translated WeeklyOSM!"
-            },
-            "osmcz-twitter": {
-                "name": "Czech twitter @osmcz",
-                "description": "Follow czech community on Twitter - including translated WeeklyOSM!"
-            },
-            "talk-cz-mailinglist": {
-                "name": "Czech mailing list (talk-cz)",
-                "description": "Talk-cz is the official mailing list for Czech community"
-            },
-            "dk-forum": {
-                "name": "OpenStreetMap Denmark Web Forum",
-                "description": "OpenStreetMap Denmark web forum"
-            },
-            "dk-irc": {
-                "name": "OpenStreetMap Denmark IRC",
-                "description": "Join #osm-dk on irc.oftc.net (port 6667)"
-            },
-            "dk-mailinglist": {
-                "name": "Talk-dk Mailing List",
-                "description": "A mailing list to discuss OpenStreetMap in Denmark"
-            },
-            "fi-forum": {
-                "name": "OpenStreetMap FI forum",
-                "description": "OpenStreetMap Finland web forum"
-            },
-            "fi-irc": {
-                "name": "OpenStreetMap Finland IRC",
-                "description": "Join #osm-fi on irc.oftc.net (port 6667)"
-            },
-            "fi-mailinglist": {
-                "name": "Talk-fi Mailing List",
-                "description": "Talk-fi is the official mailing list for the Finnish OSM community"
-            },
-            "fr-facebook": {
-                "name": "OpenStreetMap France Facebook page",
-                "description": "OpenStreetMap France Facebook page"
-            },
-            "fr-forum": {
-                "name": "OpenStreetMap France web forum",
-                "description": "OpenStreetMap France web forum"
-            },
-            "fr-irc": {
-                "name": "OpenStreetMap France on IRC",
-                "description": "Join #osm-fr on irc.oftc.net (port 6667)"
-            },
-            "fr-mailinglist": {
-                "name": "Talk-fr Mailing List",
-                "description": "Talk-fr mailing list"
-            },
-            "fr-twitter": {
-                "name": "OpenStreetMap France on Twitter",
-                "description": "OpenStreetMap France on Twitter: {url}"
-            },
-            "de-berlin-mailinglist": {
-                "name": "Berlin Mailing List",
-                "description": "This is the mailing list for the Berlin OSM community"
-            },
-            "de-berlin-meetup": {
-                "name": "OpenStreetMap Berlin-Brandenburg Meetup",
-                "description": "Mappers and OpenStreetMap users in the Berlin area"
-            },
-            "de-berlin-telegram": {
-                "name": "@osmberlin on Telegram",
-                "description": "OpenStreetMap Berlin Telegram chat"
-            },
-            "de-berlin-twitter": {
-                "name": "OpenStreetMap Berlin Twitter",
-                "description": "Follow us on Twitter: {url}"
-            },
-            "de-forum": {
-                "name": "OpenStreetMap DE forum",
-                "description": "OpenStreetMap Germany web forum"
-            },
-            "de-irc": {
-                "name": "OpenStreetMap Germany IRC",
-                "description": "Join #osm-de on irc.oftc.net (port 6667)"
-            },
-            "de-mailinglist": {
-                "name": "Talk-de Mailing List",
-                "description": "Talk-de is the official mailing list for the German OSM community"
-            },
-            "de-ostwestfalen-lippe-mailinglist": {
-                "name": "OWL Mailing List",
-                "description": "This is the mailing list for the Ostwestfalen-Lippe OSM community"
-            },
-            "de-telegram": {
-                "name": "OpenStreetMap Germany Telegram",
-                "description": "Join the OpenStreetMap Germany Telegram supergroup at {url}"
-            },
-            "osm-de": {
-                "name": "OpenStreetMap Germany",
-                "description": "The platform for information on OpenStreetMap in Germany"
-            },
-            "hu-facebook": {
-                "name": "OpenStreetMap HU on Facebook",
-                "description": "Mappers and OpenStreetMap Facebook in Hungary"
-            },
-            "hu-forum": {
-                "name": "OpenStreetMap HU forum",
-                "description": "OpenStreetMap Hungary web forum"
-            },
-            "hu-meetup": {
-                "name": "OpenStreetMap Hungary Meetup",
-                "description": "The platform for organizing meetups in Hungary"
-            },
-            "is-facebook": {
-                "name": "OSM Iceland on Facebook",
-                "description": "Page of OpenStreetMap in Iceland"
-            },
-            "is-mailinglist": {
-                "name": "Talk-is Mailing List",
-                "description": "Talk-is is the official mailing list for the Icelandic OSM community"
-            },
-            "is-twitter": {
-                "name": "OSM Iceland on Twittter",
-                "description": "Twitter of OpenStreetMap in Iceland"
-            },
-            "it-facebook": {
-                "name": "OpenStreetMap Italy Facebook",
-                "description": "Join the OpenStreetMap Italy community on Facebook"
-            },
-            "it-irc": {
-                "name": "OpenStreetMap Italy IRC",
-                "description": "Join #osm-it on irc.oftc.net (port 6667)"
-            },
-            "it-mailinglist": {
-                "name": "Talk-it Mailing List",
-                "description": "Talk-it is the official mailing list for the Italian OSM community"
-            },
-            "it-telegram": {
-                "name": "@OpenStreetMapItalia on Telegram",
-                "description": "OpenStreetMap Italy Telegram chat"
-            },
-            "it-twitter": {
-                "name": "OpenStreetMap Italy Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "OSM-Rome-meetup": {
-                "name": "Incontro Mappatori Romani",
-                "description": "Improve OpenStreetMap in the Rome area",
-                "extendedDescription": "We aim to be a resource for people to discuss and share knowledge on utilizing free geographic data sets especially OpenStreetMap, and Open geo-spatial software that manages, edits, and displays geographic data, and advocate for its use in Lazio."
-            },
-            "South-Tyrol-Mailing-List": {
-                "name": "OpenStreetMap mailing list for South Tyrol",
-                "description": "OpenStreetMap Italy regional talk list for South Tyrol"
-            },
-            "talk-it-lazio": {
-                "name": "OpenStreetMap IT Lazio",
-                "description": "All are welcome! Sign up at {signupUrl}",
-                "extendedDescription": "Mailinglist for Rome and Lazio area."
-            },
-            "Trentino-Mailing-List": {
-                "name": "OpenStreetMap mailing list for Trentino",
-                "description": "OpenStreetMap Italy regional talk list for Trentino"
-            },
-            "kosovo-telegram": {
-                "name": "OpenStreetMap Kosovo on Telegram",
-                "description": "Semi-official all-Kosovo Telegram public group. We welcome all mappers from anywhere in any language."
-            },
-            "no-forum": {
-                "name": "OpenStreetMap Norway Web Forum",
-                "description": "OpenStreetMap Norway web forum"
-            },
-            "no-irc": {
-                "name": "OpenStreetMap Norway on IRC",
-                "description": "Chat room for mappers and OpenStreetMap users, developers and enthusiasts in Norway"
-            },
-            "no-mailinglist": {
-                "name": "OpenStreetMap Norway mailing list",
-                "description": "Mailing list for mappers and OpenStreetMap users, developers and enthusiasts in Norway"
-            },
-            "no-telegram": {
-                "name": "@OSM_no on Telegram",
-                "description": "OpenStreetMap Norway Telegram chat"
-            },
-            "OSM-PL-facebook-group": {
-                "name": "OpenStreetMap Poland Facebook group",
-                "description": "Group for mappers and users of OpenStreetMap in Poland"
-            },
-            "OSM-PL-forum": {
-                "name": "OpenStreetMap Poland Forum",
-                "description": "Forum of Polish OpenStreetMap community"
-            },
-            "si-forum": {
-                "name": "OpenStreetMap Slovenia Forum",
-                "description": "Forum of OpenStreetMap community in Slovenia"
-            },
-            "si-mailinglist": {
-                "name": "OpenStreetMap Slovenia mailing list",
-                "description": "Mailing list of OpenStreetMap community in Slovenia"
-            },
-            "OSM-ES-mailinglist": {
-                "name": "Talk-es mailing list",
-                "description": "A mailing list to discuss OpenStreetMap in Spain"
-            },
-            "OSM-ES-telegram": {
-                "name": "@OSMes on Telegram",
-                "description": "OpenStreetMap Spain Telegram chat"
-            },
-            "osm-se": {
-                "name": "OpenStreetMap.se",
-                "description": "Provide OSM services and information for the local community in Sweden"
-            },
-            "se-facebook": {
-                "name": "OpenStreetMap Sweden Facebook",
-                "description": "OpenStreetMap Sweden on Facebook"
-            },
-            "se-forum": {
-                "name": "OpenStreetMap Sweden Web Forum",
-                "description": "OpenStreetMap Sweden web forum"
-            },
-            "se-irc": {
-                "name": "OpenStreetMap Sweden IRC",
-                "description": "Join #osm.se on irc.oftc.net (port 6667)"
-            },
-            "se-mailinglist": {
-                "name": "Talk-se Mailing List",
-                "description": "A mailing list to discuss OpenStreetMap in Sweden"
-            },
-            "se-twitter": {
-                "name": "OpenStreetMap Sweden on Twitter",
-                "description": "Follow us on Twitter: {url}"
-            },
-            "Nottingham-OSM-pub-meetup": {
-                "name": "East Midlands (Nottingham) Monthly pub meet-up",
-                "description": "Social gathering for East Midlands mappers and users",
-                "extendedDescription": "A group have been meeting since March 2011, initially in Nottingham, and, more recently in Derby, and from time to time elsewhere in the East Midlands. These are social gatherings, but are an excellent place to come and ask specific questions about OSM either in the area or in general. In the summer months we usually do some light mapping for an hour in the vicinity of our meeting place. The group as a whole has a special interest in mapping public rights of way and from time to time has mapping meetings for this purpose."
-            },
-            "gb-mailinglist": {
-                "name": "Talk-gb Mailing List",
-                "description": "Talk-gb is the main communication forum list for the British (including Northern Ireland) OSM community"
-            },
-            "mappa-mercia-group": {
-                "name": "Mappa Mercia local group",
-                "description": "A home for OpenStreetMap enthusiasts in the Midlands",
-                "extendedDescription": "Mappa Mercia is a project to grow OpenStreetMap in the West Midlands, UK. We run community events, provide training and support local organisations wishing to open up their data."
-            },
-            "gb-irc": {
-                "name": "OpenStreetMap United Kingdom IRC",
-                "description": "Join #osm-gb on irc.oftc.net (port 6667)",
-                "extendedDescription": "Join #osm-gb on irc.oftc.net (port 6667), please be patient and wait for a few minutes if you ask a question"
-            },
-            "OSM-CA-Slack": {
-                "name": "OSM-CA Slack",
-                "description": "All are welcome! Sign up at {signupUrl}."
-            },
-            "OSM-Vancouver-meetup": {
-                "name": "OpenStreetMap Vancouver",
-                "description": "Mappers and OpenStreetMap users in the Vancouver, BC area"
-            },
-            "OSM-CU-telegram": {
-                "name": "OSM Cuba on Telegram",
-                "description": "OpenStreetMap Cuba Telegram chat"
-            },
-            "OSM-NI-telegram": {
-                "name": "OSM Nicaragua on Telegram",
-                "description": "OpenStreetMap Nicaragua Telegram chat"
-            },
-            "Bay-Area-OpenStreetMappers": {
-                "name": "Bay Area OpenStreetMappers",
-                "description": "Improve OpenStreetMap in the Bay Area",
-                "extendedDescription": "This group is about growing the OpenStreetMap community here in the Bay Area. Our events are open to everyone, from open source enthusiasts, cyclists, GIS professionals, geocachers, and beyond. Anyone and everyone who is interested in maps, map making and free map data is welcome to join our group as well as attend our events."
-            },
-            "Central-Pennsylvania-OSM": {
-                "name": "Central Pennsylvania OSM",
-                "description": "Online mapping community based out of State College, PA"
-            },
-            "Code-for-San-Jose-Slack": {
-                "name": "Code for San Jose Slack",
-                "description": "All are welcome! Sign up at {signupUrl}, then join the #osm channel."
-            },
-            "Dallas-Fort-Worth-OSM": {
-                "name": "Dallas-Fort Worth OSM",
-                "description": "The OpenStreetMap user group for Dallas-Fort Worth",
-                "extendedDescription": "Dallas, Fort Worth, and all the cities in between are abounding with creative and tech-savvy people. The vision for this usergroup is to find new ways to use the amazing resource of OSM."
-            },
-            "GeoPhilly": {
-                "name": "GeoPhilly",
-                "description": "Meetup for map enthusiasts in the Philadelphia area",
-                "extendedDescription": "GeoPhilly unites developers, geographers, data geeks, open source enthusiasts, civic hackers and map addicts in our shared love of maps and the stories they tell. If you use maps as part of your work or just want to learn more, this is the meetup for you!  Our events aim to be open, friendly, educational and social and range from happy hours to lightning talks or even workshops. Come create a diverse, inspiring geospatial community in the Philadelphia with us!"
-            },
-            "MapMinnesota": {
-                "name": "MapMinnesota",
-                "description": "Mappers and OpenStreetMap enthusiasts in the Twin Cities area",
-                "extendedDescription": "Connecting OpenStreetMap enthusiasts in Minnesota and the Twin Cities!"
-            },
-            "Mapping-DC-meetup": {
-                "name": "Mapping DC",
-                "description": "Improve OpenStreetMap in the DC area",
-                "extendedDescription": "We are a group of volunteer mappers who aim to improve the OpenStreetMap in the DC area. We also aim to teach others about the OSM ecosystem, data analytics, cartography, and GIS. We gather every other month at meetups to focus on one area of our city."
-            },
-            "Maptime-ME-meetup": {
-                "name": "MaptimeME",
-                "description": "Mappers and OpenStreetMap users, around Portland, ME",
-                "extendedDescription": "Maptime is, rather literally, time for mapmaking.  Our mission is to open the doors of cartographic possibility to anyone interested by creating a time and space for collaborative learning, exploration, and map creation using mapping tools and technologies."
-            },
-            "MaptimeHRVA-twitter": {
-                "name": "MaptimeHRVA Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "us-ma-mailinglist": {
-                "name": "Talk-us-massachusetts Mailing List",
-                "description": "Email mailing list for the Massachusetts OSM community"
-            },
-            "OpenCleveland-meetup": {
-                "name": "Open Cleveland",
-                "description": "Improve OpenStreetMap in the Cleveland area",
-                "extendedDescription": "Open Geo Cleveland aims to be a resource for people to discuss and share knowledge on utilizing free geographic data sets especially OpenStreetMap, and Open geo-spatial software that manages, edits, and displays geographic data, and advocate for its use in Northeast Ohio. We're also a maptime chapter =)"
-            },
-            "OSM-Boston": {
-                "name": "OpenStreetMap Boston",
-                "description": "Mappers and OpenStreetMap users in the Boston area",
-                "extendedDescription": "OpenStreetMap is the free and open, wiki-style map of the world, with hundreds of thousands of contributions every day from people like you. Editing the map is simple, and fun! Join us both indoors and outdoors in our effort to create the best map of the Boston area and the rest of the world!"
-            },
-            "OSM-Central-Salish-Sea": {
-                "name": "OpenStreetMap Central Salish Sea",
-                "description": "Mappers and OpenStreetMap users around Mount Vernon, WA",
-                "extendedDescription": "OpenStreetMap is an map of the world made by people like you. It's a map that you build, that's given away for free like wikipedia. Check out osm.org for more. We meet all the time to talk maps, make maps and have fun!"
-            },
-            "OSM-Chattanooga": {
-                "name": "OSM Chattanooga",
-                "description": "The OpenStreetMap user group for Chattanooga"
-            },
-            "OSM-Colorado": {
-                "name": "OpenStreetMap Colorado",
-                "description": "Mappers and OpenStreetMap users in the state of Colorado, USA",
-                "extendedDescription": "OpenStreetMap (OSM) Colorado is a local collaboration of people interested in contributing their efforts to create free maps. We encourage all of our mappers to organize or suggest mapping events throughout the state. Meetup activities can be simple social mixers, OSM basic to advanced training, or community mapping parties."
-            },
-            "OSM-NYC": {
-                "name": "OpenStreetMap NYC",
-                "description": "Mappers and OpenStreetMap users, developers and enthusiasts in the New York Metropolitan area"
-            },
-            "OSM-Portland-forum": {
-                "name": "OpenStreetMap PDX Google Group",
-                "description": "Forum and mailing list for OpenStreetMap users in the Portland area",
-                "extendedDescription": "This group is to facilitate improvements to OpenStreetMap in the Portland, Oregon area to support applications such as the Open Trip Planner."
-            },
-            "OSM-Portland": {
-                "name": "OpenStreetMap Portland",
-                "description": "Mappers and OpenStreetMap users in the Portland area",
-                "extendedDescription": "OpenStreetMap (OSM) is a map of the world made by people like you. It's a map that you build, that's given away for free like wikipedia. Check out osm.org for more, and come join us at a meetup to talk maps, contribute to OSM, and have fun!"
-            },
-            "OSM-Seattle": {
-                "name": "OpenStreetMap Seattle",
-                "description": "Mappers and OpenStreetMap users in the Seattle area"
-            },
-            "OSM-SoCal": {
-                "name": "OpenStreetMap Southern California",
-                "description": "Let's have some fun, contribute something to Los Angeles, and learn about mapping!",
-                "extendedDescription": "OpenStreetMap (OSM) Southern California is for anyone interested in mapping to get together to work with OpenStreetMap.  OpenStreetMap, the Wikipedia of maps, is a free open-source map of the world being created by more than 1,000,000 volunteers around the globe.  Everyone is welcome.  If you don't know OpenStreetMap, we'll teach you. If you have an idea for a mapping project or even a field trip that the group can do, great!"
-            },
-            "OSM-South-Bay": {
-                "name": "OSM South Bay",
-                "description": "Map Nights hosted by Code for San Jose",
-                "extendedDescription": "Code for San Jose, the local Code for America brigade, hosts monthly Map Nights on Thursday nights in downtown San José. Meet fellow South Bay mappers, help out with local mapping projects, and hear about other civic tech projects. Programming and GIS skills are not required."
-            },
-            "OSM-Tampa-Bay": {
-                "name": "OpenStreetMap Tampa Bay",
-                "description": "Mappers and OpenStreetMap users in the Tampa Bay area",
-                "extendedDescription": "OSM Tampa Bay group for local residents to get together and build out the definitive map of Tampa Bay with OpenStreetMap, the free and editable map of the world.  If you're into maps, data, open source, GPS, hiking, cycling, et cetera, you'll love working with OpenStreetMap -- so join in! We'll get together and map and talk about new topics once-a-month or so."
-            },
-            "OSM-US-Slack": {
-                "name": "OpenStreetMap US Slack",
-                "description": "All are welcome! Sign up at {signupUrl}"
-            },
-            "OSM-US": {
-                "name": "OpenStreetMap US",
-                "description": "We help grow and improve OpenStreetMap in the United States.",
-                "extendedDescription": "We support OpenStreetMap by holding annual conferences, providing community resources, building partnerships, and by spreading the word. Join OpenStreetMap US here: {signupUrl}",
-                "events": {
-                    "sotmus2018": {
-                        "name": "State of the Map US 2018",
-                        "description": "Join the OpenStreetMap community at State of the Map US in Detroit, Michigan. Connect with other mappers, businesses, government agencies, and non profits, all collaborating around the free and editable map of the world.",
-                        "where": "Detroit, Michigan"
-                    }
-                }
-            },
-            "OSM-Utah": {
-                "name": "OpenStreetMap Utah",
-                "description": "Mappers and OpenStreetMap users in the Salt Lake City area",
-                "extendedDescription": "Activities may include things like Learn To Map workshops, mapping parties and outdoor data collection. The events will take place in the SLC area, at least initially.  We are looking for seasoned mappers as well as people new to OSM. Join and let's do some mapping!"
-            },
-            "OSM-Wyoming": {
-                "name": "OpenStreetMap Wyoming",
-                "description": "Mappers and OpenStreetMap users in the state of Wyoming",
-                "extendedDescription": "OpenStreetMap (OSM) Wyoming is a local collaboration of people interested in contributing their efforts to create free maps. We encourage all of our mappers to organize or suggest mapping events throughout the state. Meetup activities can be simple social mixers, OSM basic to advanced training, or community mapping parties."
-            },
-            "PHXGeo-meetup": {
-                "name": "PHXGeo Meetup",
-                "description": "Mappers and OpenStreetMap users in the Phoenix, AZ area",
-                "extendedDescription": "This is a meetup group for those in the Phoenix area who like maps, GIS, OpenStreetMap, cartography and anything in between."
-            },
-            "PHXGeo-twitter": {
-                "name": "PHXGeo Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "Western-Slope-facebook": {
-                "name": "Western Slope OSM Facebook",
-                "description": "Mappers and OpenStreetMap users around Grand Junction, CO"
-            },
-            "Western-Slope-meetup": {
-                "name": "Western Slope OSM Meetup",
-                "description": "Mappers and OpenStreetMap users around Grand Junction, CO",
-                "extendedDescription": "The goal of this group is to introduce OpenStreetMap to the community, develop a community of mappers, create the most amazing geodata possible using whatever method we can and finally strategize in order to get this data out into our community. Imagine accurate trail signage! Imagine further development of bike paths! Imagine anything you want, that's the joy of OpenStreetMap!"
-            },
-            "Maptime-Australia-Slack": {
-                "name": "Maptime Australia Slack",
-                "description": "Sign up at {signupUrl}"
-            },
-            "talk-au": {
-                "name": "Talk-au Mailing List",
-                "description": "Place for Aussie mappers to chat"
-            },
-            "OSM-AR-facebook": {
-                "name": "OpenStreetMap Argentina Facebook",
-                "description": "Join the OpenStreetMap Argentina community on Facebook",
-                "extendedDescription": "News from the local community"
-            },
-            "OSM-AR-forum": {
-                "name": "OpenStreetMap Argentina web forum",
-                "description": "Join the OpenStreetMap Argentina web forum",
-                "extendedDescription": "Ideal for long or important discussions. Slow response time."
-            },
-            "OSM-AR-irc": {
-                "name": "OpenStreetMap Argentina IRC",
-                "description": "Join #osm-ar on irc.oftc.net (port 6667)",
-                "extendedDescription": "You may find the most geeky user in the community."
-            },
-            "OSM-AR-mailinglist": {
-                "name": "Talk-ar Mailing List",
-                "description": "Historic mailing list. Almost unused today."
-            },
-            "OSM-AR-telegram": {
-                "name": "OpenStreetMap Argentina Telegram",
-                "description": "Join the OpenStreetMap Argentina community on Telegram",
-                "extendedDescription": "The most active channel in the community, ideal for chatting and getting answers to your questions instantly. Everyone is welcome!"
-            },
-            "OSM-AR-twitter": {
-                "name": "OpenStreetMap Argentina Twitter",
-                "description": "Follow us on Twitter at {url}",
-                "extendedDescription": "News from the local community and OpenStreetMap in general."
-            },
-            "OSM-BO-mailinglist": {
-                "name": "Talk-bo Mailing List",
-                "description": "Talk-bo is the official mailing list for the Bolivian OpenStreetMap community",
-                "extendedDescription": "Mapping in Bolivia? Have questions, want to connect with the community here? Join us at {url}. All are welcome!"
-            },
-            "Bahia-telegram": {
-                "name": "OpenStreetMap Bahia Telegram Group",
-                "description": "Join the OpenStreetMap Bahia community on Telegram",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap, ask questions or participate in our meetings. Everyone is welcome!"
-            },
-            "DF-telegram": {
-                "name": "OpenStreetMap Brasília Telegram Group",
-                "description": "Join the OpenStreetMap Brasília community on Telegram",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap, ask questions or participate in our meetings. Everyone is welcome!"
-            },
-            "OSM-br-mailinglist": {
-                "name": "Talk-br Mailing List",
-                "description": "A mailing list to discuss OpenStreetMap in Brazil"
-            },
-            "OSM-br-telegram": {
-                "name": "OpenStreetMap Brasil Telegram",
-                "description": "Join the OpenStreetMap Brasil community on Telegram",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap, ask questions or participate in our meetings. Everyone is welcome!"
-            },
-            "OSM-br-twitter": {
-                "name": "OpenStreetMap Brasil Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "RS-telegram": {
-                "name": "OpenStreetMap Rio Grande do Sul Telegram Group",
-                "description": "Join the OpenStreetMap Rio Grande do Sul community on Telegram",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap, ask questions or participate in our meetings. Everyone is welcome!"
-            },
-            "OSM-CL-facebook": {
-                "name": "OpenStreetMap Chile Facebook",
-                "description": "Join the OpenStreetMap Chile community on Facebook",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap, ask questions or participate in our meetings. Everyone is welcome!"
-            },
-            "OSM-CL-mailinglist": {
-                "name": "Talk-cl Mailing List",
-                "description": "A mailing list to discuss OpenStreetMap in Chile"
-            },
-            "OSM-CL-telegram": {
-                "name": "OpenStreetMap Chile Telegram",
-                "description": "Join the OpenStreetMap Chile community on Telegram",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap, ask questions or participate in our meetings. Everyone is welcome!"
-            },
-            "OSM-CL-twitter": {
-                "name": "OpenStreetMap Chile Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "Maptime-Bogota": {
-                "name": "Maptime Bogotá",
-                "description": "We're a group of mappers interested in mapping in OpenStreetMap around Bogotá.",
-                "extendedDescription": "Learn to collect data in the field and digitize onto OpenStreetMap.  It is not necessary to have previous knowledge! You just need the desire to participate, learn, and have fun."
-            },
-            "OSM-CO-facebook": {
-                "name": "OpenStreetMap Colombia Facebook",
-                "description": "Join the OpenStreetMap Colombia community on Facebook",
-                "extendedDescription": "Join the community to learn more about OpenStreetMap. Everyone is welcome!"
-            },
-            "OSM-CO-mailinglist": {
-                "name": "Talk-co Mailing List",
-                "description": "A mailing list to discuss OpenStreetMap in Colombia"
-            },
-            "OSM-CO-telegram": {
-                "name": "OSM Colombia on Telegram",
-                "description": "OpenStreetMap Colombia Telegram chat"
-            },
-            "OSM-CO-twitter": {
-                "name": "OpenStreetMap Colombia Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "OSM-CO": {
-                "name": "OpenStreetMap Colombia",
-                "description": "News of the OpenStreetMap Colombia community and the OSMCo Foundation"
-            },
-            "OSM-EC-telegram": {
-                "name": "OSM Ecuador on Telegram",
-                "description": "OpenStreetMap Ecuador Telegram chat"
-            },
-            "OSM-PY-telegram": {
-                "name": "OSM Paraguay on Telegram",
-                "description": "OpenStreetMap Paraguay Telegram chat"
-            },
-            "OSM-PE-facebook": {
-                "name": "OpenStreetMap Peru Facebook",
-                "description": "Join the OpenStreetMap Peru community on Facebook"
-            },
-            "OSM-PE-mailinglist": {
-                "name": "Talk-pe Mailing List",
-                "description": "The official mailing list for the OpenStreetMap Peru community"
-            },
-            "OSM-PE-matrix": {
-                "name": "OpenStreetMap Peru Matrix Chat",
-                "description": "Chat with other members of the OpenStreetMap Peru community in Matrix."
-            },
-            "OSM-PE-telegram": {
-                "name": "OpenStreetMap Peru Telegram",
-                "description": "Join the OpenStreetMap Peru community on Telegram"
-            },
-            "OSM-PE-twitter": {
-                "name": "OpenStreetMap Peru Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "OSM-PE": {
-                "name": "OpenStreetMap Peru",
-                "description": "News and resources for the OpenStreetMap Peru community"
-            },
-            "LATAM-Facebook": {
-                "name": "OpenStreetMap Latam Facebook",
-                "description": "OpenStreetMap Latam on Facebook"
-            },
-            "LATAM-Telegram": {
-                "name": "OpenStreetMap Latam Telegram",
-                "description": "OpenStreetMap Telegram for Latin America"
-            },
-            "LATAM-Twitter": {
-                "name": "OpenStreetMap Latam Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "osm-latam": {
-                "name": "OpenStreetMap Latam",
-                "description": "Supporting OpenStreetMap in Latin America",
-                "events": {
-                    "sotm-latam-2018": {
-                        "name": "State of the Map Latam 2018",
-                        "description": "State of the Map Latam is the annual conference for all mappers and users of OpenStreetMap in Latin America. The program includes talks, panels, workshops, and mapathons related to OpenStreetMap.",
-                        "where": "Buenos Aires, Argentina"
-                    }
-                }
-            },
-            "OSM-Discord": {
-                "name": "OpenStreetMap Discord",
-                "description": "Get in touch with other mappers via Discord"
-            },
-            "OSM-Facebook": {
-                "name": "OpenStreetMap on Facebook",
-                "description": "Like us on Facebook for news and updates about OpenStreetMap."
-            },
-            "OSM-help": {
-                "name": "OpenStreetMap Help",
-                "description": "Ask a question and get answers on OSM's community-driven question and answer site.",
-                "extendedDescription": "{url} is for everyone who needs help with OpenStreetMap.  Whether you are a beginner mapper or have a technical question, we're here to help!"
-            },
-            "OSM-IRC": {
-                "name": "OpenStreetMap IRC",
-                "description": "Join #osm on irc.oftc.net (port 6667)"
-            },
-            "OSM-Reddit": {
-                "name": "OpenStreetMap on Reddit",
-                "description": "/r/openstreetmap/ is a great place to learn more about OpenStreetMap.  Ask us anything!"
-            },
-            "OSM-Telegram": {
-                "name": "OpenStreetMap Telegram",
-                "description": "Join the OpenStreetMap Telegram global supergroup at {url}"
-            },
-            "OSM-Twitter": {
-                "name": "OpenStreetMap Twitter",
-                "description": "Follow us on Twitter at {url}"
-            },
-            "OSMF": {
-                "name": "OpenStreetMap Foundation",
-                "description": "OSMF is a UK-based not-for-profit that supports the OpenStreetMap Project",
-                "extendedDescription": "OSMF supports the OpenStreetMap by fundraising, maintaining the servers which power OSM, organizing the annual State of the Map conference, and coordinating the volunteers who keep OSM running. You can show your support and have a voice in the direction of OpenStreetMap by joining as an OSMF member here: {signupUrl}",
-                "events": {
-                    "sotm2018": {
-                        "name": "State of the Map 2018",
-                        "description": "Join us for 3 days in Milan, Italy for the annual worldwide OpenStreetMap conference, bringing together everyone in the community to socialize, share, and learn.",
-                        "where": "Milan, Italy"
-                    }
-                }
-            }
-        }
+        "community": {}
     }
 }
