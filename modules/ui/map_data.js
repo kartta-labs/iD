@@ -20,6 +20,7 @@ export function uiMapData(context) {
     var features = context.features().keys();
     var layers = context.layers();
     var fills = ['wireframe', 'partial', 'full'];
+    var dateRanges = ['start_date', 'end_date'];
 
     var settingsCustomData = uiSettingsCustomData(context)
         .on('change', customChanged);
@@ -30,6 +31,7 @@ export function uiMapData(context) {
     var _shown = false;
     var _dataLayerContainer = d3_select(null);
     var _fillList = d3_select(null);
+    var _rangeList = d3_select(null);
     var _featureList = d3_select(null);
     var _QAList = d3_select(null);
 
@@ -71,6 +73,9 @@ export function uiMapData(context) {
         return _fillSelected === d;
     }
 
+    function showsDateRanges(d) {
+        return true;
+    }
 
     function setFill(d) {
         fills.forEach(function(opt) {
@@ -82,6 +87,16 @@ export function uiMapData(context) {
         if (d !== 'wireframe') {
             context.storage('area-fill-toggle', d);
         }
+        update();
+    }
+
+
+    function setDateRanges(d) {
+        var setValue = parseInt(this.value.replace(/-/g,''),10)
+        setValue = isNaN(setValue) ? (d === 'start_date' ? -Infinity : Infinity) : setValue;
+        context.features().dateRange = context.features().dateRange || [-Infinity,Infinity];
+        context.features().dateRange[d === 'start_date' ? 0 : 1] = setValue;
+        context.flush()
         update();
     }
 
@@ -561,6 +576,19 @@ export function uiMapData(context) {
         updateFillList();
     }
 
+    function renderDateRanges(selection) {
+        var container = selection.selectAll('.layer-date-range')
+            .data([0]);
+
+        _rangeList = container.enter()
+            .append('ul')
+            .attr('class', 'layer-list layer-date-range')
+            .merge(container);
+
+        updateDateRanges();
+    }
+
+
 
     function renderFeatureList(selection) {
         var container = selection.selectAll('.layer-feature-list')
@@ -587,6 +615,12 @@ export function uiMapData(context) {
         _fillList
             .call(drawListItems, fills, 'radio', 'area_fill', setFill, showsFill);
     }
+
+    function updateDateRanges() {
+        _rangeList
+            .call(drawListItems, dateRanges, 'date', 'date_ranges', setDateRanges, showsDateRanges);
+    }
+
 
     function updateFeatureList() {
         _featureList
@@ -724,6 +758,17 @@ export function uiMapData(context) {
                 .title(t('map_data.fill_area'))
                 .content(renderFillList)
             );
+
+        // Date Ranges
+        content
+            .append('div')
+            .attr('class', 'map-data-date-ranges')
+            .call(uiDisclosure(context, 'date_ranges', false)
+                .title(t('map_data.date_ranges'))
+                .content(renderDateRanges)
+            );
+
+
 
         // feature filters
         content
