@@ -497,10 +497,14 @@ en:
         title: Custom Map Data
         zoom: Zoom to data
     fill_area: Fill Areas
+    date_ranges: Date Ranges
     map_features: Map Features
     autohidden: "These features have been automatically hidden because too many would be shown on the screen.  You can zoom in to edit them."
     osmhidden: "These features have been automatically hidden because the OpenHistoricalMap layer is hidden."
   feature:
+    date_range:
+      description: Show features from all dates
+      tooltip: "When selected, shows all feature dates, when unselected only shows the specified dates"
     points:
       description: Points
       tooltip: "Points of Interest"
@@ -548,6 +552,13 @@ en:
     full:
       description: Full Fill
       tooltip: "Areas are drawn fully filled."
+  date_ranges:
+    start_date:
+      description: Start Date
+      tooltip: The start of your specified date range
+    end_date:
+      description: End Date
+      tooltip: The end of your specified date range
   settings:
     custom_background:
       tooltip: Edit custom background
