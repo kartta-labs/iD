@@ -102,6 +102,46 @@ export function rendererFeatures(context) {
         };
     }
 
+    defineFeature('date_range', function isWithinRange(entity) {
+
+      // Function to parse time (YYYY-MM-DD) to an INT
+      var valueToInt = function(value) {
+        return (typeof value === 'string') ?
+          parseInt(value.replace(/-/g, ''), 10) :
+          0;
+      }
+
+      // Convert the date range from the entity to a number
+      entity.tags = entity.tags || {};
+      var entityRange = {
+        'start_date': valueToInt(entity.tags['start_date']),
+        'end_date': valueToInt(entity.tags['end_date'])
+      };
+
+      // These will be pulled from the on-screen controls
+      // Maybe put them in browser storage?
+      var selectedRange = {
+        'start_date': -Infinity, //valueToInt(entity['start_date']),
+        'end_date': Infinity // valueToInt(entity['end_date'])
+      }
+      if (context.features().dateRange) {
+        selectedRange.start_date = context.features().dateRange[0];
+        selectedRange.end_date = context.features().dateRange[1];
+      }
+
+      // console.log('v---------------------------------------------v');
+      // console.log('selectedRange', selectedRange);
+      // console.log('entityRange', entityRange);
+      // console.log('Return', !((selectedRange['start_date'] <= entityRange['end_date']) && (entityRange['start_date'] <= selectedRange['end_date'])));
+      // console.log('^---------------------------------------------^');
+
+      // Within range if:
+      //    the entity started before the selected range started 
+      //    and also ended after the selected range started
+      return !((selectedRange['start_date'] <= entityRange['end_date']) &&
+        (entityRange['start_date'] <= selectedRange['end_date']));
+
+    });
 
     defineFeature('points', function isPoint(entity, resolver, geometry) {
         return geometry === 'point';
