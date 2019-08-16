@@ -544,9 +544,9 @@
             "outstanding_errors_message": "Please resolve all errors first. {count} remaining.",
             "comment_needed_message": "Please add a changeset comment first.",
             "about_changeset_comments": "About changeset comments",
-            "about_changeset_comments_link": "//wiki.openhistoricalmap.org/wiki/Good_changeset_comments",
+            "about_changeset_comments_link": "//wiki.openstreetmap.org/wiki/Good_changeset_comments",
             "google_warning": "You mentioned Google in this comment: remember that copying from Google Maps is strictly forbidden.",
-            "google_warning_link": "https://www.openhistoricalmap.org/copyright"
+            "google_warning_link": "https://www.openstreetmap.org/copyright"
         },
         "contributors": {
             "list": "Edits by {users}",
@@ -579,12 +579,12 @@
                 "edited_by": "Edited By",
                 "changeset": "Changeset",
                 "unknown": "Unknown",
-                "link_text": "History on openhistoricalmap.org",
+                "link_text": "History on openstreetmap.org",
                 "note_no_history": "No History (New Note)",
                 "note_comments": "Comments",
                 "note_created_date": "Created Date",
                 "note_created_user": "Created By",
-                "note_link_text": "Note on openhistoricalmap.org"
+                "note_link_text": "Note on openstreetmap.org"
             },
             "location": {
                 "key": "L",
@@ -636,7 +636,7 @@
                 "tooltip_issue": "Center and zoom the map to focus on this issue."
             },
             "show_more": "Show More",
-            "view_on_osm": "View on openhistoricalmap.org",
+            "view_on_osm": "View on openstreetmap.org",
             "view_on_keepRight": "View on keepright.at",
             "all_fields": "All fields",
             "all_tags": "All tags",
@@ -648,13 +648,8 @@
             "role": "Role",
             "choose": "Select feature type",
             "results": "{n} results for {search}",
-<<<<<<< HEAD
-            "reference": "View on OpenHistoricalMap Wiki",
-            "edit_reference": "Edit or translate description",
-=======
             "no_documentation_key": "There is no documentation available.",
             "edit_reference": "edit/translate",
->>>>>>> e424ec71c75d277a72f123da6777ff5ce70f63d1
             "wiki_reference": "View documentation",
             "wiki_en_reference": "View documentation in English",
             "hidden_preset": {
@@ -747,9 +742,10 @@
                 }
             },
             "fill_area": "Fill Areas",
+            "date_ranges": "Date Ranges",
             "map_features": "Map Features",
             "autohidden": "These features have been automatically hidden because too many would be shown on the screen.  You can zoom in to edit them.",
-            "osmhidden": "These features have been automatically hidden because the OpenHistoricalMap layer is hidden."
+            "osmhidden": "These features have been automatically hidden because the OpenStreetMap layer is hidden."
         },
         "photo_overlays": {
             "title": "Photo Overlays",
@@ -768,6 +764,10 @@
             }
         },
         "feature": {
+            "date_range": {
+                "description": "Show features from all dates",
+                "tooltip": "When selected, shows all feature dates, when unselected only shows the specified dates"
+            },
             "points": {
                 "description": "Points",
                 "tooltip": "Points of Interest"
@@ -848,6 +848,16 @@
                 "tooltip": "Areas are drawn fully filled."
             }
         },
+        "date_ranges": {
+            "start_date": {
+                "description": "Start Date",
+                "tooltip": "The start of your specified date range"
+            },
+            "end_date": {
+                "description": "End Date",
+                "tooltip": "The end of your specified date range"
+            }
+        },
         "settings": {
             "custom_background": {
                 "tooltip": "Edit custom background",
@@ -914,18 +924,14 @@
             "just_edited": "You just edited OpenHistoricalMap!",
             "thank_you": "Thank you for improving the map.",
             "thank_you_location": "Thank you for improving the map around {where}.",
-<<<<<<< HEAD
-            "help_html": "Your changes should appear on OpenHistoricalMap within a few minutes. It may take longer for maps elsewhere to receive updates.",
-=======
             "thank_you_where": {
                 "format": "{place}{separator}{region}",
                 "separator": ", "
             },
             "help_html": "Your changes should appear on OpenStreetMap within a few minutes. It may take longer for maps elsewhere to receive updates.",
->>>>>>> e424ec71c75d277a72f123da6777ff5ce70f63d1
             "help_link_text": "Details",
             "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F",
-            "view_on_osm": "View Changes on OSM",
+            "view_on_osm": "View Changes on OHM",
             "changeset_id": "Your changeset #: {changeset_id}",
             "like_osm": "Like OpenHistoricalMap? Connect with others:",
             "more": "More",
@@ -957,28 +963,6 @@
             "on_wiki": "{tag} on wiki.osm.org",
             "used_with": "used with {type}"
         },
-<<<<<<< HEAD
-        "validations": {
-            "disconnected_highway": "Disconnected highway",
-            "disconnected_highway_tooltip": "Roads should be connected to other roads or building entrances.",
-            "generic_name": "Possible generic name",
-            "generic_name_tooltip": "This feature seems to have a generic name \"{name}\". Please only use the name field to record the official name of a feature.",
-            "old_multipolygon": "Multipolygon tags on outer way",
-            "old_multipolygon_tooltip": "This style of multipolygon is deprecated. Please assign the tags to the parent multipolygon instead of the outer way.",
-            "untagged_point": "Untagged point",
-            "untagged_point_tooltip": "Select a feature type that describes what this point is.",
-            "untagged_line": "Untagged line",
-            "untagged_line_tooltip": "Select a feature type that describes what this line is.",
-            "untagged_area": "Untagged area",
-            "untagged_area_tooltip": "Select a feature type that describes what this area is.",
-            "untagged_relation": "Untagged relation",
-            "untagged_relation_tooltip": "Select a feature type that describes what this relation is.",
-            "many_deletions": "You're deleting {n} features: {p} nodes, {l} lines, {a} areas, {r} relations. Are you sure you want to do this? This will delete them from the map that everyone else sees on openhistoricalmap.org.",
-            "tag_suggests_area": "The tag {tag} suggests line should be area, but it is not an area",
-            "deprecated_tags": "Deprecated tags: {tags}"
-        },
-=======
->>>>>>> e424ec71c75d277a72f123da6777ff5ce70f63d1
         "zoom": {
             "in": "Zoom in",
             "out": "Zoom out"
@@ -1394,9 +1378,9 @@
                 "title": "Help",
                 "welcome": "Welcome to the iD editor for [OpenHistoricalMap](https://www.openhistoricalmap.org/). With this editor you can update OpenHistoricalMap right from your web browser.",
                 "open_data_h": "Open Data",
-                "open_data": "Edits that you make on this map will be visible to everyone who uses OpenHistoricalMap. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources, like Google Maps, [is strictly forbidden](https://www.openhistoricalmap.org/copyright).",
+                "open_data": "Edits that you make on this map will be visible to everyone who uses OpenHistoricalMap. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources, like Google Maps, [is strictly forbidden](https://www.openstreetmap.org/copyright).",
                 "before_start_h": "Before you start",
-                "before_start": "You should be familiar with OpenHistoricalMap and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing OpenHistoricalMap. Click \"Start the Walkthrough\" on this screen to take the tutorial - it takes only about 15 minutes.",
+                "before_start": "You should be familiar with OpenStreetMap and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing OpenStreetMap. Click \"Start the Walkthrough\" on this screen to take the tutorial - it takes only about 15 minutes.",
                 "open_source_h": "Open Source",
                 "open_source": "The iD editor is a collaborative open source project, and you are using version {version} now. The source code is available [on GitHub](https://github.com/openstreetmap/iD).",
                 "open_source_help": "You can help iD by [translating](https://github.com/openstreetmap/iD/blob/master/CONTRIBUTING.md#translating) or [reporting bugs](https://github.com/openstreetmap/iD/issues)."
@@ -1407,7 +1391,7 @@
                 "navigation_drag": "You can drag the map by pressing and holding down the {leftclick} left mouse button and moving the mouse around. You can also use the `↓`, `↑`, `←`, `→` arrow keys on your keyboard.",
                 "navigation_zoom": "You can zoom in or out by scrolling with the mouse wheel or trackpad, or by clicking the {plus} / {minus} buttons along the side of the map. You can also use the `+`, `-` keys on your keyboard.",
                 "features_h": "Map Features",
-                "features": "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything in the real world can be mapped as a feature on OpenHistoricalMap. Map features are represented on the map using *points*, *lines*, or *areas*.",
+                "features": "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything that has ever been in the real world can be mapped as a feature on OpenHistoricalMap. Map features are represented on the map using *points*, *lines*, or *areas*.",
                 "nodes_ways": "In OpenHistoricalMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
             },
             "editing": {
@@ -1443,7 +1427,7 @@
                 "fields_add_field": "You can also click the \"Add field\" dropdown to add more fields, such as a description, Wikipedia link, wheelchair access, and more.",
                 "tags_h": "Tags",
                 "tags_all_tags": "Below the fields section, you can expand the \"All tags\" section to edit any of the OpenHistoricalMap *tags* for the selected feature. Each tag consists of a *key* and *value*, data elements that define all of the features stored in OpenHistoricalMap.",
-                "tags_resources": "Editing a feature's tags requires intermediate knowledge about OpenStreetMap. You should consult resources like the [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Main_Page) or [Taginfo](https://taginfo.openstreetmap.org/) to learn more about accepted OpenHistoricalMap tagging practices."
+                "tags_resources": "Editing a feature's tags requires intermediate knowledge about OpenHistoricalMap. You should consult resources like the [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Main_Page) or [Taginfo](https://taginfo.openstreetmap.org/) to learn more about accepted OpenStreetMap tagging practices."
             },
             "points": {
                 "title": "Points",
@@ -1560,7 +1544,7 @@
                 "using_h": "Using GPS Traces",
                 "using": "To use a GPS trace for mapping, drag and drop the data file onto the map editor. If it's recognized, it will be drawn on the map as a bright purple line. Click the {data} **Map data** panel on the side of the map to enable, disable, or zoom to your GPS data.",
                 "tracing": "The GPS track isn't sent to OpenHistoricalMap - the best way to use it is to draw on the map, using it as a guide for the new features that you add.",
-                "upload": "You can also [upload your GPS data to OpenHistoricalMap](https://www.openhistoricalmap.org/trace/create) for other users to use."
+                "upload": "You can also [upload your GPS data to OpenStreetMap](https://www.openstreetmap.org/trace/create) for other users to use."
             },
             "qa": {
                 "title": "Quality Assurance",
@@ -2128,7 +2112,7 @@
             },
             "welcome": {
                 "title": "Welcome",
-                "welcome": "Welcome! This walkthrough will teach you the basics of editing on OpenHistoricalMap.",
+                "welcome": "Welcome! This walkthrough will teach you the basics of editing on OpenStreetMap.",
                 "practice": "All of the data in this walkthrough is just for practicing, and any edits that you make in the walkthrough will not be saved.",
                 "words": "This walkthrough will introduce some new words and concepts. When we introduce a new word, we'll use *italics*.",
                 "mouse": "You can use any input device to edit the map, but this walkthrough assumes you have a mouse with left and right buttons. **If you want to attach a mouse, do so now, then click OK.**",
@@ -2140,9 +2124,9 @@
                 "title": "Navigation",
                 "drag": "The main map area shows OpenHistoricalMap data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**",
                 "zoom": "You can zoom in or out by scrolling with the mouse wheel or trackpad, or by clicking the {plus} / {minus} buttons. **Zoom the map!**",
-                "features": "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on OpenHistoricalMap.",
+                "features": "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on OpenStreetMap.",
                 "points_lines_areas": "Map features are represented using *points, lines, or areas.*",
-                "nodes_ways": "In OpenHistoricalMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*.",
+                "nodes_ways": "In OpenStreetMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*.",
                 "click_townhall": "All features on the map can be selected by clicking on them. **Click on the point to select it.**",
                 "selected_townhall": "Great! The point is now selected. Selected features are drawn with a pulsing glow.",
                 "editor_townhall": "When a feature is selected, the *feature editor* is displayed alongside the map.",
@@ -2153,7 +2137,7 @@
                 "choose_street": "**Choose {name} from the list to select it.**",
                 "selected_street": "Great! {name} is now selected.",
                 "editor_street": "The fields shown for a street are different than the fields that were shown for the town hall.{br}For this selected street, the feature editor shows fields like '{field1}' and '{field2}'. **Close the feature editor by hitting escape or pressing the {button} button.**",
-                "play": "Try moving the map and clicking on some other features to see what kinds of things can be added to OpenHistoricalMap. **When you are ready to continue to the next chapter, click '{next}'.**"
+                "play": "Try moving the map and clicking on some other features to see what kinds of things can be added to OpenStreetMap. **When you are ready to continue to the next chapter, click '{next}'.**"
             },
             "points": {
                 "title": "Points",
@@ -2162,14 +2146,14 @@
                 "search_cafe": "There are many different features that can be represented by points. The point you just added is a cafe. **Search for '{preset}'.**",
                 "choose_cafe": "**Choose {preset} from the list.**",
                 "feature_editor": "The point is now marked as a cafe. Using the feature editor, we can add more information about the cafe.",
-                "add_name": "In OpenHistoricalMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure.{br}Let's pretend that you have local knowledge of this cafe, and you know its name. **Add a name for the cafe.**",
+                "add_name": "In OpenStreetMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure.{br}Let's pretend that you have local knowledge of this cafe, and you know its name. **Add a name for the cafe.**",
                 "add_close": "The feature editor will remember all of your changes automatically. **When you are finished adding the name, hit escape, enter, or click the {button} button to close the feature editor.**",
                 "reselect": "Often points will already exist, but have mistakes or be incomplete. We can edit existing points. **Click to select the cafe you just created.**",
                 "update": "Let's fill in some more details for this cafe. You can change its name, add a cuisine, or add an address. **Change the cafe details.**",
                 "update_close": "**When you are finished updating the cafe, hit escape, enter, or click the {button} button to close the feature editor.**",
                 "rightclick": "You can right-click on any feature to see the *edit menu*, which shows a list of editing operations that can be performed. **Right-click to select the point you created and show the edit menu.**",
-                "delete": "It's OK to delete features that don't exist in the real world.{br}Deleting a feature from OpenHistoricalMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it. **Click on the {button} button to delete the point.**",
-                "undo": "You can always undo any changes up until you save your edits to OpenHistoricalMap. **Click on the {button} button to undo the delete and get the point back.**",
+                "delete": "It's OK to delete features that don't exist in the real world.{br}Deleting a feature from OpenStreetMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it. **Click on the {button} button to delete the point.**",
+                "undo": "You can always undo any changes up until you save your edits to OpenStreetMap. **Click on the {button} button to undo the delete and get the point back.**",
                 "play": "Now that you know how to create and edit points, try creating a few more points for practice! **When you are ready to continue to the next chapter, click '{next}'.**"
             },
             "areas": {
@@ -2184,12 +2168,12 @@
                 "choose_field": "**Choose {field} from the list.**",
                 "retry_add_field": "You didn't select the {field} field. Let's try again.",
                 "describe_playground": "**Add a description, then click the {button} button to close the feature editor.**",
-                "play": "Good job! Try drawing a few more areas, and see what other kinds of area features you can add to OpenHistoricalMap. **When you are ready to continue to the next chapter, click '{next}'.**"
+                "play": "Good job! Try drawing a few more areas, and see what other kinds of area features you can add to OpenStreetMap. **When you are ready to continue to the next chapter, click '{next}'.**"
             },
             "lines": {
                 "title": "Lines",
                 "add_line": "*Lines* are used to represent features such as roads, railroads, and rivers. **Click the {button} Line button to add a new line.**",
-                "start_line": "Here is a road that is missing. Let's add it!{br}In OpenHistoricalMap, lines should be drawn down the center of the road. You can drag and zoom the map while drawing if necessary. **Start a new line by clicking at the top end of this missing road.**",
+                "start_line": "Here is a road that is missing. Let's add it!{br}In OpenStreetMap, lines should be drawn down the center of the road. You can drag and zoom the map while drawing if necessary. **Start a new line by clicking at the top end of this missing road.**",
                 "intersect": "Click or press spacebar to add more nodes to the line.{br}Roads, and many other types of lines, are part of a larger network. It is important for these lines to be connected properly in order for routing applications to work. **Click on {name} to create an intersection connecting the two lines.**",
                 "retry_intersect": "The road needs to intersect {name}. Let's try again!",
                 "continue_line": "Continue drawing the line for the new road. Remember that you can drag and zoom the map if needed.{br}When you are finished drawing, click on the last node again. **Finish drawing the road.**",
@@ -2218,7 +2202,7 @@
             },
             "buildings": {
                 "title": "Buildings",
-                "add_building": "OpenHistoricalMap is the world's largest database of buildings.{br}You can help improve this database by tracing buildings that aren't already mapped. **Click the {button} Area button to add a new area.**",
+                "add_building": "OpenStreetMap is the world's largest database of buildings.{br}You can help improve this database by tracing buildings that aren't already mapped. **Click the {button} Area button to add a new area.**",
                 "start_building": "Let's add this house to the map by tracing its outline.{br}Buildings should be traced around their footprint as accurately as possible. **Click or press spacebar to place a starting node on one of the corners of the building.**",
                 "continue_building": "Continue adding more nodes to trace the outline of the building. Remember that you can zoom in if you want to add more details.{br}Finish the building by pressing enter, or clicking again on either the first or last node. **Finish tracing the building.**",
                 "retry_building": "It looks like you had some trouble placing the nodes at the building corners. Try again!",
@@ -2241,7 +2225,7 @@
             },
             "startediting": {
                 "title": "Start Editing",
-                "help": "You're now ready to edit OpenHistoricalMap!{br}You can replay this walkthrough anytime or view more documentation by clicking the {button} Help button or pressing the '{key}' key.",
+                "help": "You're now ready to edit OpenStreetMap!{br}You can replay this walkthrough anytime or view more documentation by clicking the {button} Help button or pressing the '{key}' key.",
                 "shortcuts": "You can view a list of commands along with their keyboard shortcuts by pressing the '{key}' key.",
                 "save": "Don't forget to regularly save your changes!",
                 "start": "Start mapping!"
@@ -3155,6 +3139,11 @@
                 "emergency": {
                     "label": "Emergency",
                     "terms": ""
+                },
+                "end_date": {
+                    "label": "End Date",
+                    "terms": "",
+                    "placeholder": "YYYY-MM-DD"
                 },
                 "enforcement": {
                     "label": "Type",
@@ -4443,7 +4432,8 @@
                 },
                 "start_date": {
                     "label": "Start Date",
-                    "terms": "inception"
+                    "terms": "inception",
+                    "placeholder": "YYYY-MM-DD"
                 },
                 "step_count": {
                     "label": "Number of Steps",
@@ -9819,10 +9809,10 @@
             },
             "MAPNIK": {
                 "attribution": {
-                    "text": "© OpenHistoricalMap contributors, CC-BY-SA"
+                    "text": "© OpenStreetMap contributors, CC-BY-SA"
                 },
-                "description": "The default OpenHistoricalMap layer.",
-                "name": "OpenHistoricalMap (Standard)"
+                "description": "The default OpenStreetMap layer.",
+                "name": "OpenStreetMap (Standard)"
             },
             "Mapbox": {
                 "attribution": {
@@ -10239,9 +10229,6 @@
                 "name": "Trafikverket Road Network options"
             }
         },
-<<<<<<< HEAD
-        "community": {}
-=======
         "community": {
             "bw-facebook": {
                 "name": "Mapping Botswana on Facebook",
@@ -11938,6 +11925,5 @@
                 }
             }
         }
->>>>>>> e424ec71c75d277a72f123da6777ff5ce70f63d1
     }
 }

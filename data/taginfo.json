@@ -1386,12 +1386,8 @@
     {"key": "ele", "description": "🄵 Elevation"},
     {"key": "email", "description": "🄵 Email"},
     {"key": "embankment", "description": "🄵 Type, 🄵 Structure"},
-<<<<<<< HEAD
-    {"key": "emergency", "description": "🄵 Emergency"},
-    {"key": "end_date", "description": "🄵 End Date"},
-=======
     {"key": "embassy", "description": "🄵 Type"},
->>>>>>> e424ec71c75d277a72f123da6777ff5ce70f63d1
+    {"key": "end_date", "description": "🄵 End Date"},
     {"key": "enforcement", "description": "🄵 Type"},
     {"key": "except", "description": "🄵 Exceptions"},
     {"key": "faces", "description": "🄵 Faces"},

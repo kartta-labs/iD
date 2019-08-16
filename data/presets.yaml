@@ -730,11 +730,15 @@ en:
       emergency:
         # emergency=*
         label: Emergency
+      emergency_combo:
+        # emergency=*
+        label: Type
       end_date:
         # end_date=*
         label: End Date
         # end_date field placeholder
         placeholder: YYYY-MM-DD
+        terms: '[translate with synonyms or related terms for ''End Date'', separated by commas]'
       enforcement:
         # enforcement=*
         label: Type
@@ -2098,6 +2102,8 @@ en:
       start_date:
         # start_date=*
         label: Start Date
+        # start_date field placeholder
+        placeholder: YYYY-MM-DD
         # 'terms: inception'
         terms: '[translate with synonyms or related terms for ''Start Date'', separated by commas]'
       step_count:
