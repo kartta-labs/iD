@@ -1,7 +1,6 @@
-import _some from 'lodash-es/some';
 import _throttle from 'lodash-es/throttle';
 import { select as d3_select } from 'd3-selection';
-import { svgPointTransform } from './index';
+import { svgPointTransform } from './helpers';
 import { services } from '../services';
 
 
@@ -34,7 +33,6 @@ export function svgMapillarySigns(projection, context, dispatch) {
         var service = getService();
         if (!service) return;
 
-        service.loadViewer(context);
         editOn();
     }
 
@@ -105,8 +103,8 @@ export function svgMapillarySigns(projection, context, dispatch) {
             .attr('x', '-12px')
             .attr('y', '-12px')
             .attr('xlink:href', function(d) { return '#' + d.value; })
-            .classed('selected', function(d) {
-                return _some(d.detections, function(detection) {
+            .classed('currentView', function(d) {
+                return d.detections.some(function(detection) {
                     return detection.image_key === selectedImageKey;
                 });
             })
@@ -144,7 +142,7 @@ export function svgMapillarySigns(projection, context, dispatch) {
             if (service && ~~context.map().zoom() >= minZoom) {
                 editOn();
                 update();
-                service.loadSigns(context, projection);
+                service.loadSigns(projection);
             } else {
                 editOff();
             }

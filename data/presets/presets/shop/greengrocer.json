@@ -1,11 +1,12 @@
 {
-    "icon": "maki-shop",
+    "icon": "fas-carrot",
     "geometry": [
         "point",
         "area"
     ],
     "terms": [
         "fruit",
+        "produce",
         "vegetable"
     ],
     "tags": {

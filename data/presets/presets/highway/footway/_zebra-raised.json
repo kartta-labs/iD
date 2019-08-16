@@ -1,10 +1,9 @@
 {
-    "icon": "iD-highway-footway",
+    "icon": "temaki-pedestrian",
     "fields": [
         "crossing",
         "access",
         "surface",
-        "kerb",
         "tactile_paving"
     ],
     "geometry": [

@@ -3,6 +3,7 @@
     "fields": [
         "name",
         "operator",
+        "operator/type",
         "address",
         "building_area",
         "internet_access",
@@ -10,14 +11,15 @@
         "internet_access/ssid"
     ],
     "moreFields": [
-        "opening_hours",
-        "smoking",
-        "outdoor_seating",
-        "payment_multi",
-        "website",
-        "phone",
+        "air_conditioning",
         "email",
         "fax",
+        "opening_hours",
+        "outdoor_seating",
+        "payment_multi",
+        "phone",
+        "smoking",
+        "website",
         "wheelchair"
     ],
     "geometry": [

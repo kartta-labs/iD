@@ -90,7 +90,6 @@
                     "line": "Square the corners of this line.",
                     "area": "Square the corners of this area."
                 },
-                "key": "S",
                 "annotation": {
                     "line": "Squared the corners of a line.",
                     "area": "Squared the corners of an area."
@@ -101,11 +100,8 @@
             },
             "straighten": {
                 "title": "Straighten",
-                "description": "Straighten this line.",
                 "key": "S",
-                "annotation": "Straightened a line.",
-                "too_bendy": "This can't be straightened because it bends too much.",
-                "connected_to_hidden": "This line can't be straightened because it is connected to a hidden feature."
+                "too_bendy": "This can't be straightened because it bends too much."
             },
             "delete": {
                 "title": "Delete",
@@ -441,7 +437,6 @@
         },
         "geocoder": {
             "search": "Search worldwide...",
-            "no_results_visible": "No results in visible map area",
             "no_results_worldwide": "No results found"
         },
         "geolocate": {
@@ -449,8 +444,6 @@
             "locating": "Locating, please wait..."
         },
         "inspector": {
-            "no_documentation_combination": "There is no documentation available for this tag combination",
-            "no_documentation_key": "There is no documentation available for this key",
             "show_more": "Show More",
             "view_on_osm": "View on openstreetmap.org",
             "all_fields": "All fields",
@@ -461,7 +454,6 @@
             "role": "Role",
             "choose": "Select feature type",
             "results": "{n} results for {search}",
-            "reference": "View on OpenStreetMap Wiki",
             "back_tooltip": "Change feature",
             "remove": "Remove",
             "search": "Search",
@@ -573,11 +565,9 @@
                 "tooltip": "Power Lines, Power Plants, Substations, etc."
             },
             "past_future": {
-                "description": "Past/Future",
                 "tooltip": "Proposed, Construction, Abandoned, Demolished, etc."
             },
             "others": {
-                "description": "Others",
                 "tooltip": "Everything Else"
             }
         },
@@ -595,12 +585,6 @@
                 "description": "Full Fill",
                 "tooltip": "Areas are drawn fully filled."
             }
-        },
-        "restore": {
-            "heading": "You have unsaved changes",
-            "description": "Do you wish to restore unsaved changes from a previous editing session?",
-            "restore": "Restore my changes",
-            "reset": "Discard my changes"
         },
         "save": {
             "title": "Save",
@@ -636,10 +620,6 @@
             }
         },
         "success": {
-            "just_edited": "You just edited OpenStreetMap!",
-            "thank_you": "Thank you for improving the map.",
-            "thank_you_location": "Thank you for improving the map around {where}.",
-            "help_html": "Your changes should appear on OpenStreetMap within a few minutes. It may take longer for maps elsewhere to receive updates.",
             "help_link_text": "Details",
             "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F",
             "view_on_osm": "View Changes on OSM",
@@ -655,12 +635,6 @@
             "okay": "OK",
             "cancel": "Cancel"
         },
-        "splash": {
-            "welcome": "Welcome to the iD OpenStreetMap editor",
-            "text": "iD is a friendly but powerful tool for contributing to the World's best free World map. This is version {version}. For more information see {website} and report bugs at {github}.",
-            "walkthrough": "Start the Walkthrough",
-            "start": "Edit now"
-        },
         "source_switch": {
             "live": "live",
             "lose_changes": "You have unsaved changes. Switching the map server will discard them. Are you sure you want to switch servers?",
@@ -674,23 +648,6 @@
             "on_wiki": "{tag} on wiki.osm.org",
             "used_with": "used with {type}"
         },
-        "validations": {
-            "disconnected_highway": "Disconnected highway",
-            "disconnected_highway_tooltip": "Roads should be connected to other roads or building entrances.",
-            "old_multipolygon": "Multipolygon tags on outer way",
-            "old_multipolygon_tooltip": "This style of multipolygon is deprecated. Please assign the tags to the parent multipolygon instead of the outer way.",
-            "untagged_point": "Untagged point",
-            "untagged_point_tooltip": "Select a feature type that describes what this point is.",
-            "untagged_line": "Untagged line",
-            "untagged_line_tooltip": "Select a feature type that describes what this line is.",
-            "untagged_area": "Untagged area",
-            "untagged_area_tooltip": "Select a feature type that describes what this area is.",
-            "untagged_relation": "Untagged relation",
-            "untagged_relation_tooltip": "Select a feature type that describes what this relation is.",
-            "many_deletions": "You're deleting {n} features: {p} nodes, {l} lines, {a} areas, {r} relations. Are you sure you want to do this? This will delete them from the map that everyone else sees on openstreetmap.org.",
-            "tag_suggests_area": "The tag {tag} suggests line should be area, but it is not an area",
-            "deprecated_tags": "Deprecated tags: {tags}"
-        },
         "zoom": {
             "in": "Zoom in",
             "out": "Zoom out"
@@ -701,19 +658,13 @@
             "report": "Report a privacy concern with this image"
         },
         "mapillary_images": {
-            "tooltip": "Street-level photos from Mapillary",
-            "title": "Photo Overlay (Mapillary)"
-        },
-        "mapillary_signs": {
-            "tooltip": "Traffic signs from Mapillary (must enable Photo Overlay)",
-            "title": "Traffic Sign Overlay (Mapillary)"
+            "tooltip": "Street-level photos from Mapillary"
         },
         "mapillary": {
             "view_on_mapillary": "View this image on Mapillary"
         },
         "openstreetcam_images": {
-            "tooltip": "Street-level photos from OpenStreetCam",
-            "title": "Photo Overlay (OpenStreetCam)"
+            "tooltip": "Street-level photos from OpenStreetCam"
         },
         "openstreetcam": {
             "view_on_openstreetcam": "View this image on OpenStreetCam"
@@ -1258,7 +1209,6 @@
                     "reverse": "Reverse a line",
                     "move": "Move selected features",
                     "rotate": "Rotate selected features",
-                    "orthogonalize": "Straighten line / Square area corners",
                     "circularize": "Circularise a closed line or area",
                     "reflect_long": "Reflect features across the longer axis",
                     "reflect_short": "Reflect features across the shorter axis",
@@ -1315,44 +1265,17 @@
                 "category-building": {
                     "name": "Building Features"
                 },
-                "category-golf": {
-                    "name": "Golf Features"
-                },
                 "category-landuse": {
                     "name": "Land Use Features"
                 },
-                "category-natural-area": {
-                    "name": "Natural Features"
-                },
-                "category-natural-line": {
-                    "name": "Natural Features"
-                },
-                "category-natural-point": {
-                    "name": "Natural Features"
-                },
-                "category-path": {
-                    "name": "Path Features"
-                },
-                "category-rail": {
-                    "name": "Rail Features"
-                },
                 "category-restriction": {
                     "name": "Restriction Features"
-                },
-                "category-road": {
-                    "name": "Road Features"
                 },
                 "category-route": {
                     "name": "Route Features"
                 },
                 "category-utility": {
                     "name": "Utility Features"
-                },
-                "category-water-area": {
-                    "name": "Water Features"
-                },
-                "category-water-line": {
-                    "name": "Water Features"
                 }
             },
             "fields": {
@@ -1761,7 +1684,6 @@
                     }
                 },
                 "direction_vertex": {
-                    "label": "Direction",
                     "options": {
                         "backward": "Backward",
                         "both": "Both / All",
@@ -1950,12 +1872,6 @@
                         "undefined": "No"
                     }
                 },
-                "iata": {
-                    "label": "IATA"
-                },
-                "icao": {
-                    "label": "ICAO"
-                },
                 "incline": {
                     "label": "Incline"
                 },
@@ -1993,9 +1909,6 @@
                 },
                 "internet_access/fee": {
                     "label": "Internet Access Fee"
-                },
-                "internet_access/ssid": {
-                    "label": "SSID (Network Name)"
                 },
                 "kerb": {
                     "label": "Kerb"
@@ -2323,7 +2236,6 @@
                     "placeholder": "Distance to one decimal (123.4)"
                 },
                 "railway/signal/direction": {
-                    "label": "Direction",
                     "options": {
                         "backward": "Backward",
                         "both": "Both / All",
@@ -2604,8 +2516,7 @@
                     "options": {
                         "bucket": "Bucket",
                         "chemical": "Chemical",
-                        "flush": "Flush",
-                        "pitlatrine": "Pit/Latrine"
+                        "flush": "Flush"
                     }
                 },
                 "toll": {
@@ -2645,7 +2556,6 @@
                     "label": "Type"
                 },
                 "traffic_signals/direction": {
-                    "label": "Direction",
                     "options": {
                         "backward": "Backward",
                         "both": "Both / All",
@@ -2747,8 +2657,7 @@
                     "label": "Type"
                 },
                 "website": {
-                    "label": "Website",
-                    "placeholder": "http://example.com/"
+                    "label": "Website"
                 },
                 "wetland": {
                     "label": "Type"
@@ -3200,9 +3109,6 @@
                 "amenity/vending_machine/elongated_coin": {
                     "name": "Elongated Coin Vending Machine"
                 },
-                "amenity/vending_machine/excrement_bags": {
-                    "name": "Excrement Bag Vending Machine"
-                },
                 "amenity/vending_machine/feminine_hygiene": {
                     "name": "Feminine Hygiene Vending Machine"
                 },
@@ -3214,9 +3120,6 @@
                 },
                 "amenity/vending_machine/ice_cream": {
                     "name": "Ice Cream Vending Machine"
-                },
-                "amenity/vending_machine/news_papers": {
-                    "name": "Newspaper Vending Machine"
                 },
                 "amenity/vending_machine/newspapers": {
                     "name": "Newspaper Vending Machine"
@@ -3262,9 +3165,6 @@
                 },
                 "attraction/amusement_ride": {
                     "name": "Amusement Ride"
-                },
-                "attraction/animal": {
-                    "name": "Animal"
                 },
                 "attraction/big_wheel": {
                     "name": "Big Wheel"
@@ -3497,9 +3397,6 @@
                 "building/terrace": {
                     "name": "Terraced houses"
                 },
-                "building/train_station": {
-                    "name": "Train Station"
-                },
                 "building/transportation": {
                     "name": "Transportation Building"
                 },
@@ -3508,12 +3405,6 @@
                 },
                 "building/warehouse": {
                     "name": "Warehouse"
-                },
-                "camp_site/camp_pitch": {
-                    "name": "Camp Pitch"
-                },
-                "circular": {
-                    "name": "Traffic Circle"
                 },
                 "club": {
                     "name": "Club"
@@ -3722,23 +3613,11 @@
                 "golf/hole": {
                     "name": "Golf Hole"
                 },
-                "golf/lateral_water_hazard_area": {
-                    "name": "Lateral Water Hazard"
-                },
-                "golf/lateral_water_hazard_line": {
-                    "name": "Lateral Water Hazard"
-                },
                 "golf/rough": {
                     "name": "Rough"
                 },
                 "golf/tee": {
                     "name": "Tee Box"
-                },
-                "golf/water_hazard_area": {
-                    "name": "Water Hazard"
-                },
-                "golf/water_hazard_line": {
-                    "name": "Water Hazard"
                 },
                 "healthcare": {
                     "name": "Healthcare Facility"
@@ -3797,11 +3676,20 @@
                 "highway/bus_guideway": {
                     "name": "Bus Guideway"
                 },
-                "highway/bus_stop": {
-                    "name": "Bus Stop / Platform"
-                },
                 "highway/corridor": {
                     "name": "Indoor Corridor"
+                },
+                "highway/crossing/marked": {
+                    "name": "Marked Crossing"
+                },
+                "highway/crossing/marked-raised": {
+                    "name": "Marked Crossing (Raised)"
+                },
+                "highway/crossing/zebra": {
+                    "name": "Marked Crossing"
+                },
+                "highway/crossing/zebra-raised": {
+                    "name": "Marked Crossing (Raised)"
                 },
                 "highway/cycleway": {
                     "name": "Cycle Path"
@@ -3811,6 +3699,18 @@
                 },
                 "highway/footway": {
                     "name": "Foot Path"
+                },
+                "highway/footway/marked": {
+                    "name": "Marked Crossing"
+                },
+                "highway/footway/marked-raised": {
+                    "name": "Marked Crossing (Raised)"
+                },
+                "highway/footway/zebra": {
+                    "name": "Marked Crossing"
+                },
+                "highway/footway/zebra-raised": {
+                    "name": "Marked Crossing (Raised)"
                 },
                 "highway/give_way": {
                     "name": "Give Way Sign"
@@ -4037,26 +3937,14 @@
                 "landuse/military/barracks": {
                     "name": "Barracks"
                 },
-                "landuse/military/bunker": {
-                    "name": "Military Bunker"
-                },
-                "landuse/military/checkpoint": {
-                    "name": "Checkpoint"
-                },
                 "landuse/military/danger_area": {
                     "name": "Danger Area"
                 },
                 "landuse/military/naval_base": {
                     "name": "Naval Base"
                 },
-                "landuse/military/nuclear_explosion_site": {
-                    "name": "Nuclear Explosion Site"
-                },
                 "landuse/military/obstacle_course": {
                     "name": "Obstacle Course"
-                },
-                "landuse/military/office": {
-                    "name": "Military Office"
                 },
                 "landuse/military/range": {
                     "name": "Military Range"
@@ -4709,66 +4597,6 @@
                 "power/transformer": {
                     "name": "Transformer"
                 },
-                "public_transport/linear_platform": {
-                    "name": "Transit Stop / Platform"
-                },
-                "public_transport/linear_platform_aerialway": {
-                    "name": "Aerialway Stop / Platform"
-                },
-                "public_transport/linear_platform_bus": {
-                    "name": "Bus Stop / Platform"
-                },
-                "public_transport/linear_platform_ferry": {
-                    "name": "Ferry Stop / Platform"
-                },
-                "public_transport/linear_platform_light_rail": {
-                    "name": "Light Rail Stop / Platform"
-                },
-                "public_transport/linear_platform_monorail": {
-                    "name": "Monorail Stop / Platform"
-                },
-                "public_transport/linear_platform_subway": {
-                    "name": "Subway Stop / Platform"
-                },
-                "public_transport/linear_platform_train": {
-                    "name": "Train Stop / Platform"
-                },
-                "public_transport/linear_platform_tram": {
-                    "name": "Tram Stop / Platform"
-                },
-                "public_transport/linear_platform_trolleybus": {
-                    "name": "Trolleybus Stop / Platform"
-                },
-                "public_transport/platform": {
-                    "name": "Transit Stop / Platform"
-                },
-                "public_transport/platform_aerialway": {
-                    "name": "Aerialway Stop / Platform"
-                },
-                "public_transport/platform_bus": {
-                    "name": "Bus Stop / Platform"
-                },
-                "public_transport/platform_ferry": {
-                    "name": "Ferry Stop / Platform"
-                },
-                "public_transport/platform_light_rail": {
-                    "name": "Light Rail Stop / Platform"
-                },
-                "public_transport/platform_monorail": {
-                    "name": "Monorail Stop / Platform"
-                },
-                "public_transport/platform_subway": {
-                    "name": "Subway Stop / Platform"
-                },
-                "public_transport/platform_train": {
-                    "name": "Train Stop / Platform"
-                },
-                "public_transport/platform_tram": {
-                    "name": "Tram Stop / Platform"
-                },
-                "public_transport/platform_trolleybus": {
-                    "name": "Trolleybus Stop / Platform"
-                },
                 "public_transport/station": {
                     "name": "Transit Station"
                 },
@@ -4877,9 +4705,6 @@
                 "railway/narrow_gauge": {
                     "name": "Narrow Gauge Rail"
                 },
-                "railway/platform": {
-                    "name": "Train Stop / Platform"
-                },
                 "railway/rail": {
                     "name": "Rail"
                 },
@@ -4909,9 +4734,6 @@
                 },
                 "relation": {
                     "name": "Relation"
-                },
-                "roundabout": {
-                    "name": "Roundabout"
                 },
                 "route/ferry": {
                     "name": "Ferry Route"
@@ -5117,9 +4939,6 @@
                 },
                 "shop/interior_decoration": {
                     "name": "Interior Decoration Shop"
-                },
-                "shop/jewelry": {
-                    "name": "Jeweller"
                 },
                 "shop/kitchen": {
                     "name": "Kitchen Design Shop"
@@ -5496,9 +5315,6 @@
                 "type/waterway": {
                     "name": "Waterway"
                 },
-                "vertex": {
-                    "name": "Other"
-                },
                 "waterway": {
                     "name": "Waterway"
                 },
@@ -5553,32 +5369,6 @@
             "Bing": {
                 "description": "Satellite and aerial imagery.",
                 "name": "Bing aerial imagery"
-            },
-            "DigitalGlobe-Premium": {
-                "attribution": {
-                    "text": "Terms & Feedback"
-                },
-                "name": "DigitalGlobe Premium Imagery"
-            },
-            "DigitalGlobe-Premium-vintage": {
-                "attribution": {
-                    "text": "Terms & Feedback"
-                },
-                "description": "Imagery boundaries and capture dates. Labels appear at zoom level 13 and higher.",
-                "name": "DigitalGlobe Premium Imagery Vintage"
-            },
-            "DigitalGlobe-Standard": {
-                "attribution": {
-                    "text": "Terms & Feedback"
-                },
-                "name": "DigitalGlobe Standard Imagery"
-            },
-            "DigitalGlobe-Standard-vintage": {
-                "attribution": {
-                    "text": "Terms & Feedback"
-                },
-                "description": "Imagery boundaries and capture dates. Labels appear at zoom level 13 and higher.",
-                "name": "DigitalGlobe Standard Imagery Vintage"
             },
             "EsriWorldImagery": {
                 "attribution": {
@@ -5810,10 +5600,6 @@
             "OSM-US-Slack": {
                 "name": "OpenStreetMap US Slack",
                 "description": "All are welcome! Sign up at {signupUrl}"
-            },
-            "Maptime-Australia-Slack": {
-                "name": "Maptime Australia Slack",
-                "description": "Sign up at {signupUrl}"
             },
             "OSM-Reddit": {
                 "name": "OpenStreetMap on Reddit",

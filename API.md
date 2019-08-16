@@ -6,13 +6,8 @@ This file documents efforts toward establishing a public API for iD.
 
 iD supports several URL parameters. When constructing a URL to a standalone instance
 of iD (e.g. `http://preview.ideditor.com/release/`), the following parameters are available
-in the hash portion of the URL:
+**in the hash portion of the URL**:
 
-* __`map`__ - A slash separated `zoom/latitude/longitude`.<br/>
-   _Example:_ `map=20.00/38.90085/-77.02271`
-* __`id`__ - The character 'n', 'w', or 'r', followed by the OSM ID of a node,
-   way or relation, respectively. Selects the specified entity, and, unless
-   a `map` parameter is also provided, centers the map on it.
 * __`background`__ - The value from a `sourcetag` property in iD's
   [imagery list](https://github.com/openstreetmap/iD/blob/master/data/imagery.json),
   or a custom tile URL. A custom URL is specified in the format `custom:<url>`,
@@ -20,38 +15,47 @@ in the hash portion of the URL:
   `{z}`/`{zoom}`, `{ty}` for flipped TMS-style Y coordinates, and `{switch:a,b,c}` for
   DNS multiplexing.<br/>
   _Example:_ `background=custom:https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png`
+* __`comment`__ - Prefills the changeset comment. Pass a url encoded string.<br/>
+  _Example:_ `comment=CAR%20crisis%2C%20refugee%20areas%20in%20Cameroon`
 * __`disable_features`__ - Disables features in the list.<br/>
   _Example:_ `disable_features=water,service_roads,points,paths,boundaries`<br/>
-  _Available features:_ `points` `traffic_roads` `service_roads` `paths` `buildings` `landuse`
-  `boundaries` `water` `rail` `power` `past_future` `others`
+  _Available features:_ `points`, `traffic_roads`, `service_roads`, `paths`, `buildings`, `building_parts`, `indoor`, `landuse`,
+  `boundaries`, `water`, `rail`, `pistes`, `aerialways`, `power`, `past_future`, `others`
 * __`gpx`__ - A custom URL for loading a gpx track.  Specifying a `gpx` parameter will
   automatically enable the gpx layer for display.<br/>
   _Example:_ `gpx=https://tasks.hotosm.org/project/592/task/16.gpx`
-* __`maprules`__ - connect to a [MapRules](https://github.com/radiant-maxar/maprules) service for enhanced tag validation.<br/>
-  _Example:_ `maprules=https://path/to/file.json`
-* __`offset`__ - imagery offset in meters, formatted as `east,north`.<br/>
-  _Example:_ `offset=-10,5`
-* __`presets`__ - load an external presets file.<br/>
-  _Example:_ `presets=https://path/to/presets.json`
-* __`comment`__ - Prefills the changeset comment. Pass a url encoded string.<br/>
-  _Example:_ `comment=CAR%20crisis%2C%20refugee%20areas%20in%20Cameroon`
-* __`source`__ - Prefills the changeset source. Pass a url encoded string.<br/>
-  _Example:_ `source=Bing%3BMapillary`
 * __`hashtags`__ - Prefills the changeset hashtags.  Pass a url encoded list of event
   hashtags separated by commas, semicolons, or spaces.  Leading '#' symbols are
   optional and will be added automatically. (Note that hashtag-like strings are
   automatically detected in the `comment`).<br/>
   _Example:_ `hashtags=%23hotosm-task-592,%23MissingMaps`
-* __`locale`__ - A code specifying the localization to use, affecting the language, layout, and keyboard shortcuts. Must be one of the [supported locales](https://github.com/openstreetmap/iD/tree/master/dist/locales). The default locale is set by the browser.<br/>
-  _Example:_ `locale=de`
+* __`id`__ - The character 'n', 'w', or 'r', followed by the OSM ID of a node, way or relation, respectively. Selects the specified entity, and, unless a `map` parameter is also provided, centers the map on it.<br/>
+  _Example:_ `id=n1207480649`
+* __`locale`__ - A code specifying the localization to use, affecting the language, layout, and keyboard shortcuts. The default locale is set by the browser.<br/>
+  _Example:_ `locale=en-US`, `locale=de`<br/>
+  _Available values:_ Any of the [supported locales](https://github.com/openstreetmap/iD/tree/master/dist/locales).
+* __`map`__ - A slash-separated `zoom/latitude/longitude`.<br/>
+  _Example:_ `map=20.00/38.90085/-77.02271`
+* __`maprules`__ - A path to a [MapRules](https://github.com/radiant-maxar/maprules) service endpoint for enhanced tag validation.<br/>
+  _Example:_ `maprules=https://path/to/file.json`
+* __`offset`__ - Background imagery alignment offset in meters, formatted as `east,north`.<br/>
+  _Example:_ `offset=-10,5`
+* __`photo_overlay`__ - The street-level photo overlay layers to enable.<br/>
+  _Example:_ `photo_overlay=streetside,mapillary,openstreetcam`<br/>
+  _Available values:_ `streetside` (Microsoft Bing), `mapillary`, `mapillary-signs`, `openstreetcam`
+* __`presets`__ - A path to an external presets file or a comma-separated list of preset IDs. These will be the only presets the user may select.<br/>
+  _Example:_ `presets=https://path/to/presets.json`
+  _Example 2:_ `presets=building,highway/residential,highway/unclassified`
 * __`rtl=true`__ - Force iD into right-to-left mode (useful for testing).
+* __`source`__ - Prefills the changeset source. Pass a url encoded string.<br/>
+  _Example:_ `source=Bing%3BMapillary`
 * __`walkthrough=true`__ - Start the walkthrough automatically
 
 ##### iD on openstreetmap.org (Rails Port)
 
 When constructing a URL to an instance of iD embedded in the OpenStreetMap Rails
 Port (e.g. `http://www.openstreetmap.org/edit?editor=id`), the following parameters
-are available as regular URL query parameters:
+are available as **regular URL query parameters**:
 
 * __`map`__ - same as standalone
 * __`lat`__, __`lon`__, __`zoom`__ - Self-explanatory.
@@ -65,6 +69,7 @@ are available as regular URL query parameters:
 * __`comment`__ - same as standalone
 * __`source`__ - same as standalone
 * __`hashtags`__ - same as standalone
+* __`locale`__ - same as standalone, but the default locale is set by the language settings in your OSM user account.
 * __`walkthrough`__ - same as standalone
 
 
@@ -110,7 +115,7 @@ A **line** is a way that is not an area. Elements representing lines have a `.li
 class. Since a line is also a way, they also have a `.way` class.
 
 An **area** is a way that is circular, has certain tags, or lacks certain other
-tags (see `iD.Way#isArea` for the exact definition). Elements representing areas
+tags (see `iD.osmWay#isArea` for the exact definition). Elements representing areas
 have `.area` and `.way` classes.
 
 
@@ -302,7 +307,7 @@ The minimum zoom at which iD enters the edit mode is configured using the `conte
 
 ```js
 
-var id = iD.Context()
+var id = iD.coreContext()
   .minEditableZoom(zoom_level)
 
 ```

@@ -1,16 +1,11 @@
-import _find from 'lodash-es/find';
-import _includes from 'lodash-es/includes';
-import _reduce from 'lodash-es/reduce';
-import _uniqBy from 'lodash-es/uniqBy';
-
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { select as d3_select } from 'd3-selection';
 
 import { dataAddressFormats } from '../../../data';
 import { geoExtent, geoChooseEdge, geoSphericalDistance } from '../../geo';
 import { services } from '../../services';
-import { uiCombobox } from '../index';
-import { utilGetSetValue, utilNoAuto, utilRebind } from '../../util';
+import { uiCombobox } from '../combobox';
+import { utilArrayUniqBy, utilGetSetValue, utilNoAuto, utilRebind } from '../../util';
 
 
 export function uiFieldAddress(field, context) {
@@ -19,6 +14,8 @@ export function uiFieldAddress(field, context) {
     var wrap = d3_select(null);
     var _isInitialized = false;
     var _entity;
+    // needed for placeholder strings
+    var addrField = context.presets().field('address');
 
     function getNearStreets() {
         var extent = _entity.extent(context.graph());
@@ -44,7 +41,7 @@ export function uiFieldAddress(field, context) {
                 return a.dist - b.dist;
             });
 
-        return _uniqBy(streets, 'value');
+        return utilArrayUniqBy(streets, 'value');
 
         function isAddressable(d) {
             return d.tags.highway && d.tags.name && d.type === 'way';
@@ -70,7 +67,7 @@ export function uiFieldAddress(field, context) {
                 return a.dist - b.dist;
             });
 
-        return _uniqBy(cities, 'value');
+        return utilArrayUniqBy(cities, 'value');
 
 
         function isAddressable(d) {
@@ -96,7 +93,7 @@ export function uiFieldAddress(field, context) {
         var box = geoExtent(l).padByMeters(200);
 
         var results = context.intersects(box)
-            .filter(function hasTag(d) { return d.tags[key]; })
+            .filter(function hasTag(d) { return d.id !== _entity.id && d.tags[key]; })
             .map(function(d) {
                 return {
                     title: d.tags[key],
@@ -108,16 +105,24 @@ export function uiFieldAddress(field, context) {
                 return a.dist - b.dist;
             });
 
-        return _uniqBy(results, 'value');
+        return utilArrayUniqBy(results, 'value');
     }
 
 
     function countryCallback(err, countryCode) {
         if (err) return;
+        countryCode = countryCode.toLowerCase();
 
-        var addressFormat = _find(dataAddressFormats, function (a) {
-            return a && a.countryCodes && _includes(a.countryCodes, countryCode.toLowerCase());
-        }) || dataAddressFormats[0];
+        var addressFormat;
+        for (var i = 0; i < dataAddressFormats.length; i++) {
+            var format = dataAddressFormats[i];
+            if (!format.countryCodes) {
+                addressFormat = format;   // choose the default format, keep going
+            } else if (format.countryCodes.indexOf(countryCode) !== -1) {
+                addressFormat = format;   // choose the country format, stop here
+                break;
+            }
+        }
 
         var dropdowns = addressFormat.dropdowns || [
             'city', 'county', 'country', 'district', 'hamlet',
@@ -132,7 +137,7 @@ export function uiFieldAddress(field, context) {
 
         function row(r) {
             // Normalize widths.
-            var total = _reduce(r, function(sum, key) {
+            var total = r.reduce(function(sum, key) {
                 return sum + (widths[key] || 0.5);
             }, 0);
 
@@ -155,9 +160,9 @@ export function uiFieldAddress(field, context) {
             .append('input')
             .property('type', 'text')
             .attr('placeholder', function (d) {
-                var localkey = d.id + '!' + countryCode.toLowerCase();
-                var tkey = field.strings.placeholders[localkey] ? localkey : d.id;
-                return field.t('placeholders.' + tkey);
+                var localkey = d.id + '!' + countryCode;
+                var tkey = addrField.strings.placeholders[localkey] ? localkey : d.id;
+                return addrField.t('placeholders.' + tkey);
             })
             .attr('class', function (d) { return 'addr-' + d.id; })
             .call(utilNoAuto)
@@ -175,6 +180,7 @@ export function uiFieldAddress(field, context) {
             d3_select(this)
                 .call(uiCombobox(context, 'address-' + d.id)
                     .minItems(1)
+                    .caseSensitive(true)
                     .fetcher(function(value, callback) {
                         callback(nearValues('addr:' + d.id));
                     })
@@ -216,8 +222,8 @@ export function uiFieldAddress(field, context) {
             var tags = {};
 
             wrap.selectAll('input')
-                .each(function (field) {
-                    tags['addr:' + field.id] = this.value || undefined;
+                .each(function (subfield) {
+                    tags[field.key + ':' + subfield.id] = this.value || undefined;
                 });
 
             dispatch.call('change', this, tags, onInput);
@@ -226,8 +232,8 @@ export function uiFieldAddress(field, context) {
 
 
     function updateTags(tags) {
-        utilGetSetValue(wrap.selectAll('input'), function (field) {
-            return tags['addr:' + field.id] || '';
+        utilGetSetValue(wrap.selectAll('input'), function (subfield) {
+            return tags[field.key + ':' + subfield.id] || '';
         });
     }
 

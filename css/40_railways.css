@@ -33,7 +33,16 @@ path.line.stroke.tag-railway {
     stroke-width: 2;
     stroke-dasharray: 6,6;
 }
+.preset-icon-container path.line.stroke.tag-railway:not(.tag-status) {
+    stroke-dasharray: 6;
+}
 
+path.line.casing.tag-railway.tag-railway-platform {
+    stroke-width: 0;
+}
+path.line.stroke.tag-railway.tag-railway-platform {
+    stroke-dasharray: none;
+}
 
 /* styles */
 path.line.casing.tag-railway {
@@ -59,10 +68,6 @@ path.line.stroke.tag-railway-abandoned {
 }
 
 
-.preset-icon .icon.tag-railway-subway {
-    color: #222;
-    fill: #bbb;
-}
 path.line.casing.tag-railway-subway {
     stroke: #222;
 }

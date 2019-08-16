@@ -1,16 +1,10 @@
-import _assign from 'lodash-es/assign';
-import _omit from 'lodash-es/omit';
 import _throttle from 'lodash-es/throttle';
 
 import { select as d3_select } from 'd3-selection';
 
 import { geoSphericalDistance } from '../geo';
-import { modeBrowse } from '../modes';
-
-import {
-    utilQsString,
-    utilStringQs
-} from '../util';
+import { modeBrowse } from '../modes/browse';
+import { utilObjectOmit, utilQsString, utilStringQs } from '../util';
 
 
 export function behaviorHash(context) {
@@ -26,9 +20,9 @@ export function behaviorHash(context) {
             return true; // replace bogus hash
 
         } else if (s !== formatter(map).slice(1)) {   // hash has changed
-            var mode = context.mode(),
-                dist = geoSphericalDistance(map.center(), [args[2], args[1]]),
-                maxdist = 500;
+            var mode = context.mode();
+            var dist = geoSphericalDistance(map.center(), [args[2], args[1]]);
+            var maxdist = 500;
 
             // Don't allow the hash location to change too much while drawing
             // This can happen if the user accidently hit the back button.  #3996
@@ -45,7 +39,7 @@ export function behaviorHash(context) {
         var center = map.center();
         var zoom = map.zoom();
         var precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2));
-        var q = _omit(utilStringQs(window.location.hash.substring(1)),
+        var q = utilObjectOmit(utilStringQs(window.location.hash.substring(1)),
             ['comment', 'source', 'hashtags', 'walkthrough']
         );
         var newParams = {};
@@ -62,7 +56,7 @@ export function behaviorHash(context) {
             '/' + center[1].toFixed(precision) +
             '/' + center[0].toFixed(precision);
 
-        return '#' + utilQsString(_assign(q, newParams), true);
+        return '#' + utilQsString(Object.assign(q, newParams), true);
     };
 
 
@@ -103,19 +97,11 @@ export function behaviorHash(context) {
                 context.zoomToEntity(q.id.split(',')[0], !q.map);
             }
 
-            if (q.comment) {
-                context.storage('comment', q.comment);
-                context.storage('commentDate', Date.now());
-            }
-
-            if (q.source) {
-                context.storage('source', q.source);
-                context.storage('commentDate', Date.now());
-            }
-
-            if (q.hashtags) {
-                context.storage('hashtags', q.hashtags);
-            }
+            // Store these here instead of updating local storage since local
+            // storage could be flushed if the user discards pending changes
+            if (q.comment)  behavior.comment = q.comment;
+            if (q.source)   behavior.source = q.source;
+            if (q.hashtags) behavior.hashtags = q.hashtags;
 
             if (q.walkthrough === 'true') {
                 behavior.startWalkthrough = true;

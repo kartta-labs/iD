@@ -185,6 +185,27 @@ describe('iD.svgTagClasses', function () {
         expect(selection.classed('tag-unpaved')).to.be.false;
     });
 
+    it('does not add tag-wikidata if no wikidata tag', function() {
+        selection
+            .datum(iD.osmEntity())
+            .call(iD.svgTagClasses());
+        expect(selection.classed('tag-wikidata')).to.be.false;
+    });
+
+    it('adds tag-wikidata if entity has a wikidata tag', function() {
+        selection
+            .datum(iD.osmEntity({ tags: { wikidata: 'Q18275868' } }))
+            .call(iD.svgTagClasses());
+        expect(selection.classed('tag-wikidata')).to.be.true;
+    });
+
+    it('adds tag-wikidata if entity has a brand:wikidata tag', function() {
+        selection
+            .datum(iD.osmEntity({ tags: { 'brand:wikidata': 'Q18275868' } }))
+            .call(iD.svgTagClasses());
+        expect(selection.classed('tag-wikidata')).to.be.true;
+    });
+
     it('adds tags based on the result of the `tags` accessor', function() {
         var primary = function () { return { highway: 'primary'}; };
         selection
@@ -207,6 +228,25 @@ describe('iD.svgTagClasses', function () {
             .datum(iD.osmEntity())
             .call(iD.svgTagClasses());
         expect(selection.attr('class')).to.equal('selected');
+    });
+
+    it('stroke overrides: renders areas with barriers as lines', function() {
+        selection
+            .attr('class', 'way area stroke')
+            .datum(iD.osmEntity({tags: {landuse: 'residential', barrier: 'hedge'}}))
+            .call(iD.svgTagClasses());
+        expect(selection.classed('area')).to.be.false;
+        expect(selection.classed('line')).to.be.true;
+    });
+
+    it('stroke overrides: renders simple multipolygon lines as areas', function() {
+        var multipolygon = function () { return { type: 'multipolygon' }; };
+        selection
+            .attr('class', 'way line stroke')
+            .datum(iD.osmEntity({tags: {}}))
+            .call(iD.svgTagClasses().tags(multipolygon));
+        expect(selection.classed('area')).to.be.true;
+        expect(selection.classed('line')).to.be.false;
     });
 
     it('works on SVG elements', function() {

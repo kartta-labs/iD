@@ -1,12 +1,10 @@
-import _filter from 'lodash-es/filter';
-
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { select as d3_select } from 'd3-selection';
 
-import { t } from '../util/locale';
+import { t, languageName } from '../util/locale';
 import { data } from '../../data';
-import { svgIcon } from '../svg';
-import { uiDisclosure } from '../ui';
+import { svgIcon } from '../svg/icon';
+import { uiDisclosure } from '../ui/disclosure';
 import { utilDetect } from '../util/detect';
 import { utilRebind } from '../util/rebind';
 
@@ -124,7 +122,9 @@ export function uiSuccess(context) {
 
         summaryDetail
             .append('div')
-            .text(t('success.changeset_id', { changeset_id: _changeset.id }));
+            .html(t('success.changeset_id', {
+                changeset_id: '<a href="' + changesetURL + '" target="_blank">' + _changeset.id + '</a>'
+            }));
 
 
         // Gather community polygon IDs intersecting the map..
@@ -132,9 +132,8 @@ export function uiSuccess(context) {
         var matchIDs = matchFeatures.map(function(feature) { return feature.id; });
 
         // Gather community resources that are either global or match a polygon.
-        var matchResources = _filter(data.community.resources, function(v) {
-            return !v.featureId || matchIDs.indexOf(v.featureId) !== -1;
-        });
+        var matchResources = Object.values(data.community.resources)
+            .filter(function(v) { return !v.featureId || matchIDs.indexOf(v.featureId) !== -1; });
 
         if (matchResources.length) {
             // sort by size ascending, then by community rank
@@ -284,22 +283,29 @@ export function uiSuccess(context) {
 
 
         function showMore(selection) {
-            var more = selection
+            var more = selection.selectAll('.community-more')
+                .data([0]);
+
+            var moreEnter = more.enter()
                 .append('div')
                 .attr('class', 'community-more');
 
             if (d.extendedDescription) {
-                more
+                moreEnter
                     .append('div')
                     .attr('class', 'community-extended-description')
                     .html(t('community.' + d.id + '.extendedDescription', replacements));
             }
 
             if (d.languageCodes && d.languageCodes.length) {
-                more
+                var languageList = d.languageCodes.map(function(code) {
+                    return languageName(code);
+                }).join(', ');
+
+                moreEnter
                     .append('div')
                     .attr('class', 'community-languages')
-                    .text(t('success.languages', { languages: d.languageCodes.join(', ') }));
+                    .text(t('success.languages', { languages: languageList }));
             }
         }
 

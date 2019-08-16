@@ -72,12 +72,10 @@
                 }
             },
             "orthogonalize": {
-                "title": "சதுரம்",
-                "key": "S"
+                "title": "சதுரம்"
             },
             "straighten": {
                 "title": "நேராக்கப்பட்டது",
-                "description": "இந்தக் கோடு நேராக்கப்பட்டது.",
                 "key": "S"
             },
             "delete": {
@@ -269,12 +267,6 @@
             },
             "rail": {
                 "tooltip": "இரயில்வே"
-            },
-            "past_future": {
-                "description": "கடந்த கால / எதிர்கால"
-            },
-            "others": {
-                "description": "பிற"
             }
         },
         "area_fill": {
@@ -313,10 +305,6 @@
         },
         "tag_reference": {
             "description": "விளக்கம்"
-        },
-        "validations": {
-            "untagged_area": "குறிக்கப்படாதப் பகுதி",
-            "untagged_relation": "குறிக்கப்படாதத் தொடர்பு"
         },
         "note": {
             "note": "குறிப்பு",
@@ -495,41 +483,14 @@
                 "category-building": {
                     "name": "கட்டிடம் அம்சங்கள்"
                 },
-                "category-golf": {
-                    "name": "குழிப்பந்தாட்ட அம்சங்கள்"
-                },
                 "category-landuse": {
                     "name": "காணிப் பயன்பாட்டு அம்சங்கள்"
-                },
-                "category-natural-area": {
-                    "name": "இயற்கை அம்சங்கள்"
-                },
-                "category-natural-line": {
-                    "name": "இயற்கை அம்சங்கள்"
-                },
-                "category-natural-point": {
-                    "name": "இயற்கை அம்சங்கள்"
-                },
-                "category-path": {
-                    "name": "பாதை அம்சங்கள்"
-                },
-                "category-rail": {
-                    "name": "ரயில் அம்சங்கள்"
                 },
                 "category-restriction": {
                     "name": "கட்டுப்பாடு அம்சங்கள்"
                 },
-                "category-road": {
-                    "name": "சாலை அம்சங்கள்"
-                },
                 "category-route": {
                     "name": "வழி அம்சங்கள்"
-                },
-                "category-water-area": {
-                    "name": "நீர் அம்சங்கள்"
-                },
-                "category-water-line": {
-                    "name": "நீர் அம்சங்கள்"
                 }
             },
             "fields": {
@@ -877,7 +838,6 @@
                     }
                 },
                 "direction_vertex": {
-                    "label": "திசை",
                     "options": {
                         "backward": "பின்னால்",
                         "both": "இரண்டும் / அனைத்தும்",
@@ -1010,12 +970,6 @@
                         "stables": "ஆம்",
                         "undefined": "இல்லை"
                     }
-                },
-                "iata": {
-                    "label": "IATA"
-                },
-                "icao": {
-                    "label": "ICAO"
                 },
                 "incline": {
                     "label": "சாய்வு தளம்"
@@ -1277,9 +1231,6 @@
                 "railway/position": {
                     "placeholder": "தூரம் ஒரு பதின்மத்தில் (123.4)"
                 },
-                "railway/signal/direction": {
-                    "label": "திசை"
-                },
                 "recycling_type": {
                     "label": "வகை",
                     "options": {
@@ -1531,8 +1482,7 @@
                     "options": {
                         "bucket": "வாளி",
                         "chemical": "இரசாயனம்",
-                        "flush": "அலசி",
-                        "pitlatrine": "மலகூடம்"
+                        "flush": "அலசி"
                     }
                 },
                 "toll": {
@@ -1563,7 +1513,6 @@
                     "label": "போக்குவரவு இயக்கச் சுட்டுக்குறி"
                 },
                 "traffic_sign/direction": {
-                    "label": "திசை",
                     "options": {
                         "backward": "பின்னோக்கி",
                         "both": "இரண்டும் / அனைத்தும்",
@@ -1574,7 +1523,6 @@
                     "label": "வகை"
                 },
                 "traffic_signals/direction": {
-                    "label": "திசை",
                     "options": {
                         "backward": "பின்னோக்கி",
                         "both": "இரண்டும் / அனைத்தும்",
@@ -1638,8 +1586,7 @@
                     "label": "வகை"
                 },
                 "website": {
-                    "label": "இணையதளம்",
-                    "placeholder": "http://example.com/"
+                    "label": "இணையதளம்"
                 },
                 "wetland": {
                     "label": "வகை"
@@ -1933,9 +1880,6 @@
                 "building/temple": {
                     "name": "கோயில் கட்டிடம்"
                 },
-                "building/train_station": {
-                    "name": "தொடருந்து நிலையம்"
-                },
                 "building/transportation": {
                     "name": "போக்குவரத்துக் கட்டிடம்"
                 },
@@ -2055,9 +1999,6 @@
                 },
                 "landuse/military": {
                     "name": "இராணுவப் பகுதி"
-                },
-                "landuse/military/office": {
-                    "name": "இராணுவ அலுவலகம்"
                 },
                 "leisure/common": {
                     "name": "பொதுவான"
@@ -2281,27 +2222,6 @@
                 "power/tower": {
                     "name": "அதிக-மின்னழுத்தக் கோபுரம்"
                 },
-                "public_transport/linear_platform_bus": {
-                    "name": "பேருந்து நிறுத்தம் / தடம்"
-                },
-                "public_transport/linear_platform_light_rail": {
-                    "name": "இலகு இரயில் நிறுத்தம் / நடைமேடை"
-                },
-                "public_transport/linear_platform_train": {
-                    "name": "இரயில் நிறுத்தம் / தடம்"
-                },
-                "public_transport/platform_bus": {
-                    "name": "பேருந்து நிறுத்தம்  / தடம்"
-                },
-                "public_transport/platform_light_rail": {
-                    "name": "இலகு இரயில் நிறுத்தம் / நடைமேடை"
-                },
-                "public_transport/platform_train": {
-                    "name": "தொடருந்து நிறுத்தம் / நடைமேடை"
-                },
-                "public_transport/platform_tram": {
-                    "name": "டிராம் நிறுத்தம் / நடைமேடை"
-                },
                 "public_transport/station_light_rail": {
                     "name": "இலகு இரயில் நிலையம்"
                 },
@@ -2346,9 +2266,6 @@
                 },
                 "relation": {
                     "name": "தொடர்பு"
-                },
-                "roundabout": {
-                    "name": "வட்டச்சுற்று வழி"
                 },
                 "seamark/mooring": {
                     "name": "பிணைப்பு மிதவை"
@@ -2397,9 +2314,6 @@
                 },
                 "shop/florist": {
                     "name": "பூக்கடை"
-                },
-                "shop/jewelry": {
-                    "name": "நகைக்கடை"
                 },
                 "shop/laundry": {
                     "name": "சலவையகம்"
@@ -2536,9 +2450,6 @@
                 "type/waterway": {
                     "name": "நீர்வழி"
                 },
-                "vertex": {
-                    "name": "பிற"
-                },
                 "waterway": {
                     "name": "நீர்வழி"
                 },
@@ -2575,26 +2486,6 @@
             }
         },
         "imagery": {
-            "DigitalGlobe-Premium": {
-                "attribution": {
-                    "text": "நிபந்தனைகள் & கருத்துகள்"
-                }
-            },
-            "DigitalGlobe-Premium-vintage": {
-                "attribution": {
-                    "text": "நிபந்தனைகள் & கருத்துகள்"
-                }
-            },
-            "DigitalGlobe-Standard": {
-                "attribution": {
-                    "text": "நிபந்தனைகள் & கருத்துகள்"
-                }
-            },
-            "DigitalGlobe-Standard-vintage": {
-                "attribution": {
-                    "text": "நிபந்தனைகள் & கருத்துகள்"
-                }
-            },
             "EsriWorldImagery": {
                 "attribution": {
                     "text": "நிபந்தனைகள் & கருத்துகள்"

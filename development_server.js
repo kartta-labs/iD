@@ -1,15 +1,14 @@
 /* eslint-disable no-console */
+const colors = require('colors/safe');
+const gaze = require('gaze');
+const StaticServer = require('static-server');
 
-var http = require('http');
-var gaze = require('gaze');
-var ecstatic = require('ecstatic');
-var colors = require('colors/safe');
+const isDevelopment = process.argv[2] === 'develop';
 
-var isDevelopment = process.argv[2] === 'develop';
+const buildData = require('./build_data')(isDevelopment);
+const buildSrc = require('./build_src')(isDevelopment);
+const buildCSS = require('./build_css')(isDevelopment);
 
-var buildData = require('./build_data')(isDevelopment);
-var buildSrc = require('./build_src')(isDevelopment);
-var buildCSS = require('./build_css')(isDevelopment);
 
 buildData()
     .then(function () {
@@ -25,8 +24,7 @@ if (isDevelopment) {
         });
     });
 
-    gaze(
-        [
+    gaze([
             'data/**/*.{js,json}',
             'data/core.yaml',
             // ignore the output files of `buildData`
@@ -35,6 +33,7 @@ if (isDevelopment) {
             '!data/presets/presets.json',
             '!data/presets.yaml',
             '!data/taginfo.json',
+            '!data/territory-languages.json',
             '!dist/locales/en.json'
         ],
         function(err, watcher) {
@@ -54,9 +53,8 @@ if (isDevelopment) {
         });
     });
 
-    http.createServer(
-        ecstatic({ root: __dirname, cache: 0 })
-    ).listen(8080);
-
-    console.log(colors.yellow('Listening on :8080'));
+    const server = new StaticServer({ rootPath: __dirname, port: 8080, followSymlink: true });
+    server.start(function () {
+        console.log(colors.yellow('Listening on ' + server.port));
+    });
 }

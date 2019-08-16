@@ -1,14 +1,10 @@
-import _extend from 'lodash-es/extend';
-import _map from 'lodash-es/map';
-import _uniq from 'lodash-es/uniq';
-
 import { geoArea as d3_geoArea } from 'd3-geo';
 
 import { geoExtent, geoVecCross } from '../geo';
 import { osmEntity } from './entity';
 import { osmLanes } from './lanes';
-import { osmOneWayTags, osmRightSideIsInsideTags } from './tags';
-import { areaKeys } from '../core/context';
+import { osmAreaKeys, osmOneWayTags, osmRightSideIsInsideTags } from './tags';
+import { utilArrayUniq } from '../util';
 
 
 export function osmWay() {
@@ -25,7 +21,7 @@ osmEntity.way = osmWay;
 osmWay.prototype = Object.create(osmEntity.prototype);
 
 
-_extend(osmWay.prototype, {
+Object.assign(osmWay.prototype, {
     type: 'way',
     nodes: [],
 
@@ -150,12 +146,13 @@ _extend(osmWay.prototype, {
 
         return null;
     },
+
     isSided: function() {
         if (this.tags.two_sided === 'yes') {
             return false;
         }
 
-        return this.sidednessIdentifier() != null;
+        return this.sidednessIdentifier() !== null;
     },
 
     lanes: function() {
@@ -171,8 +168,8 @@ _extend(osmWay.prototype, {
     isConvex: function(resolver) {
         if (!this.isClosed() || this.isDegenerate()) return null;
 
-        var nodes = _uniq(resolver.childNodes(this));
-        var coords = _map(nodes, 'loc');
+        var nodes = utilArrayUniq(resolver.childNodes(this));
+        var coords = nodes.map(function(n) { return n.loc; });
         var curr = 0;
         var prev = 0;
 
@@ -193,8 +190,11 @@ _extend(osmWay.prototype, {
         return true;
     },
 
+    // returns an object with the tag that implies this is an area, if any
+    tagSuggestingArea: function() {
+        if (this.tags.area === 'yes') return { area: 'yes' };
+        if (this.tags.area === 'no') return null;
 
-    isArea: function() {
         // `highway` and `railway` are typically linear features, but there
         // are a few exceptions that should be treated as areas, even in the
         // absence of a proper `area=yes` or `areaKeys` tag.. see #4194
@@ -211,25 +211,31 @@ _extend(osmWay.prototype, {
                 wash: true
             }
         };
+        var returnTags = {};
+        for (var key in this.tags) {
+            if (key in osmAreaKeys && !(this.tags[key] in osmAreaKeys[key])) {
+                returnTags[key] = this.tags[key];
+                return returnTags;
+            }
+            if (key in lineKeys && this.tags[key] in lineKeys[key]) {
+                returnTags[key] = this.tags[key];
+                return returnTags;
+            }
+        }
+        return null;
+    },
 
+    isArea: function() {
         if (this.tags.area === 'yes')
             return true;
         if (!this.isClosed() || this.tags.area === 'no')
             return false;
-        for (var key in this.tags) {
-            if (key in areaKeys && !(this.tags[key] in areaKeys[key])) {
-                return true;
-            }
-            if (key in lineKeys && this.tags[key] in lineKeys[key]) {
-                return true;
-            }
-        }
-        return false;
+        return this.tagSuggestingArea() !== null;
     },
 
 
     isDegenerate: function() {
-        return _uniq(this.nodes).length < (this.isArea() ? 3 : 2);
+        return (new Set(this.nodes).size < (this.isArea() ? 3 : 2));
     },
 
 
@@ -426,12 +432,12 @@ _extend(osmWay.prototype, {
             way: {
                 '@id': this.osmId(),
                 '@version': this.version || 0,
-                nd: _map(this.nodes, function(id) {
+                nd: this.nodes.map(function(id) {
                     return { keyAttributes: { ref: osmEntity.id.toOSM(id) } };
-                }),
-                tag: _map(this.tags, function(v, k) {
-                    return { keyAttributes: { k: k, v: v } };
-                })
+                }, this),
+                tag: Object.keys(this.tags).map(function(k) {
+                    return { keyAttributes: { k: k, v: this.tags[k] } };
+                }, this)
             }
         };
         if (changeset_id) {
@@ -443,7 +449,9 @@ _extend(osmWay.prototype, {
 
     asGeoJSON: function(resolver) {
         return resolver.transient(this, 'GeoJSON', function() {
-            var coordinates = _map(resolver.childNodes(this), 'loc');
+            var coordinates = resolver.childNodes(this)
+                .map(function(n) { return n.loc; });
+
             if (this.isArea() && this.isClosed()) {
                 return {
                     type: 'Polygon',
@@ -465,7 +473,7 @@ _extend(osmWay.prototype, {
 
             var json = {
                 type: 'Polygon',
-                coordinates: [_map(nodes, 'loc')]
+                coordinates: [ nodes.map(function(n) { return n.loc; }) ]
             };
 
             if (!this.isClosed() && nodes.length) {

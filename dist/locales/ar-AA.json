@@ -124,20 +124,14 @@
             "title": "أظهر مكاني"
         },
         "inspector": {
-            "no_documentation_combination": "لا توجد وثائق متاحة لهذه المجموعة من العلامات",
-            "no_documentation_key": "لا توجد وثائق متاحة لهذه الكلمة",
             "view_on_osm": "openstreetmap.org شاهد على",
             "choose": "حدد نوع الميزة",
-            "results": "{n} نتائج {search}",
-            "reference": "OpenStreetMap شاهد على ويكي"
+            "results": "{n} نتائج {search}"
         },
         "background": {
             "title": "الخلفية",
             "description": "إعدادات الخلفية",
             "reset": "أعد للوضع السابق"
-        },
-        "restore": {
-            "description": "هل ترغب في استعادة التغييرات غير المحفوظة من جلسة التحرير السابق؟"
         },
         "save": {
             "title": "حفظ",

@@ -6,11 +6,15 @@
         "line",
         "area"
     ],
-    "moreFields": [
-        "website"
-    ],
     "fields": [
-        "name"
+        "name",
+        "operator",
+        "height",
+        "material"
+    ],
+    "moreFields": [
+        "seamark/type",
+        "website"
     ],
     "tags": {
         "waterway": "dam"

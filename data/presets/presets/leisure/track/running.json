@@ -1,6 +1,7 @@
 {
     "icon": "maki-pitch",
     "fields": [
+        "name",
         "surface",
         "sport_racing_nonmotor",
         "lit",
@@ -8,7 +9,6 @@
         "lanes"
     ],
     "geometry": [
-        "point",
         "line",
         "area"
     ],
@@ -17,10 +17,17 @@
         "sport": "running"
     },
     "terms": [
-        "race*",
+        "athletics track",
+        "decathlon",
+        "foot race",
+        "long distance running",
+        "marathon",
+        "middle distance running",
+        "racetrack",
         "running",
         "sprint",
-        "track"
+        "track",
+        "walking"
     ],
-    "name": "Racetrack (Running)"
+    "name": "Running Track"
 }

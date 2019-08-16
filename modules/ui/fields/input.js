@@ -1,19 +1,10 @@
 import { dispatch as d3_dispatch } from 'd3-dispatch';
-import {
-    select as d3_select,
-    event as d3_event
-} from 'd3-selection';
+import { select as d3_select, event as d3_event } from 'd3-selection';
 
 import { t, textDirection } from '../../util/locale';
 import { dataPhoneFormats } from '../../../data';
 import { services } from '../../services';
-import { tooltip } from '../../util/tooltip';
-
-import {
-    utilGetSetValue,
-    utilNoAuto,
-    utilRebind
-} from '../../util';
+import { utilGetSetValue, utilNoAuto, utilRebind } from '../../util';
 
 
 export {
@@ -30,18 +21,11 @@ export function uiFieldText(field, context) {
     var nominatim = services.geocoder;
     var input = d3_select(null);
     var _entity;
-    var _brandTip;
-
-    if (field.id === 'brand') {
-        _brandTip = tooltip()
-            .title(t('inspector.lock.suggestion', { label: field.label }))
-            .placement('bottom');
-    }
-
 
     function i(selection) {
         var preset = _entity && context.presets().match(_entity, context.graph());
-        var isSuggestion = preset && preset.suggestion && field.id === 'brand';
+        var isLocked = preset && preset.suggestion && field.id === 'brand';
+        field.locked(isLocked);
 
         var wrap = selection.selectAll('.form-field-input-wrap')
             .data([0]);
@@ -66,8 +50,8 @@ export function uiFieldText(field, context) {
             .merge(input);
 
         input
-            .classed('disabled', !!isSuggestion)
-            .attr('readonly', isSuggestion || null)
+            .classed('disabled', !!isLocked)
+            .attr('readonly', isLocked || null)
             .on('input', change(true))
             .on('blur', change())
             .on('change', change());
@@ -99,7 +83,8 @@ export function uiFieldText(field, context) {
                 .merge(buttons)
                 .on('click', function(d) {
                     d3_event.preventDefault();
-                    var vals = input.node().value.split(';');
+                    var raw_vals = input.node().value || '0';
+                    var vals = raw_vals.split(';');
                     vals = vals.map(function(v) {
                         var num = parseFloat(v.trim(), 10);
                         return isFinite(num) ? clamped(num + d) : v.trim();

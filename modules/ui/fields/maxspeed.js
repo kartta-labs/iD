@@ -1,11 +1,9 @@
-import _some from 'lodash-es/some';
-
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { select as d3_select } from 'd3-selection';
 
-import { dataImperial } from '../../../data';
+import { dataMPH } from '../../../data';
 import { geoPointInPolygon } from '../../geo';
-import { uiCombobox } from '../index';
+import { uiCombobox } from '../combobox';
 import { utilGetSetValue, utilNoAuto, utilRebind } from '../../util';
 
 
@@ -59,8 +57,8 @@ export function uiFieldMaxspeed(field, context) {
             loc = childNodes[~~(childNodes.length/2)].loc;
         }
 
-        _isImperial = _some(dataImperial.features, function(f) {
-            return _some(f.geometry.coordinates, function(d) {
+        _isImperial = dataMPH.features.some(function(f) {
+            return f.geometry.coordinates.some(function(d) {
                 return geoPointInPolygon(loc, d);
             });
         });

@@ -1,27 +1,23 @@
-import _extend from 'lodash-es/extend';
-import _filter from 'lodash-es/filter';
-import _groupBy from 'lodash-es/groupBy';
-
 import {
     event as d3_event,
     select as d3_select
 } from 'd3-selection';
 
-import { t } from '../util/locale';
+import { t, textDirection } from '../util/locale';
 
-import {
-    actionAddEntity,
-    actionAddMember,
-    actionChangeMember,
-    actionDeleteMember
-} from '../actions';
+import { actionAddEntity } from '../actions/add_entity';
+import { actionAddMember } from '../actions/add_member';
+import { actionChangeMember } from '../actions/change_member';
+import { actionDeleteMember } from '../actions/delete_member';
 
-import { modeSelect } from '../modes';
+import { modeSelect } from '../modes/select';
 import { osmEntity, osmRelation } from '../osm';
 import { services } from '../services';
-import { svgIcon } from '../svg';
-import { uiCombobox, uiDisclosure } from './index';
-import { utilDisplayName, utilNoAuto, utilHighlightEntity } from '../util';
+import { svgIcon } from '../svg/icon';
+import { uiCombobox } from './combobox';
+import { uiDisclosure } from './disclosure';
+import { tooltip } from '../util/tooltip';
+import { utilArrayGroupBy, utilDisplayName, utilNoAuto, utilHighlightEntities } from '../util';
 
 
 export function uiRawMembershipEditor(context) {
@@ -38,7 +34,7 @@ export function uiRawMembershipEditor(context) {
         d3_event.preventDefault();
 
         // remove the hover-highlight styling
-        utilHighlightEntity(d.relation.id, false, context);
+        utilHighlightEntities([d.relation.id], false, context);
 
         context.enter(modeSelect(context, [d.relation.id]));
     }
@@ -54,7 +50,7 @@ export function uiRawMembershipEditor(context) {
         if (oldRole !== newRole) {
             _inChange = true;
             context.perform(
-                actionChangeMember(d.relation.id, _extend({}, d.member, { role: newRole }), d.index),
+                actionChangeMember(d.relation.id, Object.assign({}, d.member, { role: newRole }), d.index),
                 t('operations.change_role.annotation')
             );
         }
@@ -91,6 +87,9 @@ export function uiRawMembershipEditor(context) {
         this.blur();           // avoid keeping focus on the button
         if (d === 0) return;   // called on newrow (shoudn't happen)
 
+        // remove the hover-highlight styling
+        utilHighlightEntities([d.relation.id], false, context);
+
         context.perform(
             actionDeleteMember(d.relation.id, d.index),
             t('operations.delete_member.annotation')
@@ -100,37 +99,52 @@ export function uiRawMembershipEditor(context) {
 
     function fetchNearbyRelations(q, callback) {
         var newRelation = { relation: null, value: t('inspector.new_relation') };
+
         var result = [];
+
         var graph = context.graph();
 
-        context.intersects(context.extent()).forEach(function(entity) {
-            if (entity.type !== 'relation' || entity.id === _entityID) return;
-
+        function baseDisplayLabel(entity) {
             var matched = context.presets().match(entity, graph);
             var presetName = (matched && matched.name()) || t('inspector.relation');
             var entityName = utilDisplayName(entity) || '';
 
-            var value = presetName + ' ' + entityName;
-            if (q && value.toLowerCase().indexOf(q.toLowerCase()) === -1) return;
+            return presetName + ' ' + entityName;
+        }
 
-            result.push({ relation: entity, value: value });
-        });
+        var explicitRelation = q && context.hasEntity(q.toLowerCase());
+        if (explicitRelation && explicitRelation.type === 'relation' && explicitRelation.id !== _entityID) {
+            // loaded relation is specified explicitly, only show that
 
-        result.sort(function(a, b) {
-            return osmRelation.creationOrder(a.relation, b.relation);
-        });
-
-        // Dedupe identical names by appending relation id - see #2891
-        var dupeGroups = _filter(
-            _groupBy(result, 'value'),
-            function(v) { return v.length > 1; }
-        );
-
-        dupeGroups.forEach(function(group) {
-            group.forEach(function(obj) {
-                obj.value += ' ' + obj.relation.id;
+            result.push({
+                relation: explicitRelation,
+                value: baseDisplayLabel(explicitRelation) + ' ' + explicitRelation.id
             });
-        });
+        } else {
+
+            context.intersects(context.extent()).forEach(function(entity) {
+                if (entity.type !== 'relation' || entity.id === _entityID) return;
+
+                var value = baseDisplayLabel(entity);
+                if (q && (value + ' ' + entity.id).toLowerCase().indexOf(q.toLowerCase()) === -1) return;
+
+                result.push({ relation: entity, value: value });
+            });
+
+            result.sort(function(a, b) {
+                return osmRelation.creationOrder(a.relation, b.relation);
+            });
+
+            // Dedupe identical names by appending relation id - see #2891
+            var dupeGroups = Object.values(utilArrayGroupBy(result, 'value'))
+                .filter(function(v) { return v.length > 1; });
+
+            dupeGroups.forEach(function(group) {
+                group.forEach(function(obj) {
+                    obj.value += ' ' + obj.relation.id;
+                });
+            });
+        }
 
         result.forEach(function(obj) {
             obj.title = obj.value;
@@ -190,20 +204,17 @@ export function uiRawMembershipEditor(context) {
                 .append('li')
                 .attr('class', 'member-row member-row-normal form-field');
 
-            itemsEnter.each(function(d){
-                // highlight the relation in the map while hovering on the list item
-                d3_select(this)
-                    .on('mouseover', function() {
-                        utilHighlightEntity(d.relation.id, true, context);
-                    })
-                    .on('mouseout', function() {
-                        utilHighlightEntity(d.relation.id, false, context);
-                    });
-            });
+            // highlight the relation in the map while hovering on the list item
+            itemsEnter.on('mouseover', function(d) {
+                    utilHighlightEntities([d.relation.id], true, context);
+                })
+                .on('mouseout', function(d) {
+                    utilHighlightEntities([d.relation.id], false, context);
+                });
 
             var labelEnter = itemsEnter
                 .append('label')
-                .attr('class', 'form-field-label')
+                .attr('class', 'field-label')
                 .append('span')
                 .attr('class', 'label-text')
                 .append('a')
@@ -264,7 +275,7 @@ export function uiRawMembershipEditor(context) {
 
             newMembershipEnter
                 .append('label')
-                .attr('class', 'form-field-label')
+                .attr('class', 'field-label')
                 .append('input')
                 .attr('placeholder', t('inspector.choose_relation'))
                 .attr('type', 'text')
@@ -314,10 +325,14 @@ export function uiRawMembershipEditor(context) {
                 .append('div')
                 .attr('class', 'add-row');
 
-            addRowEnter
+            var addRelationButton = addRowEnter
                 .append('button')
-                .attr('class', 'add-relation')
+                .attr('class', 'add-relation');
+
+            addRelationButton
                 .call(svgIcon('#iD-icon-plus', 'light'));
+            addRelationButton
+                .call(tooltip().title(t('inspector.add_to_relation')).placement(textDirection === 'ltr' ? 'right' : 'left'));
 
             addRowEnter
                 .append('div')

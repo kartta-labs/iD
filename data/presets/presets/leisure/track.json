@@ -1,11 +1,16 @@
 {
-    "icon": "iD-highway-road",
+    "icon": "iD-other-line",
     "fields": [
         "surface",
         "sport_racing_nonmotor",
         "lit",
         "width",
         "lanes"
+    ],
+    "moreFields": [
+        "access",
+        "covered",
+        "indoor"
     ],
     "geometry": [
         "point",

@@ -1,29 +1,23 @@
 {
+    "icon": "temaki-pedestrian",
     "fields": [
         "crossing",
         "access",
         "surface",
-        "kerb",
         "tactile_paving"
     ],
     "geometry": [
         "line"
     ],
+    "tags": {
+        "footway": "crossing",
+        "crossing": "unmarked",
+        "traffic_calming": "table"
+    },
     "addTags": {
         "highway": "footway",
         "footway": "crossing",
         "crossing": "unmarked",
-        "traffic_calming": "table"
-    },
-    "removeTags": {
-        "highway": "footway",
-        "footway": "crossing",
-        "crossing": "unmarked",
-        "traffic_calming": "table"
-    },
-    "tags": {
-        "highway": "footway",
-        "footway": "crossing",
         "traffic_calming": "table"
     },
     "reference": {

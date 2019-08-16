@@ -1,12 +1,10 @@
 {
-    "icon": "iD-route-ferry",
+    "icon": "maki-ferry",
     "fields": [
-        "name",
-        "ref_route",
-        "operator",
-        "network",
-        "to", 
-        "from"
+        "{route/ferry}"
+    ],
+    "moreFields" : [
+        "{route/ferry}"
     ],
     "geometry": [
         "relation"

@@ -13,5 +13,10 @@
         "power": "cable",
         "location": "underground"
     },
+    "addTags": {
+        "power": "cable",
+        "location": "underground",
+        "layer": "-1"
+    },
     "name": "Underground Power Cable"
 }

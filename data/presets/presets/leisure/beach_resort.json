@@ -3,11 +3,12 @@
     "fields": [
         "name",
         "address",
-        "fee"
+        "opening_hours",
+        "fee",
+        "payment_multi_fee",
+        "charge_fee"
     ],
     "moreFields": [
-        "opening_hours",
-        "payment_multi",
         "smoking",
         "website",
         "phone",

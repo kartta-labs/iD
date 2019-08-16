@@ -96,7 +96,6 @@
                     "line": "Kote črte naredi pravokotne.",
                     "area": "Kote mnogokotnika naredi bolj pravokotne."
                 },
-                "key": "S",
                 "annotation": {
                     "line": "popravljanje kotov črte ×",
                     "area": "popravljanje kotov mnogokotnika ×"
@@ -107,11 +106,8 @@
             },
             "straighten": {
                 "title": "Poravnaj",
-                "description": "Poravnaj črto",
                 "key": "S",
-                "annotation": "ravnanje črte ×",
-                "too_bendy": "Črte ni mogoče poravnati, ker je preveč upognjena.",
-                "connected_to_hidden": "Črte ni mogoče poravnati, ker je povezana z drugim skritim predmetom."
+                "too_bendy": "Črte ni mogoče poravnati, ker je preveč upognjena."
             },
             "delete": {
                 "title": "Odstrani",
@@ -291,9 +287,6 @@
                     "create": "dodajanje omejitve zavijanja ×",
                     "delete": "odstranjevanje omejitev zavijanja ×"
                 }
-            },
-            "detach_node": {
-                "title": "Odpni"
             }
         },
         "restriction": {
@@ -412,7 +405,6 @@
         },
         "geocoder": {
             "search": "Poišči po svetovnem zemljevidu ...",
-            "no_results_visible": "V vidnem polju zemljevida ni skladnih zadetkov",
             "no_results_worldwide": "Ni najdenih zadetkov"
         },
         "geolocate": {
@@ -420,8 +412,6 @@
             "locating": "Poteka določevanje trenutne točke ..."
         },
         "inspector": {
-            "no_documentation_combination": "Za to kombinacijo oznak v dokumentaciji ni opisa",
-            "no_documentation_key": "Za ta ključ v dokumentaciji ni opisa",
             "show_more": "Pokaži več",
             "view_on_osm": "Odpri na openstreetmap.org",
             "all_fields": "Vsa polja",
@@ -432,7 +422,6 @@
             "role": "Vloga",
             "choose": "Izberite vrsto predmeta",
             "results": "{n} zadetkov iskanja {search}",
-            "reference": "Pokaži OSM Wiki",
             "back_tooltip": "Spremeni predmet",
             "remove": "Odstrani",
             "search": "Poišči",
@@ -542,11 +531,9 @@
                 "tooltip": "Električni daljnovodi, elektrarne, transformatorske postaje ..."
             },
             "past_future": {
-                "description": "Preteklo/Prihodnje",
                 "tooltip": "V načrtovanju, gradbišče, zapuščeno, zrušeno ..."
             },
             "others": {
-                "description": "Drugo",
                 "tooltip": "Vse ostalo"
             }
         },
@@ -564,12 +551,6 @@
                 "description": "Polno zapolnjevanje",
                 "tooltip": "Narisano polje je v celoti zapolnjeno z vzorcem."
             }
-        },
-        "restore": {
-            "heading": "Nekatere spremembe še niso shranjene.",
-            "description": "Ali želite ponovno obnoviti še ne shranjene spremembe predhodne seje urejanja?",
-            "restore": "Obnovi spremembe",
-            "reset": "Zavrzi spremembe"
         },
         "save": {
             "title": "Shrani",
@@ -604,10 +585,6 @@
             }
         },
         "success": {
-            "just_edited": "Zemljevid OSM je posodobljen!",
-            "thank_you": "Hvala, da ste izboljšali zemljevid.",
-            "thank_you_location": "Hvala, da ste izboljšali zemljevid pri {where}.",
-            "help_html": "Vaše spremembe se bodo pojavile na OpenStreetMap v nekaj minutah. Posodobitev zemljevidov drugje lahko traja dlje časa.",
             "help_link_text": "Podrobnosti",
             "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F",
             "view_on_osm": "Ogled paketa sprememb na OSM",
@@ -623,12 +600,6 @@
             "okay": "V redu",
             "cancel": "Prekliči"
         },
-        "splash": {
-            "welcome": "Dobrodošli v iD, urejevalniku podatkov OpenStreetMap",
-            "text": "Urejevalnik iD je zmogljivo, uporabniku prijazno orodje za vnašanje podatkov na najboljši brezplačni svetovni zemljevid. Uporabljena je zadnja različica {version}. Več podrobnosti o urejevalniku je na voljo na {website}, poročila o hroščih pa se zbirajo na spletišču {github}.",
-            "walkthrough": "Predstavitev orodja",
-            "start": "Začni z urejanjem"
-        },
         "source_switch": {
             "live": "objavljeno",
             "lose_changes": "Nekatere spremembe še niso shranjene. Zamenjava strežnika zemljevida jih bo zavrgla. Ali ste prepričani, da želite zamenjati strežnik?",
@@ -642,22 +613,6 @@
             "on_wiki": "{tag} na wiki.osm.org",
             "used_with": "uporabljeno: {type}"
         },
-        "validations": {
-            "disconnected_highway": "Nepovezana cesta",
-            "disconnected_highway_tooltip": "Ceste morajo biti povezane z drugimi cestami, parkirišči ali vhodi v zgradbe.",
-            "old_multipolygon": "Oznake mnogokotnika na obrisani poti",
-            "old_multipolygon_tooltip": "Ta vrsta mnogokotnika je opuščena. Namesto obrisani poti, dodelite oznake nadrejenemu mnogokotniku.",
-            "untagged_point": "Točka je brez oznak",
-            "untagged_point_tooltip": "Izberite vrsto predmeta, , ki ga ponazarja točko na zemljevidu.",
-            "untagged_line": "Črta je brez oznak",
-            "untagged_line_tooltip": "Izberite vrsto predmeta, ki ga ponazarja črta na zemljevidu.",
-            "untagged_area": "Dodan je mnogokotnik brez oznak",
-            "untagged_area_tooltip": "Izberite vrsto predmeta, ki ga ponazarja polje na zemljevidu.",
-            "untagged_relation": "Neoznačena zveza",
-            "untagged_relation_tooltip": "Izberite vrsto predmeta, ki opisuje zvezo.",
-            "tag_suggests_area": "Oznaka {tag} nakazuje, da črta opisovati območje, vendar pa ni sklenjena",
-            "deprecated_tags": "Zastarele oznake: {tags}"
-        },
         "zoom": {
             "in": "Približaj",
             "out": "Oddalji"
@@ -670,19 +625,13 @@
             "hires": "Visoka ločljivost"
         },
         "mapillary_images": {
-            "tooltip": "Fotografije ulic prek storitve Mapillary",
-            "title": "Plast s fotografijami (Mapillary)"
-        },
-        "mapillary_signs": {
-            "tooltip": "Prometni znaki prek storitve Mapilary (omogočena mora biti plast s fotografijami)",
-            "title": "Plast s prometnimi znaki (Mapillary)"
+            "tooltip": "Fotografije ulic prek storitve Mapillary"
         },
         "mapillary": {
             "view_on_mapillary": "Pokaži sliko na spletišču Mapillary"
         },
         "openstreetcam_images": {
-            "tooltip": "Ulične fotografije prek sistema OpenStreetCam",
-            "title": "Plast s fotografijami (OpenStreetCam)"
+            "tooltip": "Ulične fotografije prek sistema OpenStreetCam"
         },
         "openstreetcam": {
             "view_on_openstreetcam": "Pokaži sliko na spletišču OpenStreetCam"
@@ -1070,7 +1019,6 @@
                     "reverse": "Obrni smer črte",
                     "move": "Premakni označene predmete",
                     "rotate": "Zasukaj izbrane predmete",
-                    "orthogonalize": "Poravnaj črto / robove mnogokotnika",
                     "circularize": "Zaokroži zaključeno črto ali mnogokotnik",
                     "reflect_long": "Zrcali predmete prek daljše osi",
                     "reflect_short": "Zrcali predmete prek krajše osi",
@@ -1122,41 +1070,14 @@
                 "category-building": {
                     "name": "Vrste zgradbe"
                 },
-                "category-golf": {
-                    "name": "Igrišča za golf"
-                },
                 "category-landuse": {
                     "name": "Vrsta zemljišča"
-                },
-                "category-natural-area": {
-                    "name": "Naravne značilnosti"
-                },
-                "category-natural-line": {
-                    "name": "Naravne značilnosti"
-                },
-                "category-natural-point": {
-                    "name": "Naravne značilnosti"
-                },
-                "category-path": {
-                    "name": "Vrste poti"
-                },
-                "category-rail": {
-                    "name": "Vrste železnice"
                 },
                 "category-restriction": {
                     "name": "Vrste prepovedi"
                 },
-                "category-road": {
-                    "name": "Vrste poti"
-                },
                 "category-route": {
                     "name": "Značilnosti cest"
-                },
-                "category-water-area": {
-                    "name": "Značilnosti voda"
-                },
-                "category-water-line": {
-                    "name": "Značilnosti voda"
                 }
             },
             "fields": {
@@ -1545,9 +1466,6 @@
                         "clockwise": "V smeri urinega kazalca"
                     }
                 },
-                "direction_vertex": {
-                    "label": "Smer"
-                },
                 "display": {
                     "label": "Zaslon"
                 },
@@ -1671,12 +1589,6 @@
                     "label": "Obroči",
                     "placeholder": "1, 2, 4..."
                 },
-                "iata": {
-                    "label": "IATA"
-                },
-                "icao": {
-                    "label": "ICAO"
-                },
                 "incline": {
                     "label": "Naklon"
                 },
@@ -1693,6 +1605,12 @@
                 "inscription": {
                     "label": "Napis"
                 },
+                "intermittent": {
+                    "label": "Presihajoč"
+                },
+                "intermittent_yes": {
+                    "label": "Presihajoč"
+                },
                 "internet_access": {
                     "label": "Dostop do interneta",
                     "options": {
@@ -1705,9 +1623,6 @@
                 },
                 "internet_access/fee": {
                     "label": "Brezplačen dostop do interneta"
-                },
-                "internet_access/ssid": {
-                    "label": "SSID (Ime omrežja)"
                 },
                 "kerb": {
                     "label": "Cestni robnik"
@@ -2220,8 +2135,7 @@
                     "options": {
                         "bucket": "Posoda",
                         "chemical": "Kemično",
-                        "flush": "Splakovanje",
-                        "pitlatrine": "Štrbunk"
+                        "flush": "Splakovanje"
                     }
                 },
                 "toll": {
@@ -2258,7 +2172,6 @@
                     "label": "Prometni znak"
                 },
                 "traffic_sign/direction": {
-                    "label": "Smer",
                     "options": {
                         "backward": "Nazaj",
                         "both": "Obe / vse",
@@ -2269,7 +2182,6 @@
                     "label": "Vrsta"
                 },
                 "traffic_signals/direction": {
-                    "label": "Smer",
                     "options": {
                         "backward": "Nazaj",
                         "both": "Obe / vse",
@@ -2323,8 +2235,7 @@
                     "label": "Vrsta"
                 },
                 "website": {
-                    "label": "Spletno mesto",
-                    "placeholder": "http://example.com/"
+                    "label": "Spletno mesto"
                 },
                 "wetland": {
                     "label": "Vrsta"
@@ -2577,8 +2488,7 @@
                     "terms": "avto šola, šola vožnje"
                 },
                 "amenity/embassy": {
-                    "name": "Veleposlaništvo",
-                    "terms": "ambasada,konzulat"
+                    "name": "Veleposlaništvo"
                 },
                 "amenity/fast_food": {
                     "name": "Hitra prehrana",
@@ -2803,12 +2713,6 @@
                 },
                 "amenity/vending_machine/drinks": {
                     "name": "Avtomat za pijače"
-                },
-                "amenity/vending_machine/excrement_bags": {
-                    "name": "Vrečke za iztrebke"
-                },
-                "amenity/vending_machine/news_papers": {
-                    "name": "Avtomat za časopis"
                 },
                 "amenity/vending_machine/newspapers": {
                     "name": "Avtomat za časopis"
@@ -3049,9 +2953,6 @@
                     "name": "Vrstne hiše",
                     "terms": "vrstna hiša"
                 },
-                "building/train_station": {
-                    "name": "Želežniška postaja"
-                },
                 "building/university": {
                     "name": "Univerzitetna stavba",
                     "terms": "univerza,višja šola,kolidž,akademija"
@@ -3059,10 +2960,6 @@
                 "building/warehouse": {
                     "name": "Skladišče",
                     "terms": "depo"
-                },
-                "camp_site/camp_pitch": {
-                    "name": "Kampirno mesto",
-                    "terms": "kamp plac, plac, šotorišče, prikolišče, prikolica, elektrika, postavitev"
                 },
                 "club": {
                     "name": "Klub",
@@ -3326,14 +3223,6 @@
                     "name": "Luknja",
                     "terms": "golf luknja"
                 },
-                "golf/lateral_water_hazard_area": {
-                    "name": "Bočne vodne ovire",
-                    "terms": "Vodne ovire, golf"
-                },
-                "golf/lateral_water_hazard_line": {
-                    "name": "Bočne vodne ovire",
-                    "terms": "Vodne ovire, golf"
-                },
                 "golf/rough": {
                     "name": "Ledina",
                     "terms": "jasa,ledina,območje ob čistini in ovirah in zelenici z visoko košeno ali nepokošeno travo"
@@ -3341,14 +3230,6 @@
                 "golf/tee": {
                     "name": "Podstavek za žogico",
                     "terms": "podstavek, golf"
-                },
-                "golf/water_hazard_area": {
-                    "name": "Vodne ovire",
-                    "terms": "Vodne ovire, golf"
-                },
-                "golf/water_hazard_line": {
-                    "name": "Vodne ovire",
-                    "terms": "Vodne ovire, golf"
                 },
                 "healthcare": {
                     "name": "Zdravstvo",
@@ -3377,9 +3258,6 @@
                 "highway/bridleway": {
                     "name": "Mulatjera",
                     "terms": "jahalna pot,mulatiera"
-                },
-                "highway/bus_stop": {
-                    "name": "Avtobusno postajališče"
                 },
                 "highway/corridor": {
                     "name": "Notranji hodnik"
@@ -3655,13 +3533,6 @@
                     "name": "Vojašnica",
                     "terms": "vojašnica,vojska,varovanje,tanki,poveljniki,general"
                 },
-                "landuse/military/bunker": {
-                    "name": "Vojaško zaklonišče"
-                },
-                "landuse/military/checkpoint": {
-                    "name": "Nadzorna točka",
-                    "terms": "kontrola, kontrolna točka, rampa"
-                },
                 "landuse/military/danger_area": {
                     "name": "Nevarno območje",
                     "terms": "strelišče, delovišče, gradbišče"
@@ -3669,14 +3540,8 @@
                 "landuse/military/naval_base": {
                     "name": "Vojaško pomorsko oporišče"
                 },
-                "landuse/military/nuclear_explosion_site": {
-                    "name": "Območje jedrskih poskusov"
-                },
                 "landuse/military/obstacle_course": {
                     "name": "Vojaške ovire za trening"
-                },
-                "landuse/military/office": {
-                    "name": "Vojaške pisarne"
                 },
                 "landuse/military/range": {
                     "name": "Vojaško strelišče"
@@ -3715,8 +3580,7 @@
                     "terms": "zidanica"
                 },
                 "leisure": {
-                    "name": "Prosti čas",
-                    "terms": "rekreacija,turizem"
+                    "name": "Prosti čas"
                 },
                 "leisure/adult_gaming_centre": {
                     "name": "Igralnica za odrasle",
@@ -3880,8 +3744,7 @@
                     "terms": "linija,daljica,lomljenka"
                 },
                 "man_made": {
-                    "name": "Antropogena konstrukcija",
-                    "terms": "druge konstrukcije"
+                    "name": "Antropogena konstrukcija"
                 },
                 "man_made/adit": {
                     "name": "Vodoravni rudniški rov ",
@@ -3990,8 +3853,7 @@
                     "name": "Odtočni kanal"
                 },
                 "natural": {
-                    "name": "Naravna prvina",
-                    "terms": "naravno"
+                    "name": "Naravna prvina"
                 },
                 "natural/bare_rock": {
                     "name": "Skalovje",
@@ -4278,9 +4140,6 @@
                     "name": "Ozkotirna železnica",
                     "terms": "železnica z ozkimi tiri"
                 },
-                "railway/platform": {
-                    "name": "Želežniško postajališče"
-                },
                 "railway/rail": {
                     "name": "Železniški tir",
                     "terms": "železnica,železniški tir,tirnica"
@@ -4306,9 +4165,6 @@
                 "relation": {
                     "name": "Zveza",
                     "terms": "relacija,povezava,odnos"
-                },
-                "roundabout": {
-                    "name": "Krožišče"
                 },
                 "route/ferry": {
                     "name": "Trajektna linija",
@@ -4378,8 +4234,7 @@
                     "terms": "knjigarna,trgovina s knjigami,založba"
                 },
                 "shop/boutique": {
-                    "name": "Butik",
-                    "terms": "prodajalna,moda"
+                    "name": "Butik"
                 },
                 "shop/butcher": {
                     "name": "Mesar",
@@ -4531,10 +4386,6 @@
                 "shop/hifi": {
                     "name": "Trgovina z avdio opremo",
                     "terms": "hifi"
-                },
-                "shop/jewelry": {
-                    "name": "Draguljarna",
-                    "terms": "bižuterija,nakit,zlatarna"
                 },
                 "shop/kiosk": {
                     "name": "Kiosk"
@@ -4705,8 +4556,7 @@
                     "terms": "kletarstvo,vinska klet,vinotoč"
                 },
                 "tourism": {
-                    "name": "Turizem",
-                    "terms": "turistične storitve"
+                    "name": "Turizem"
                 },
                 "tourism/alpine_hut": {
                     "name": "Planinska koča",
@@ -4905,10 +4755,6 @@
                     "name": "Mreža javnega prometa",
                     "terms": "omrežje javnega prometa"
                 },
-                "vertex": {
-                    "name": "Drugo",
-                    "terms": "ostalo,drugo,podobno"
-                },
                 "waterway": {
                     "name": "Vodotok"
                 },
@@ -4951,6 +4797,9 @@
                     "name": "Potok",
                     "terms": "potoček,tok,graben,izvir,voda"
                 },
+                "waterway/stream_intermittent": {
+                    "name": "Presihajoč potok"
+                },
                 "waterway/water_point": {
                     "name": "Pristaniška vodna črpalka",
                     "terms": "voda,pitnik,črpalka"
@@ -4966,37 +4815,9 @@
             }
         },
         "imagery": {
-            "AGIVFlandersGRB": {
-                "attribution": {
-                    "text": "GRB Flanders © AGIV"
-                },
-                "name": "AGIV Flanders GRB"
-            },
             "Bing": {
                 "description": "Satelitski posnetki in posnetki iz zraka",
                 "name": "Satelitski posnetki Bing"
-            },
-            "DigitalGlobe-Premium": {
-                "attribution": {
-                    "text": "Pogoji uporabe in odziv"
-                },
-                "name": "Posnetki DigitalGlobe Premium"
-            },
-            "DigitalGlobe-Premium-vintage": {
-                "attribution": {
-                    "text": "Pogoji uporabe in odziv"
-                }
-            },
-            "DigitalGlobe-Standard": {
-                "attribution": {
-                    "text": "Pogoji uporabe in odziv"
-                },
-                "name": "Posnetki DigitalGlobe Standard"
-            },
-            "DigitalGlobe-Standard-vintage": {
-                "attribution": {
-                    "text": "Pogoji uporabe in odziv"
-                }
             },
             "EsriWorldImagery": {
                 "attribution": {

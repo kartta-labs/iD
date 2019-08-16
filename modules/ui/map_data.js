@@ -3,20 +3,20 @@ import {
     select as d3_select
 } from 'd3-selection';
 
-import { svgIcon } from '../svg';
+import { svgIcon } from '../svg/icon';
 import { t, textDirection } from '../util/locale';
 import { tooltip } from '../util/tooltip';
 import { geoExtent } from '../geo';
-import { modeBrowse } from '../modes';
-import { uiBackground } from './background';
+import { modeBrowse } from '../modes/browse';
 import { uiDisclosure } from './disclosure';
-import { uiHelp } from './help';
 import { uiSettingsCustomData } from './settings/custom_data';
 import { uiTooltipHtml } from './tooltipHtml';
+import { uiCmd } from './cmd';
 
 
 export function uiMapData(context) {
     var key = t('map_data.key');
+    var osmDataToggleKey = uiCmd('⌥' + t('area_fill.wireframe.key'));
     var features = context.features().keys();
     var layers = context.layers();
     var fills = ['wireframe', 'partial', 'full'];
@@ -25,11 +25,11 @@ export function uiMapData(context) {
     var settingsCustomData = uiSettingsCustomData(context)
         .on('change', customChanged);
 
-    var pane = d3_select(null);
+    var _pane = d3_select(null), _toggleButton = d3_select(null);
 
     var _fillSelected = context.storage('area-fill') || 'partial';
-    var _shown = false;
     var _dataLayerContainer = d3_select(null);
+    var _photoOverlayContainer = d3_select(null);
     var _fillList = d3_select(null);
     var _rangeList = d3_select(null);
     var _featureList = d3_select(null);
@@ -111,6 +111,10 @@ export function uiMapData(context) {
 
 
     function setLayer(which, enabled) {
+        // Don't allow layer changes while drawing - #6584
+        var mode = context.mode();
+        if (mode && /^draw/.test(mode.id)) return;
+
         var layer = layers.layer(which);
         if (layer) {
             layer.enabled(enabled);
@@ -130,7 +134,7 @@ export function uiMapData(context) {
 
 
     function drawPhotoItems(selection) {
-        var photoKeys = ['streetside', 'mapillary-images', 'mapillary-signs', 'openstreetcam-images'];
+        var photoKeys = context.photos().overlayLayerIDs();
         var photoLayers = layers.all().filter(function(obj) { return photoKeys.indexOf(obj.id) !== -1; });
         var data = photoLayers.filter(function(obj) { return obj.layer.supported(); });
 
@@ -158,14 +162,25 @@ export function uiMapData(context) {
 
         var liEnter = li.enter()
             .append('li')
-            .attr('class', function(d) { return 'list-item-photos list-item-' + d.id; });
+            .attr('class', function(d) {
+                var classes = 'list-item-photos list-item-' + d.id;
+                if (d.id === 'mapillary-signs') {
+                    classes += ' indented';
+                }
+                return classes;
+            });
 
         var labelEnter = liEnter
             .append('label')
             .each(function(d) {
+                var titleID;
+                if (d.id === 'mapillary-signs') titleID = 'mapillary.signs.tooltip';
+                else if (d.id === 'mapillary') titleID = 'mapillary_images.tooltip';
+                else if (d.id === 'openstreetcam') titleID = 'openstreetcam_images.tooltip';
+                else titleID = d.id.replace('-', '_') + '.tooltip';
                 d3_select(this)
                     .call(tooltip()
-                        .title(t(d.id.replace('-', '_') + '.tooltip'))
+                        .title(t(titleID))
                         .placement('top')
                     );
             });
@@ -177,7 +192,11 @@ export function uiMapData(context) {
 
         labelEnter
             .append('span')
-            .text(function(d) { return t(d.id.replace('-', '_') + '.title'); });
+            .text(function(d) {
+                var id = d.id;
+                if (id === 'mapillary-signs') id = 'photo_overlays.traffic_signs';
+                return t(id.replace('-', '_') + '.title');
+            });
 
 
         // Update
@@ -186,6 +205,70 @@ export function uiMapData(context) {
             .classed('active', layerEnabled)
             .selectAll('input')
             .property('checked', layerEnabled);
+    }
+
+    function drawPhotoTypeItems(selection) {
+        var data = context.photos().allPhotoTypes();
+
+        function typeEnabled(d) {
+            return context.photos().showsPhotoType(d);
+        }
+
+        var ul = selection
+            .selectAll('.layer-list-photo-types')
+            .data(context.photos().shouldFilterByPhotoType() ? [0] : []);
+
+        ul.exit()
+            .remove();
+
+        ul = ul.enter()
+            .append('ul')
+            .attr('class', 'layer-list layer-list-photo-types')
+            .merge(ul);
+
+        var li = ul.selectAll('.list-item-photo-types')
+            .data(data);
+
+        li.exit()
+            .remove();
+
+        var liEnter = li.enter()
+            .append('li')
+            .attr('class', function(d) {
+                return 'list-item-photo-types list-item-' + d;
+            });
+
+        var labelEnter = liEnter
+            .append('label')
+            .each(function(d) {
+                d3_select(this)
+                    .call(tooltip()
+                        .title(t('photo_overlays.photo_type.' + d + '.tooltip'))
+                        .placement('top')
+                    );
+            });
+
+        labelEnter
+            .append('input')
+            .attr('type', 'checkbox')
+            .on('change', function(d) {
+                context.photos().togglePhotoType(d);
+                update();
+            });
+
+        labelEnter
+            .append('span')
+            .text(function(d) {
+                return t('photo_overlays.photo_type.' + d + '.title');
+            });
+
+
+        // Update
+        li
+            .merge(liEnter)
+            .classed('active', typeEnabled)
+            .selectAll('input')
+            .property('checked', typeEnabled);
     }
 
 
@@ -215,11 +298,20 @@ export function uiMapData(context) {
         var labelEnter = liEnter
             .append('label')
             .each(function(d) {
-                d3_select(this)
-                    .call(tooltip()
-                        .title(t('map_data.layers.' + d.id + '.tooltip'))
-                        .placement('bottom')
-                    );
+                if (d.id === 'osm') {
+                    d3_select(this)
+                        .call(tooltip()
+                            .html(true)
+                            .title(uiTooltipHtml(t('map_data.layers.' + d.id + '.tooltip'), osmDataToggleKey))
+                            .placement('bottom')
+                        );
+                } else {
+                    d3_select(this)
+                        .call(tooltip()
+                            .title(t('map_data.layers.' + d.id + '.tooltip'))
+                            .placement('bottom')
+                        );
+                }
             });
 
         labelEnter
@@ -242,7 +334,7 @@ export function uiMapData(context) {
 
 
     function drawQAItems(selection) {
-        var qaKeys = ['keepRight'];
+        var qaKeys = ['keepRight', 'improveOSM'];
         var qaLayers = layers.all().filter(function(obj) { return qaKeys.indexOf(obj.id) !== -1; });
 
         var ul = selection
@@ -428,6 +520,22 @@ export function uiMapData(context) {
             .append('li')
             .attr('class', 'list-item-data');
 
+        var labelEnter = liEnter
+            .append('label')
+            .call(tooltip()
+                .title(t('map_data.layers.custom.tooltip'))
+                .placement('top')
+            );
+
+        labelEnter
+            .append('input')
+            .attr('type', 'checkbox')
+            .on('change', function() { toggleLayer('data'); });
+
+        labelEnter
+            .append('span')
+            .text(t('map_data.layers.custom.title'));
+    
         liEnter
             .append('button')
             .call(tooltip()
@@ -449,22 +557,6 @@ export function uiMapData(context) {
                 dataLayer.fitZoom();
             })
             .call(svgIcon('#iD-icon-search'));
-
-        var labelEnter = liEnter
-            .append('label')
-            .call(tooltip()
-                .title(t('map_data.layers.custom.tooltip'))
-                .placement('top')
-            );
-
-        labelEnter
-            .append('input')
-            .attr('type', 'checkbox')
-            .on('change', function() { toggleLayer('data'); });
-
-        labelEnter
-            .append('span')
-            .text(t('map_data.layers.custom.title'));
 
         // Update
         ul = ul
@@ -509,7 +601,6 @@ export function uiMapData(context) {
         // Enter
         var enter = items.enter()
             .append('li')
-            .attr('class', 'layer')
             .call(tooltip()
                 .html(true)
                 .title(function(d) {
@@ -563,6 +654,18 @@ export function uiMapData(context) {
         updateDataLayers();
     }
 
+    function renderPhotoOverlays(selection) {
+        var container = selection.selectAll('.photo-overlay-container')
+            .data([0]);
+
+        _photoOverlayContainer = container.enter()
+            .append('div')
+            .attr('class', 'photo-overlay-container')
+            .merge(container);
+
+        updatePhotoOverlays();
+    }
+
 
     function renderFillList(selection) {
         var container = selection.selectAll('.layer-fill-list')
@@ -591,22 +694,58 @@ export function uiMapData(context) {
 
 
     function renderFeatureList(selection) {
-        var container = selection.selectAll('.layer-feature-list')
+        var container = selection.selectAll('.layer-feature-list-container')
             .data([0]);
 
-        _featureList = container.enter()
+        var containerEnter = container.enter()
+            .append('div')
+            .attr('class', 'layer-feature-list-container');
+
+        containerEnter
             .append('ul')
-            .attr('class', 'layer-list layer-feature-list')
-            .merge(container);
+            .attr('class', 'layer-list layer-feature-list');
+
+        var footer = containerEnter
+            .append('div')
+            .attr('class', 'feature-list-links section-footer');
+
+        footer
+            .append('a')
+            .attr('class', 'feature-list-link')
+            .attr('href', '#')
+            .text(t('issues.enable_all'))
+            .on('click', function() {
+                context.features().enableAll();
+            });
+
+        footer
+            .append('a')
+            .attr('class', 'feature-list-link')
+            .attr('href', '#')
+            .text(t('issues.disable_all'))
+            .on('click', function() {
+                context.features().disableAll();
+            });
+
+        // Update
+        container = container
+            .merge(containerEnter);
+
+        _featureList = container.selectAll('.layer-feature-list');
 
         updateFeatureList();
+    }
+
+    function updatePhotoOverlays() {
+        _photoOverlayContainer
+            .call(drawPhotoItems)
+            .call(drawPhotoTypeItems);
     }
 
     function updateDataLayers() {
         _dataLayerContainer
             .call(drawOsmItems)
             .call(drawQAItems)
-            .call(drawPhotoItems)
             .call(drawCustomDataItems)
             .call(drawVectorItems);      // Beta - Detroit mapping challenge
     }
@@ -629,13 +768,16 @@ export function uiMapData(context) {
 
     function update() {
 
-        if (!pane.select('.disclosure-wrap-data_layers').classed('hide')) {
+        if (!_pane.select('.disclosure-wrap-data_layers').classed('hide')) {
             updateDataLayers();
         }
-        if (!pane.select('.disclosure-wrap-fill_area').classed('hide')) {
+        if (!_pane.select('.disclosure-wrap-photo_overlays').classed('hide')) {
+            updatePhotoOverlays();
+        }
+        if (!_pane.select('.disclosure-wrap-fill_area').classed('hide')) {
             updateFillList();
         }
-        if (!pane.select('.disclosure-wrap-map_features').classed('hide')) {
+        if (!_pane.select('.disclosure-wrap-map_features').classed('hide')) {
             updateFeatureList();
         }
 
@@ -660,69 +802,40 @@ export function uiMapData(context) {
         context.map().pan([0,0]);  // trigger a redraw
     }
 
+    var paneTooltip = tooltip()
+        .placement((textDirection === 'rtl') ? 'right' : 'left')
+        .html(true)
+        .title(uiTooltipHtml(t('map_data.description'), key));
 
-    function mapData(selection) {
+    function hidePane() {
+        context.ui().togglePanes();
+    }
 
-        function hidePane() {
-            setVisible(false);
-        }
+    uiMapData.togglePane = function() {
+        if (d3_event) d3_event.preventDefault();
+        paneTooltip.hide(_toggleButton);
+        context.ui().togglePanes(!_pane.classed('shown') ? _pane : undefined);
+    };
 
-        function togglePane() {
-            if (d3_event) d3_event.preventDefault();
-            paneTooltip.hide(button);
-            setVisible(!button.classed('active'));
-        }
+    uiMapData.renderToggleButton = function(selection) {
 
-        function setVisible(show) {
-            if (show !== _shown) {
-                button.classed('active', show);
-                _shown = show;
-
-                if (show) {
-                    uiBackground.hidePane();
-                    uiHelp.hidePane();
-                    update();
-
-                    pane
-                        .style('display', 'block')
-                        .style('right', '-300px')
-                        .transition()
-                        .duration(200)
-                        .style('right', '0px');
-
-                } else {
-                    pane
-                        .style('display', 'block')
-                        .style('right', '0px')
-                        .transition()
-                        .duration(200)
-                        .style('right', '-300px')
-                        .on('end', function() {
-                            d3_select(this).style('display', 'none');
-                        });
-                }
-            }
-        }
-
-
-        pane = selection
-            .append('div')
-            .attr('class', 'fillL map-pane hide');
-
-        var paneTooltip = tooltip()
-            .placement((textDirection === 'rtl') ? 'right' : 'left')
-            .html(true)
-            .title(uiTooltipHtml(t('map_data.description'), key));
-
-        var button = selection
+        _toggleButton = selection
             .append('button')
             .attr('tabindex', -1)
-            .on('click', togglePane)
+            .on('click', uiMapData.togglePane)
             .call(svgIcon('#iD-icon-data', 'light'))
             .call(paneTooltip);
+    };
 
 
-        var heading = pane
+    uiMapData.renderPane = function(selection) {
+
+        _pane = selection
+            .append('div')
+            .attr('class', 'fillL map-pane map-data-pane hide')
+            .attr('pane', 'map-data');
+
+        var heading = _pane
             .append('div')
             .attr('class', 'pane-heading');
 
@@ -732,11 +845,11 @@ export function uiMapData(context) {
 
         heading
             .append('button')
-            .on('click', function() { uiMapData.hidePane(); })
+            .on('click', hidePane)
             .call(svgIcon('#iD-icon-close'));
 
 
-        var content = pane
+        var content = _pane
             .append('div')
             .attr('class', 'pane-content');
 
@@ -748,6 +861,15 @@ export function uiMapData(context) {
             .call(uiDisclosure(context, 'data_layers', true)
                 .title(t('map_data.data_layers'))
                 .content(renderDataLayers)
+            );
+
+        // photo overlays
+        content
+            .append('div')
+            .attr('class', 'map-data-photo-overlays')
+            .call(uiDisclosure(context, 'photo_overlays', false)
+                .title(t('photo_overlays.title'))
+                .content(renderPhotoOverlays)
             );
 
         // area fills
@@ -788,13 +910,14 @@ export function uiMapData(context) {
         setFill(_fillSelected);
 
         context.keybinding()
-            .on(key, togglePane)
-            .on(t('area_fill.wireframe.key'), toggleWireframe);
+            .on(key, uiMapData.togglePane)
+            .on(t('area_fill.wireframe.key'), toggleWireframe)
+            .on(osmDataToggleKey, function() {
+                d3_event.preventDefault();
+                d3_event.stopPropagation();
+                toggleLayer('osm');
+            });
+    };
 
-        uiMapData.hidePane = hidePane;
-        uiMapData.togglePane = togglePane;
-        uiMapData.setVisible = setVisible;
-    }
-
-    return mapData;
+    return uiMapData;
 }

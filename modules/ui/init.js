@@ -1,13 +1,14 @@
 import {
     event as d3_event,
-    select as d3_select
+    select as d3_select,
+    selectAll as d3_selectAll
 } from 'd3-selection';
 
 import { t, textDirection } from '../util/locale';
 import { tooltip } from '../util/tooltip';
 
 import { behaviorHash } from '../behavior';
-import { modeBrowse } from '../modes';
+import { modeBrowse } from '../modes/browse';
 import { svgDefs, svgIcon } from '../svg';
 import { utilGetDimensions } from '../util/dimensions';
 
@@ -21,22 +22,20 @@ import { uiGeolocate } from './geolocate';
 import { uiHelp } from './help';
 import { uiInfo } from './info';
 import { uiIntro } from './intro';
+import { uiIssues } from './issues';
 import { uiLoading } from './loading';
 import { uiMapData } from './map_data';
 import { uiMapInMap } from './map_in_map';
-import { uiModes } from './modes';
 import { uiNotice } from './notice';
 import { uiPhotoviewer } from './photoviewer';
 import { uiRestore } from './restore';
-import { uiSave } from './save';
 import { uiScale } from './scale';
 import { uiShortcuts } from './shortcuts';
 import { uiSidebar } from './sidebar';
 import { uiSpinner } from './spinner';
 import { uiSplash } from './splash';
 import { uiStatus } from './status';
-import { uiTooltipHtml } from './tooltipHtml';
-import { uiUndoRedo } from './undo_redo';
+import { uiTopToolbar } from './top_toolbar';
 import { uiVersion } from './version';
 import { uiZoom } from './zoom';
 import { uiCmd } from './cmd';
@@ -52,7 +51,12 @@ export function uiInit(context) {
         container
             .attr('dir', textDirection);
 
+        // setup fullscreen keybindings (no button shown at this time)
+        container
+            .call(uiFullScreen(context));
+
         var map = context.map();
+        map.redrawEnable(false);  // don't draw until we've set zoom/lat/long
 
         container
             .append('svg')
@@ -70,10 +74,11 @@ export function uiInit(context) {
             .attr('class', 'active');
 
         // Top toolbar
-        var bar = content
+        content
             .append('div')
             .attr('id', 'bar')
-            .attr('class', 'fillD');
+            .attr('class', 'fillD')
+            .call(uiTopToolbar(context));
 
         content
             .append('div')
@@ -81,67 +86,9 @@ export function uiInit(context) {
             .attr('dir', 'ltr')
             .call(map);
 
-        // Leading area button group (Sidebar toggle)
-        var leadingArea = bar
-            .append('div')
-            .attr('class', 'tool-group leading-area');
 
-        var sidebarButton = leadingArea
-            .append('div')
-            .append('button')
-            .attr('class', 'sidebar-toggle')
-            .attr('tabindex', -1)
-            .on('click', ui.sidebar.toggle)
-            .call(tooltip()
-                .placement('bottom')
-                .html(true)
-                .title(uiTooltipHtml(t('sidebar.tooltip'), t('sidebar.key')))
-            );
-
-        var iconSuffix = textDirection === 'rtl' ? 'right' : 'left';
-        sidebarButton
-            .call(svgIcon('#iD-icon-sidebar-' + iconSuffix));
-
-        leadingArea
-            .append('div')
-            .attr('class', 'full-screen bar-group')
-            .call(uiFullScreen(context));
-
-
-        // Center area button group (Point/Line/Area/Note mode buttons)
-        bar
-            .append('div')
-            .attr('class', 'tool-group center-area')
-            .append('div')
-            .attr('class', 'modes joined')
-            .call(uiModes(context), bar);
-
-
-        // Trailing area button group (Undo/Redo save buttons)
-        var trailingArea = bar
-            .append('div')
-            .attr('class', 'tool-group trailing-area');
-
-        trailingArea
-            .append('div')
-            .attr('class', 'joined')
-            .call(uiUndoRedo(context));
-
-        trailingArea
-            .append('div')
-            .attr('class', 'save-wrap')
-            .call(uiSave(context));
-
-
-        // For now, just put spinner at the end of the #bar
-        bar
-            .append('div')
-            .attr('class', 'spinner')
-            .call(uiSpinner(context));
-
-
-        // Map controls (appended to #bar, but absolutely positioned)
-        var controls = bar
+        // Map controls
+        var controls = content
             .append('div')
             .attr('class', 'map-controls');
 
@@ -155,21 +102,34 @@ export function uiInit(context) {
             .attr('class', 'map-control geolocate-control')
             .call(uiGeolocate(context));
 
+        var background = uiBackground(context);
         controls
             .append('div')
             .attr('class', 'map-control background-control')
-            .call(uiBackground(context));
+            .call(background.renderToggleButton);
 
+        var mapData = uiMapData(context);
         controls
             .append('div')
             .attr('class', 'map-control map-data-control')
-            .call(uiMapData(context));
+            .call(mapData.renderToggleButton);
 
+        var issues = uiIssues(context);
+        controls
+            .append('div')
+            .attr('class', 'map-control map-issues-control')
+            .call(issues.renderToggleButton);
+
+        var help = uiHelp(context);
         controls
             .append('div')
             .attr('class', 'map-control help-control')
-            .call(uiHelp(context));
+            .call(help.renderToggleButton);
 
+        content
+            .append('div')
+            .attr('class', 'spinner')
+            .call(uiSpinner(context));
 
         // Add attribution and footer
         var about = content
@@ -259,22 +219,40 @@ export function uiInit(context) {
         // Setup map dimensions and move map to initial center/zoom.
         // This should happen after #content and toolbars exist.
         ui.onResize();
+        map.redrawEnable(true);
 
-        var hash = behaviorHash(context);
-        hash();
-        if (!hash.hadHash) {
+        ui.hash = behaviorHash(context);
+        ui.hash();
+        if (!ui.hash.hadHash) {
             map.centerZoom([0, 0], 2);
         }
 
 
+        var overMap = content
+            .append('div')
+            .attr('class', 'over-map');
+
+        // Add panes
+        // This should happen after map is initialized, as some require surface()
+        var panes = overMap
+            .append('div')
+            .attr('class', 'map-panes');
+
+        panes
+            .call(background.renderPane)
+            .call(mapData.renderPane)
+            .call(issues.renderPane)
+            .call(help.renderPane);
+
         // Add absolutely-positioned elements that sit on top of the map
         // This should happen after the map is ready (center/zoom)
-        content
+        overMap
             .call(uiMapInMap(context))
             .call(uiInfo(context))
             .call(uiNotice(context));
 
-        content
+
+        overMap
             .append('div')
             .attr('id', 'photoviewer')
             .classed('al', true)       // 'al'=left,  'ar'=right
@@ -313,7 +291,7 @@ export function uiInit(context) {
         context.enter(modeBrowse(context));
 
         if (!_initCounter++) {
-            if (!hash.startWalkthrough) {
+            if (!ui.hash.startWalkthrough) {
                 context.container()
                     .call(uiSplash(context))
                     .call(uiRestore(context));
@@ -339,8 +317,8 @@ export function uiInit(context) {
 
         _initCounter++;
 
-        if (hash.startWalkthrough) {
-            hash.startWalkthrough = false;
+        if (ui.hash.startWalkthrough) {
+            ui.hash.startWalkthrough = false;
             context.container().call(uiIntro(context));
         }
 
@@ -444,6 +422,51 @@ export function uiInit(context) {
         }
     };
 
+    ui.togglePanes = function(showPane) {
+        var shownPanes = d3_selectAll('.map-pane.shown');
+
+        var side = textDirection === 'ltr' ? 'right' : 'left';
+
+        shownPanes
+            .classed('shown', false);
+
+        d3_selectAll('.map-control button')
+            .classed('active', false);
+
+        if (showPane) {
+            shownPanes
+                .style('display', 'none')
+                .style(side, '-500px');
+
+            d3_selectAll('.' + showPane.attr('pane') + '-control button')
+                .classed('active', true);
+
+            showPane
+                .classed('shown', true)
+                .style('display', 'block');
+            if (shownPanes.empty()) {
+                showPane
+                    .style('display', 'block')
+                    .style(side, '-500px')
+                    .transition()
+                    .duration(200)
+                    .style(side, '0px');
+            } else {
+                showPane
+                    .style(side, '0px');
+            }
+        } else {
+            shownPanes
+                .style('display', 'block')
+                .style(side, '0px')
+                .transition()
+                .duration(200)
+                .style(side, '-500px')
+                .on('end', function() {
+                    d3_select(this).style('display', 'none');
+                });
+        }
+    };
 
     return ui;
 }

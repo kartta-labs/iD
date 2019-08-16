@@ -1,13 +1,10 @@
-import _clone from 'lodash-es/clone';
-import _omit from 'lodash-es/omit';
-import _uniq from 'lodash-es/uniq';
-
 import { t } from '../util/locale';
-import { areaKeys } from '../core/context';
+import { osmAreaKeys } from '../osm/tags';
+import { utilArrayUniq, utilObjectOmit } from '../util';
 
 
 export function presetPreset(id, preset, fields, visible, rawPresets) {
-    preset = _clone(preset);
+    preset = Object.assign({}, preset);   // shallow copy
 
     preset.id = id;
 
@@ -25,10 +22,14 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
 
         // Skip `fields` for the keys which define the preset.
         // These are usually `typeCombo` fields like `shop=*`
-        function withoutKeyFields(fieldID) {
+        function shouldInheritFieldWithID(fieldID) {
             var f = fields[fieldID];
             if (f.key) {
-                return preset.tags[f.key] === undefined;
+                if (preset.tags[f.key] !== undefined &&
+                    // inherit anyway if multiple values are allowed or just a checkbox
+                    f.type !== 'multiCombo' && f.type !== 'semiCombo' && f.type !== 'check') {
+                    return false;
+                }
             }
             return true;
         }
@@ -43,7 +44,7 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
             var inheritFieldIDs = inheritPreset[prop] || [];
 
             if (prop === 'fields') {
-                inheritFieldIDs = inheritFieldIDs.filter(withoutKeyFields);
+                inheritFieldIDs = inheritFieldIDs.filter(shouldInheritFieldWithID);
             }
 
             return inheritFieldIDs;
@@ -74,7 +75,7 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
                 fieldIDs = inheritedFieldIDs(preset.parentPresetID(), prop);
             }
             // resolve duplicate fields
-            fieldIDs = _uniq(fieldIDs);
+            fieldIDs = utilArrayUniq(fieldIDs);
 
             // update this preset with the results
             preset[prop] = fieldIDs;
@@ -107,14 +108,14 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
     preset.originalScore = preset.matchScore || 1;
 
 
-    preset.matchScore = function(entity) {
+    preset.matchScore = function(entityTags) {
         var tags = preset.tags;
         var score = 0;
 
         for (var t in tags) {
-            if (entity.tags[t] === tags[t]) {
+            if (entityTags[t] === tags[t]) {
                 score += preset.originalScore;
-            } else if (tags[t] === '*' && t in entity.tags) {
+            } else if (tags[t] === '*' && t in entityTags) {
                 score += preset.originalScore / 2;
             } else {
                 return -1;
@@ -124,26 +125,38 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
         return score;
     };
 
+    var _textCache = {};
 
     preset.t = function(scope, options) {
-        return t('presets.presets.' + id + '.' + scope, options);
+        var textID = 'presets.presets.' + id + '.' + scope;
+
+        if (_textCache[textID]) return _textCache[textID];
+
+        var text = t(textID, options);
+        _textCache[textID] = text;
+        return text;
     };
 
 
-    var origName = preset.name || '';
+    preset.originalName = preset.name || '';
+
+
     preset.name = function() {
         if (preset.suggestion) {
             var path = id.split('/');
             path.pop();  // remove brand name
             // NOTE: insert an en-dash, not a hypen (to avoid conflict with fr - nl names in Brussels etc)
-            return origName + ' – ' + t('presets.presets.' + path.join('/') + '.name');
+            return preset.originalName + ' – ' + t('presets.presets.' + path.join('/') + '.name');
         }
-        return preset.t('name', { 'default': origName });
+        return preset.t('name', { 'default': preset.originalName });
     };
 
-    var origTerms = (preset.terms || []).join();
+
+    preset.originalTerms = (preset.terms || []).join();
+
+
     preset.terms = function() {
-        return preset.t('terms', { 'default': origTerms }).toLowerCase().trim().split(/\s*,+\s*/);
+        return preset.t('terms', { 'default': preset.originalTerms }).toLowerCase().trim().split(/\s*,+\s*/);
     };
 
 
@@ -161,8 +174,15 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
 
     var reference = preset.reference || {};
     preset.reference = function(geometry) {
-        var key = reference.key || Object.keys(_omit(preset.tags, 'name'))[0],
-            value = reference.value || preset.tags[key];
+        // Lookup documentation on Wikidata...
+        var qid = preset.tags.wikidata || preset.tags['brand:wikidata'] || preset.tags['operator:wikidata'];
+        if (qid) {
+            return { qid: qid };
+        }
+
+        // Lookup documentation on OSM Wikibase...
+        var key = reference.key || Object.keys(utilObjectOmit(preset.tags, 'name'))[0];
+        var value = reference.value || preset.tags[key];
 
         if (geometry === 'relation' && key === 'type') {
             if (value in preset.tags) {
@@ -181,9 +201,9 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
     };
 
 
-    preset.removeTags = preset.removeTags || preset.tags || {};
+    preset.removeTags = preset.removeTags || preset.addTags || preset.tags || {};
     preset.unsetTags = function(tags, geometry) {
-        tags = _omit(tags, Object.keys(preset.removeTags));
+        tags = utilObjectOmit(tags, Object.keys(preset.removeTags));
 
         for (var f in preset.fields) {
             var field = preset.fields[f];
@@ -198,11 +218,11 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
 
 
     preset.addTags = preset.addTags || preset.tags || {};
-    preset.setTags = function(tags, geometry) {
+    preset.setTags = function(tags, geometry, skipFieldDefaults) {
         var addTags = preset.addTags;
         var k;
 
-        tags = _clone(tags);
+        tags = Object.assign({}, tags);   // shallow copy
 
         for (k in addTags) {
             if (addTags[k] === '*') {
@@ -215,14 +235,14 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
         // Add area=yes if necessary.
         // This is necessary if the geometry is already an area (e.g. user drew an area) AND any of:
         // 1. chosen preset could be either an area or a line (`barrier=city_wall`)
-        // 2. chosen preset doesn't have a key in areaKeys (`railway=station`)
+        // 2. chosen preset doesn't have a key in osmAreaKeys (`railway=station`)
         if (!addTags.hasOwnProperty('area')) {
             delete tags.area;
             if (geometry === 'area') {
                 var needsAreaTag = true;
                 if (preset.geometry.indexOf('line') === -1) {
                     for (k in addTags) {
-                        if (k in areaKeys) {
+                        if (k in osmAreaKeys) {
                             needsAreaTag = false;
                             break;
                         }
@@ -233,11 +253,12 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
                 }
             }
         }
-
-        for (var f in preset.fields) {
-            var field = preset.fields[f];
-            if (field.matchGeometry(geometry) && field.key && !tags[field.key] && field.default) {
-                tags[field.key] = field.default;
+        if (geometry && !skipFieldDefaults) {
+            for (var f in preset.fields) {
+                var field = preset.fields[f];
+                if (field.matchGeometry(geometry) && field.key && !tags[field.key] && field.default) {
+                    tags[field.key] = field.default;
+                }
             }
         }
 

@@ -9,13 +9,15 @@
         "service_times"
     ],
     "moreFields": [
-        "opening_hours",
-        "internet_access",
-        "internet_access/ssid",
-        "website",
-        "phone",
+        "air_conditioning",
         "email",
         "fax",
+        "internet_access",
+        "internet_access/ssid",
+        "opening_hours",
+        "phone",
+        "polling_station",
+        "website",
         "wheelchair"
     ],
     "geometry": [

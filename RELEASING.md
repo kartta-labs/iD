@@ -10,12 +10,12 @@
 you'll need to create a Transifex account, ask @bhousel for admin rights
 on the iD project, and then create this file with contents like<br><pre>
      {"user": "yourusername", "password": "*******"}</pre>This file is not version-controlled and will not be checked in.
-     
+
 ### Update `iD`
 
-#### Update `master` branch
+#### Update `2.15` branch
 ```bash
-$  git checkout master
+$  git checkout 2.15
 $  rm -rf node_modules/editor-layer-index/
 $  npm install
 $  npm run imagery
@@ -30,13 +30,13 @@ $  git add . && git commit -m 'npm run translations'
 
 ```bash
 $  git add . && git commit -m 'vA.B.C'
-$  git push origin master
+$  git push origin 2.15
 ```
 
 #### Update and tag `release` branch
 ```bash
 $  git checkout release
-$  git reset --hard master
+$  git reset --hard 2.15
 $  npm run all
 $  git add -f dist/*.css dist/*.js dist/img/*.svg dist/mapillary-js/ dist/pannellum-streetside/
 $  git commit -m 'Check in build'
@@ -60,7 +60,7 @@ $  git remote add upstream git@github.com:openstreetmap/openstreetmap-website.gi
 $  git fetch --all
 $  git checkout master
 $  git reset --hard upstream/master
-$  git push origin master
+$  git push osmlab master
 ```
 
 #### Create and push branch with the new iD version
@@ -72,4 +72,4 @@ $  rm -rf vendor/assets/iD/* && vendorer
 $  git add . && git commit -m 'Update to iD vA.B.C'
 $  git push osmlab
 ```
-- Open a pull request using the markdown text from the changelog as the description
+- [Open a pull request](https://github.com/openstreetmap/openstreetmap-website/compare/master...osmlab:master) using the [markdown text from the changelog](https://raw.githubusercontent.com/openstreetmap/iD/master/CHANGELOG.md) as the description

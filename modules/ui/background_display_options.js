@@ -4,7 +4,7 @@ import {
 } from 'd3-selection';
 
 import { t, textDirection } from '../util/locale';
-import { svgIcon } from '../svg';
+import { svgIcon } from '../svg/icon';
 import { uiDisclosure } from './disclosure';
 import { utilDetect } from '../util/detect';
 
@@ -96,6 +96,17 @@ export function uiBackgroundDisplayOptions(context) {
             })
             .call(svgIcon('#iD-icon-' + (textDirection === 'rtl' ? 'redo' : 'undo')));
 
+        // reset all button
+        containerEnter
+            .append('a')
+            .attr('class', 'display-option-resetlink')
+            .attr('href', '#')
+            .text(t('background.reset_all'))
+            .on('click', function() {
+                for (var i = 0; i < sliders.length; i++) {
+                    updateValue(sliders[i],1);
+                }
+            });
 
         // update
         container = containerEnter

@@ -13,7 +13,6 @@ import { behaviorTail } from './tail';
 import { geoChooseEdge, geoVecLength } from '../geo';
 import { utilKeybinding, utilRebind } from '../util';
 
-
 var _usedTails = {};
 var _disableSpace = false;
 var _lastSpace = null;
@@ -26,7 +25,7 @@ export function behaviorDraw(context) {
 
     var keybinding = utilKeybinding('draw');
 
-    var hover = behaviorHover(context).altDisables(true)
+    var _hover = behaviorHover(context).altDisables(true).ignoreVertex(true)
         .on('hover', context.ui().sidebar.hover);
     var tail = behaviorTail();
     var edit = behaviorEdit(context);
@@ -116,6 +115,9 @@ export function behaviorDraw(context) {
         _mouseLeave = true;
     }
 
+    function allowsVertex(d) {
+        return d.geometry(context.graph()) === 'vertex' || context.presets().allowsVertex(d, context.graph());
+    }
 
     // related code
     // - `mode/drag_node.js`     `doMode()`
@@ -125,11 +127,13 @@ export function behaviorDraw(context) {
         var d = datum();
         var target = d && d.properties && d.properties.entity;
 
-        if (target && target.type === 'node') {   // Snap to a node
+        var mode = context.mode();
+
+        if (target && target.type === 'node' && allowsVertex(target)) {   // Snap to a node
             dispatch.call('clickNode', this, target, d);
             return;
 
-        } else if (target && target.type === 'way') {   // Snap to a way
+        } else if (target && target.type === 'way' && (mode.id !== 'add-point' || mode.preset.matchGeometry('vertex'))) {   // Snap to a way
             var choice = geoChooseEdge(
                 context.childNodes(target), context.mouse(), context.projection, context.activeID()
             );
@@ -138,8 +142,10 @@ export function behaviorDraw(context) {
                 dispatch.call('clickWay', this, choice.loc, edge, d);
                 return;
             }
+        } else if (mode.id !== 'add-point' || mode.preset.matchGeometry('point')) {
+            dispatch.call('click', this, context.map().mouseCoordinates(), d);
         }
-        dispatch.call('click', this, context.map().mouseCoordinates(), d);
+
     }
 
 
@@ -191,7 +197,7 @@ export function behaviorDraw(context) {
 
 
     function behavior(selection) {
-        context.install(hover);
+        context.install(_hover);
         context.install(edit);
 
         if (!context.inIntro() && !_usedTails[tail.text()]) {
@@ -221,7 +227,7 @@ export function behaviorDraw(context) {
 
     behavior.off = function(selection) {
         context.ui().sidebar.hover.cancel();
-        context.uninstall(hover);
+        context.uninstall(_hover);
         context.uninstall(edit);
 
         if (!context.inIntro() && !_usedTails[tail.text()]) {
@@ -247,6 +253,10 @@ export function behaviorDraw(context) {
     behavior.tail = function(_) {
         tail.text(_);
         return behavior;
+    };
+
+    behavior.hover = function() {
+        return _hover;
     };
 
 

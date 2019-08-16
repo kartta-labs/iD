@@ -1,5 +1,5 @@
 {
-    "icon": "iD-highway-footway",
+    "icon": "temaki-pedestrian",
     "fields": [
         "name",
         "surface",
@@ -9,11 +9,14 @@
         "incline"
     ],
     "moreFields": [
-        "wheelchair",
-        "lit",
-        "smoothness",
         "covered",
-        "dog"
+        "dog",
+        "lit",
+        "maxweight_bridge",
+        "not/name",
+        "smoothness",
+        "stroller",
+        "wheelchair"
     ],
     "geometry": [
         "line"
@@ -21,6 +24,7 @@
     "terms": [
         "hike",
         "hiking",
+        "promenade",
         "trackway",
         "trail",
         "walk"
@@ -28,5 +32,6 @@
     "tags": {
         "highway": "footway"
     },
+    "matchScore": 0.9,
     "name": "Foot Path"
 }

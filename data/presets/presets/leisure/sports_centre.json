@@ -5,11 +5,12 @@
         "sport",
         "building",
         "address",
-        "fee"
+        "fee",
+        "payment_multi_fee",
+        "charge_fee"
     ],
     "moreFields": [
         "opening_hours",
-        "payment_multi",
         "website",
         "phone",
         "email",

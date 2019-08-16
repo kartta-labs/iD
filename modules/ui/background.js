@@ -1,38 +1,27 @@
 import _debounce from 'lodash-es/debounce';
 
-import {
-    descending as d3_descending,
-    ascending as d3_ascending
-} from 'd3-array';
-
-import {
-    event as d3_event,
-    select as d3_select
-} from 'd3-selection';
+import { descending as d3_descending, ascending as d3_ascending } from 'd3-array';
+import { event as d3_event, select as d3_select } from 'd3-selection';
 
 import { t, textDirection } from '../util/locale';
-import { svgIcon } from '../svg';
+import { svgIcon } from '../svg/icon';
 import { uiBackgroundDisplayOptions } from './background_display_options';
 import { uiBackgroundOffset } from './background_offset';
 import { uiCmd } from './cmd';
 import { uiDisclosure } from './disclosure';
-import { uiHelp } from './help';
-import { uiMapData } from './map_data';
 import { uiMapInMap } from './map_in_map';
 import { uiSettingsCustomBackground } from './settings/custom_background';
 import { uiTooltipHtml } from './tooltipHtml';
-import { utilCallWhenIdle } from '../util';
 import { tooltip } from '../util/tooltip';
 
 
 export function uiBackground(context) {
     var key = t('background.key');
 
-    var pane = d3_select(null);
+    var _pane = d3_select(null), _toggleButton = d3_select(null);
 
     var _customSource = context.background().findSource('custom');
     var _previousBackground = context.background().findSource(context.storage('background-last-used-toggle'));
-    var _shown = false;
 
     var _backgroundList = d3_select(null);
     var _overlayList = d3_select(null);
@@ -80,7 +69,7 @@ export function uiBackground(context) {
             return context.background().showsLayer(d);
         }
 
-        selection.selectAll('.layer')
+        selection.selectAll('li')
             .classed('active', active)
             .classed('switch', function(d) { return d === _previousBackground; })
             .call(setTooltips)
@@ -135,7 +124,7 @@ export function uiBackground(context) {
             .sources(context.map().extent())
             .filter(filter);
 
-        var layerLinks = layerList.selectAll('li.layer')
+        var layerLinks = layerList.selectAll('li')
             .data(sources, function(d) { return d.name(); });
 
         layerLinks.exit()
@@ -143,9 +132,21 @@ export function uiBackground(context) {
 
         var enter = layerLinks.enter()
             .append('li')
-            .attr('class', 'layer')
             .classed('layer-custom', function(d) { return d.id === 'custom'; })
             .classed('best', function(d) { return d.best(); });
+
+        var label = enter
+            .append('label');
+
+        label
+            .append('input')
+            .attr('type', type)
+            .attr('name', 'layers')
+            .on('change', change);
+
+        label
+            .append('span')
+            .text(function(d) { return d.name(); });
 
         enter.filter(function(d) { return d.id === 'custom'; })
             .append('button')
@@ -167,23 +168,9 @@ export function uiBackground(context) {
             .append('span')
             .html('&#9733;');
 
-        var label = enter
-            .append('label');
 
-        label
-            .append('input')
-            .attr('type', type)
-            .attr('name', 'layers')
-            .on('change', change);
-
-        label
-            .append('span')
-            .text(function(d) { return d.name(); });
-
-
-        layerList.selectAll('li.layer')
-            .sort(sortSources)
-            .style('display', layerList.selectAll('li.layer').data().length > 0 ? 'block' : 'none');
+        layerList.selectAll('li')
+            .sort(sortSources);
 
         layerList
             .call(updateLayerSelections);
@@ -217,7 +204,7 @@ export function uiBackground(context) {
             .append('ul')
             .attr('class', 'layer-list minimap-toggle-list')
             .append('li')
-            .attr('class', 'layer minimap-toggle-item');
+            .attr('class', 'minimap-toggle-item');
 
         var minimapLabelEnter = minimapEnter
             .append('label')
@@ -283,12 +270,11 @@ export function uiBackground(context) {
 
 
     function update() {
-
-        if (!pane.select('.disclosure-wrap-background_list').classed('hide')) {
+        if (!_pane.select('.disclosure-wrap-background_list').classed('hide')) {
             updateBackgroundList();
         }
 
-        if (!pane.select('.disclosure-wrap-overlay_list').classed('hide')) {
+        if (!_pane.select('.disclosure-wrap-overlay_list').classed('hide')) {
             updateOverlayList();
         }
 
@@ -310,69 +296,40 @@ export function uiBackground(context) {
         }
     }
 
+    var paneTooltip = tooltip()
+        .placement((textDirection === 'rtl') ? 'right' : 'left')
+        .html(true)
+        .title(uiTooltipHtml(t('background.description'), key));
 
-    function background(selection) {
+    uiBackground.togglePane = function() {
+        if (d3_event) d3_event.preventDefault();
+        paneTooltip.hide(_toggleButton);
+        context.ui().togglePanes(!_pane.classed('shown') ? _pane : undefined);
+    };
 
-        function hidePane() {
-            setVisible(false);
-        }
+    function hidePane() {
+        context.ui().togglePanes();
+    }
 
-        function togglePane() {
-            if (d3_event) d3_event.preventDefault();
-            paneTooltip.hide(button);
-            setVisible(!button.classed('active'));
-        }
+    uiBackground.renderToggleButton = function(selection) {
 
-        function setVisible(show) {
-            if (show !== _shown) {
-                button.classed('active', show);
-                _shown = show;
-
-                if (show) {
-                    uiMapData.hidePane();
-                    uiHelp.hidePane();
-                    update();
-
-                    pane
-                        .style('display', 'block')
-                        .style('right', '-300px')
-                        .transition()
-                        .duration(200)
-                        .style('right', '0px');
-
-                } else {
-                    pane
-                        .style('display', 'block')
-                        .style('right', '0px')
-                        .transition()
-                        .duration(200)
-                        .style('right', '-300px')
-                        .on('end', function() {
-                            d3_select(this).style('display', 'none');
-                        });
-                }
-            }
-        }
-
-
-        pane = selection
-            .append('div')
-            .attr('class', 'fillL map-pane hide');
-
-        var paneTooltip = tooltip()
-            .placement((textDirection === 'rtl') ? 'right' : 'left')
-            .html(true)
-            .title(uiTooltipHtml(t('background.description'), key));
-
-        var button = selection
+        _toggleButton = selection
             .append('button')
             .attr('tabindex', -1)
-            .on('click', togglePane)
+            .on('click', uiBackground.togglePane)
             .call(svgIcon('#iD-icon-layers', 'light'))
             .call(paneTooltip);
+    };
+
+    uiBackground.renderPane = function(selection) {
+
+        _pane = selection
+            .append('div')
+            .attr('class', 'fillL map-pane background-pane hide')
+            .attr('pane', 'background');
 
 
-        var heading = pane
+        var heading = _pane
             .append('div')
             .attr('class', 'pane-heading');
 
@@ -382,11 +339,11 @@ export function uiBackground(context) {
 
         heading
             .append('button')
-            .on('click', function() { uiBackground.hidePane(); })
+            .on('click', hidePane)
             .call(svgIcon('#iD-icon-close'));
 
 
-        var content = pane
+        var content = _pane
             .append('div')
             .attr('class', 'pane-content');
 
@@ -421,7 +378,10 @@ export function uiBackground(context) {
 
         // add listeners
         context.map()
-            .on('move.background-update', _debounce(utilCallWhenIdle(update), 1000));
+            .on('move.background-update',
+                _debounce(function() { window.requestIdleCallback(update); }, 1000)
+            );
+
 
         context.background()
             .on('change.background-update', update);
@@ -430,13 +390,9 @@ export function uiBackground(context) {
         update();
 
         context.keybinding()
-            .on(key, togglePane)
+            .on(key, uiBackground.togglePane)
             .on(uiCmd('⌘' + key), quickSwitch);
+    };
 
-        uiBackground.hidePane = hidePane;
-        uiBackground.togglePane = togglePane;
-        uiBackground.setVisible = setVisible;
-    }
-
-    return background;
+    return uiBackground;
 }

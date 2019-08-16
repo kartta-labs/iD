@@ -1,10 +1,9 @@
-import _clone from 'lodash-es/clone';
 import { t } from '../util/locale';
 import { presetCollection } from './collection';
 
 
 export function presetCategory(id, category, all) {
-    category = _clone(category);
+    category = Object.assign({}, category);   // shallow copy
 
     category.id = id;
 
@@ -12,6 +11,17 @@ export function presetCategory(id, category, all) {
     category.members = presetCollection(category.members.map(function(id) {
         return all.item(id);
     }));
+
+
+    category.geometry = category.members.collection.reduce(function(geometries, preset) {
+        for (var index in preset.geometry) {
+            var geometry = preset.geometry[index];
+            if (geometries.indexOf(geometry) === -1) {
+                geometries.push(geometry);
+            }
+        }
+        return geometries;
+    }, []);
 
 
     category.matchGeometry = function(geometry) {

@@ -1,13 +1,12 @@
 {
     "icon": "iD-highway-service",
-    "fields": [
-        "{highway/service}",
-        "covered"
-    ],
     "geometry": [
         "line"
     ],
     "tags": {
+        "service": "drive-through"
+    },
+    "addTags": {
         "highway": "service",
         "service": "drive-through"
     },

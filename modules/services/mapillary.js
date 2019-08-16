@@ -1,21 +1,12 @@
 /* global Mapillary:false */
-import _find from 'lodash-es/find';
-import _forEach from 'lodash-es/forEach';
-import _some from 'lodash-es/some';
-import _union from 'lodash-es/union';
-
 import { dispatch as d3_dispatch } from 'd3-dispatch';
-import { request as d3_request } from 'd3-request';
-import {
-    select as d3_select,
-    selectAll as d3_selectAll
-} from 'd3-selection';
+import { select as d3_select, selectAll as d3_selectAll } from 'd3-selection';
 
 import rbush from 'rbush';
 
 import { geoExtent, geoScaleToZoom } from '../geo';
-import { svgDefs } from '../svg';
-import { utilQsString, utilRebind, utilTiler } from '../util';
+import { svgDefs } from '../svg/defs';
+import { utilArrayUnion, utilQsString, utilRebind, utilTiler } from '../util';
 
 
 var apibase = 'https://a.mapillary.com/v3/';
@@ -33,8 +24,8 @@ var _mlySelectedImage;
 var _mlyViewer;
 
 
-function abortRequest(i) {
-    i.abort();
+function abortRequest(controller) {
+    controller.abort();
 }
 
 
@@ -54,11 +45,10 @@ function loadTiles(which, url, projection) {
 
     // abort inflight requests that are no longer needed
     var cache = _mlyCache[which];
-    _forEach(cache.inflight, function(v, k) {
-        var wanted = _find(tiles, function(tile) { return k.indexOf(tile.id + ',') === 0; });
-
+    Object.keys(cache.inflight).forEach(function(k) {
+        var wanted = tiles.find(function(tile) { return k.indexOf(tile.id + ',') === 0; });
         if (!wanted) {
-            abortRequest(v);
+            abortRequest(cache.inflight[k]);
             delete cache.inflight[k];
         }
     });
@@ -86,22 +76,36 @@ function loadNextTilePage(which, currZoom, url, tile) {
 
     var id = tile.id + ',' + String(nextPage);
     if (cache.loaded[id] || cache.inflight[id]) return;
-    cache.inflight[id] = d3_request(nextURL)
-        .mimeType('application/json')
-        .response(function(xhr) {
-            var linkHeader = xhr.getResponseHeader('Link');
+
+    var controller = new AbortController();
+    cache.inflight[id] = controller;
+
+    var options = {
+        method: 'GET',
+        signal: controller.signal,
+        headers: { 'Content-Type': 'application/json' }
+    };
+
+    fetch(nextURL, options)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error(response.status + ' ' + response.statusText);
+            }
+            var linkHeader = response.headers.get('Link');
             if (linkHeader) {
-                var pagination = parsePagination(xhr.getResponseHeader('Link'));
+                var pagination = parsePagination(linkHeader);
                 if (pagination.next) {
                     cache.nextURL[tile.id] = pagination.next;
                 }
             }
-            return JSON.parse(xhr.responseText);
+            return response.json();
         })
-        .get(function(err, data) {
+        .then(function(data) {
             cache.loaded[id] = true;
             delete cache.inflight[id];
-            if (err || !data.features || !data.features.length) return;
+            if (!data || !data.features || !data.features.length) {
+                throw new Error('No Data');
+            }
 
             var features = data.features.map(function(feature) {
                 var loc = feature.geometry.coordinates;
@@ -176,18 +180,22 @@ function loadNextTilePage(which, currZoom, url, tile) {
                 cache.rtree.load(features);
             }
 
-            if (which === 'images' || which === 'sequences') {
-                dispatch.call('loadedImages');
-            } else if (which === 'map_features') {
-                dispatch.call('loadedSigns');
-            }
-
             if (data.features.length === maxResults) {  // more pages to load
                 cache.nextPage[tile.id] = nextPage + 1;
                 loadNextTilePage(which, currZoom, url, tile);
             } else {
                 cache.nextPage[tile.id] = Infinity;     // no more pages to load
             }
+
+            if (which === 'images' || which === 'sequences') {
+                dispatch.call('loadedImages');
+            } else if (which === 'map_features') {
+                dispatch.call('loadedSigns');
+            }
+        })
+        .catch(function() {
+            cache.loaded[id] = true;
+            delete cache.inflight[id];
         });
 }
 
@@ -248,21 +256,11 @@ export default {
     },
 
     reset: function() {
-        var cache = _mlyCache;
-
-        if (cache) {
-            if (cache.images && cache.images.inflight) {
-                _forEach(cache.images.inflight, abortRequest);
-            }
-            if (cache.image_detections && cache.image_detections.inflight) {
-                _forEach(cache.image_detections.inflight, abortRequest);
-            }
-            if (cache.map_features && cache.map_features.inflight) {
-                _forEach(cache.map_features.inflight, abortRequest);
-            }
-            if (cache.sequences && cache.sequences.inflight) {
-                _forEach(cache.sequences.inflight, abortRequest);
-            }
+        if (_mlyCache) {
+            Object.values(_mlyCache.images.inflight).forEach(abortRequest);
+            Object.values(_mlyCache.image_detections.inflight).forEach(abortRequest);
+            Object.values(_mlyCache.map_features.inflight).forEach(abortRequest);
+            Object.values(_mlyCache.sequences.inflight).forEach(abortRequest);
         }
 
         _mlyCache = {
@@ -286,6 +284,11 @@ export default {
     signs: function(projection) {
         var limit = 5;
         return searchLimited(limit, projection, _mlyCache.map_features.rtree);
+    },
+
+
+    cachedImage: function(imageKey) {
+        return _mlyCache.images.forImageKey[imageKey];
     },
 
 
@@ -323,7 +326,7 @@ export default {
     },
 
 
-    loadSigns: function(context, projection) {
+    loadSigns: function(projection) {
         // if we are looking at signs, we'll actually need to fetch images too
         loadTiles('images', apibase + 'images?', projection);
         loadTiles('map_features', apibase + 'map_features?layers=trafficsigns&min_nbr_image_detections=1&', projection);
@@ -361,7 +364,7 @@ export default {
 
         // load mapillary signs sprite
         var defs = context.container().select('defs');
-        defs.call(svgDefs(context).addSprites, ['mapillary-sprite']);
+        defs.call(svgDefs(context).addSprites, ['mapillary-sprite'], false /* don't override colors */ );
 
         // Register viewer resize handler
         context.ui().photoviewer.on('resize', function() {
@@ -410,7 +413,7 @@ export default {
             .classed('hide', true);
 
         d3_selectAll('.viewfield-group, .sequence, .icon-sign')
-            .classed('selected', false);
+            .classed('currentView', false);
 
         return this.setStyles(null, true);
     },
@@ -531,8 +534,8 @@ export default {
 
         // if signs signs are shown, highlight the ones that appear in this image
         d3_selectAll('.layer-mapillary-signs .icon-sign')
-            .classed('selected', function(d) {
-                return _some(d.detections, function(detection) {
+            .classed('currentView', function(d) {
+                return d.detections.some(function(detection) {
                     return detection.image_key === imageKey;
                 });
             });
@@ -556,16 +559,19 @@ export default {
     },
 
 
+    // Updates the currently highlighted sequence and selected bubble.
+    // Reset is only necessary when interacting with the viewport because
+    // this implicitly changes the currently selected bubble/sequence
     setStyles: function(hovered, reset) {
         if (reset) {  // reset all layers
             d3_selectAll('.viewfield-group')
                 .classed('highlighted', false)
                 .classed('hovered', false)
-                .classed('selected', false);
+                .classed('currentView', false);
 
             d3_selectAll('.sequence')
                 .classed('highlighted', false)
-                .classed('selected', false);
+                .classed('currentView', false);
         }
 
         var hoveredImageKey = hovered && hovered.key;
@@ -581,16 +587,16 @@ export default {
         var selectedImageKeys = (selectedLineString && selectedLineString.properties.coordinateProperties.image_keys) || [];
 
         // highlight sibling viewfields on either the selected or the hovered sequences
-        var highlightedImageKeys = _union(hoveredImageKeys, selectedImageKeys);
+        var highlightedImageKeys = utilArrayUnion(hoveredImageKeys, selectedImageKeys);
 
-        d3_selectAll('.layer-mapillary-images .viewfield-group')
+        d3_selectAll('.layer-mapillary .viewfield-group')
             .classed('highlighted', function(d) { return highlightedImageKeys.indexOf(d.key) !== -1; })
             .classed('hovered', function(d) { return d.key === hoveredImageKey; })
-            .classed('selected', function(d) { return d.key === selectedImageKey; });
+            .classed('currentView', function(d) { return d.key === selectedImageKey; });
 
-        d3_selectAll('.layer-mapillary-images .sequence')
+        d3_selectAll('.layer-mapillary .sequence')
             .classed('highlighted', function(d) { return d.properties.key === hoveredSequenceKey; })
-            .classed('selected', function(d) { return d.properties.key === selectedSequenceKey; });
+            .classed('currentView', function(d) { return d.properties.key === selectedSequenceKey; });
 
         // update viewfields if needed
         d3_selectAll('.viewfield-group .viewfield')

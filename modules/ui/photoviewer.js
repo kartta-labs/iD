@@ -4,7 +4,7 @@ import {
 } from 'd3-selection';
 
 import { dispatch as d3_dispatch } from 'd3-dispatch';
-import { svgIcon } from '../svg';
+import { svgIcon } from '../svg/icon';
 import { utilGetDimensions } from '../util/dimensions';
 import { utilRebind } from '../util';
 import { services } from '../services';
@@ -49,6 +49,9 @@ export function uiPhotoviewer(context) {
                 buildResizeListener(selection, 'resize', dispatch, { resizeOnY: true })
             );
 
+        services.streetside.loadViewer(context);
+        services.mapillary.loadViewer(context);
+        services.openstreetcam.loadViewer(context);
 
         function buildResizeListener(target, eventName, dispatch, options) {
             var resizeOnX = !!options.resizeOnX;

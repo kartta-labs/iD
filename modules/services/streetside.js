@@ -1,8 +1,3 @@
-import _extend from 'lodash-es/extend';
-import _find from 'lodash-es/find';
-import _forEach from 'lodash-es/forEach';
-import _union from 'lodash-es/union';
-
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { timer as d3_timer } from 'd3-timer';
 
@@ -27,7 +22,7 @@ import {
 } from '../geo';
 
 import { utilDetect } from '../util/detect';
-import { utilQsString, utilRebind, utilTiler } from '../util';
+import { utilArrayUnion, utilQsString, utilRebind, utilTiler } from '../util';
 
 import Q from 'q';
 
@@ -83,11 +78,10 @@ function loadTiles(which, url, projection, margin) {
 
     // abort inflight requests that are no longer needed
     var cache = _ssCache[which];
-    _forEach(cache.inflight, function(v, k) {
-        var wanted = _find(tiles, function(tile) { return k.indexOf(tile.id + ',') === 0; });
-
+    Object.keys(cache.inflight).forEach(function(k) {
+        var wanted = tiles.find(function(tile) { return k.indexOf(tile.id + ',') === 0; });
         if (!wanted) {
-            abortRequest(v);
+            abortRequest(cache.inflight[k]);
             delete cache.inflight[k];
         }
     });
@@ -450,12 +444,8 @@ export default {
      * reset() reset the cache.
      */
     reset: function () {
-        var cache = _ssCache;
-
-        if (cache) {
-            if (cache.bubbles && cache.bubbles.inflight) {
-                _forEach(cache.bubbles.inflight, abortRequest);
-            }
+        if (_ssCache) {
+            Object.values(_ssCache.bubbles.inflight).forEach(abortRequest);
         }
 
         _ssCache = {
@@ -750,7 +740,7 @@ export default {
             .classed('hide', true);
 
         d3_selectAll('.viewfield-group, .sequence, .icon-sign')
-            .classed('selected', false);
+            .classed('currentView', false);
 
         return this.setStyles(null, true);
     },
@@ -808,7 +798,7 @@ export default {
                 that.selectImage(d)
                     .then(function(r) {
                         if (r.status === 'ok') {
-                            _sceneOptions = _extend(_sceneOptions, viewstate);
+                            _sceneOptions = Object.assign(_sceneOptions, viewstate);
                             that.showViewer();
                         }
                     });
@@ -925,19 +915,19 @@ export default {
     },
 
 
-    /**
-     * setStyles().
-     */
+    // Updates the currently highlighted sequence and selected bubble.
+    // Reset is only necessary when interacting with the viewport because
+    // this implicitly changes the currently selected bubble/sequence
     setStyles: function (hovered, reset) {
         if (reset) {  // reset all layers
             d3_selectAll('.viewfield-group')
                 .classed('highlighted', false)
                 .classed('hovered', false)
-                .classed('selected', false);
+                .classed('currentView', false);
 
             d3_selectAll('.sequence')
                 .classed('highlighted', false)
-                .classed('selected', false);
+                .classed('currentView', false);
         }
 
         var hoveredBubbleKey = hovered && hovered.key;
@@ -953,16 +943,16 @@ export default {
         var selectedBubbleKeys = (selectedSequence && selectedSequence.bubbles.map(function (d) { return d.key; })) || [];
 
         // highlight sibling viewfields on either the selected or the hovered sequences
-        var highlightedBubbleKeys = _union(hoveredBubbleKeys, selectedBubbleKeys);
+        var highlightedBubbleKeys = utilArrayUnion(hoveredBubbleKeys, selectedBubbleKeys);
 
         d3_selectAll('.layer-streetside-images .viewfield-group')
             .classed('highlighted', function (d) { return highlightedBubbleKeys.indexOf(d.key) !== -1; })
             .classed('hovered', function (d) { return d.key === hoveredBubbleKey; })
-            .classed('selected', function (d) { return d.key === selectedBubbleKey; });
+            .classed('currentView', function (d) { return d.key === selectedBubbleKey; });
 
         d3_selectAll('.layer-streetside-images .sequence')
             .classed('highlighted', function (d) { return d.properties.key === hoveredSequenceKey; })
-            .classed('selected', function (d) { return d.properties.key === selectedSequenceKey; });
+            .classed('currentView', function (d) { return d.properties.key === selectedSequenceKey; });
 
         // update viewfields if needed
         d3_selectAll('.viewfield-group .viewfield')

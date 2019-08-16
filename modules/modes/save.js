@@ -1,47 +1,20 @@
-import _clone from 'lodash-es/clone';
-import _filter from 'lodash-es/filter';
-import _map from 'lodash-es/map';
-import _reduce from 'lodash-es/reduce';
-import _union from 'lodash-es/union';
-import _uniq from 'lodash-es/uniq';
-import _without from 'lodash-es/without';
-
-import {
-    event as d3_event,
-    select as d3_select
-} from 'd3-selection';
-
+import { event as d3_event, select as d3_select } from 'd3-selection';
 import { t } from '../util/locale';
 
-import {
-    actionDiscardTags,
-    actionMergeRemoteChanges,
-    actionNoop,
-    actionRevert
-} from '../actions';
-
-import { coreGraph } from '../core';
-
-import {
-    modeBrowse,
-    modeSelect
-} from './index';
-
+import { actionDiscardTags } from '../actions/discard_tags';
+import { actionMergeRemoteChanges } from '../actions/merge_remote_changes';
+import { actionNoop } from '../actions/noop';
+import { actionRevert } from '../actions/revert';
+import { coreGraph } from '../core/graph';
+import { modeBrowse } from './browse';
+import { modeSelect } from './select';
 import { services } from '../services';
-
-import {
-    uiConflicts,
-    uiConfirm,
-    uiCommit,
-    uiLoading,
-    uiSuccess
-} from '../ui';
-
-import {
-    utilDisplayName,
-    utilDisplayType,
-    utilKeybinding
-} from '../util';
+import { uiConflicts } from '../ui/conflicts';
+import { uiConfirm } from '../ui/confirm';
+import { uiCommit } from '../ui/commit';
+import { uiLoading } from '../ui/loading';
+import { uiSuccess } from '../ui/success';
+import { utilArrayUnion, utilArrayUniq, utilDisplayName, utilDisplayType, utilKeybinding } from '../util';
 
 
 var _isSaving = false;
@@ -133,8 +106,15 @@ export function modeSave(context) {
 
         // Do the full (slow) conflict check..
         } else {
-            var modified = _filter(history.difference().summary(), { changeType: 'modified' });
-            _toCheck = _map(_map(modified, 'entity'), 'id');
+            var summary = history.difference().summary();
+            _toCheck = [];
+            for (var i = 0; i < summary.length; i++) {
+                var item = summary[i];
+                if (item.changeType === 'modified') {
+                    _toCheck.push(item.entity.id);
+                }
+            }
+
             _toLoad = withChildNodes(_toCheck, localGraph);
             _loaded = {};
             _toLoadCount = 0;
@@ -153,20 +133,19 @@ export function modeSave(context) {
 
 
         function withChildNodes(ids, graph) {
-            return _uniq(_reduce(ids, function(result, id) {
+            var s = new Set(ids);
+            ids.forEach(function(id) {
                 var entity = graph.entity(id);
-                if (entity.type === 'way') {
-                    try {
-                        var children = graph.childNodes(entity);
-                        result.push.apply(result, _map(_filter(children, 'version'), 'id'));
-                    } catch (err) {
-                        /* eslint-disable no-console */
-                        if (typeof console !== 'undefined') console.error(err);
-                        /* eslint-enable no-console */
+                if (entity.type !== 'way') return;
+
+                graph.childNodes(entity).forEach(function(child) {
+                    if (child.version !== undefined) {
+                        s.add(child.id);
                     }
-                }
-                return result;
-            }, _clone(ids)));
+                });
+            });
+
+            return Array.from(s);
         }
 
 
@@ -187,7 +166,7 @@ export function modeSave(context) {
                 result.data.forEach(function(entity) {
                     remoteGraph.replace(entity);
                     _loaded[entity.id] = true;
-                    _toLoad = _without(_toLoad, entity.id);
+                    _toLoad = _toLoad.filter(function(val) { return val !== entity.id; });
 
                     if (!entity.visible) return;
 
@@ -244,7 +223,7 @@ export function modeSave(context) {
                 if (local.version !== remote.version) return false;
 
                 if (local.type === 'way') {
-                    var children = _union(local.nodes, remote.nodes);
+                    var children = utilArrayUnion(local.nodes, remote.nodes);
                     for (var i = 0; i < children.length; i++) {
                         var a = localGraph.hasEntity(children[i]);
                         var b = remoteGraph.hasEntity(children[i]);
@@ -384,7 +363,7 @@ export function modeSave(context) {
                     if (_conflicts[i].chosen === 1) {  // user chose "keep theirs"
                         var entity = context.hasEntity(_conflicts[i].id);
                         if (entity && entity.type === 'way') {
-                            var children = _uniq(entity.nodes);
+                            var children = utilArrayUniq(entity.nodes);
                             for (var j = 0; j < children.length; j++) {
                                 history.replace(actionRevert(children[j]));
                             }
@@ -492,7 +471,7 @@ export function modeSave(context) {
 
 
     // Reverse geocode current map location so we can display a message on
-    // the success screen like "Thank you for editing around city, state."
+    // the success screen like "Thank you for editing around place, region."
     function loadLocation() {
         _location = null;
         if (!services.geocoder) return;
@@ -500,14 +479,14 @@ export function modeSave(context) {
         services.geocoder.reverse(context.map().center(), function(err, result) {
             if (err || !result || !result.address) return;
 
-            var parts = [];
             var addr = result.address;
-            var city = addr && (addr.town || addr.city || addr.county);
-            if (city) parts.push(city);
-            var region = addr && (addr.state || addr.country);
-            if (region) parts.push(region);
+            var place = (addr && (addr.town || addr.city || addr.county)) || '';
+            var region = (addr && (addr.state || addr.country)) || '';
+            var separator = (place && region) ? t('success.thank_you_where.separator') : '';
 
-            _location = parts.join(', ');
+            _location = t('success.thank_you_where.format',
+                { place: place, separator: separator, region: region }
+            );
         });
     }
 

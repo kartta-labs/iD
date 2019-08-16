@@ -1,6 +1,7 @@
 import { t } from '../util/locale';
-import { behaviorDraw } from '../behavior';
-import { modeBrowse, modeSelectNote } from './index';
+import { behaviorDraw } from '../behavior/draw';
+import { modeBrowse } from './browse';
+import { modeSelectNote } from './select_note';
 import { osmNote } from '../osm';
 import { services } from '../services';
 
@@ -11,7 +12,7 @@ export function modeAddNote(context) {
         button: 'note',
         title: t('modes.add_note.title'),
         description: t('modes.add_note.description'),
-        key: '4'
+        key: t('modes.add_note.key')
     };
 
     var behavior = behaviorDraw(context)

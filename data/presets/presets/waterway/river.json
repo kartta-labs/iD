@@ -4,7 +4,13 @@
         "name",
         "structure_waterway",
         "width",
-        "intermittent"
+        "intermittent",
+        "tidal"
+    ],
+    "moreFields": [
+        "covered",
+        "fishing",
+        "salt"
     ],
     "geometry": [
         "line"

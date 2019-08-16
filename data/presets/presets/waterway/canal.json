@@ -2,8 +2,15 @@
     "icon": "iD-waterway-canal",
     "fields": [
         "name",
+        "structure_waterway",
         "width",
-        "intermittent"
+        "intermittent",
+        "lock"
+    ],
+    "moreFields": [
+        "fishing",
+        "salt",
+        "tidal"
     ],
     "geometry": [
         "line"

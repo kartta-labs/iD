@@ -9,13 +9,16 @@
     ],
     "moreFields": [
         "architect",
+        "building/levels/underground",
         "building/material",
+        "not/name",
+        "layer",
+        "operator",
         "roof/colour",
         "smoking",
         "wheelchair"
     ],
     "geometry": [
-        "point",
         "area"
     ],
     "tags": {

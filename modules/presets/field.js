@@ -1,9 +1,8 @@
-import _clone from 'lodash-es/clone';
 import { t } from '../util/locale';
 
 
 export function presetField(id, field) {
-    field = _clone(field);
+    field = Object.assign({}, field);   // shallow copy
 
     field.id = id;
 
@@ -28,6 +27,13 @@ export function presetField(id, field) {
     var placeholder = field.placeholder;
     field.placeholder = function() {
         return field.t('placeholder', {'default': placeholder});
+    };
+
+
+    field.originalTerms = (field.terms || []).join();
+
+    field.terms = function() {
+        return field.t('terms', { 'default': field.originalTerms }).toLowerCase().trim().split(/\s*,+\s*/);
     };
 
 

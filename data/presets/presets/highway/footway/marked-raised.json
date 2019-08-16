@@ -1,16 +1,20 @@
 {
-    "icon": "iD-highway-footway",
+    "icon": "temaki-pedestrian",
     "fields": [
         "crossing",
         "access",
         "surface",
-        "kerb",
         "tactile_paving"
     ],
     "geometry": [
         "line"
     ],
     "tags": {
+        "footway": "crossing",
+        "crossing": "marked",
+        "traffic_calming": "table"
+    },
+    "addTags": {
         "highway": "footway",
         "footway": "crossing",
         "crossing": "marked",

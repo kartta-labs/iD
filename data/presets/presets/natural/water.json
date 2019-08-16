@@ -5,6 +5,11 @@
         "water",
         "intermittent"
     ],
+    "moreFields": [
+        "fishing",
+        "salt",
+        "tidal"
+    ],
     "geometry": [
         "area"
     ],

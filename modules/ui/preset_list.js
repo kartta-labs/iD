@@ -2,13 +2,16 @@ import { dispatch as d3_dispatch } from 'd3-dispatch';
 
 import {
     event as d3_event,
-    select as d3_select
+    select as d3_select,
+    selectAll as d3_selectAll
 } from 'd3-selection';
 
 import { t, textDirection } from '../util/locale';
-import { actionChangePreset } from '../actions/index';
-import { operationDelete } from '../operations/index';
+import { actionChangePreset } from '../actions/change_preset';
+import { operationDelete } from '../operations/delete';
+import { services } from '../services';
 import { svgIcon } from '../svg/index';
+import { tooltip } from '../util/tooltip';
 import { uiPresetIcon } from './preset_icon';
 import { uiTagReference } from './tag_reference';
 import { utilKeybinding, utilNoAuto, utilRebind } from '../util';
@@ -19,6 +22,7 @@ export function uiPresetList(context) {
     var _entityID;
     var _currentPreset;
     var _autofocus = false;
+    var geocoder = services.geocoder;
 
 
     function presetList(selection) {
@@ -36,7 +40,7 @@ export function uiPresetList(context) {
 
         var messagewrap = selection
             .append('div')
-            .attr('class', 'header fillL cf');
+            .attr('class', 'header fillL');
 
         var message = messagewrap
             .append('h3')
@@ -79,7 +83,8 @@ export function uiPresetList(context) {
                 d3_event.preventDefault();
                 d3_event.stopPropagation();
                 // move focus to the first item in the preset list
-                list.select('.preset-list-button').node().focus();
+                var buttons = list.selectAll('.preset-list-button');
+                if (!buttons.empty()) buttons.nodes()[0].focus();
             }
         }
 
@@ -87,7 +92,8 @@ export function uiPresetList(context) {
             // enter
             var value = search.property('value');
             if (d3_event.keyCode === 13 && value.length) {
-                list.selectAll('.preset-list-item:first-child').datum().choose();
+                list.selectAll('.preset-list-item:first-child')
+                    .each(function(d) { d.choose.call(this); });
             }
         }
 
@@ -95,12 +101,29 @@ export function uiPresetList(context) {
             var value = search.property('value');
             list.classed('filtered', value.length);
             if (value.length) {
-                var results = presets.search(value, geometry);
-                message.text(t('inspector.results', {
-                    n: results.collection.length,
-                    search: value
-                }));
-                list.call(drawList, results);
+                var entity = context.entity(_entityID);
+                if (geocoder && entity) {
+                    var center = entity.extent(context.graph()).center();
+                    geocoder.countryCode(center, function countryCallback(err, countryCode) {
+                        // get the input value again because it may have changed
+                        var currentValue = search.property('value');
+
+                        if (!currentValue.length) return;
+
+                        var results;
+                        if (!err && countryCode) {
+                            countryCode = countryCode.toLowerCase();
+                            results = presets.search(currentValue, geometry, countryCode);
+                        } else {
+                            results = presets.search(currentValue, geometry);
+                        }
+                        message.text(t('inspector.results', {
+                            n: results.collection.length,
+                            search: currentValue
+                        }));
+                        list.call(drawList, results);
+                    });
+                }
             } else {
                 list.call(drawList, context.presets().defaults(geometry, 36));
                 message.text(t('inspector.choose'));
@@ -136,13 +159,19 @@ export function uiPresetList(context) {
             .append('div')
             .attr('class', 'preset-list fillL cf')
             .call(drawList, context.presets().defaults(geometry, 36));
+
+        context.features().on('change.preset-list', updateForFeatureHiddenState);
     }
 
 
     function drawList(list, presets) {
         var collection = presets.collection.reduce(function(collection, preset) {
             if (preset.members) {
-                collection.push(CategoryItem(preset));
+                if (preset.members.collection.filter(function(preset) {
+                    return preset.visible();
+                }).length > 1) {
+                    collection.push(CategoryItem(preset));
+                }
             } else if (preset.visible()) {
                 collection.push(PresetItem(preset));
             }
@@ -165,12 +194,14 @@ export function uiPresetList(context) {
             .style('opacity', 0)
             .transition()
             .style('opacity', 1);
+
+        updateForFeatureHiddenState();
     }
 
     function itemKeydown(){
         // the actively focused item
         var item = d3_select(this.closest('.preset-list-item'));
-        var parentItem = d3_select(item.node().parentElement.closest('.preset-list-item'));
+        var parentItem = d3_select(item.node().parentNode.closest('.preset-list-item'));
 
         // arrow down, move focus to the next, lower item
         if (d3_event.keyCode === utilKeybinding.keyCodes['↓']) {
@@ -238,7 +269,7 @@ export function uiPresetList(context) {
         } else if (d3_event.keyCode === utilKeybinding.keyCodes[(textDirection === 'rtl') ? '←' : '→']) {
             d3_event.preventDefault();
             d3_event.stopPropagation();
-            item.datum().choose();
+            item.datum().choose.call(d3_select(this).node());
         }
     }
 
@@ -248,7 +279,7 @@ export function uiPresetList(context) {
 
         function item(selection) {
             var wrap = selection.append('div')
-                .attr('class', 'preset-list-button-wrap category col12');
+                .attr('class', 'preset-list-button-wrap category');
 
             function click() {
                 var isExpanded = d3_select(this).classed('expanded');
@@ -265,7 +296,7 @@ export function uiPresetList(context) {
                 .append('button')
                 .attr('class', 'preset-list-button')
                 .classed('expanded', false)
-                .call(uiPresetIcon()
+                .call(uiPresetIcon(context)
                     .geometry(context.geometry(_entityID))
                     .preset(preset))
                 .on('click', click)
@@ -307,7 +338,7 @@ export function uiPresetList(context) {
                 .html(function() { return preset.name() + '&hellip;'; });
 
             box = selection.append('div')
-                .attr('class', 'subgrid col12')
+                .attr('class', 'subgrid')
                 .style('max-height', '0px')
                 .style('opacity', 0);
 
@@ -315,7 +346,7 @@ export function uiPresetList(context) {
                 .attr('class', 'arrow');
 
             sublist = box.append('div')
-                .attr('class', 'preset-list fillL3 cf fl');
+                .attr('class', 'preset-list fillL3');
         }
 
 
@@ -331,12 +362,13 @@ export function uiPresetList(context) {
                     .style('padding-bottom', '0px');
             } else {
                 shown = true;
-                sublist.call(drawList, preset.members);
+                var members = preset.members.matchGeometry(context.geometry(_entityID));
+                sublist.call(drawList, members);
                 box.transition()
                     .duration(200)
                     .style('opacity', '1')
-                    .style('max-height', 200 + preset.members.collection.length * 190 + 'px')
-                    .style('padding-bottom', '20px');
+                    .style('max-height', 200 + members.collection.length * 190 + 'px')
+                    .style('padding-bottom', '10px');
             }
         };
 
@@ -348,11 +380,11 @@ export function uiPresetList(context) {
     function PresetItem(preset) {
         function item(selection) {
             var wrap = selection.append('div')
-                .attr('class', 'preset-list-button-wrap col12');
+                .attr('class', 'preset-list-button-wrap');
 
             var button = wrap.append('button')
                 .attr('class', 'preset-list-button')
-                .call(uiPresetIcon()
+                .call(uiPresetIcon(context)
                     .geometry(context.geometry(_entityID))
                     .preset(preset))
                 .on('click', item.choose)
@@ -377,12 +409,15 @@ export function uiPresetList(context) {
         }
 
         item.choose = function() {
-            context.presets().choose(preset);
+            if (d3_select(this).classed('disabled')) return;
+
+            context.presets().setMostRecent(preset, context.geometry(_entityID));
             context.perform(
                 actionChangePreset(_entityID, _currentPreset, preset),
                 t('operations.change_tags.annotation')
             );
 
+            context.validator().validate();  // rerun validation
             dispatch.call('choose', this, preset);
         };
 
@@ -397,6 +432,34 @@ export function uiPresetList(context) {
         return item;
     }
 
+
+    function updateForFeatureHiddenState() {
+        if (!context.hasEntity(_entityID)) return;
+
+        var geometry = context.geometry(_entityID);
+        var button = d3_selectAll('.preset-list .preset-list-button');
+
+        // remove existing tooltips
+        button.call(tooltip().destroyAny);
+
+        button.each(function(item, index) {
+            var hiddenPresetFeaturesId = context.features().isHiddenPreset(item.preset, geometry);
+            var isHiddenPreset = !!hiddenPresetFeaturesId && item.preset !== _currentPreset;
+
+            d3_select(this)
+                .classed('disabled', isHiddenPreset);
+
+            if (isHiddenPreset) {
+                var isAutoHidden = context.features().autoHidden(hiddenPresetFeaturesId);
+                var tooltipIdSuffix = isAutoHidden ? 'zoom' : 'manual';
+                var tooltipObj = { features: t('feature.' + hiddenPresetFeaturesId + '.description') };
+                d3_select(this).call(tooltip()
+                    .title(t('inspector.hidden_preset.' + tooltipIdSuffix, tooltipObj))
+                    .placement(index < 2 ? 'bottom' : 'top')
+                );
+            }
+        });
+    }
 
     presetList.autofocus = function(val) {
         if (!arguments.length) return _autofocus;

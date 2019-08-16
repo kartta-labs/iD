@@ -9,11 +9,15 @@
         "smoking"
     ],
     "moreFields": [
-        "payment_multi",
-        "website",
-        "phone",
+        "air_conditioning",
         "email",
         "fax",
+        "internet_access",
+        "internet_access/fee",
+        "internet_access/ssid",
+        "payment_multi",
+        "phone",
+        "website",
         "wheelchair"
     ],
     "geometry": [

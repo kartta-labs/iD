@@ -7,28 +7,61 @@
             "undo": "ongedaan maken",
             "zoom_to": "Zoon naar",
             "copy": "Kopiëer",
-            "open_wikidata": "open op wikidata.org"
+            "open_wikidata": "open op wikidata.org",
+            "favorite": "favoriet"
+        },
+        "toolbar": {
+            "inspect": "Beoordeel",
+            "undo_redo": "Terugdraaien / Opnieuw",
+            "recent": "Recent",
+            "favorites": "Favorieten",
+            "add_feature": "Voeg object toe"
         },
         "modes": {
+            "add_feature": {
+                "key": "Tab",
+                "result": "{count} resultaat",
+                "results": "{count} resultaten"
+            },
             "add_area": {
                 "title": "Vlak",
                 "description": "Voeg parken, gebouwen, meren of andere vlakken toe aan de kaart.",
-                "tail": "Klik in de kaart om een vlak te beginnen tekenen, zoals een meer, park of gebouw."
+                "tail": "Klik in de kaart om een vlak te beginnen tekenen, zoals een meer, park of gebouw.",
+                "filter_tooltip": "vlakken"
             },
             "add_line": {
                 "title": "Lijn",
                 "description": "Voeg snelwegen, straten, voetpaden, kanalen of andere lijnen toe aan de kaart.",
-                "tail": "Klik in de kaart om een straat, pad of route te beginnen tekenen."
+                "tail": "Klik in de kaart om een straat, pad of route te beginnen tekenen.",
+                "filter_tooltip": "lijnen"
             },
             "add_point": {
                 "title": "Punt",
                 "description": "Voeg restaurants, monumenten, brievenbussen of andere punten toe aan de kaart.",
-                "tail": "Klik in de kaart om een punt toe te voegen."
+                "tail": "Klik in de kaart om een punt toe te voegen.",
+                "filter_tooltip": "punten"
             },
             "add_note": {
                 "title": "Opmerking bij kaart",
+                "label": "Kaartopmerking toevoegen",
                 "description": "Een probleem gezien? Laat het aan andere mappers weten.",
-                "tail": "Klik op de kaart om een \"Opmerking bij kaart\" te maken."
+                "tail": "Klik op de kaart om een \"Opmerking bij kaart\" te maken.",
+                "key": "N"
+            },
+            "add_preset": {
+                "title": "Toevoegen {feature}",
+                "point": {
+                    "title": "Voeg {feature} toe als punt"
+                },
+                "line": {
+                    "title": "Voeg {feature} toe als lijn"
+                },
+                "area": {
+                    "title": "Voeg {feature} toe als vlak"
+                },
+                "building": {
+                    "title": "Voeg {feature} toe as gebouw"
+                }
             },
             "browse": {
                 "title": "Blader",
@@ -92,30 +125,41 @@
                 },
                 "not_closed": "Dit kan niet rondgemaakt worden omdat het geen lus is.",
                 "too_large": "Dit kan niet rondgemaakt worden omdat slechts een te klein deel ervan momenteel zichtbaar is.",
-                "connected_to_hidden": "Dit kan niet rondgemaakt worden omdat het verbonden is met een verborgen object."
+                "connected_to_hidden": "Dit kan niet rondgemaakt worden omdat het verbonden is met een verborgen object.",
+                "not_downloaded": "Dit object kan niet circulair gemaakt worden omdat het niet volledig gedownload is."
             },
             "orthogonalize": {
                 "title": "Maak hoeken recht",
                 "description": {
+                    "vertex": "Maak deze hoek haaks.",
                     "line": "Maak de hoeken van deze lijn haaks.",
                     "area": "Maak de hoeken van dit vlak haaks."
                 },
-                "key": "S",
+                "key": "Q",
                 "annotation": {
+                    "vertex": "Enkele hoek is haaks gemaakt.",
                     "line": "Hoeken van lijn haaks gemaakt.",
                     "area": "Hoeken van vlak haaks gemaakt."
                 },
+                "end_vertex": "Dit kan niet haaks worden gemaakt, omdat het eindpunt is.",
+                "square_enough": "Dit kan niet meer vierkant gemaakt worden dan het al is.",
                 "not_squarish": "Dit kan niet vierkant gemaakt worden omdat het niet vierkantig is.",
                 "too_large": "Dit kan niet vierkant gemaakt worden omdat slechts een te klein deel ervan momenteel zichtbaar is.",
-                "connected_to_hidden": "Dit kan niet vierkant gemaakt worden omdat het verbonden is met een verborgen object."
+                "connected_to_hidden": "Dit kan niet vierkant gemaakt worden omdat het verbonden is met een verborgen object.",
+                "not_downloaded": "Dit object kan niet vierkant worden gemaakt omdat het niet volledig gedownload is."
             },
             "straighten": {
                 "title": "Maak recht",
-                "description": "Trek deze lijn recht.",
+                "description": {
+                    "points": "Trek deze punten recht.",
+                    "line": "Trek deze lijn recht."
+                },
                 "key": "S",
-                "annotation": "Lijn rechtgetrokken.",
-                "too_bendy": "Dit kan niet rechtgetrokken worden omdat het te veel kromt.",
-                "connected_to_hidden": "Deze lijn kan niet rechtgemaakt worden omdat ze verbonden is met een verborgen object."
+                "annotation": {
+                    "points": "Meerdere punten zijn rechtgetrokken.",
+                    "line": "Een lijn is rechtgetrokken."
+                },
+                "too_bendy": "Dit kan niet rechtgetrokken worden omdat het te veel kromt."
             },
             "delete": {
                 "title": "Verwijder",
@@ -146,6 +190,14 @@
                 "connected_to_hidden": {
                     "single": "Dit object kan niet verwijderd worden omdat het verbonden is met een verborgen object.",
                     "multiple": "Deze objecten kunnen niet verwijderd worden omdat sommigen ervan verbonden zijn met verborgen objecten."
+                },
+                "not_downloaded": {
+                    "single": "Dit object kan niet worden verwijderd omdat het niet volledig gedownload is.",
+                    "multiple": "De objecten kunnen niet worden verwijderd omdat deze niet volledig gedownload zijn."
+                },
+                "has_wikidata_tag": {
+                    "single": "Dit object kan niet worden verwijderd omdat er een Wikidata attribuut aan gekoppeld is.",
+                    "multiple": "De objecten kunnen niet worden verwijderd omdat er aan een aantal Wikidata attrributen gekoppeld zijn."
                 }
             },
             "add_member": {
@@ -153,6 +205,9 @@
             },
             "delete_member": {
                 "annotation": "Een element is uit een relatie verwijderd."
+            },
+            "reorder_members": {
+                "annotation": "Relatielid opnieuw geordend"
             },
             "connect": {
                 "annotation": {
@@ -193,7 +248,8 @@
                 "restriction": "Deze objecten kunnen niet samengevoegd worden omdat dat een \"{relation}\"-relatie zou beschadigen.",
                 "relation": "Deze objecten kunnen niet verbonden worden omdat ze andere rollen in een relatie hebben.",
                 "incomplete_relation": "Deze objecten kunnen niet samengevoegd worden omdat minstens één ervan niet volledig gedownload is.",
-                "conflicting_tags": "Deze objecten kunnen niet samengevoegd worden omdat sommige van hun tags conflicteren."
+                "conflicting_tags": "Deze objecten kunnen niet samengevoegd worden omdat sommige van hun tags conflicteren.",
+                "paths_intersect": "Deze objecten kunnen niet samengevoegd worden omdat het resultaat zichzelf zou doorsnijden."
             },
             "move": {
                 "title": "Verschuif",
@@ -318,13 +374,8 @@
                     "delete": "Afslagbeperking weggehaald"
                 }
             },
-            "detach_node": {
-                "title": "Losmaken",
-                "key": "E",
-                "description": "Maak dit punt los van deze lijnen/vlakken.",
-                "annotation": "Punt losgemaakt van deze lijnen/vlakken.",
-                "restriction": "Dit punt kan niet losgemaakt worden omdat het  een \"{relation}\" relatie zou beschadigen.",
-                "connected_to_hidden": "Dit punt kan niet losgemaakt worden omdat het verbonden is met een verborgen object."
+            "extract": {
+                "title": "Extraheer"
             }
         },
         "restriction": {
@@ -413,6 +464,8 @@
             "modified": "Aangepast:",
             "deleted": "Verwijderd:",
             "created": "Aangemaakt:",
+            "outstanding_errors_message": "Graag alle fouten eerst oplossen. {count} openstaand.",
+            "comment_needed_message": "Voer alsjeblieft eerst een opmerking bij de wijzigingenset in.",
             "about_changeset_comments": "Over opmerking bij wijzigingen",
             "about_changeset_comments_link": "//wiki.openstreetmap.org/wiki/NL:Good_changeset_comments",
             "google_warning": "Je vermeldt Google in deze beschrijving. Onthoud dat kopiëren van Google Maps illegaal en ten strengste verboden is.",
@@ -489,7 +542,6 @@
         },
         "geocoder": {
             "search": "Zoek wereldwijd …",
-            "no_results_visible": "Geen resultaten in dit gebied",
             "no_results_worldwide": "Geen resultaten gevonden"
         },
         "geolocate": {
@@ -505,10 +557,8 @@
                 "tooltip_data": "Centreer en zoom in om te focussen op deze data.",
                 "tooltip_issue": "Centreer en zoom in om te focussen op dit probleem."
             },
-            "no_documentation_combination": "Er is geen documentatie beschikbaar voor deze tag",
-            "no_documentation_key": "Er is geen documentatie beschikbaar voor deze sleutel",
             "show_more": "Toon meer",
-            "view_on_osm": "Toon op openstreetmap.org",
+            "view_on_osm": "Bekijk op openstreetmap.org",
             "view_on_keepRight": "Bekijk op keepright.at",
             "all_fields": "Alle eigenschappen",
             "all_tags": "Alle tags",
@@ -519,7 +569,14 @@
             "role": "Rol",
             "choose": "Selecteer objecttype",
             "results": "{n} resultaten voor {search}",
-            "reference": "Bekijk op de OpenStreetMap Wiki",
+            "no_documentation_key": "Er is geen documentatie beschikbaar.",
+            "edit_reference": "bewerken/vertalen",
+            "wiki_reference": "Bekijk documentatie",
+            "wiki_en_reference": "Bekijk documentatie in het Engels",
+            "hidden_preset": {
+                "manual": "{features} zijn verborgen. Toon deze in het Kaartdata paneel.",
+                "zoom": "{features} zijn verborgen. Zoom in om deze te tonen."
+            },
             "back_tooltip": "Wijzig object",
             "remove": "Verwijder",
             "search": "Zoeken",
@@ -594,6 +651,10 @@
                     "tooltip": "Automatisch herkende kaartproblemen van keepright.at",
                     "title": "KeepRight Problemen"
                 },
+                "improveOSM": {
+                    "tooltip": "Missende data automatisch gedetecteerd door improveosm.org",
+                    "title": "ImproveOSM Problemen"
+                },
                 "custom": {
                     "tooltip": "Sleeps een databestand op de pagina of klik op de knop om te starten",
                     "title": "Custom kaartdata",
@@ -604,6 +665,22 @@
             "map_features": "Objecttypes tonen/verbergen",
             "autohidden": "Deze objecten zijn automatisch verborgen omdat er anders te veel op het scherm zouden staan. Je kan inzoomen om ze te bewerken.",
             "osmhidden": "Deze objecten zijn automatisch verborgen omdat de OpenStreetMap-laag verborgen is."
+        },
+        "photo_overlays": {
+            "title": "Fotolagen",
+            "traffic_signs": {
+                "title": "Verkeersborden"
+            },
+            "photo_type": {
+                "flat": {
+                    "title": "Platte foto's",
+                    "tooltip": "Traditionele foto's"
+                },
+                "panoramic": {
+                    "title": "Panoramafoto's",
+                    "tooltip": "360° foto's"
+                }
+            }
         },
         "feature": {
             "points": {
@@ -647,11 +724,11 @@
                 "tooltip": "Elektriciteitskabels, energiecentrales, transformatorstations …"
             },
             "past_future": {
-                "description": "Verleden/Toekomst",
+                "description": "Historische/Toekomstige objecten",
                 "tooltip": "Voorgesteld, onder constructie, verwaarloosd, afgebroken …"
             },
             "others": {
-                "description": "Andere",
+                "description": "Andere objecten",
                 "tooltip": "Al de rest"
             }
         },
@@ -693,12 +770,6 @@
                 }
             }
         },
-        "restore": {
-            "heading": "Je hebt niet-opgeslagen aanpassingen",
-            "description": "Er zijn niet-opgeslagen aanpassingen uit een vorige sessie. Wil je die herstellen?",
-            "restore": "Herstel mijn wijzigingen",
-            "reset": "Verwerp mijn wijzigingen"
-        },
         "save": {
             "title": "Opslaan",
             "help": "Inspecteer je wijzigingen en upload ze naar OpenStreetMap, zodat ze zichtbaar worden voor andere gebruikers.",
@@ -733,10 +804,6 @@
             }
         },
         "success": {
-            "just_edited": "Je hebt OpenStreetMap bewerkt!",
-            "thank_you": "Bedankt om OpenStreetMap te verbeteren.",
-            "thank_you_location": "Bedankt om de kaart bij te werken bij {where}.",
-            "help_html": "Je wijzigingen zouden binnen enkele minuten zichtbaar moeten zijn in de \"Standaard\"-laag op openstreetmap.org. Het updaten van sommige soorten objecten kan langer duren. Andere kaarten op basis van OSM worden minder vaak bijgewerkt.",
             "help_link_text": "Meer hierover, in het Engels",
             "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F",
             "view_on_osm": "Bekijk wijzigingen op OSM",
@@ -752,12 +819,6 @@
             "okay": "Oké",
             "cancel": "Annuleren"
         },
-        "splash": {
-            "welcome": "Welkom bij iD, een bewerkingsprogramma voor OpenStreetMap",
-            "text": "iD biedt een gebruiksvriendelijke manier om bij te dragen aan de beste, open wereldkaart ter wereld. Dit is versie {version}. Voor meer informatie, zie {website}. Meld softwarefouten op {github}.",
-            "walkthrough": "Start de rondleiding",
-            "start": "Bewerk nu"
-        },
         "source_switch": {
             "live": "live",
             "lose_changes": "Je hebt niet-opgeslagen aanpassingen. Door te wisselen van kaartserver gaan deze verloren. Weet je zeker dat je van kaartserver wilt wisselen?",
@@ -771,25 +832,6 @@
             "on_wiki": "{tag} op wiki.osm.org",
             "used_with": "gebruikt met {type}"
         },
-        "validations": {
-            "disconnected_highway": "Niet-aangesloten weg",
-            "disconnected_highway_tooltip": "Wegen moeten verbonden worden met andere wegen of met ingangen van gebouwen.",
-            "generic_name": "Mogelijke generieke naam",
-            "generic_name_tooltip": "Dit object ljkt een generkieke naam \"{name}\" te hebben. Gelieve alleen het naamveld te gebruiken om de officiele naam van een object in te vullen.",
-            "old_multipolygon": "Multipolygoontags op buitenste lijn",
-            "old_multipolygon_tooltip": "Deze stijl van multipolygonen is afgevoerd. Zet de tags op de multipolygoon in plaats van op de buitenste lijn.",
-            "untagged_point": "Punt zonder tags",
-            "untagged_point_tooltip": "Kies een objecttype dat beschrijft wat dit punt is.",
-            "untagged_line": "Lijn zonder tags",
-            "untagged_line_tooltip": "Selecteer een objecttype dat beschrijft wat deze lijn is.",
-            "untagged_area": "Vlak zonder tags",
-            "untagged_area_tooltip": "Selecteer een objecttype dat beschrijft wat dit vlak is.",
-            "untagged_relation": "Relatie zonder tags",
-            "untagged_relation_tooltip": "Selecteer een objecttype dat beschrijft wat deze relatie is.",
-            "many_deletions": "Je verwijdert {n} objecten: {p} (knoop)punten, {l} lijnen, {a} vlakken en {r} relaties. Weet je zeker dat je dit wil doen? Dit zal ze verwijderen van de kaart die iedereen ziet op openstreetmap.org.",
-            "tag_suggests_area": "De tag {tag} suggereert dat de lijn een vlak is, maar het is geen vlak",
-            "deprecated_tags": "Afgeschafte tags: {tags}"
-        },
         "zoom": {
             "in": "Zoom in",
             "out": "Zoom uit"
@@ -797,6 +839,40 @@
         "cannot_zoom": "Kan niet verder uitzoomen in huidige modus",
         "full_screen": "Volledig scherm aan/uit",
         "QA": {
+            "improveOSM": {
+                "title": "ImproveOSM Herkenning",
+                "geometry_types": {
+                    "path": "paden",
+                    "parking": "parkeren",
+                    "road": "wegen",
+                    "both": "wegen en parkeren"
+                },
+                "directions": {
+                    "east": "oost",
+                    "north": "noord",
+                    "northeast": "noordoost",
+                    "northwest": "noordwest",
+                    "south": "zuid",
+                    "southeast": "zuidoost",
+                    "southwest": "zuidwest",
+                    "west": "st"
+                },
+                "error_types": {
+                    "ow": {
+                        "title": "Missende eenrichtingsweg",
+                        "description": "Langs dit gedeelte van {highway}, {percentage}% van {num_trips} de geregistreerde trips reizen van {from_node} naar {to_node}. Er mist mogelijk een \"eenrichtingsverkeer\" tag."
+                    },
+                    "mr": {
+                        "title": "Ontbrekende geometrie",
+                        "description": "{num_trips} geregistreerde trips in dit gebied suggereren dat een een ongekarteerde {geometry_type} is hier.",
+                        "description_alt": "Data van een derde partij suggereren dat een een ongekarteerde {geometry_type} is hier."
+                    },
+                    "tr": {
+                        "title": "Missende afslagbeperking",
+                        "description": "{num_passed} van {num_trips} geregistreerde trips (richting {travel_direction}) maken een bocht van {from_way} naar {to_way} bij {junction}. Er is mogelijk een missende \"{turn_restriction}\" afslagbeperking."
+                    }
+                }
+            },
             "keepRight": {
                 "title": "KeepRight Fout",
                 "detail_title": "Fout",
@@ -809,6 +885,32 @@
                 "close_comment": "Sluit en voeg commentarieer toe",
                 "ignore_comment": "Negeer en voeg commentaar toe",
                 "error_parts": {
+                    "this_node": "Dit knooppunt",
+                    "this_way": "deze weg",
+                    "this_relation": "deze relatie",
+                    "this_oneway": "deze eenrichtingsweg",
+                    "this_highway": "deze snelweg",
+                    "this_railway": "deze spoorbaan",
+                    "this_waterway": "deze waterweg",
+                    "this_cycleway": "dit fietspad",
+                    "this_cycleway_footpath": "dit fiets- of voetpad",
+                    "this_riverbank": "deze rivierbedding",
+                    "this_crossing": "deze kruising",
+                    "this_railway_crossing": "deze spoorovergang",
+                    "this_bridge": "deze brug",
+                    "this_tunnel": "deze tunnel",
+                    "this_boundary": "deze grens",
+                    "this_turn_restriction": "deze afslagbeperking",
+                    "this_roundabout": "deze rotonde",
+                    "this_mini_roundabout": "deze minirotonde",
+                    "this_track": "dit pad",
+                    "this_feature": "deze feature",
+                    "highway": "snelweg",
+                    "railway": "spoorbaan",
+                    "waterway": "waterweg",
+                    "cycleway": "fietspad",
+                    "cycleway_footpath": "fiets- of voetpad",
+                    "riverbank": "riverbedding",
                     "place_of_worship": "Gebedshuis",
                     "pub": "kroeg",
                     "restaurant": "restaurant",
@@ -912,11 +1014,11 @@
                     },
                     "180": {
                         "title": "Relatie zonder type",
-                        "description": "{var1} mist een \"type\" tag."
+                        "description": "{var1} mist een \"type\"-tag."
                     },
                     "190": {
                         "title": "Intersectie zonder kruispunt",
-                        "description": "{var1} kruist de {var2} {var3}, maar er is geen kruispunt node, brug of tunnel."
+                        "description": "{var1} kruist de {var2} {var3}, maar er is geen kruispuntknoop, brug of tunnel."
                     },
                     "200": {
                         "title": "Overlappende wegen",
@@ -927,10 +1029,10 @@
                         "description": "Er is een ongespecificeerd probleem met zichzelf snijdende wegen."
                     },
                     "211": {
-                        "description": "{var1} bevat meerdere keren meer dan één node. Nodes zijn {var2}. Dit is mogelijk een fout."
+                        "description": "{var1} bevat meerdere keren meer dan één knoop. Knopen zijn {var2}. Dit is mogelijk een fout."
                     },
                     "212": {
-                        "description": "{var1} heeft slechts twee verschillende nodes en bevat een of meerdere dubbel."
+                        "description": "{var1} heeft slechts twee verschillende knopen en bevat een of meerdere dubbel."
                     },
                     "220": {
                         "title": "Foutief gespelde tag",
@@ -941,7 +1043,7 @@
                     },
                     "230": {
                         "title": "Laagconflict",
-                        "description": "{var1} is een kruising van wegen met verschillende lagen"
+                        "description": "{var1} is een kruising van wegen met verschillende lagen."
                     },
                     "231": {
                         "description": "{var1} is een kruising van wegen met verschillende lagen: {var2}.",
@@ -951,7 +1053,8 @@
                         "description": "{var1} is getagd met \"layer={var2}\". Dit hoeft niet fout te zijn, maar lijkt onjuist."
                     },
                     "270": {
-                        "title": "Ongebruikelijke snelwegverbinding"
+                        "title": "Ongebruikelijke snelwegverbinding",
+                        "description": "{var1} is een kruising van een snelweg en een weg anders dan \"motorway\", \"motorway_link\", \"trunk\", \"rest_area\", of \"construction\". Verbinding met \"service\" of \"unclassified\" is alleen geldig als het een \"access=no/private\" tag heeft of als het leidt naar een snelweg verzorgingsplaats of als het een \"service=parking_aisle\" tag heeft."
                     },
                     "280": {
                         "title": "Grensprobleem",
@@ -963,7 +1066,7 @@
                     },
                     "282": {
                         "title": "Grens mist administratief niveau",
-                        "description": "De grens van {var1} heeft geen geldig numeriek admin_level. Gelieve niet administratieve niveaus te mixen (bijv. \"6;7\"). Tag altijd het laagste admin_level van alle grenzen."
+                        "description": "De grens van {var1} heeft geen geldig numeriek admin_level. Gelieve administratieve niveaus niet te mixen (bijv. \"6;7\"). Tag altijd het laagste admin_level van alle grenzen."
                     },
                     "283": {
                         "title": "Grens is geen gesloten lus",
@@ -986,12 +1089,12 @@
                         "description": "{var1} heeft een niet herkend beperkingstype"
                     },
                     "292": {
-                        "title": "Beperking mist \"van\" weg",
-                        "description": "{var1} heeft {var2} \"van\" onderdelen, maar het behoort 1 te hebben."
+                        "title": "Beperking mist \"van\"-weg",
+                        "description": "{var1} heeft {var2} \"van\"-onderdelen, maar het behoort er 1 te hebben."
                     },
                     "293": {
-                        "title": "Beperking mist \"naar\" weg",
-                        "description": "{var1} heeft {var2} \"naar\" onderdelen, maar het behoort 1 te hebben."
+                        "title": "Beperking mist \"naar\"-weg",
+                        "description": "{var1} heeft {var2} \"naar\"-onderdelen, maar het behoort 1 te hebben."
                     },
                     "294": {
                         "title": "Beperking \"van\" of \"naar\" is geen weg",
@@ -1006,15 +1109,16 @@
                         "description": "{var1} heeft beperkingstype \"{var2}\", maar de hoek is {var3} graden. Wellicht is het beperkingstype niet geschikt?"
                     },
                     "297": {
+                        "title": "Verkeerde richting van weg \"naar\"",
                         "description": "{var1} komt niet overeen met de richting van de \"naar\" weg {var2}."
                     },
                     "298": {
                         "title": "Overbodige beperking - eenrichtingsverkeer",
-                        "description": "{var1} kan overbodig zijn. Toegang is reeds verboden door de \"eenrichtingsverkeer\" tag op {var2}."
+                        "description": "{var1} kan overbodig zijn. Toegang is reeds verboden door het eenrichtingsverkeer op {var2}."
                     },
                     "300": {
                         "title": "Missende maximumsnelheid",
-                        "description": "{var1} mist een \"maximumsnelheid\" tag en is getagd als motorway, trunk, primary, or secondary., "
+                        "description": "{var1} heeft geen informatie over maximumsnelheid en is getagd als motorway, trunk, primary, or secondary."
                     },
                     "310": {
                         "title": "Rotondeprobleem",
@@ -1022,22 +1126,22 @@
                     },
                     "311": {
                         "title": "Rotonde is geen gesloten lus",
-                        "description": "{var1} is onderdeel van een rotonde, maar is geen gesloten lus. (Gescheiden rijbanen die een rotonde naderen dienen niet getagd te worden als rotonde). "
+                        "description": "{var1} is onderdeel van een rotonde, maar is geen gesloten lus. (Gescheiden rijbanen die een rotonde naderen mogen niet getagd worden als rotonde). "
                     },
                     "312": {
                         "title": "Rotonde met verkeerde richting",
-                        "description": "Als {var1} in een land met {var2} verkeer ligt, dan is de orientatie omgedraaid."
+                        "description": "Als {var1} in een land met {var2} verkeer ligt, dan is de oriëntatie omgedraaid."
                     },
                     "313": {
                         "title": "Rotonde zwak verbonden",
-                        "description": "{var1} is alleen met  {var2}  weg/wegen verbonden. Rotondes hebben over het algemeen 3 of meer."
+                        "description": "{var1} is met slechts {var2} weg(en) verbonden. Rotondes hebben over het algemeen 3 of meer."
                     },
                     "320": {
-                        "title": "Ongeldige link verbinding",
+                        "title": "Ongeldige link-verbinding",
                         "description": "{var1} is getagd als \"{var2}\", maar heeft geen verbinding met andere \"{var3}\" of \"{var4}\"."
                     },
                     "350": {
-                        "title": "Ongeldige brug tag",
+                        "title": "Ongeldige brug-tag",
                         "description": "{var1} heeft geen tag gemeen met omliggende wegen die aangesloten zijn op deze brug. Een van deze tags zou aanwezig moeten zijn: {var2}."
                     },
                     "360": {
@@ -1063,7 +1167,7 @@
                     },
                     "401": {
                         "title": "Missende afslagbeperking",
-                        "description": "Wegen {var1} en {var2} komen samen in een erg scherpe hoek en er is geen eenrichtingsverkeer tag of afslagbeperking die afslaan voorkomt."
+                        "description": "Wegen {var1} en {var2} komen samen in een erg scherpe hoek en er is geen eenrichtingsverkeer of afslagbeperking die afslaan voorkomt."
                     },
                     "402": {
                         "title": "Onmogelijke hoek",
@@ -1074,7 +1178,7 @@
                         "description": "Er is een ongespecificeerd probleem met een website of url."
                     },
                     "411": {
-                        "description": "{var1} heeft mogelijk een verouderde URL: {var2} geeft HTTP status code {var3} terug."
+                        "description": "{var1} heeft mogelijk een verouderde URL: {var2} geeft HTTP-statuscode {var3} terug."
                     },
                     "412": {
                         "description": "{var1} heeft mogelijk een verouderde URL: {var2} bevat verdachte text \"{var3}\"."
@@ -1087,27 +1191,26 @@
         },
         "streetside": {
             "tooltip": "Foto's op straatniveau van Mircrosoft",
-            "title": "Fotolaag (Bing Streetside)",
+            "title": "Bing Streetside",
             "report": "Rapporteer een privacy-issue met deze afbeelding",
             "view_on_bing": "Bekijk op Bing Maps",
             "hires": "Hoge resolutie"
         },
         "mapillary_images": {
-            "tooltip": "Foto's op straatniveau van Mapillary",
-            "title": "Fotolaag (Mapillary)"
-        },
-        "mapillary_signs": {
-            "tooltip": "Verkeerborden uit Mapillary (Mapillary-fotolaag moet geactiveerd zijn)",
-            "title": "Herkende verkeersborden (Mapillary)"
+            "tooltip": "Foto's op straatniveau van Mapillary"
         },
         "mapillary": {
+            "title": "Mapillary",
+            "signs": {
+                "tooltip": "Verkeersborden uit Mapillary"
+            },
             "view_on_mapillary": "Bekijk deze afbeelding op Mapillary"
         },
         "openstreetcam_images": {
-            "tooltip": "Foto's op straatniveau van OpenStreetCam",
-            "title": "Fotolaag (OpenStreetCam)"
+            "tooltip": "Foto's op straatniveau van OpenStreetCam"
         },
         "openstreetcam": {
+            "title": "OpenStreetCam",
             "view_on_openstreetcam": "Bekijk deze afbeelding op OpenStreetCam"
         },
         "note": {
@@ -1119,7 +1222,7 @@
             "status": {
                 "opened": "geopened {when}",
                 "reopened": "heropend {when}",
-                "commented": "Gereageerd {when}",
+                "commented": "Gereageerd op {when}",
                 "closed": "gesloten {when}"
             },
             "newComment": "Nieuwe commentaar",
@@ -1157,7 +1260,8 @@
                 "navigation_drag": "Je kan de kaart verslepen door er met de muisaanwijzer over te gaan staan, de {leftclick} linkermuisknop in te drukken, de muis te verschuiven, en de knop pas dan los te laten. Je kan ook de `↓`, `↑`, `←`, `→`  pijltjestoetsen gebruiken op je toetsenbord.",
                 "navigation_zoom": "Je kan in- en uitzoomen door te scrollen met het muiswiel of de touchpad, of met de knoppen {plus} en {minus} naast de kaart. Je kunt ook de toetsen `+` en `-` op je toetsenbord gebruiken. ",
                 "features_h": "Kaartobjecten",
-                "features": "We gebruiken het woord *objecten* als we het over dingen op de kaart hebben, zoals wegen, gebouwen en bezienswaardigheden. Alles wat je in de echte wereld ziet, kan gemapt gemapt worden als object in OpenStreetMap. Objecten op de kaart worden gerepresenteerd als *punten*, *lijnen* of *vlakken*."
+                "features": "We gebruiken het woord *objecten* als we het over dingen op de kaart hebben, zoals wegen, gebouwen en bezienswaardigheden. Alles wat je in de echte wereld ziet, kan gemapt gemapt worden als object in OpenStreetMap. Objecten op de kaart worden gerepresenteerd als *punten*, *lijnen* of *vlakken*.",
+                "nodes_ways": "In de OpenStreetMap-wereld worden punten normaal *nodes* of knopen genoemd. Lijnen en vlakken worden doorgaans *ways* genoemd."
             },
             "editing": {
                 "title": "Bewerken & opslaan",
@@ -1291,7 +1395,8 @@
                 "choosing": "Om te zien welke bronnen beschikbaar zijn voor het bewerken, klik je op de knop {layers} **Achtergrondinstellingen** naast de kaart.",
                 "sources": "Standaard wordt een luchtfotolaag gekozen afhankelijk van de locatie op de kaart waar iD opgestart werd. De Bing Maps-satellietfotolaag is wereldwijd de terugvalkeuze. Het is vaak nuttig te kijken welke achtergrond de beste is voor het gebied dat je bewerkt: sommige bronnen kunnen recenter of van hogere resolutie zijn.",
                 "offsets_h": "Verplaatsing van luchtfoto aanpassen",
-                "offset": "Achtergrondbeelden kunnen soms vrij zwaar in positie afwijken van de correcte locatie. Als je veel gebouwen of wegen ziet die verschoven liggen ten opzichte van de achtergrond, kan het zijn dat de achtergrond incorrect is, en niet de kaart. Verplaats dus niet alle objecten om ze te overeen te laten komen met de achtergrond. Verplaats in plaats daarvan de achtergrond, zodat deze overeenkomt met de kaartgegevens. Dit doe je door het gedeelte \"Verplaatsing van luchtfoto aanpassen\" onderin het achtergrondinstellingenpaneel uit te klappen."
+                "offset": "Achtergrondbeelden kunnen soms vrij zwaar in positie afwijken van de correcte locatie. Als je veel gebouwen of wegen ziet die verschoven liggen ten opzichte van de achtergrond, kan het zijn dat de achtergrond incorrect is, en niet de kaart. Verplaats dus niet alle objecten om ze te overeen te laten komen met de achtergrond. Verplaats in plaats daarvan de achtergrond, zodat deze overeenkomt met de kaartgegevens. Dit doe je door het gedeelte \"Verplaatsing van luchtfoto aanpassen\" onderin het achtergrondinstellingenpaneel uit te klappen.",
+                "offset_change": "Klik op de kleine driehoeken om de verplaatsing van de achtergrond in kleine stappen aan te passen. Je kan ook de {leftclick} linkermuisknop ingedrukt houden en de achtergrond verslepen in het grijze vlak."
             },
             "streetlevel": {
                 "title": "Foto's op straatniveau",
@@ -1311,9 +1416,12 @@
                 "upload": "Je kan ook [je GPS-data uploaden naar OpenStreetMap](https://www.openstreetmap.org/trace/create) zodat andere gebruikers hen ook kunnen gebruiken."
             },
             "qa": {
-                "title": "Kwaliteitsgarantie",
+                "title": "Kwaliteitscontrole",
+                "intro": "Tools voor *kwaliteitscontrole* (afgekort \"Q/A\", van het Engelse *quality assurance*) kunnen helpen bij het vinden van onjuiste tags, niet verbonden wegen en andere problemen met OpenStreetMap die dan door mappers verholpen kunnen worden. Om bestaande Q/A-problemen te bekijken, klik op het {data} **Kaartdata**-paneel om een specifieke Q/A-laag aan te zetten.",
                 "tools_h": "Gereedschappen",
-                "issues_h": "Problemen behandelen"
+                "tools": "De volgende tools worden op dit moment ondersteund: [KeepRight](https://www.keepright.at/) en [ImproveOSM](https://improveosm.org/en/). In de toekomst worden [Osmose](https://osmose.openstreetmap.fr/) en meer Q/A-tools ondersteund.",
+                "issues_h": "Problemen behandelen",
+                "issues": "Q/A-problemen verhelpen is vergelijkbaar met notities. Klik op een marker om de details van het probleem te bekijken in de zijbalk. Elke tool heeft zijn eigen mogelijkheden, maar over het algemeen kun je opmerkingen plaatsen en/of het probleem sluiten."
             },
             "field": {
                 "restrictions": {
@@ -1351,6 +1459,161 @@
                         "indirect_example": "Deze beperkingen zijn er door een andere, nabijgelegen afslagbeperking. Bijvoorbeeld: een \"alleen rechtdoor gaan\"-beperking zal indirect een \"niet afslaan\"-beperking tot gevolg hebben voor alle andere mogelijke paden op het kruispunt.",
                         "indirect_noedit": "Je kan indirecte afslagbeperkingen niet bewerken. In de plaats daarvan moet je de expliciete afslagbeperking aanpassen."
                     }
+                }
+            }
+        },
+        "issues": {
+            "title": "Problemen",
+            "key": "I",
+            "list_title": "Problemen ({count})",
+            "errors": {
+                "list_title": "Fouten ({count})"
+            },
+            "warnings": {
+                "list_title": "Waarschuwingen ({count})"
+            },
+            "rules": {
+                "title": "Regels"
+            },
+            "options": {
+                "what": {
+                    "title": "Controleer:"
+                }
+            },
+            "fix_one": {
+                "title": "fiks"
+            },
+            "fix_all": {
+                "title": "Fiks alles"
+            },
+            "almost_junction": {
+                "title": "Bijna-kruisingen",
+                "message": "{feature} is erg dichtbij, maar niet verbonden met {feature2}."
+            },
+            "crossing_ways": {
+                "title": "Kruisende wegen",
+                "message": "{feature} kruist {feature2}"
+            },
+            "disconnected_way": {
+                "title": "Niet-aangesloten wegen",
+                "highway": {
+                    "message": "{highway} is niet aangesloten op andere wegen of paden"
+                }
+            },
+            "generic_name": {
+                "title": "Verdachte namen"
+            },
+            "incompatible_source": {
+                "title": "Verdachte bronnen"
+            },
+            "missing_role": {
+                "title": "Ontbrekende rollen",
+                "message": "{member} heeft geen rol binnen {relation}"
+            },
+            "missing_tag": {
+                "title": "Missende tags",
+                "any": {
+                    "message": "{feature} heeft geen tags."
+                },
+                "descriptive": {
+                    "message": "{feature} heeft geen beschrijvende tags."
+                }
+            },
+            "old_multipolygon": {
+                "message": "{multipolygon} heeft onjuiste tags"
+            },
+            "outdated_tags": {
+                "title": "Verouderde Tags",
+                "message": "{feature} heeft verouderde tags."
+            },
+            "private_data": {
+                "title": "Private informatie"
+            },
+            "tag_suggests_area": {
+                "title": "Lijnen getagd als vlakken",
+                "message": "{feature} moet een gesloten vlak zijn gebaseerd op de tag \"{tag}\""
+            },
+            "unknown_road": {
+                "message": "{feature} heeft geen classificatie."
+            },
+            "fix": {
+                "connect_almost_junction": {
+                    "annotation": "Dichtstbijzijnde objecten verbonden"
+                },
+                "connect_crossing_features": {
+                    "annotation": "Kruisende objecten verbonden"
+                },
+                "connect_endpoints": {
+                    "title": "Verbind de einden",
+                    "annotation": "Eindpunten van een weg verbonden"
+                },
+                "connect_features": {
+                    "title": "Verbind de objecten"
+                },
+                "continue_from_start": {
+                    "title": "Zet tekenen voort vanaf start"
+                },
+                "continue_from_end": {
+                    "title": "Zet tekenen voort vanaf einde"
+                },
+                "delete_feature": {
+                    "title": "Verwijder dit object"
+                },
+                "merge_points": {
+                    "title": "Voeg deze punten samen"
+                },
+                "move_tags": {
+                    "title": "Verplaats de tags",
+                    "annotation": "Verplaatste tags."
+                },
+                "remove_from_relation": {
+                    "title": "Verwijderd van relatie"
+                },
+                "remove_generic_name": {
+                    "title": "Verwijder de naam",
+                    "annotation": "Generieke naam verwijderd"
+                },
+                "remove_tag": {
+                    "title": "Verwijder de tag",
+                    "annotation": "Verwijderde tag."
+                },
+                "remove_tags": {
+                    "title": "Verwijder de tags"
+                },
+                "reposition_features": {
+                    "title": "Verplaats de objecten"
+                },
+                "select_preset": {
+                    "title": "Selecteer een objecttype"
+                },
+                "select_road_type": {
+                    "title": "Selecteer een wegtype"
+                },
+                "set_as_inner": {
+                    "title": "Zet als inner"
+                },
+                "set_as_outer": {
+                    "title": "Zet als outer"
+                },
+                "tag_as_disconnected": {
+                    "title": "Tag als niet-aangesloten",
+                    "annotation": "Dichtstbijzijnde objecten getagd als niet verbonden"
+                },
+                "upgrade_tags": {
+                    "title": "Upgrade de tags",
+                    "annotation": "Oude tags geüpgraded"
+                },
+                "use_bridge_or_tunnel": {
+                    "title": "Gebruik een brug of tunnel"
+                },
+                "use_different_layers": {
+                    "title": "Gebruik verschillende lagen"
+                },
+                "use_different_levels": {
+                    "title": "Gebruik verschillende niveaus"
+                },
+                "use_tunnel": {
+                    "title": "Gebruik een tunnel"
                 }
             }
         },
@@ -1681,10 +1944,12 @@
                 "title": "Bewerken",
                 "drawing": {
                     "title": "Tekenen",
+                    "focus_add_feature": "Focus het objectzoekveld",
                     "add_point": "'Punt toevoegen'-modus",
                     "add_line": "'Lijn toevoegen'-modus",
                     "add_area": "'Vlak toevoegen'-modus",
                     "add_note": "Modus 'Kaartopmerking toevoegen'",
+                    "add_favorite": "Voeg een favoriet object toe",
                     "place_point": "Plaats punt of kaartopmerking",
                     "disable_snap": "Ingedrukt houden om punt-magnetisme uit te zetten",
                     "stop_line": "Tekenen van lijn of vlak beëindigen"
@@ -1694,12 +1959,11 @@
                     "continue_line": "Lijn verderzetten bij geselecteerde knoop",
                     "merge": "Geselecteerde objecten samenvoegen",
                     "disconnect": "Objecten bij geselecteerde knoop losmaken",
-                    "detach_node": "Geslecteerd punt losmaken van de lijn of het vlak waar het toe behoort",
                     "split": "Lijn bij geselecteerde knoop in twee splitsen",
                     "reverse": "Lijn omkeren",
                     "move": "Geselecteerde objecten verplaatsen",
                     "rotate": "Geselecteerde objecten draaien",
-                    "orthogonalize": "Lijn rechtmaken / Hoeken van vlak haaks maken",
+                    "orthogonalize": "Hoeken van lijn of vlak haaks maken",
                     "circularize": "Vlak of gesloten lijn rond maken",
                     "reflect_long": "Objecten rond lange as spiegelen",
                     "reflect_short": "Objecten rond korte as spiegelen",
@@ -1756,37 +2020,37 @@
         "presets": {
             "categories": {
                 "category-barrier": {
-                    "name": "Afscheidingsobjecten"
+                    "name": "Afscheidingen"
                 },
                 "category-building": {
-                    "name": "Gebouwobjecten"
+                    "name": "Gebouwen"
                 },
                 "category-golf": {
                     "name": "Golfobjecten"
                 },
                 "category-landuse": {
-                    "name": "Landgebruikobjecten"
+                    "name": "Landgebruik"
                 },
-                "category-natural-area": {
-                    "name": "Natuurobjecten"
-                },
-                "category-natural-line": {
-                    "name": "Natuurobjecten"
-                },
-                "category-natural-point": {
-                    "name": "Natuurobjecten"
+                "category-natural": {
+                    "name": "Natuur"
                 },
                 "category-path": {
-                    "name": "Pad-objecten"
+                    "name": "Paden"
                 },
                 "category-rail": {
-                    "name": "Spoorwegobjecten"
+                    "name": "Sporen"
                 },
                 "category-restriction": {
-                    "name": "Beperkingsobjecten"
+                    "name": "Beperkingen"
                 },
-                "category-road": {
-                    "name": "Weg-objecten"
+                "category-road_major": {
+                    "name": "Grote wegen"
+                },
+                "category-road_minor": {
+                    "name": "Lokale wegen"
+                },
+                "category-road_service": {
+                    "name": "Toegangswegjes"
                 },
                 "category-route": {
                     "name": "Routeobjecten"
@@ -1794,11 +2058,11 @@
                 "category-utility": {
                     "name": "Nutsvoorzieningen"
                 },
-                "category-water-area": {
-                    "name": "Waterobjecten"
+                "category-water": {
+                    "name": "Waterlichamen"
                 },
-                "category-water-line": {
-                    "name": "Waterloopobjecten"
+                "category-waterway": {
+                    "name": "Waterlopen"
                 }
             },
             "fields": {
@@ -1932,6 +2196,9 @@
                 "agrarian": {
                     "label": "Producten"
                 },
+                "air_conditioning": {
+                    "label": "Air Conditioning"
+                },
                 "amenity": {
                     "label": "Type"
                 },
@@ -1943,6 +2210,9 @@
                 },
                 "animal_shelter": {
                     "label": "Voor dieren"
+                },
+                "architect": {
+                    "label": "Architect"
                 },
                 "area/highway": {
                     "label": "Type"
@@ -1956,8 +2226,14 @@
                 "atm": {
                     "label": "Bankautomaat"
                 },
+                "attraction": {
+                    "label": "Type"
+                },
                 "backrest": {
                     "label": "Rugleuning"
+                },
+                "bar": {
+                    "label": "Bar"
                 },
                 "barrier": {
                     "label": "Type"
@@ -1978,6 +2254,9 @@
                         "hot_spring": "Warmwaterbron",
                         "onsen": "Japanse onsen"
                     }
+                },
+                "beauty": {
+                    "label": "Schoonheidsspecialist"
                 },
                 "bench": {
                     "label": "Zitbank"
@@ -2024,6 +2303,12 @@
                 },
                 "building": {
                     "label": "Gebouw"
+                },
+                "building/levels_building": {
+                    "label": "Verdiepingen in gebouw"
+                },
+                "building/material": {
+                    "label": "Materiaal"
                 },
                 "building_area": {
                     "label": "Gebouw"
@@ -2084,6 +2369,9 @@
                 },
                 "construction": {
                     "label": "Type"
+                },
+                "consulate": {
+                    "label": "Consulaattype"
                 },
                 "contact/webcam": {
                     "label": "Webcam-URL",
@@ -2193,11 +2481,29 @@
                 "denotation": {
                     "label": "Aanduiding"
                 },
+                "departures_board": {
+                    "label": "Vertrekbord",
+                    "options": {
+                        "no": "Geen",
+                        "realtime": "Realtime",
+                        "timetable": "Vertrektijden",
+                        "yes": "Ja"
+                    }
+                },
                 "description": {
                     "label": "Omschrijving"
                 },
                 "design": {
                     "label": "Ontwerp"
+                },
+                "destination/ref_oneway": {
+                    "label": "Bestemmingwegnummers"
+                },
+                "destination/symbol_oneway": {
+                    "label": "Bestemmingsymbolen"
+                },
+                "destination_oneway": {
+                    "label": "Bestemmingen"
                 },
                 "devices": {
                     "label": "Aantal apparaten",
@@ -2208,6 +2514,12 @@
                 },
                 "diet_multi": {
                     "label": "Soorten diëten"
+                },
+                "diplomatic": {
+                    "label": "Diplomatietype"
+                },
+                "diplomatic/services": {
+                    "label": "Diplomatieke diensten"
                 },
                 "direction": {
                     "label": "Richting (graden met de klok mee)",
@@ -2242,7 +2554,6 @@
                     }
                 },
                 "direction_vertex": {
-                    "label": "Richting",
                     "options": {
                         "backward": "Achterwaarts (tegen richting van de getekende lijn in)",
                         "both": "Beide / Alle",
@@ -2260,6 +2571,20 @@
                 },
                 "dock": {
                     "label": "Type"
+                },
+                "dog": {
+                    "label": "Honden",
+                    "options": {
+                        "leashed": "Alleen aan de leiband",
+                        "no": "Niet toegestaan",
+                        "yes": "Toegestaan"
+                    }
+                },
+                "door": {
+                    "label": "Deur"
+                },
+                "door_type": {
+                    "label": "Deurtype"
                 },
                 "drive_through": {
                     "label": "Drive-Through"
@@ -2288,6 +2613,9 @@
                 "embankment": {
                     "label": "Type",
                     "placeholder": "Standaard"
+                },
+                "embassy": {
+                    "label": "Ambassadetype"
                 },
                 "emergency": {
                     "label": "Noodgeval"
@@ -2341,12 +2669,21 @@
                 "flag/type": {
                     "label": "Vlagtype"
                 },
+                "floating": {
+                    "label": "Drijvend"
+                },
+                "flood_prone": {
+                    "label": "Overstromingsgevaar"
+                },
                 "ford": {
                     "label": "Type",
                     "placeholder": "Standaard"
                 },
                 "frequency": {
                     "label": "Frequentie"
+                },
+                "frequency_electrified": {
+                    "label": "Zendfrequentie"
                 },
                 "from": {
                     "label": "Van"
@@ -2408,6 +2745,12 @@
                 "height": {
                     "label": "Hoogte (in meter)"
                 },
+                "height_building": {
+                    "label": "Gebouwhoogte (meters)"
+                },
+                "highspeed": {
+                    "label": "Hogesnelheid"
+                },
                 "highway": {
                     "label": "Type"
                 },
@@ -2463,12 +2806,6 @@
                         "undefined": "Nee"
                     }
                 },
-                "iata": {
-                    "label": "IATA"
-                },
-                "icao": {
-                    "label": "ICAO"
-                },
                 "incline": {
                     "label": "Helling"
                 },
@@ -2510,11 +2847,25 @@
                 "internet_access/fee": {
                     "label": "Internettoegang is betalend"
                 },
-                "internet_access/ssid": {
-                    "label": "SSID (netwerknaam)"
+                "interval": {
+                    "label": "Interval"
+                },
+                "junction/ref_oneway": {
+                    "label": "Kruisingnummer"
+                },
+                "junction_line": {
+                    "label": "Kruising",
+                    "options": {
+                        "circular": "Rotonde, verkeer erop niet steeds voorrang",
+                        "jughandle": "Jughandle",
+                        "roundabout": "Rotonde"
+                    }
                 },
                 "kerb": {
                     "label": "Stoeprand"
+                },
+                "kerb/height": {
+                    "label": "Hoogte"
                 },
                 "label": {
                     "label": "Markering"
@@ -2605,6 +2956,9 @@
                 "manhole": {
                     "label": "Type"
                 },
+                "manufacturer": {
+                    "label": "Fabrikant"
+                },
                 "map_size": {
                     "label": "Dekkingsgebied"
                 },
@@ -2632,8 +2986,18 @@
                 "maxweight": {
                     "label": "Maximaal gewicht"
                 },
+                "maxweight_bridge": {
+                    "label": "Max. gewicht"
+                },
                 "memorial": {
                     "label": "Type"
+                },
+                "microbrewery": {
+                    "label": "Microbrouwerij"
+                },
+                "minspeed": {
+                    "label": "Minimale snelheidslimiet",
+                    "placeholder": "20, 30, 40 ..."
                 },
                 "monitoring_multi": {
                     "label": "Gemeten waarden"
@@ -2657,8 +3021,8 @@
                         "0": "Gemakkelijkst (witte cirkel)",
                         "1": "Makkelijk (groene cirkel)",
                         "2": "Gemiddeld (blauw vierkant)",
-                        "3": "Moeilijk (Zwarte diamand)",
-                        "4": "Extreem moeilijk (dubbele zwarte diamand)"
+                        "3": "Moeilijk (zwarte ruit)",
+                        "4": "Extreem moeilijk (dubbele zwarte ruit)"
                     },
                     "placeholder": "Makkelijk, Gemiddeld, Moeilijk …"
                 },
@@ -2733,6 +3097,9 @@
                         "yes": "Ja"
                     }
                 },
+                "oneway/bicycle": {
+                    "label": "Eenrichtingsverkeer (fietsen)"
+                },
                 "oneway_yes": {
                     "label": "Eenrichtingsverkeer",
                     "options": {
@@ -2747,7 +3114,8 @@
                     "label": "Verwachte openingsdatum"
                 },
                 "opening_hours": {
-                    "label": "Openingstijden"
+                    "label": "Openingstijden",
+                    "placeholder": "Onbekend"
                 },
                 "operator": {
                     "label": "Uitbatende organisatie"
@@ -2774,11 +3142,11 @@
                         "underground": "Ondergronds"
                     }
                 },
-                "passenger_information_display": {
-                    "label": "Doorkomsttijdenscherm"
-                },
                 "payment_multi": {
                     "label": "Betalingsmiddelen"
+                },
+                "payment_multi_fee": {
+                    "label": "Betalingsmogelijkheden"
                 },
                 "phases": {
                     "label": "Fasen",
@@ -2899,6 +3267,9 @@
                     "label": "Stroomuitvoer",
                     "placeholder": "500 MW, 1000 MW, 2000 MW …"
                 },
+                "playground": {
+                    "label": "Speelplaatstype"
+                },
                 "playground/baby": {
                     "label": "Kinderstoeltje"
                 },
@@ -2931,7 +3302,6 @@
                     "placeholder": "Tot op één decimaal (123.4)"
                 },
                 "railway/signal/direction": {
-                    "label": "Richting",
                     "options": {
                         "backward": "Achterwaarts (tegen richting van de getekende lijn in)",
                         "both": "Beide / Alle",
@@ -2974,6 +3344,9 @@
                 "ref_road_number": {
                     "label": "Wegnummer"
                 },
+                "ref_room_number": {
+                    "label": "Kamernummer"
+                },
                 "ref_route": {
                     "label": "Routenummer"
                 },
@@ -2994,11 +3367,23 @@
                 "religion": {
                     "label": "Religie"
                 },
+                "reservation": {
+                    "label": "Reserveringen",
+                    "options": {
+                        "no": "Niet geaccepteerd",
+                        "recommended": "Aanbevolen",
+                        "required": "Vereist",
+                        "yes": "Geaccepteerd"
+                    }
+                },
                 "restriction": {
                     "label": "Type"
                 },
                 "restrictions": {
                     "label": "Afslagbeperkingen"
+                },
+                "roof/colour": {
+                    "label": "Kleur dak"
                 },
                 "rooms": {
                     "label": "Aantal kamers"
@@ -3020,6 +3405,9 @@
                         "mountain_hiking": "T2: Bergwandelen"
                     },
                     "placeholder": "Bergwandelen, Alpinewandelen …"
+                },
+                "salt": {
+                    "label": "Zout"
                 },
                 "sanitary_dump_station": {
                     "label": "Toilet-afvoer"
@@ -3313,6 +3701,9 @@
                     },
                     "placeholder": "Ja, Nee, Alleen afhaal …"
                 },
+                "tidal": {
+                    "label": "Getijden"
+                },
                 "to": {
                     "label": "Naar"
                 },
@@ -3321,9 +3712,14 @@
                     "options": {
                         "bucket": "Emmer",
                         "chemical": "Chemisch",
-                        "flush": "Doorspoelen",
-                        "pitlatrine": "Kuil/Latrine"
+                        "flush": "Doorspoelen"
                     }
+                },
+                "toilets/handwashing": {
+                    "label": "Handwas"
+                },
+                "toilets/position": {
+                    "label": "Posities"
                 },
                 "toll": {
                     "label": "Tol"
@@ -3362,7 +3758,6 @@
                     "label": "Verkeersbord"
                 },
                 "traffic_sign/direction": {
-                    "label": "Richting",
                     "options": {
                         "backward": "Achterwaarts (tegen richting van de getekende lijn in)",
                         "both": "Beide",
@@ -3373,7 +3768,6 @@
                     "label": "Type"
                 },
                 "traffic_signals/direction": {
-                    "label": "Richting",
                     "options": {
                         "backward": "Achterwaarts (tegen richting van de getekende lijn in)",
                         "both": "Beide / Alle",
@@ -3462,6 +3856,9 @@
                 "voltage/tertiary": {
                     "label": "Tertiaire spanning"
                 },
+                "voltage_electrified": {
+                    "label": "Spanning"
+                },
                 "wall": {
                     "label": "Type"
                 },
@@ -3482,7 +3879,7 @@
                 },
                 "website": {
                     "label": "Website",
-                    "placeholder": "http://example.com/"
+                    "placeholder": "https://example.com"
                 },
                 "wetland": {
                     "label": "Type"
@@ -3652,6 +4049,10 @@
                     "name": "Bar",
                     "terms": "cocktailbar,dancing,disco,café"
                 },
+                "amenity/bar/lgbtq": {
+                    "name": "LGBTQ+-bar",
+                    "terms": "homobar,lesbobar,LGB-bar,LGBT-bar,LGBQ-bar,LGBQT-bar"
+                },
                 "amenity/bbq": {
                     "name": "Barbecue/Grill",
                     "terms": "barbecue,grill,steengrill,BBQ,spit"
@@ -3739,6 +4140,9 @@
                     "name": "Klok",
                     "terms": "uurwerk,horloge,uur,tijd"
                 },
+                "amenity/clock/sundial": {
+                    "name": "Zonnewijzer"
+                },
                 "amenity/college": {
                     "name": "Campus van beroepsschool",
                     "terms": "bso,buo,buso,vmbo,speciaal onderwijs,bijzonder onderwijs,onderwijs,middelbaar,secundair onderwijs"
@@ -3746,6 +4150,10 @@
                 "amenity/community_centre": {
                     "name": "Buurthuis",
                     "terms": "feestzaal,parochiezaal,gemeenschapshuis"
+                },
+                "amenity/community_centre/lgbtq": {
+                    "name": "LGBTQ+-buurthuis",
+                    "terms": "homo-buurthuis,lesbo-buurthuis,LGB-buurthuis,LGBT-buurthuis,LGBQT-buurthuis"
                 },
                 "amenity/compressed_air": {
                     "name": "Perslucht",
@@ -3787,8 +4195,7 @@
                     "terms": "autorijschool,autoschool,rijlessen,rijinstructeur"
                 },
                 "amenity/embassy": {
-                    "name": "Ambassade",
-                    "terms": "vertegenwoordiging,afgevaardigden"
+                    "name": "Ambassade"
                 },
                 "amenity/fast_food": {
                     "name": "Fastfoodrestaurant",
@@ -3807,6 +4214,9 @@
                 },
                 "amenity/fast_food/kebab": {
                     "name": "Kebabfastfoodzaak"
+                },
+                "amenity/fast_food/mexican": {
+                    "name": "Mexicaanse fastfoodzaak"
                 },
                 "amenity/fast_food/pizza": {
                     "name": "Pizzafastfoodzaak"
@@ -3895,6 +4305,9 @@
                     "name": "Nachtclub",
                     "terms": "dancing,bar,uitgaan,disco"
                 },
+                "amenity/nightclub/lgbtq": {
+                    "name": "LGBTQ+-nachtclub"
+                },
                 "amenity/nursing_home": {
                     "name": "Verpleeghuis"
                 },
@@ -3905,6 +4318,9 @@
                 "amenity/parking/multi-storey": {
                     "name": "Parkeergarage met meerdere niveaus",
                     "terms": "parkeertoren,parking met meerdere verdiepingen"
+                },
+                "amenity/parking/underground": {
+                    "name": "Ondergronds parkeren"
                 },
                 "amenity/parking_entrance": {
                     "name": "Ingang/Uitgang van parkeergelegenheid",
@@ -3923,6 +4339,9 @@
                 "amenity/pharmacy": {
                     "name": "Apotheek"
                 },
+                "amenity/photo_booth": {
+                    "name": "Pasfotohokje"
+                },
                 "amenity/place_of_worship": {
                     "name": "Gebedshuis",
                     "terms": "godshuis,kerk,moskee"
@@ -3932,7 +4351,8 @@
                     "terms": "boedistische tempel,boeddha,boeddhisme,tempel,stupa,vihara,klooster,pagode,zendo,dojo"
                 },
                 "amenity/place_of_worship/christian": {
-                    "name": "Christelijke kerk"
+                    "name": "Christelijke kerk",
+                    "terms": "kerk,christenen"
                 },
                 "amenity/place_of_worship/hindu": {
                     "name": "Hindoeïstische tempel",
@@ -3942,7 +4362,8 @@
                     "name": "Joodse synagoge"
                 },
                 "amenity/place_of_worship/muslim": {
-                    "name": "Moslim moskee"
+                    "name": "Islamitische moskee",
+                    "terms": "moslimmoskee,moskee"
                 },
                 "amenity/place_of_worship/shinto": {
                     "name": "Shintotempel",
@@ -3979,6 +4400,13 @@
                 "amenity/pub": {
                     "name": "Café",
                     "terms": "bar,kroeg,bierhuis,bier"
+                },
+                "amenity/pub/lgbtq": {
+                    "name": "LGBTQ+-café",
+                    "terms": "homocafé,lesbocafé,LGB-café,LGBT-café,LGBQ-café,LGBQT-café"
+                },
+                "amenity/pub/microbrewery": {
+                    "name": "Café met microbrouwerij"
                 },
                 "amenity/public_bath": {
                     "name": "Publiek bad",
@@ -4194,7 +4622,7 @@
                 },
                 "amenity/vending_machine/excrement_bags": {
                     "name": "Strontzakjesautomaat",
-                    "terms": "poepzakjesautomaat,hondenstrontzakjesautomaat,hondenpoepzakjesautomaat,dierenstront,automaat"
+                    "terms": "hondenstrontzakjesautomaat"
                 },
                 "amenity/vending_machine/feminine_hygiene": {
                     "name": "Menstruatieproductautomaat",
@@ -4211,9 +4639,6 @@
                 "amenity/vending_machine/ice_cream": {
                     "name": "IJs-automaat",
                     "terms": "friscoautomaat,ijsjesautomaat"
-                },
-                "amenity/vending_machine/news_papers": {
-                    "name": "krantenautomaat"
                 },
                 "amenity/vending_machine/newspapers": {
                     "name": "Krantenautomaat",
@@ -4277,6 +4702,9 @@
                 "area/highway": {
                     "name": "Wegdek",
                     "terms": "rand van weg,gebied,wegoppervlak"
+                },
+                "attraction": {
+                    "name": "Attractie"
                 },
                 "attraction/amusement_ride": {
                     "name": "Standaard pretparkattractie",
@@ -4402,6 +4830,9 @@
                     "name": "Verlaagde stoeprand",
                     "terms": "verlaagde trottoirrand,verlaagd boordje,verlaagde rand van voetpad"
                 },
+                "barrier/kerb/raised": {
+                    "name": "Verhoogde stoeprand"
+                },
                 "barrier/kissing_gate": {
                     "name": "Voetgangershek",
                     "terms": "veehek,kushek,kusjeshek,kissing gate"
@@ -4421,9 +4852,15 @@
                     "name": "Tolhuisje",
                     "terms": "tol,betalen,heffing,tolkantoor"
                 },
+                "barrier/turnstile": {
+                    "name": "Draaipoort"
+                },
                 "barrier/wall": {
                     "name": "Muur",
                     "terms": "wand"
+                },
+                "boundary": {
+                    "name": "Grens"
                 },
                 "boundary/administrative": {
                     "name": "Bestuurlijke grens",
@@ -4610,7 +5047,7 @@
                     "terms": "rijtjeshuizen,huis,woningen,woonsten,woongebied,gebouw"
                 },
                 "building/train_station": {
-                    "name": "Treinstation"
+                    "name": "Treinstationgebouw"
                 },
                 "building/transportation": {
                     "name": "Openbaarvervoersgebouw"
@@ -4623,16 +5060,15 @@
                     "name": "Opslagplaats",
                     "terms": "magazijn,warenhuis"
                 },
-                "camp_site/camp_pitch": {
-                    "name": "Individueel kampeerveld of sta-plaats op camping",
-                    "terms": "kampeerveldje,sta-plaats,staplaats"
-                },
-                "circular": {
-                    "name": "Rotonde, verkeer erop niet steeds voorrang"
+                "building_point": {
+                    "name": "Gebouw"
                 },
                 "club": {
                     "name": "Club",
                     "terms": "vereniging"
+                },
+                "club/sport": {
+                    "name": "Sportclub"
                 },
                 "craft": {
                     "name": "Vakmanschap",
@@ -4910,14 +5346,6 @@
                     "name": "Golf Hole",
                     "terms": "gat,doel"
                 },
-                "golf/lateral_water_hazard_area": {
-                    "name": "Zijdelingse waterpartij (golf)",
-                    "terms": "golf,water"
-                },
-                "golf/lateral_water_hazard_line": {
-                    "name": "Zijdelingse waterpartij (golf)",
-                    "terms": "golf,water"
-                },
                 "golf/rough": {
                     "name": "Rough",
                     "terms": "golf"
@@ -4925,14 +5353,6 @@
                 "golf/tee": {
                     "name": "Tee-Box",
                     "terms": "golf"
-                },
-                "golf/water_hazard_area": {
-                    "name": "Waterpartij (golf)",
-                    "terms": "golf,water"
-                },
-                "golf/water_hazard_line": {
-                    "name": "Waterpartij (golf)",
-                    "terms": "golf,water"
                 },
                 "healthcare": {
                     "name": "Gezondheidszorg-faciliteit",
@@ -5042,6 +5462,9 @@
                 "highway/cycleway": {
                     "name": "Fietspad",
                     "terms": "rijwielpad,fietssnelweg,flitsfietspad,fietsoversteekplaats"
+                },
+                "highway/cycleway/bicycle_foot": {
+                    "name": "Fiets- en voetpad"
                 },
                 "highway/elevator": {
                     "name": "Lift"
@@ -5258,6 +5681,9 @@
                     "name": "Gedenkplaats",
                     "terms": "monument"
                 },
+                "historic/memorial/plaque": {
+                    "name": "Gedenkplaat"
+                },
                 "historic/monument": {
                     "name": "Monument",
                     "terms": "gedenkplaats"
@@ -5288,9 +5714,17 @@
                     "name": "Kruispunt",
                     "terms": "kruising,toegangspunt,afslag,oprit,rotonde"
                 },
+                "junction/circular": {
+                    "name": "Rotonde, verkeer erop niet steeds voorrang"
+                },
+                "junction/jughandle": {
+                    "name": "Jughandle"
+                },
+                "junction/roundabout": {
+                    "name": "Rotonde"
+                },
                 "landuse": {
-                    "name": "Landgebruik",
-                    "terms": "landindeling,doel"
+                    "name": "Landgebruik"
                 },
                 "landuse/allotments": {
                     "name": "Volkstuin",
@@ -5313,7 +5747,7 @@
                 },
                 "landuse/churchyard": {
                     "name": "Kerkhof",
-                    "terms": "begraafplaats,zerk,kerk,dood,graf"
+                    "terms": "begraafplaats,zerken,dood,graf"
                 },
                 "landuse/commercial": {
                     "name": "Commercieel gebied",
@@ -5333,6 +5767,9 @@
                 "landuse/farmyard": {
                     "name": "Boerenerf",
                     "terms": "boerderij,hoeve,landbouw,hofstee"
+                },
+                "landuse/forest": {
+                    "name": "Beheerd bos"
                 },
                 "landuse/garages": {
                     "name": "Garages (privéstalling voor voertuigen)",
@@ -5386,14 +5823,6 @@
                     "name": "Kazerne",
                     "terms": "barakken,soldaten,troepen,militair,leger"
                 },
-                "landuse/military/bunker": {
-                    "name": "Militaire bunker",
-                    "terms": "legerbunker"
-                },
-                "landuse/military/checkpoint": {
-                    "name": "Militair checkpoint",
-                    "terms": "controlepunt,checkpoint,douane,grenscontrole,leger"
-                },
                 "landuse/military/danger_area": {
                     "name": "Militaire gevarenzone",
                     "terms": "bommen,munitie,leger,gevarenzone,geen toegang,ontruimingszone,militaire ontruimingszone"
@@ -5402,17 +5831,9 @@
                     "name": "Marinebasis",
                     "terms": "militair,leger,zeemacht"
                 },
-                "landuse/military/nuclear_explosion_site": {
-                    "name": "Kernwapentestsite",
-                    "terms": "nucleair,bommen,testzone,militaire gevarenzone,gevarenzone,geen toegang,leger,atoombomtestsite"
-                },
                 "landuse/military/obstacle_course": {
                     "name": "Militair hindernissenparcours",
                     "terms": "oefenterrein,leger"
-                },
-                "landuse/military/office": {
-                    "name": "Militair kantoor",
-                    "terms": "leger,administratie,marine,zeemacht,luchtmacht,landmacht"
                 },
                 "landuse/military/range": {
                     "name": "Militair schietterrein",
@@ -5430,6 +5851,9 @@
                     "name": "Plantenkwekerij",
                     "terms": "tuinderij,tuin"
                 },
+                "landuse/pond": {
+                    "name": "Vijver"
+                },
                 "landuse/quarry": {
                     "name": "Groeve",
                     "terms": "steengroeve,mijn,openluchtmijn,dagbouw"
@@ -5444,6 +5868,9 @@
                 },
                 "landuse/religious": {
                     "name": "Religieus gebied"
+                },
+                "landuse/reservoir": {
+                    "name": "Reservoir"
                 },
                 "landuse/residential": {
                     "name": "Woongebied",
@@ -5461,8 +5888,7 @@
                     "terms": "wijngaard"
                 },
                 "leisure": {
-                    "name": "Vrije tijd",
-                    "terms": "recreatie"
+                    "name": "Vrije tijd"
                 },
                 "leisure/adult_gaming_centre": {
                     "name": "Speelzaal (met kansspelmachines)",
@@ -5613,6 +6039,9 @@
                     "name": "Picknicktafel",
                     "terms": "tafel,bank,zitbank"
                 },
+                "leisure/picnic_table/chess": {
+                    "name": "Schaaktafel"
+                },
                 "leisure/pitch": {
                     "name": "Sportveld",
                     "terms": "sportterrein"
@@ -5707,6 +6136,9 @@
                     "name": "Sportcentrum of -complex",
                     "terms": "sportcentrum,sportcomplex,bloso"
                 },
+                "leisure/sports_centre/climbing": {
+                    "name": "Klimhal"
+                },
                 "leisure/sports_centre/swimming": {
                     "name": "Zwembadfaciliteit",
                     "terms": "zwemmen,waterbad,duiken"
@@ -5740,8 +6172,7 @@
                     "terms": "anders,overige,iets anders,algemeen"
                 },
                 "man_made": {
-                    "name": "Aangelegd",
-                    "terms": "menselijk"
+                    "name": "Aangelegd"
                 },
                 "man_made/adit": {
                     "name": "Horizontale mijn- of grotingang",
@@ -5750,6 +6181,9 @@
                 "man_made/antenna": {
                     "name": "Antenne",
                     "terms": "zender,ontvanger,radio,zendmast"
+                },
+                "man_made/beehive": {
+                    "name": "Bijenkorf"
                 },
                 "man_made/breakwater": {
                     "name": "Golfbreker",
@@ -5814,6 +6248,9 @@
                 "man_made/mast/communication/television": {
                     "name": "Televisiezendmast"
                 },
+                "man_made/mineshaft": {
+                    "name": "Mijnschacht"
+                },
                 "man_made/monitoring_station": {
                     "name": "Meetstation",
                     "terms": "observatiestation,meetapparatuur,observatieapparatuur,weerstation,seismische sensor,luchtkwaliteitmeetstation,luchtmeetstation,gps-meetstation,gps-grondstation,gnss-station,gnss-grondstation"
@@ -5830,9 +6267,16 @@
                     "name": "Pier of steiger",
                     "terms": "dok,steiger"
                 },
+                "man_made/pier/floating": {
+                    "name": "Drijvende pier",
+                    "terms": "drijvende promenade"
+                },
                 "man_made/pipeline": {
                     "name": "Pijpleiding",
                     "terms": "pijplijn,pijpleiding"
+                },
+                "man_made/pipeline/underground": {
+                    "name": "Ondergrondse pijpleiding"
                 },
                 "man_made/pumping_station": {
                     "name": "Gemaal (waterpompstation)",
@@ -5860,11 +6304,20 @@
                 "man_made/tower": {
                     "name": "Toren"
                 },
+                "man_made/tower/bell_tower": {
+                    "name": "Klokkentoren"
+                },
                 "man_made/tower/communication": {
                     "name": "Communicatietoren"
                 },
+                "man_made/tower/minaret": {
+                    "name": "Minaret"
+                },
                 "man_made/tower/observation": {
                     "name": "Observatietoren"
+                },
+                "man_made/tunnel": {
+                    "name": "Tunnel"
                 },
                 "man_made/wastewater_plant": {
                     "name": "Waterzuiveringsinstallatie",
@@ -5983,12 +6436,22 @@
                 "natural/tree_row": {
                     "name": "Bomenrij"
                 },
+                "natural/valley": {
+                    "name": "Vallei",
+                    "terms": "dal"
+                },
                 "natural/volcano": {
                     "name": "Vulkaan",
                     "terms": "caldera,krater"
                 },
                 "natural/water": {
                     "name": "Water"
+                },
+                "natural/water/basin": {
+                    "name": "Basin"
+                },
+                "natural/water/canal": {
+                    "name": "Kanaal"
                 },
                 "natural/water/lake": {
                     "name": "Meer",
@@ -6001,6 +6464,12 @@
                 "natural/water/reservoir": {
                     "name": "Reservoir",
                     "terms": "waterbekken,bekken,waterreservoir"
+                },
+                "natural/water/river": {
+                    "name": "Rivier"
+                },
+                "natural/water/stream": {
+                    "name": "Stroom"
                 },
                 "natural/wetland": {
                     "name": "Moeras of drassig gebied",
@@ -6052,6 +6521,12 @@
                 "office/coworking": {
                     "name": "Coworking-kantoor",
                     "terms": "samenwerken,coworking,coworking-kantoor,kantoor,gedeeld kantoor,coworking-plaats,coworking-omgeving"
+                },
+                "office/diplomatic/consulate": {
+                    "name": "Consulaat"
+                },
+                "office/diplomatic/embassy": {
+                    "name": "Ambassade"
                 },
                 "office/educational_institution": {
                     "name": "Kantoor van onderwijsinstelling",
@@ -6330,6 +6805,9 @@
                     "name": "Zonnepaneel",
                     "terms": "fotovoltaïsche module"
                 },
+                "power/generator/source/hydro": {
+                    "name": "Waterturbine"
+                },
                 "power/generator/source/nuclear": {
                     "name": "Kernreactor",
                     "terms": "nucleaire reactor,kernfusie"
@@ -6373,74 +6851,20 @@
                     "name": "Transformator",
                     "terms": "trafo,omvormer"
                 },
-                "public_transport/linear_platform": {
-                    "name": "Perron voor openbaar vervoer"
-                },
-                "public_transport/linear_platform_aerialway": {
-                    "name": "Kabelbaanperron"
-                },
-                "public_transport/linear_platform_bus": {
-                    "name": "Busperron"
-                },
-                "public_transport/linear_platform_ferry": {
-                    "name": "Kaai voor veerboot",
-                    "terms": "ferrykaai,ferryperron,veerbootkaai,veerbootperron,kaai voor ferry"
-                },
-                "public_transport/linear_platform_light_rail": {
-                    "name": "Lightrailperron",
-                    "terms": "lichtspoorperron,tramtreinperron,sneltramperron,lichtgewichttreinperron,spoorwegperron"
-                },
-                "public_transport/linear_platform_monorail": {
-                    "name": "Monorailperron",
-                    "terms": "spoorwegperron,monorailplatform"
-                },
-                "public_transport/linear_platform_subway": {
-                    "name": "Metroperron",
-                    "terms": "spoorwegperron,tramplatform"
-                },
-                "public_transport/linear_platform_train": {
-                    "name": "Treinperron",
-                    "terms": "spoorwegperron,treinplatform"
-                },
-                "public_transport/linear_platform_tram": {
-                    "name": "Tramperron",
-                    "terms": "spoorwegperron,tramplatform"
-                },
-                "public_transport/linear_platform_trolleybus": {
-                    "name": "Trolleybusperron"
-                },
                 "public_transport/platform": {
-                    "name": "Openbaarvervoershalte"
+                    "name": "Openbaarvervoershalte",
+                    "terms": "spoorwegperron,spoorwegplatform,treinperron,treinplatform,tramperron,tramhalte,tramplatform,metroperron,metrohalte,metroplatform,busperron,bushalte,busplatform,platform"
                 },
-                "public_transport/platform_aerialway": {
-                    "name": "Kabelbaanhalte"
+                "public_transport/platform/bus_point": {
+                    "name": "Bushalte"
                 },
-                "public_transport/platform_bus": {
-                    "name": "Bushalte",
-                    "terms": "halte"
+                "public_transport/platform/monorail_point": {
+                    "name": "Monorailperron"
                 },
-                "public_transport/platform_ferry": {
-                    "name": "Veerboothalte",
-                    "terms": "ferryhalte"
+                "public_transport/platform/subway": {
+                    "name": "Metroperron"
                 },
-                "public_transport/platform_light_rail": {
-                    "name": "Lightrailhalte",
-                    "terms": "lichtspoorhalte,tramtreinhalte,sneltramhalte,lichtgewichttreinhalte,spoorweghalte"
-                },
-                "public_transport/platform_monorail": {
-                    "name": "Monorailhalte"
-                },
-                "public_transport/platform_subway": {
-                    "name": "Metrohalte"
-                },
-                "public_transport/platform_train": {
-                    "name": "Treinhalte"
-                },
-                "public_transport/platform_tram": {
-                    "name": "Tramhalte",
-                    "terms": "halte"
-                },
-                "public_transport/platform_trolleybus": {
+                "public_transport/platform/trolleybus_point": {
                     "name": "Trolleybushalte"
                 },
                 "public_transport/station": {
@@ -6573,12 +6997,12 @@
                     "name": "Smalspoor",
                     "terms": "smal spoor,normaalspoor,spoor"
                 },
-                "railway/platform": {
-                    "name": "Spoorperron"
-                },
                 "railway/rail": {
                     "name": "Spoorweg",
                     "terms": "treinspoor,tramspoor,spoorlijn,normaalspoor,spoor"
+                },
+                "railway/rail/highspeed": {
+                    "name": "Hogesnelheidslijn"
                 },
                 "railway/signal": {
                     "name": "Spoorwegsein",
@@ -6613,9 +7037,6 @@
                 "relation": {
                     "name": "Relatie",
                     "terms": "relation"
-                },
-                "roundabout": {
-                    "name": "Rotonde"
                 },
                 "route/ferry": {
                     "name": "Veerboottraject",
@@ -6719,8 +7140,7 @@
                     "terms": "boek,bibliotheek,boekenwinkel,boekhandel"
                 },
                 "shop/boutique": {
-                    "name": "Boetiek",
-                    "terms": "boutique"
+                    "name": "Boetiek"
                 },
                 "shop/butcher": {
                     "name": "Slagerij",
@@ -6741,6 +7161,9 @@
                 "shop/car_repair": {
                     "name": "Autogarage (herstel)",
                     "terms": "garage,autohersteller"
+                },
+                "shop/caravan": {
+                    "name": "Caravan-dealer"
                 },
                 "shop/carpet": {
                     "name": "Tapijtwinkel",
@@ -6845,8 +7268,7 @@
                     "terms": "groentenkraam"
                 },
                 "shop/fashion": {
-                    "name": "Modewinkel",
-                    "terms": "kledij,kleding"
+                    "name": "Modewinkel"
                 },
                 "shop/fireplace": {
                     "name": "Haardwinkel",
@@ -6867,6 +7289,13 @@
                     "name": "Kaderwinkel",
                     "terms": "schilderijen,kunst,kadrering"
                 },
+                "shop/frozen_food": {
+                    "name": "Ingevrorenvoedselzaak"
+                },
+                "shop/fuel": {
+                    "name": "Tankstation",
+                    "terms": "benzinestation,dieselstation,brandstofstation"
+                },
                 "shop/funeral_directors": {
                     "name": "Begrafenisondernemer",
                     "terms": "rouwcentrum"
@@ -6877,6 +7306,9 @@
                 "shop/furniture": {
                     "name": "Meubelzaak",
                     "terms": "woonwarenhuis,meubelwinkel"
+                },
+                "shop/games": {
+                    "name": "Bordspellenwinkel"
                 },
                 "shop/garden_centre": {
                     "name": "Tuincentrum",
@@ -6934,8 +7366,8 @@
                     "terms": "versiering,decoratie,huis,interieur,stijl"
                 },
                 "shop/jewelry": {
-                    "name": "Juwelier",
-                    "terms": "juwelier"
+                    "name": "Juwelierszaak",
+                    "terms": "juwelen,goud,diamanten,ringen,oorbellen,sierraden"
                 },
                 "shop/kiosk": {
                     "name": "Winkelkiosk",
@@ -7172,9 +7604,15 @@
                     "name": "Wijnhandel",
                     "terms": "wijnwinkel,wijnproeverij,wijnzaak,wijnerij"
                 },
+                "tactile_paving": {
+                    "name": "Blindengeleidestrook",
+                    "terms": "geleidestrook,ribbelstrook"
+                },
+                "telecom/data_center": {
+                    "name": "Datacenter"
+                },
                 "tourism": {
-                    "name": "Toerisme",
-                    "terms": "cultuur"
+                    "name": "Toerisme"
                 },
                 "tourism/alpine_hut": {
                     "name": "Berghut"
@@ -7190,6 +7628,15 @@
                 "tourism/artwork": {
                     "name": "Kunstwerk",
                     "terms": "kunst,object,kunstobject,sculptuur,beeldhouwwerk,schilderij"
+                },
+                "tourism/artwork/bust": {
+                    "name": "Buste"
+                },
+                "tourism/artwork/graffiti": {
+                    "name": "Graffitie"
+                },
+                "tourism/artwork/installation": {
+                    "name": "Kunstinstallatie"
                 },
                 "tourism/artwork/mural": {
                     "name": "Muurschildering",
@@ -7430,6 +7877,9 @@
                     "name": "Lightrailtraject",
                     "terms": "lichtspoorroute,lichtespoorwegroute"
                 },
+                "type/route/monorail": {
+                    "name": "Monorailroute"
+                },
                 "type/route/pipeline": {
                     "name": "Pijpleidingstraject",
                     "terms": "pijplijnroute,pijplijntraject,pijpleidingsroute"
@@ -7470,10 +7920,6 @@
                     "name": "Waterloop",
                     "terms": "waterweg,rivier,stroom,verloop,afwatering,beek,vaart,kanaal"
                 },
-                "vertex": {
-                    "name": "Overig",
-                    "terms": "anders,overige,iets anders,algemeen"
-                },
                 "waterway": {
                     "name": "Waterloop"
                 },
@@ -7484,6 +7930,9 @@
                 "waterway/canal": {
                     "name": "Kanaal",
                     "terms": "vaart,afvoerkanaal,waterkanaal"
+                },
+                "waterway/canal/lock": {
+                    "name": "Kanaalsluis"
                 },
                 "waterway/dam": {
                     "name": "Dam",
@@ -7545,53 +7994,44 @@
         "imagery": {
             "AGIV": {
                 "attribution": {
-                    "text": "Orthofoto Vlaanderen nieuwste © AGIV"
+                    "text": "© agentschap Informatie Vlaanderen"
                 },
-                "name": "AGIV nieuwste luchtfoto's"
+                "name": "AIV Vlaanderen meest recente luchtfotografie"
             },
             "AGIV10cm": {
                 "attribution": {
-                    "text": "Orthofoto Vlaanderen © AGIV"
+                    "text": "© agentschap Informatie Vlaanderen"
                 },
-                "name": "AGIV 2013-2015 luchtfoto's 10cm"
+                "name": "AIV Vlaanderen 2013-2015 luchtfotografie 10cm"
             },
             "AGIVFlandersGRB": {
                 "attribution": {
-                    "text": "GRB Vlaanderen © AGIV"
+                    "text": "© agentschap Informatie Vlaanderen"
                 },
-                "name": "AGIV Vlaanderen GRB"
+                "name": "AIV Vlaanderen GRB"
+            },
+            "AIV_DHMV_II_HILL_25cm": {
+                "attribution": {
+                    "text": "© agentschap Informatie Vlaanderen"
+                },
+                "name": "AIV Digitaal Hoogtemodel Vlaanderen II, multidirectionele hillshade 0,25 m"
+            },
+            "AIV_DHMV_II_SVF_25cm": {
+                "attribution": {
+                    "text": "© agentschap Informatie Vlaanderen"
+                },
+                "name": "AIV Digitaal Hoogtemodel Vlaanderen II, Skyview factor 0,25 m"
             },
             "Bing": {
                 "description": "Satelliet- en luchtfoto's.",
-                "name": "Bing-luchtfotografie"
+                "name": "Bing-luchtfoto's"
             },
-            "DigitalGlobe-Premium": {
+            "EOXAT2018CLOUDLESS": {
                 "attribution": {
-                    "text": "Gebruiksvoorwaarden & feedback"
+                    "text": "Sentinel-2 onbewolkt - https://s2maps.eu door EOX IT Services GmbH (Bevat aangepaste gegevens van Copernicus Sentinel 2017 & 2018)"
                 },
-                "description": "DigitalGlobe-Premium is een mosaik bestaand uit de DigitalGlobe basiskaart, waarbij bepaalde regio's gevuld zijn met +Vivid of eigen gemaakte beelden uit gebieden die van interesse zijn, met een 50cm resolutie of beter, en die vaker worden vernieuwd met recente updates",
-                "name": "DigitalGlobe-premiumbeelden"
-            },
-            "DigitalGlobe-Premium-vintage": {
-                "attribution": {
-                    "text": "Gebruiksvoorwaarden & feedback"
-                },
-                "description": "Beeldgrenzen en opnamedata. Labels verschijnen op zoomniveau 13 en hoger.",
-                "name": "DigitalGlobe-premiumbeelden Vintage"
-            },
-            "DigitalGlobe-Standard": {
-                "attribution": {
-                    "text": "Gebruiksvoorwaarden & feedback"
-                },
-                "description": "DigitalGlobe-Standard is een uitgekozen set van foto's, die 86% van de landmassa van de aarde omvatten, met 30-60cm resolutie waar het mogelijk is, aangevuld door Landsat. De Doorsneeleeftijd is 2,31 jaar, sommige plaatsen worden 2x per jaar geüpdatet",
-                "name": "DigitalGlobe-standaardbeelden"
-            },
-            "DigitalGlobe-Standard-vintage": {
-                "attribution": {
-                    "text": "Gebruiksvoorwaarden & feedback"
-                },
-                "description": "Beeldgrenzen en opnamedata. Labels verschijnen op zoomniveau 13 en hoger.",
-                "name": "DigitalGlobe-premiumbeelden Vintage"
+                "description": "Postprocessed foto's van Sentinel Satellite.",
+                "name": "eox.at 2018 onbewolkt"
             },
             "EsriWorldImagery": {
                 "attribution": {
@@ -7620,6 +8060,20 @@
                 },
                 "description": "Satelliet- en luchtfoto's.",
                 "name": "Mapbox-satellietbeelden"
+            },
+            "Maxar-Premium": {
+                "attribution": {
+                    "text": "Termen en terugkoppeling"
+                },
+                "description": "Maxar Premium is een mozaïek die samengesteld is uit de Maxar-basiskaart met bepaalde regionen gevuld met +Vivid of maatwerk beelden van belangrijke gebieden, 50cm-resolutie of beter, en meer frequent ververst om doorlopen updates.",
+                "name": "Maxar premiumbeelden (bèta)"
+            },
+            "Maxar-Standard": {
+                "attribution": {
+                    "text": "Termen en terugkoppeling"
+                },
+                "description": "Maxar Standard is een gecureerde set van beelden die 86% van het aardoppervlak bedekken, met 30-60cm-resolutie waar beschikbaar, aangevuld met Landsat. Gemiddelde is het 2,31 oud, met sommige gebieden die 2x per jaar worden geüpdatet.",
+                "name": "Maxar standaardbeelden (bèta)"
             },
             "OSM_Inspector-Addresses": {
                 "attribution": {
@@ -7680,6 +8134,10 @@
             "US-TIGER-Roads-2018": {
                 "description": "Geel = Publiek domein kaartgegevens van de US Census. Rood = data niet gevonden in OpenStreetMap",
                 "name": "TIGER Roads 2018"
+            },
+            "USDA-NAIP": {
+                "description": "Het meest recente jaar van DOQQs van het National Agriculture Imagery Program (NAIP) voor de aaneengesloten staten van de Verenigde Staten.",
+                "name": "National Agriculture Imagery Program"
             },
             "US_Forest_Service_roads_overlay": {
                 "description": "Wegen: Groene omlijning = ongeclassificeerd. Bruine omlijning = veldweg. Oppervlak: grind = lichtbruin gevuld, asfalt = zwart, bestraat = grijs, grond = wit, beton = blauw, gras = groen. Seizoensgebonden = witte balken",
@@ -7759,6 +8217,27 @@
                 "description": "Orthofoto-laag voorzien door basemap.at. 'Opvolger' van geoimage.at.",
                 "name": "basemap.at Orthofoto"
             },
+            "basemap.at-overlay": {
+                "attribution": {
+                    "text": "basemap.at"
+                },
+                "description": "Annotatie-overlay is geleverd door basemap.at.",
+                "name": "basemap.at Overlay"
+            },
+            "basemap.at-surface": {
+                "attribution": {
+                    "text": "basemap.at"
+                },
+                "description": "Oppervlaktelaag is geleverd door basemap.at.",
+                "name": "basemap.at Oppervlakte"
+            },
+            "basemap.at-terrain": {
+                "attribution": {
+                    "text": "basemap.at"
+                },
+                "description": "Terreinlaag is geleverd door basemap.at.",
+                "name": "basemap.at Terrein"
+            },
             "eufar-balaton": {
                 "attribution": {
                     "text": "EUFAR Balaton orthofoto's 2010"
@@ -7777,8 +8256,22 @@
                 "attribution": {
                     "text": "GSI Japan"
                 },
-                "description": "Japan GSI orthofoto. Gewoonlijk beter dan bing, maar iets ouder.",
+                "description": "Japan GSI orthofoto. Gewoonlijk beter dan Bing, maar iets ouder.",
                 "name": "Japan GSI orthofoto"
+            },
+            "gsi.go.jp_airphoto": {
+                "attribution": {
+                    "text": "GSI Japan"
+                },
+                "description": "Japan GSI luchtfoto. Niet volledig orthogerectificeerd, maar voor een deel nieuwer en/of ander bereik dan GSI orthofoto.",
+                "name": "Japan GSI luchtfoto"
+            },
+            "gsi.go.jp_seamlessphoto": {
+                "attribution": {
+                    "text": "GSI Japan naadloze foto"
+                },
+                "description": "Japan GSI naadloze foto Imagery. De verzameling van de laatste beelden van GSI ortho, airphoto, post disaster en andere.",
+                "name": "Japan GSI naadloze foto Imagery"
             },
             "gsi.go.jp_std_map": {
                 "attribution": {
@@ -7918,7 +8411,7 @@
                 "attribution": {
                     "text": "© Gemeente Stockholm, CC0"
                 },
-                "description": "Orthofoto's van de gemeente Stockholm 2015, CC0 licentie",
+                "description": "Orthofoto's van de gemeente Stockholm 2016, CC0-licentie",
                 "name": "Stockholm Orthofoto"
             },
             "tf-cycle": {
@@ -8027,6 +8520,9 @@
                         "where": "Indian Institute of Management, Bangalore, India"
                     }
                 }
+            },
+            "osm-india-forum": {
+                "name": "OpenStreetMap India forum"
             },
             "OSM-india-mailinglist": {
                 "name": "OpenStreetMap India Mailinglijst",
@@ -8434,10 +8930,6 @@
                 "name": "OSM Cuba op Telegram",
                 "description": "OpenStreetMap Cuba Telegram-chat"
             },
-            "OSM-NI-telegram": {
-                "name": "OSM Nicaragua op Telegram",
-                "description": "OpenStreetMap Nicaragua Telegram-chat"
-            },
             "Bay-Area-OpenStreetMappers": {
                 "name": "Bay Area OpenStreetMappers",
                 "description": "Verbeter OpenStreetMap in de Bay Area"
@@ -8503,13 +8995,7 @@
                 "name": "Slack"
             },
             "OSM-US": {
-                "name": "OpenStreetMap Verenigde Staten",
-                "events": {
-                    "sotmus2018": {
-                        "name": "State of the Map US 2018",
-                        "where": "Detroit, Michigan"
-                    }
-                }
+                "name": "OpenStreetMap Verenigde Staten"
             },
             "OSM-Utah": {
                 "name": "OpenStreetMap Utah"
@@ -8529,9 +9015,6 @@
             },
             "Western-Slope-meetup": {
                 "name": "Western Slope OSM-meetup"
-            },
-            "Maptime-Australia-Slack": {
-                "name": "Slack"
             },
             "talk-au": {
                 "name": "Talk-au Mailinglijst"

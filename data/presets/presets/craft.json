@@ -9,11 +9,17 @@
         "opening_hours"
     ],
     "moreFields": [
-        "product",
-        "website",
-        "phone",
+        "air_conditioning",
+        "building/levels_building",
+        "height_building",
         "email",
         "fax",
+        "internet_access",
+        "internet_access/fee",
+        "internet_access/ssid",
+        "phone",
+        "product",
+        "website",
         "wheelchair"
     ],
     "geometry": [

@@ -20,11 +20,16 @@ References:
 export function actionReverse(wayID, options) {
     var ignoreKey = /^.*(_|:)?(description|name|note|website|ref|source|comment|watch|attribution)(_|:)?/;
     var numeric = /^([+\-]?)(?=[\d.])/;
+    var turn_lanes = /^turn:lanes:?/;
     var keyReplacements = [
         [/:right$/, ':left'],
         [/:left$/, ':right'],
         [/:forward$/, ':backward'],
-        [/:backward$/, ':forward']
+        [/:backward$/, ':forward'],
+        [/:right:/, ':left:'],
+        [/:left:/, ':right:'],
+        [/:forward:/, ':backward:'],
+        [/:backward:/, ':forward:']
     ];
     var valueReplacements = {
         left: 'right',
@@ -63,7 +68,10 @@ export function actionReverse(wayID, options) {
     function reverseValue(key, value) {
         if (ignoreKey.test(key)) return value;
 
-        if (key === 'incline' && numeric.test(value)) {
+        // Turn lanes are left/right to key (not way) direction - #5674
+        if (turn_lanes.test(key)) {
+            return value;
+        } else if (key === 'incline' && numeric.test(value)) {
             return value.replace(numeric, function(_, sign) { return sign === '-' ? '' : '-'; });
         } else if (options && options.reverseOneway && key === 'oneway') {
             return onewayReplacements[value] || value;

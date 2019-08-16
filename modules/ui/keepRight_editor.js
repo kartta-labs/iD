@@ -3,16 +3,14 @@ import { select as d3_select } from 'd3-selection';
 
 import { t } from '../util/locale';
 import { services } from '../services';
-import { modeBrowse } from '../modes';
-import { svgIcon } from '../svg';
+import { modeBrowse } from '../modes/browse';
+import { svgIcon } from '../svg/icon';
 
-import {
-    uiKeepRightDetails,
-    uiKeepRightHeader,
-    uiQuickLinks,
-    uiTooltipHtml,
-    uiViewOnKeepRight
-} from './index';
+import { uiKeepRightDetails } from './keepRight_details';
+import { uiKeepRightHeader } from './keepRight_header';
+import { uiQuickLinks } from './quick_links';
+import { uiTooltipHtml } from './tooltipHtml';
+import { uiViewOnKeepRight } from './view_on_keepRight';
 
 import { utilNoAuto, utilRebind } from '../util';
 
@@ -49,7 +47,7 @@ export function uiKeepRightEditor(context) {
 
         headerEnter
             .append('button')
-            .attr('class', 'fr keepRight-editor-close')
+            .attr('class', 'fr error-editor-close')
             .on('click', function() {
                 context.enter(modeBrowse(context));
             })
@@ -68,12 +66,12 @@ export function uiKeepRightEditor(context) {
             .attr('class', 'body')
             .merge(body);
 
-        var editor = body.selectAll('.keepRight-editor')
+        var editor = body.selectAll('.error-editor')
             .data([0]);
 
         editor.enter()
             .append('div')
-            .attr('class', 'modal-section keepRight-editor')
+            .attr('class', 'modal-section error-editor')
             .merge(editor)
             .call(keepRightHeader.error(_error))
             .call(quickLinks.choices(choices))
@@ -108,7 +106,7 @@ export function uiKeepRightEditor(context) {
         // enter
         var saveSectionEnter = saveSection.enter()
             .append('div')
-            .attr('class', 'keepRight-save save-section cf');
+            .attr('class', 'error-save save-section cf');
 
         saveSectionEnter
             .append('h4')

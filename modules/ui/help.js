@@ -4,11 +4,9 @@ import {
 } from 'd3-selection';
 
 import marked from 'marked';
-import { svgIcon } from '../svg';
+import { svgIcon } from '../svg/icon';
 import { uiCmd } from './cmd';
-import { uiBackground } from './background';
-import { uiIntro } from './intro';
-import { uiMapData } from './map_data';
+import { uiIntro } from './intro/intro';
 import { uiShortcuts } from './shortcuts';
 import { uiTooltipHtml } from './tooltipHtml';
 
@@ -18,6 +16,8 @@ import { icon } from './intro/helper';
 
 export function uiHelp(context) {
     var key = t('help.key');
+
+    var _pane = d3_select(null), _toggleButton = d3_select(null);
 
     var docKeys = [
         ['help', [
@@ -281,48 +281,32 @@ export function uiHelp(context) {
         };
     });
 
+    var paneTooltip = tooltip()
+        .placement((textDirection === 'rtl') ? 'right' : 'left')
+        .html(true)
+        .title(uiTooltipHtml(t('help.title'), key));
 
-    function help(selection) {
+    function hidePane() {
+        context.ui().togglePanes();
+    }
 
-        function hidePane() {
-            setVisible(false);
-        }
+    uiHelp.togglePane = function() {
+        if (d3_event) d3_event.preventDefault();
+        paneTooltip.hide(_toggleButton);
+        context.ui().togglePanes(!_pane.classed('shown') ? _pane : undefined);
+    };
+
+    uiHelp.renderToggleButton = function(selection) {
+
+        _toggleButton = selection.append('button')
+            .attr('tabindex', -1)
+            .on('click', uiHelp.togglePane)
+            .call(svgIcon('#iD-icon-help', 'light'))
+            .call(paneTooltip);
+    };
 
 
-        function togglePane() {
-            if (d3_event) d3_event.preventDefault();
-            tooltipBehavior.hide(button);
-            setVisible(!button.classed('active'));
-        }
-
-
-        function setVisible(show) {
-            if (show !== shown) {
-                button.classed('active', show);
-                shown = show;
-
-                if (show) {
-                    uiBackground.hidePane();
-                    uiMapData.hidePane();
-
-                    pane.style('display', 'block')
-                        .style('right', '-500px')
-                        .transition()
-                        .duration(200)
-                        .style('right', '0px');
-
-                } else {
-                    pane.style('right', '0px')
-                        .transition()
-                        .duration(200)
-                        .style('right', '-500px')
-                        .on('end', function() {
-                            d3_select(this).style('display', 'none');
-                        });
-                }
-            }
-        }
-
+    uiHelp.renderPane = function(selection) {
 
         function clickHelp(d, i) {
             var rtl = (textDirection === 'rtl');
@@ -382,7 +366,7 @@ export function uiHelp(context) {
         function clickWalkthrough() {
             if (context.inIntro()) return;
             context.container().call(uiIntro(context));
-            setVisible(false);
+            context.ui().togglePanes();
         }
 
 
@@ -391,24 +375,11 @@ export function uiHelp(context) {
         }
 
 
-        var pane = selection.append('div')
-            .attr('class', 'help-wrap map-pane fillL hide');
+        _pane = selection.append('div')
+            .attr('class', 'help-wrap map-pane fillL hide')
+            .attr('pane', 'help');
 
-        var tooltipBehavior = tooltip()
-            .placement((textDirection === 'rtl') ? 'right' : 'left')
-            .html(true)
-            .title(uiTooltipHtml(t('help.title'), key));
-
-        var button = selection.append('button')
-            .attr('tabindex', -1)
-            .on('click', togglePane)
-            .call(svgIcon('#iD-icon-help', 'light'))
-            .call(tooltipBehavior);
-
-        var shown = false;
-
-
-        var heading = pane
+        var heading = _pane
             .append('div')
             .attr('class', 'pane-heading');
 
@@ -418,11 +389,11 @@ export function uiHelp(context) {
 
         heading
             .append('button')
-            .on('click', function() { uiHelp.hidePane(); })
+            .on('click', hidePane)
             .call(svgIcon('#iD-icon-close'));
 
 
-        var content = pane
+        var content = _pane
             .append('div')
             .attr('class', 'pane-content');
 
@@ -485,12 +456,9 @@ export function uiHelp(context) {
         clickHelp(docs[0], 0);
 
         context.keybinding()
-            .on(key, togglePane);
+            .on(key, uiHelp.togglePane);
 
-        uiHelp.hidePane = hidePane;
-        uiHelp.togglePane = togglePane;
-        uiHelp.setVisible = setVisible;
-    }
+    };
 
-    return help;
+    return uiHelp;
 }

@@ -8,12 +8,19 @@
         "opening_hours"
     ],
     "moreFields": [
-        "operator",
-        "smoking",
-        "website",
-        "phone",
+        "air_conditioning",
+        "building/levels_building",
+        "height_building",
         "email",
         "fax",
+        "internet_access",
+        "internet_access/fee",
+        "internet_access/ssid",
+        "not/name",
+        "operator",
+        "phone",
+        "smoking",
+        "website",
         "wheelchair"
     ],
     "geometry": [

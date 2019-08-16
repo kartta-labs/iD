@@ -1,15 +1,16 @@
-import _values from 'lodash-es/values';
-
 export { wikipedia as dataWikipedia } from 'wmf-sitematrix';
 
 export { dataAddressFormats } from './address-formats.json';
 export { dataDeprecated } from './deprecated.json';
 export { dataDiscarded } from './discarded.json';
+export { dataLanguages } from './languages.json';
 export { dataLocales } from './locales.json';
 export { dataPhoneFormats } from './phone-formats.json';
 export { dataShortcuts } from './shortcuts.json';
+export { dataTerritoryLanguages } from './territory-languages.json';
 
 export { default as dataImperial } from './imperial.json';
+export { default as dataMPH } from './mph.json';
 export { default as dataDriveLeft } from './drive-left.json';
 export { en as dataEn } from '../dist/locales/en.json';
 
@@ -29,7 +30,7 @@ import whichPolygon from 'which-polygon';
 
 
 // index the osm-community-index
-var ociFeatureCollection = _values(ociFeatures).map(function(feature) {
+var ociFeatureCollection = Object.values(ociFeatures).map(function(feature) {
     // workaround for which-polygon: only supports `properties`, not `id`
     // https://github.com/mapbox/which-polygon/pull/6
     feature.properties = {

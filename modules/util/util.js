@@ -1,15 +1,46 @@
-import _map from 'lodash-es/map';
-
-import { t, textDirection } from './locale';
-import { utilDetect } from './detect';
 import { remove as removeDiacritics } from 'diacritics';
 import { fixRTLTextForSvg, rtlRegex } from './svg_paths_rtl_fix';
 
+import { t, textDirection } from './locale';
+import { utilArrayUnion } from './array';
+import { utilDetect } from './detect';
+
 
 export function utilTagText(entity) {
-    return _map(entity.tags, function(v, k) {
-        return k + '=' + v;
-    }).join(', ');
+    var obj = (entity && entity.tags) || {};
+    return Object.keys(obj)
+        .map(function(k) { return k + '=' + obj[k]; })
+        .join(', ');
+}
+
+
+export function utilTagDiff(oldTags, newTags) {
+    var tagDiff = [];
+    var keys = utilArrayUnion(Object.keys(oldTags), Object.keys(newTags)).sort();
+    keys.forEach(function(k) {
+        var oldVal = oldTags[k];
+        var newVal = newTags[k];
+
+        if (oldVal && (!newVal || newVal !== oldVal)) {
+            tagDiff.push({
+                type: '-',
+                key: k,
+                oldVal: oldVal,
+                newVal: newVal,
+                display: '- ' + k + '=' + oldVal
+            });
+        }
+        if (newVal && (!oldVal || newVal !== oldVal)) {
+            tagDiff.push({
+                type: '+',
+                key: k,
+                oldVal: oldVal,
+                newVal: newVal,
+                display: '+ ' + k + '=' + newVal
+            });
+        }
+    });
+    return tagDiff;
 }
 
 
@@ -18,69 +49,81 @@ export function utilEntitySelector(ids) {
 }
 
 
+// returns an selector to select entity ids for:
+//  - entityIDs passed in
+//  - shallow descendant entityIDs for any of those entities that are relations
 export function utilEntityOrMemberSelector(ids, graph) {
-    var s = utilEntitySelector(ids);
+    var seen = new Set(ids);
+    ids.forEach(collectShallowDescendants);
+    return utilEntitySelector(Array.from(seen));
 
-    ids.forEach(function(id) {
+    function collectShallowDescendants(id) {
         var entity = graph.hasEntity(id);
-        if (entity && entity.type === 'relation') {
-            entity.members.forEach(function(member) {
-                s += ',.' + member.id;
-            });
-        }
-    });
+        if (!entity || entity.type !== 'relation') return;
 
-    return s;
-}
-
-
-export function utilEntityOrDeepMemberSelector(ids, graph) {
-    var seen = {};
-    var allIDs = [];
-
-    function addEntityAndMembersIfNotYetSeen(id) {
-        // avoid infinite recursion for circular relations by skipping seen entities
-        if (seen[id]) return;
-        // mark the entity as seen
-        seen[id] = true;
-        // add the id;
-        allIDs.push(id);
-        if (graph.hasEntity(id)) {
-            var entity = graph.entity(id);
-            if (entity.type === 'relation' && entity.members) {
-                entity.members.forEach(function(member){
-                    addEntityAndMembersIfNotYetSeen(member.id);
-                });
-            }
-        }
+        entity.members
+            .map(function(member) { return member.id; })
+            .forEach(function(id) { seen.add(id); });
     }
-
-    ids.forEach(function(id) {
-        addEntityAndMembersIfNotYetSeen(id);
-    });
-    return utilEntitySelector(allIDs);
 }
 
 
-export function utilGetAllNodes(ids, graph) {
-    var seen = {};
-    var nodes = [];
-    ids.forEach(getNodes);
-    return nodes;
+// returns an selector to select entity ids for:
+//  - entityIDs passed in
+//  - deep descendant entityIDs for any of those entities that are relations
+export function utilEntityOrDeepMemberSelector(ids, graph) {
+    var seen = new Set();
+    ids.forEach(collectDeepDescendants);
+    return utilEntitySelector(Array.from(seen));
 
-    function getNodes(id) {
-        if (seen[id]) return;
-        seen[id] = true;
+    function collectDeepDescendants(id) {
+        if (seen.has(id)) return;
+        seen.add(id);
+
+        var entity = graph.hasEntity(id);
+        if (!entity || entity.type !== 'relation') return;
+
+        entity.members
+            .map(function(member) { return member.id; })
+            .forEach(collectDeepDescendants);   // recurse
+    }
+}
+
+
+// Adds or removes highlight styling for the specified entities
+export function utilHighlightEntities(ids, highlighted, context) {
+    context.surface()
+        .selectAll(utilEntityOrDeepMemberSelector(ids, context.graph()))
+        .classed('highlighted', highlighted);
+}
+
+
+// returns an Array that is the union of:
+//  - nodes for any nodeIDs passed in
+//  - child nodes of any wayIDs passed in
+//  - descendant member and child nodes of relationIDs passed in
+export function utilGetAllNodes(ids, graph) {
+    var seen = new Set();
+    var nodes = new Set();
+
+    ids.forEach(collectNodes);
+    return Array.from(nodes);
+
+    function collectNodes(id) {
+        if (seen.has(id)) return;
+        seen.add(id);
 
         var entity = graph.hasEntity(id);
         if (!entity) return;
 
         if (entity.type === 'node') {
-            nodes.push(entity);
+            nodes.add(entity);
         } else if (entity.type === 'way') {
-            entity.nodes.forEach(getNodes);
+            entity.nodes.forEach(collectNodes);
         } else {
-            entity.members.map(function(member) { return member.id; }).forEach(getNodes);
+            entity.members
+                .map(function(member) { return member.id; })
+                .forEach(collectNodes);   // recurse
         }
     }
 }
@@ -123,6 +166,27 @@ export function utilDisplayType(id) {
 }
 
 
+export function utilDisplayLabel(entity, context) {
+    var displayName = utilDisplayName(entity);
+    if (displayName) {
+        // use the display name if there is one
+        return displayName;
+    }
+    var preset = utilPreset(entity, context);
+    if (preset && preset.name()) {
+        // use the preset name if there is a match
+        return preset.name();
+    }
+    // fallback to the display type (node/way/relation)
+    return utilDisplayType(entity.id);
+}
+
+
+export function utilPreset(entity, context) {
+    return context.presets().match(entity, context.graph());
+}
+
+
 export function utilEntityRoot(entityType) {
     return {
         node: 'n',
@@ -137,9 +201,6 @@ export function utilStringQs(str) {
         var parts = pair.split('=');
         if (parts.length === 2) {
             obj[parts[0]] = (null === parts[1]) ? '' : decodeURIComponent(parts[1]);
-        }
-        if (parts[0] === 'mvt') {
-            obj[parts[0]] = (parts[2] !== undefined) ? (decodeURIComponent(parts[1]) + '=' + decodeURIComponent(parts[2])) : (decodeURIComponent(parts[1]));
         }
         return obj;
     }, {});
@@ -257,11 +318,6 @@ export function utilFastMouse(container) {
 }
 
 
-/* eslint-disable no-proto */
-export var utilGetPrototypeOf = Object.getPrototypeOf || function(obj) { return obj.__proto__; };
-/* eslint-enable no-proto */
-
-
 export function utilAsyncMap(inputs, func, callback) {
     var remaining = inputs.length;
     var results = [];
@@ -326,11 +382,4 @@ export function utilHashcode(str) {
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
-}
-
-// Adds or removes highlight styling for the specified entity's SVG elements in the map.
-export function utilHighlightEntity(id, highlighted, context) {
-    context.surface()
-        .selectAll(utilEntityOrDeepMemberSelector([id], context.graph()))
-        .classed('highlighted', highlighted);
 }

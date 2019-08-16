@@ -1,29 +1,17 @@
-import _flatten from 'lodash-es/flatten';
-import _isEmpty from 'lodash-es/isEmpty';
-import _reduce from 'lodash-es/reduce';
-import _union from 'lodash-es/union';
 import _throttle from 'lodash-es/throttle';
 
-import {
-    geoBounds as d3_geoBounds,
-    geoPath as d3_geoPath
-} from 'd3-geo';
-
-import { text as d3_text } from 'd3-request';
-
-import {
-    event as d3_event,
-    select as d3_select
-} from 'd3-selection';
+import { geoBounds as d3_geoBounds, geoPath as d3_geoPath } from 'd3-geo';
+import { text as d3_text } from 'd3-fetch';
+import { event as d3_event, select as d3_select } from 'd3-selection';
 
 import stringify from 'fast-json-stable-stringify';
 import toGeoJSON from '@mapbox/togeojson';
 
 import { geoExtent, geoPolygonIntersectsPolygon } from '../geo';
 import { services } from '../services';
-import { svgPath } from './index';
+import { svgPath } from './helpers';
 import { utilDetect } from '../util/detect';
-import { utilHashcode } from '../util';
+import { utilArrayFlatten, utilArrayUnion, utilHashcode } from '../util';
 
 
 var _initialized = false;
@@ -347,7 +335,8 @@ export function svgData(projection, context, dispatch) {
                 break;
         }
 
-        if (!_isEmpty(gj)) {
+        gj = gj || {};
+        if (Object.keys(gj).length) {
             _geojson = ensureIDs(gj);
             _src = extension + ' data file';
             this.fitZoom();
@@ -382,7 +371,8 @@ export function svgData(projection, context, dispatch) {
 
 
     drawData.hasData = function() {
-        return !!(_template || !_isEmpty(_geojson));
+        var gj = _geojson || {};
+        return !!(_template || Object.keys(gj).length);
     };
 
 
@@ -436,7 +426,8 @@ export function svgData(projection, context, dispatch) {
         _geojson = null;
         _src = null;
 
-        if (!_isEmpty(gj)) {
+        gj = gj || {};
+        if (Object.keys(gj).length) {
             _geojson = ensureIDs(gj);
             _src = src || 'unknown.geojson';
         }
@@ -481,10 +472,14 @@ export function svgData(projection, context, dispatch) {
         var extension = getExtension(testUrl) || defaultExtension;
         if (extension) {
             _template = null;
-            d3_text(url, function(err, data) {
-                if (err) return;
-                drawData.setFile(extension, data);
-            });
+            d3_text(url)
+                .then(function(data) {
+                    drawData.setFile(extension, data);
+                })
+                .catch(function() {
+                    /* ignore */
+                });
+
         } else {
             drawData.template(url);
         }
@@ -504,7 +499,7 @@ export function svgData(projection, context, dispatch) {
 
         var map = context.map();
         var viewport = map.trimmedExtent().polygon();
-        var coords = _reduce(features, function(coords, feature) {
+        var coords = features.reduce(function(coords, feature) {
             var c = feature.geometry.coordinates;
 
             /* eslint-disable no-fallthrough */
@@ -516,15 +511,15 @@ export function svgData(projection, context, dispatch) {
                     break;
 
                 case 'MultiPolygon':
-                    c = _flatten(c);
+                    c = utilArrayFlatten(c);
                 case 'Polygon':
                 case 'MultiLineString':
-                    c = _flatten(c);
+                    c = utilArrayFlatten(c);
                     break;
             }
             /* eslint-enable no-fallthrough */
 
-            return _union(coords, c);
+            return utilArrayUnion(coords, c);
         }, []);
 
         if (!geoPolygonIntersectsPolygon(viewport, coords, true)) {

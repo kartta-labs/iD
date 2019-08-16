@@ -6,20 +6,22 @@
         "capacity",
         "sanitary_dump_station",
         "power_supply",
-        "internet_access"
+        "internet_access",
+        "internet_access/fee"
     ],
     "moreFields" : [
+        "charge_fee",
         "operator",
         "fee",
-        "payment_multi",
-        "internet_access/fee",
+        "payment_multi_fee",
         "internet_access/ssid",
         "smoking",
         "website",
         "phone",
         "email",
         "fax",
-        "wheelchair"
+        "wheelchair",
+        "reservation"
     ],
     "geometry": [
         "point",

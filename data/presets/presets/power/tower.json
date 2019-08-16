@@ -2,7 +2,9 @@
     "fields": [
         "design",
         "ref",
-        "material"
+        "material",
+        "operator",
+        "manufacturer"
     ],
     "geometry": [
         "point",
@@ -14,5 +16,6 @@
     "tags": {
         "power": "tower"
     },
+    "matchScore": 1.05,
     "name": "High-Voltage Tower"
 }

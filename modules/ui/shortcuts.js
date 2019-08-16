@@ -1,5 +1,3 @@
-import _uniq from 'lodash-es/uniq';
-
 import {
     select as d3_select,
     selectAll as d3_selectAll
@@ -7,9 +5,10 @@ import {
 
 import { t } from '../util/locale';
 import { dataShortcuts } from '../../data';
-import { svgIcon } from '../svg';
+import { svgIcon } from '../svg/icon';
 import { uiCmd } from './cmd';
 import { uiModal } from './modal';
+import { utilArrayUniq } from '../util';
 import { utilDetect } from '../util/detect';
 
 
@@ -186,10 +185,11 @@ export function uiShortcuts(context) {
                     return uiCmd.display(s.indexOf('.') !== -1 ? t(s) : s);
                 });
 
-                return _uniq(arr).map(function(s) {
+                return utilArrayUniq(arr).map(function(s) {
                     return {
                         shortcut: s,
-                        separator: d.separator
+                        separator: d.separator,
+                        suffix: d.suffix
                     };
                 });
             })
@@ -212,6 +212,10 @@ export function uiShortcuts(context) {
                     selection
                         .append('span')
                         .text(d.separator || '\u00a0' + t('shortcuts.or') + '\u00a0');
+                } else if (i === nodes.length - 1 && d.suffix) {
+                    selection
+                        .append('span')
+                        .text(d.suffix);
                 }
             });
 

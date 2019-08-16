@@ -1,5 +1,8 @@
 {
-    "icon": "maki-water",
+    "icon": "iD-waterway-stream",
+    "fields": [
+        "{natural/water}"
+    ],
     "geometry": [
         "area"
     ],

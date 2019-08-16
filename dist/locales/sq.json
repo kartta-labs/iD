@@ -95,7 +95,6 @@
                     "line": "Bëj qoshet e vijës katror.",
                     "area": "Bëj qoshet e sipërfaqes katror."
                 },
-                "key": "S",
                 "annotation": {
                     "line": "Qoshet e vijës u bën katror.",
                     "area": "Qoshet e sipërfaqes u bën katror."
@@ -106,11 +105,8 @@
             },
             "straighten": {
                 "title": "Drejto",
-                "description": "Drejtoni këtë vijë.",
                 "key": "S",
-                "annotation": "U drejtua një vijë.",
-                "too_bendy": "Kjo nuk mund të drejtohet sepse kthehet shumë.",
-                "connected_to_hidden": "Kjo vijë nuk mund drejtohet sepse është lidhur me një tipar të fshehur."
+                "too_bendy": "Kjo nuk mund të drejtohet sepse kthehet shumë."
             },
             "delete": {
                 "title": "Fshij",
@@ -243,9 +239,6 @@
                     "create": "U shtu një kufizim kthesësh.",
                     "delete": "U fshi një kufizim kthesësh."
                 }
-            },
-            "detach_node": {
-                "key": "E"
             }
         },
         "restriction": {
@@ -370,15 +363,12 @@
         },
         "geocoder": {
             "search": "Kërkoni të gjithë botën...",
-            "no_results_visible": "Nuk ka rezultate në zonën e dukshme të hartës",
             "no_results_worldwide": "Nuk u gjetën rezultate"
         },
         "geolocate": {
             "title": "Shfaq Vendndodhjen Time"
         },
         "inspector": {
-            "no_documentation_combination": "Nuk ka dokumentim disponueshëm për këtë kombinin etiketave",
-            "no_documentation_key": "Nuk ka dokumentim disponueshëm për këte çelës",
             "show_more": "Paraqit më tepër",
             "view_on_osm": "Shiko në openstreetmap.org",
             "all_fields": "Të gjithë fushat",
@@ -389,7 +379,6 @@
             "role": "Rol",
             "choose": "Zgjidhni llojën e tiparit",
             "results": "{n} rezultate për {search}",
-            "reference": "Shiko në OpenStreetMap Wiki",
             "back_tooltip": "Ndrysho tiparin",
             "remove": "Hiq",
             "search": "Kërko",
@@ -477,7 +466,6 @@
                 "tooltip": "Hekurudhat"
             },
             "others": {
-                "description": "Të tjera",
                 "tooltip": "Çdo gjë tjetër"
             }
         },
@@ -500,9 +488,6 @@
                     "placeholder": "Vendosni një url"
                 }
             }
-        },
-        "restore": {
-            "heading": "Ju keni ndryshime të paruajtura"
         },
         "save": {
             "title": "Ruaj",
@@ -533,9 +518,6 @@
             }
         },
         "success": {
-            "just_edited": "Ju sapo edituat në OpenStreetMap!",
-            "thank_you": "Faleminderit për përmirësimin e hartës.",
-            "thank_you_location": "Faleminderit për përmirësimin e hartës përreth {where}",
             "help_link_text": "Detajet",
             "help_link_url": "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F",
             "view_on_osm": "Shikoni Ndryshimet në OSM",
@@ -551,11 +533,6 @@
             "okay": "OK",
             "cancel": "Anullo"
         },
-        "splash": {
-            "welcome": "Mirësevini në iD OpenStreetMap editor",
-            "text": "iD është një mjet familar por i fuqishëm për të kontribuar në hartën e hapur më të mirë në botë. Ky është vesioni {version}. Për më shumë informacion shihni {website} dhe raportoni problematikat në {github}.",
-            "start": "Editoni tani"
-        },
         "source_switch": {
             "live": "drejtpërdrejt"
         },
@@ -566,20 +543,6 @@
             "description": "Përshkrim",
             "on_wiki": "{tag} në wiki.osm.org",
             "used_with": "përdorur me {type}"
-        },
-        "validations": {
-            "disconnected_highway": "Hekurudhë e shkëputur",
-            "disconnected_highway_tooltip": "Rrugët duhet të lidhen me rrugë të tjera ose me hyrjet e ndërtesave.",
-            "untagged_point": "Pikë e paetiketuar",
-            "untagged_point_tooltip": "Përgjidhni një karakteristikë që përshkruan çfarë është kjo pikë.",
-            "untagged_line": "Vijë e paetiketuar",
-            "untagged_line_tooltip": "Përgjidhni një karakteristikë që përshkruan çfarë është kjo vijë.",
-            "untagged_area": "Sipërfaqe e paetiketuar",
-            "untagged_area_tooltip": "Përgjidhni një karakteristikë që përshkruan çfarë është kjo sipërfaqe.",
-            "untagged_relation": "Lidhje e paetiketuar",
-            "untagged_relation_tooltip": "Përzgjidhni një karakteristikë që përshkruan se çfarë është kjo lidhje.",
-            "many_deletions": "Ju po fshini {n} karakteristika: {p} nyje, {l} vija, {a} sipërfaqe, {r} lidhje. Jeni të sigurtë që doni ta baëni këtë? Kjo do fshihet nga harta që çdo përdorues shikon në openstreetmap.org.",
-            "tag_suggests_area": "Etiketa {tag} sugjeron se vija duhet të jetë sipërfaqe, por nuk është e tillë."
         },
         "zoom": {
             "in": "Zmadhoni",
@@ -1017,9 +980,6 @@
                 },
                 "shop/dry_cleaning": {
                     "name": "Pastrim Kimik"
-                },
-                "shop/jewelry": {
-                    "name": "Argjendar"
                 },
                 "shop/kiosk": {
                     "name": "Kioskë"

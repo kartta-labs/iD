@@ -150,13 +150,10 @@
             "title": "Wys waar ek is"
         },
         "inspector": {
-            "no_documentation_combination": "Daar is geen dokumentasie beskikbaar vir hierdie kenmerk kombinasie nie",
-            "no_documentation_key": "Daar is geen dokumentasie beskikbaar vir hierdie sleutel nie",
             "show_more": "Wys meer",
             "view_on_osm": "Kyk daarna op openstreetmap.org",
             "choose": "Kies funksie tipe",
             "results": "{n} resultate vir {search}",
-            "reference": "Kyk daarna op OpenStreetMap Wiki",
             "remove": "Verwyder"
         },
         "background": {
@@ -164,21 +161,10 @@
             "description": "Agtergrond stellings",
             "reset": "begin van voor"
         },
-        "restore": {
-            "heading": "Jy het verandering wat nog gebêre moet word",
-            "description": "Wil jy graag ongebêrede veranderinge heroep van 'n vorige kaart veranderingssessie?"
-        },
         "save": {
             "title": "Stoor",
             "no_changes": "Geen verandering om te stoor.",
             "unsaved_changes": "Jy het ongestoorde veranderinge"
-        },
-        "success": {
-            "just_edited": "Jy het nou net 'n OpenStreetMapKaart bydra gemaak!"
-        },
-        "splash": {
-            "welcome": "Welkom by die iD OpenStreetMap program",
-            "walkthrough": "Begin die Deurloop"
         },
         "source_switch": {
             "live": "lewendig",
@@ -189,13 +175,6 @@
             "description": "Beskrywing",
             "on_wiki": "{tag} op wiki.osm.org",
             "used_with": "gebruik met {type}"
-        },
-        "validations": {
-            "untagged_point": "Punt sonder eienskappe",
-            "untagged_line": "Lyn het geen kenmerk",
-            "untagged_area": "Area het geen kenmerk",
-            "tag_suggests_area": "Die kenmerk {tag} is geoormerk vir 'n area nie vir 'n lyn nie.",
-            "deprecated_tags": "Vervalde kenmerke: {tags}"
         },
         "cannot_zoom": "Kan nie verder uitzoom in die huidige mode nie.",
         "help": {
@@ -348,12 +327,6 @@
                 "historic": {
                     "label": "Tipe"
                 },
-                "iata": {
-                    "label": "IATA"
-                },
-                "icao": {
-                    "label": "ICAO"
-                },
                 "incline": {
                     "label": "Steilte"
                 },
@@ -491,8 +464,7 @@
                     "label": "Tipe"
                 },
                 "website": {
-                    "label": "Webwerf",
-                    "placeholder": "http://voorbeeld.co.za/"
+                    "label": "Webwerf"
                 },
                 "wetland": {
                     "label": "Tipe"
@@ -1162,9 +1134,6 @@
                 "shop/hifi": {
                     "name": "Hoëtrouwinkel"
                 },
-                "shop/jewelry": {
-                    "name": "Juwelier"
-                },
                 "shop/laundry": {
                     "name": "Wassery"
                 },
@@ -1305,9 +1274,6 @@
                 },
                 "type/route/tram": {
                     "name": "Tremroete"
-                },
-                "vertex": {
-                    "name": "Ander"
                 },
                 "waterway": {
                     "name": "Waterweg"

@@ -1,20 +1,21 @@
 import { t } from '../util/locale';
-import { behaviorDrawWay } from '../behavior';
+import { behaviorDrawWay } from '../behavior/draw_way';
 
 
-export function modeDrawArea(context, wayId, startGraph) {
+export function modeDrawArea(context, wayID, startGraph, baselineGraph, button) {
     var mode = {
-        button: 'area',
+        button: button,
         id: 'draw-area'
     };
 
     var behavior;
 
+    mode.wayID = wayID;
 
     mode.enter = function() {
-        var way = context.entity(wayId);
+        var way = context.entity(wayID);
 
-        behavior = behaviorDrawWay(context, wayId, undefined, mode, startGraph)
+        behavior = behaviorDrawWay(context, wayID, undefined, mode, startGraph, baselineGraph)
             .tail(t('modes.draw_area.tail'));
 
         var addNode = behavior.addNode;
@@ -40,7 +41,7 @@ export function modeDrawArea(context, wayId, startGraph) {
 
 
     mode.selectedIDs = function() {
-        return [wayId];
+        return [wayID];
     };
 
 

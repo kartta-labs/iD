@@ -1,6 +1,3 @@
-import _find from 'lodash-es/find';
-import _intersection from 'lodash-es/intersection';
-
 import {
     event as d3_event,
     select as d3_select
@@ -8,18 +5,14 @@ import {
 
 import { t } from '../util/locale';
 
-import {
-    actionAddMidpoint,
-    actionConnect,
-    actionMoveNode,
-    actionNoop
-} from '../actions';
+import { actionAddMidpoint } from '../actions/add_midpoint';
+import { actionConnect } from '../actions/connect';
+import { actionMoveNode } from '../actions/move_node';
+import { actionNoop } from '../actions/noop';
 
-import {
-    behaviorEdit,
-    behaviorHover,
-    behaviorDrag
-} from '../behavior';
+import { behaviorDrag } from '../behavior/drag';
+import { behaviorEdit } from '../behavior/edit';
+import { behaviorHover } from '../behavior/hover';
 
 import {
     geoChooseEdge,
@@ -29,10 +22,11 @@ import {
     geoViewportEdge
 } from '../geo';
 
-import { modeBrowse, modeSelect } from './index';
+import { modeBrowse } from './browse';
+import { modeSelect } from './select';
 import { osmJoinWays, osmNode } from '../osm';
-import { uiFlash } from '../ui';
-import { utilKeybinding } from '../util';
+import { uiFlash } from '../ui/flash';
+import { utilArrayIntersection, utilKeybinding } from '../util';
 
 
 
@@ -82,7 +76,7 @@ export function modeDragNode(context) {
         if (nodeGeometry === 'vertex' && targetGeometry === 'vertex') {
             var nodeParentWayIDs = context.graph().parentWays(nodeEntity);
             var targetParentWayIDs = context.graph().parentWays(targetEntity);
-            var sharedParentWays = _intersection(nodeParentWayIDs, targetParentWayIDs);
+            var sharedParentWays = utilArrayIntersection(nodeParentWayIDs, targetParentWayIDs);
             // if both vertices are part of the same way
             if (sharedParentWays.length !== 0) {
                 // if the nodes are next to each other, they are merged
@@ -93,6 +87,13 @@ export function modeDragNode(context) {
             }
         }
         return t('operations.connect.annotation.from_' + nodeGeometry + '.to_' + targetGeometry);
+    }
+
+
+    function shouldSnapToNode(target) {
+        if (!_activeEntity) return false;
+        return _activeEntity.geometry(context.graph()) !== 'vertex' ||
+            (target.geometry(context.graph()) === 'vertex' || context.presets().allowsVertex(target, context.graph()));
     }
 
 
@@ -158,6 +159,8 @@ export function modeDragNode(context) {
         _activeEntity = entity;
         _startLoc = entity.loc;
 
+        hover.ignoreVertex(entity.geometry(context.graph()) === 'vertex');
+
         context.surface().selectAll('.' + _activeEntity.id)
             .classed('active', true);
 
@@ -199,7 +202,9 @@ export function modeDragNode(context) {
             var edge;
 
             if (targetLoc) {   // snap to node/vertex - a point target with `.loc`
-                loc = targetLoc;
+                if (shouldSnapToNode(target)) {
+                    loc = targetLoc;
+                }
 
             } else if (targetNodes) {   // snap to way - a line target with `.nodes`
                 edge = geoChooseEdge(targetNodes, context.mouse(), context.projection, end.id);
@@ -210,8 +215,7 @@ export function modeDragNode(context) {
         }
 
         context.replace(
-            actionMoveNode(entity.id, loc),
-            moveAnnotation(entity)
+            actionMoveNode(entity.id, loc)
         );
 
         // Below here: validations
@@ -302,7 +306,7 @@ export function modeDragNode(context) {
                 // find active ring and test it for self intersections
                 for (k = 0; k < rings.length; k++) {
                     nodes = rings[k].nodes;
-                    if (_find(nodes, function(n) { return n.id === entity.id; })) {
+                    if (nodes.find(function(n) { return n.id === entity.id; })) {
                         activeIndex = k;
                         if (geoHasSelfIntersections(nodes, entity.id)) {
                             return true;
@@ -355,7 +359,6 @@ export function modeDragNode(context) {
         }
     }
 
-
     function end(entity) {
         if (_isCancelled) return;
 
@@ -378,7 +381,7 @@ export function modeDragNode(context) {
                 connectAnnotation(entity, target)
             );
 
-        } else if (target && target.type === 'node') {
+        } else if (target && target.type === 'node' && shouldSnapToNode(target)) {
             context.replace(
                 actionConnect([target.id, entity.id]),
                 connectAnnotation(entity, target)
