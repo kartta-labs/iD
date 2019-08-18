@@ -527,6 +527,14 @@ export function rendererFeatures(context) {
         if (_forceVisible[entity.id]) return false;
 
         var matches = Object.keys(features.getMatches(entity, resolver, geometry));
+
+        if (matches.includes('date_range') && features.hidden('date_range')){
+            return true;
+        } else if (matches.includes('date_range')){
+            var pos = matches.indexOf('date_range');
+            matches.splice(pos, 1);
+        }
+        
         return matches.length && matches.every(function(k) { return features.hidden(k); });
     };
 
