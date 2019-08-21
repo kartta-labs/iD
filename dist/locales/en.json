@@ -510,7 +510,7 @@
         "zoom_in_edit": "Zoom in to edit",
         "login": "Log In",
         "logout": "Log Out",
-        "loading_auth": "Connecting to the Kartta-Labs Server...",
+        "loading_auth": "Connecting to the Kartta Labs Server...",
         "report_a_bug": "Report a bug",
         "help_translate": "Help translate",
         "sidebar": {
@@ -528,9 +528,9 @@
             "rateLimit": "The API is limiting anonymous connections.  You can fix this by logging in."
         },
         "commit": {
-            "title": "Upload to Kartta-Labs",
-            "upload_explanation": "The changes you upload will be visible on all maps that use Kartta-Labs map data.",
-            "upload_explanation_with_user": "The changes you upload as {user} will be visible on all maps that use Kartta-Labs data.",
+            "title": "Upload to Kartta Labs",
+            "upload_explanation": "The changes you upload will be visible on all maps that use Kartta Labs map data.",
+            "upload_explanation_with_user": "The changes you upload as {user} will be visible on all maps that use Kartta Labs data.",
             "request_review": "I would like someone to review my edits.",
             "save": "Upload",
             "cancel": "Cancel",
@@ -579,12 +579,12 @@
                 "edited_by": "Edited By",
                 "changeset": "Changeset",
                 "unknown": "Unknown",
-                "link_text": "History on Kartta-Labs editor",
+                "link_text": "History on Kartta Labs editor",
                 "note_no_history": "No History (New Note)",
                 "note_comments": "Comments",
                 "note_created_date": "Created Date",
                 "note_created_user": "Created By",
-                "note_link_text": "Note on Kartta-Labs editor"
+                "note_link_text": "Note on Kartta Labs editor"
             },
             "location": {
                 "key": "L",
@@ -636,7 +636,7 @@
                 "tooltip_issue": "Center and zoom the map to focus on this issue."
             },
             "show_more": "Show More",
-            "view_on_osm": "View on Kartta-Labs Editor",
+            "view_on_osm": "View on Kartta Labs Editor",
             "view_on_keepRight": "View on keepright.at",
             "all_fields": "All fields",
             "all_tags": "All tags",
@@ -720,12 +720,12 @@
             "data_layers": "Data Layers",
             "layers": {
                 "osm": {
-                    "tooltip": "Map data from Kartta-Labs",
-                    "title": "Kartta-Labs data"
+                    "tooltip": "Map data from Kartta Labs",
+                    "title": "Kartta Labs data"
                 },
                 "notes": {
-                    "tooltip": "Note data from Kartta-Labs",
-                    "title": "Kartta-Labs notes"
+                    "tooltip": "Note data from Kartta Labs",
+                    "title": "Kartta Labs notes"
                 },
                 "keepRight": {
                     "tooltip": "Automatically detected map issues from keepright.at",
@@ -745,7 +745,7 @@
             "date_ranges": "Date Ranges",
             "map_features": "Map Features",
             "autohidden": "These features have been automatically hidden because too many would be shown on the screen.  You can zoom in to edit them.",
-            "osmhidden": "These features have been automatically hidden because the Kartta-Labs map layer is hidden."
+            "osmhidden": "These features have been automatically hidden because the Kartta Labs map layer is hidden."
         },
         "photo_overlays": {
             "title": "Photo Overlays",
@@ -889,12 +889,12 @@
         },
         "save": {
             "title": "Save",
-            "help": "Review your changes and upload them to Kartta-Labs, making them visible to other users.",
+            "help": "Review your changes and upload them to Kartta Labs, making them visible to other users.",
             "no_changes": "No changes to save.",
             "error": "Errors occurred while trying to save",
             "status_code": "Server returned status code {code}",
             "unknown_error_details": "Please ensure you are connected to the internet.",
-            "uploading": "Uploading changes to Kartta-Labs...",
+            "uploading": "Uploading changes to Kartta Labs...",
             "conflict_progress": "Checking for conflicts: {num} of {total}",
             "unsaved_changes": "You have unsaved changes",
             "conflict": {
@@ -921,7 +921,7 @@
             }
         },
         "success": {
-            "just_edited": "You just edited the Kartta-Labs Map!",
+            "just_edited": "You just edited the Kartta Labs Map!",
             "thank_you": "Thank you for improving the map.",
             "thank_you_location": "Thank you for improving the map around {where}.",
             "thank_you_where": {
@@ -945,7 +945,7 @@
             "cancel": "Cancel"
         },
         "splash": {
-            "welcome": "Welcome to the iD Kartta-Labs editor",
+            "welcome": "Welcome to the iD Kartta Labs editor",
             "text": "iD is a friendly but powerful tool for contributing to the world's best free world map. This is version {version}. For more information see {website} and report bugs at {github}.",
             "walkthrough": "Start the Walkthrough",
             "start": "Edit now"
@@ -1368,17 +1368,17 @@
             "newDescription": "Describe the issue.",
             "save": "Save Note",
             "login": "You must log in to change or comment on this note.",
-            "upload_explanation": "Your comments will be publicly visible to all Kartta-Labs Editor users.",
-            "upload_explanation_with_user": "Your comments as {user} will be publicly visible to all Kartta-Labs Editor users."
+            "upload_explanation": "Your comments will be publicly visible to all Kartta Labs Editor users.",
+            "upload_explanation_with_user": "Your comments as {user} will be publicly visible to all Kartta Labs Editor users."
         },
         "help": {
             "title": "Help",
             "key": "H",
             "help": {
                 "title": "Help",
-                "welcome": "Welcome to the iD editor for Kartta-Labs. With this editor you can update the Kartta-Labs map right from your web browser.",
+                "welcome": "Welcome to the iD editor for Kartta Labs. With this editor you can update the Kartta Labs map right from your web browser.",
                 "open_data_h": "Open Data",
-                "open_data": "Edits that you make on this map will be visible to everyone who uses the Kartta-Labs map. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources is strictly forbidden.",
+                "open_data": "Edits that you make on this map will be visible to everyone who uses the Kartta Labs map. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources is strictly forbidden.",
                 "before_start_h": "Before you start",
                 "before_start": "You should be familiar with the project and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing. Click \"Start the Walkthrough\" on this screen to take the tutorial - it takes only about 15 minutes.",
                 "open_source_h": "Open Source",
@@ -2112,7 +2112,7 @@
             },
             "welcome": {
                 "title": "Welcome",
-                "welcome": "Welcome! This walkthrough will teach you the basics of editing on the Kartta-Labs Map.",
+                "welcome": "Welcome! This walkthrough will teach you the basics of editing on the Kartta Labs Map.",
                 "practice": "All of the data in this walkthrough is just for practicing, and any edits that you make in the walkthrough will not be saved.",
                 "words": "This walkthrough will introduce some new words and concepts. When we introduce a new word, we'll use *italics*.",
                 "mouse": "You can use any input device to edit the map, but this walkthrough assumes you have a mouse with left and right buttons. **If you want to attach a mouse, do so now, then click OK.**",
@@ -2122,7 +2122,7 @@
             },
             "navigation": {
                 "title": "Navigation",
-                "drag": "The main map area shows the Kartta-Labs map data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**",
+                "drag": "The main map area shows the Kartta Labs map data on top of a background.{br}You can drag the map by pressing and holding the left mouse button while moving the mouse around. You can also use the arrow keys on your keyboard. **Drag the map!**",
                 "zoom": "You can zoom in or out by scrolling with the mouse wheel or trackpad, or by clicking the {plus} / {minus} buttons. **Zoom the map!**",
                 "features": "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on the map.",
                 "points_lines_areas": "Map features are represented using *points, lines, or areas.*",
@@ -2225,7 +2225,7 @@
             },
             "startediting": {
                 "title": "Start Editing",
-                "help": "You're now ready to edit the Kartta-Labs map!{br}You can replay this walkthrough anytime or view more documentation by clicking the {button} Help button or pressing the '{key}' key.",
+                "help": "You're now ready to edit the Kartta Labs map!{br}You can replay this walkthrough anytime or view more documentation by clicking the {button} Help button or pressing the '{key}' key.",
                 "shortcuts": "You can view a list of commands along with their keyboard shortcuts by pressing the '{key}' key.",
                 "save": "Don't forget to regularly save your changes!",
                 "start": "Start mapping!"
@@ -2282,7 +2282,7 @@
                     "fullscreen": "Enter full screen mode",
                     "sidebar": "Toggle sidebar",
                     "wireframe": "Toggle wireframe mode",
-                    "osm_data": "Toggle Kartta-Labs map data",
+                    "osm_data": "Toggle Kartta Labs map data",
                     "minimap": "Toggle minimap"
                 },
                 "selecting": {
