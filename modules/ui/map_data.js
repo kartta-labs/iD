@@ -92,7 +92,14 @@ export function uiMapData(context) {
 
 
     function setDateRanges(d) {
-        var setValue = parseInt(this.value.replace(/-/g,''),10)
+     //   var setValue = parseInt(this.value.replace(/-/g,''),10)
+        var setValue; 
+      
+        if (typeof this.value === 'string' && this.value.length > 0){
+            var val = this.value.replace(/-/g, '');
+            val = val.padEnd(8, "0");
+            setValue = parseInt(val, 10);
+        }
         setValue = isNaN(setValue) ? (d === 'start_date' ? -Infinity : Infinity) : setValue;
         context.features().dateRange = context.features().dateRange || [-Infinity,Infinity];
         context.features().dateRange[d === 'start_date' ? 0 : 1] = setValue;
@@ -757,7 +764,7 @@ export function uiMapData(context) {
 
     function updateDateRanges() {
         _rangeList
-            .call(drawListItems, dateRanges, 'date', 'date_ranges', setDateRanges, showsDateRanges);
+            .call(drawListItems, dateRanges, 'text', 'date_ranges', setDateRanges, showsDateRanges);
     }
 
 

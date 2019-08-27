@@ -3080,13 +3080,16 @@ div.full-screen > button:hover {
     position: relative;
     display: flex;
 }
+.layer-date-range li {
+    height: 40px;
+}
 
 .layer-date-range label input {
   margin-left: 60px;
 }
 
 .layer-date-range label span {
-  margin-top: -20px;
+  margin-top: -25px;
 }
 
 .layer-list:empty {

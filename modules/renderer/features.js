@@ -105,15 +105,22 @@ export function rendererFeatures(context) {
 
       // Function to parse time (YYYY-MM-DD) to an INT
       var valueToInt = function(value) {
-        return (typeof value === 'string') ?
-          parseInt(value.replace(/-/g, ''), 10) :
-          0;
+        var int = Infinity;
+        
+        if (typeof value === 'string' && value.length > 0){
+            value = value.replace(/-/g, '');
+            value = value.padEnd(8, "0");
+            int = parseInt(value, 10)
+        }
+        return int;
+
       }
 
       // Convert the date range from the entity to a number
       tags = tags || {};
+      var startd = (valueToInt(tags['start_date']) == Infinity) ?  -Infinity : valueToInt(tags['start_date']);
       var entityRange = {
-        'start_date': valueToInt(tags['start_date']),
+        'start_date': startd,
         'end_date': valueToInt(tags['end_date'])
       };
 
@@ -131,7 +138,7 @@ export function rendererFeatures(context) {
     //   console.log('v---------------------------------------------v');
     //   console.log('selectedRange', selectedRange);
     //   console.log('entityRange', entityRange);
-    //   console.log('Return', !((selectedRange['start_date'] <= entityRange['end_date']) && (entityRange['start_date'] <= selectedRange['end_date'])));
+    // //  console.log('Return', !((selectedRange['start_date'] <= entityRange['end_date']) && (entityRange['start_date'] <= selectedRange['end_date'])));
     //   console.log('^---------------------------------------------^');
 
       // Within range if:
