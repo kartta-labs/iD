@@ -46971,30 +46971,6 @@
       "overlay": true
     },
     {
-      "id": "Maxar-Premium",
-      "name": "Maxar Premium Imagery (Beta)",
-      "type": "tms",
-      "template": "https://earthwatch.digitalglobe.com/earthservice/tmsaccess/tms/1.0.0/DigitalGlobe:ImageryTileService@EPSG:3857@jpg/{zoom}/{x}/{-y}.jpg?connectId=91e57457-aa2d-41ad-a42b-3b63a123f54a",
-      "zoomExtent": [0, 22],
-      "terms_url": "https://wiki.openstreetmap.org/wiki/DigitalGlobe",
-      "terms_text": "Terms & Feedback",
-      "default": true,
-      "description": "Maxar Premium is a mosaic composed of Maxar basemap with select regions filled with +Vivid or custom area of interest imagery, 50cm resolution or better, and refreshed more frequently with ongoing updates.",
-      "icon": "https://osmlab.github.io/editor-layer-index/sources/world/Maxar.png"
-    },
-    {
-      "id": "Maxar-Standard",
-      "name": "Maxar Standard Imagery (Beta)",
-      "type": "tms",
-      "template": "https://earthwatch.digitalglobe.com/earthservice/tmsaccess/tms/1.0.0/DigitalGlobe:ImageryTileService@EPSG:3857@jpg/{zoom}/{x}/{-y}.jpg?connectId=d9c5e3ef-6300-4cec-9562-c1f27da6b2d9",
-      "zoomExtent": [0, 22],
-      "terms_url": "https://wiki.openstreetmap.org/wiki/DigitalGlobe",
-      "terms_text": "Terms & Feedback",
-      "default": true,
-      "description": "Maxar Standard is a curated set of imagery covering 86% of the earth’s landmass, with 30-60cm resolution where available, backfilled by Landsat. Average age is 2.31 years, with some areas updated 2x per year.",
-      "icon": "https://osmlab.github.io/editor-layer-index/sources/world/Maxar.png"
-    },
-    {
       "id": "geodata.md.gov-MD_SixInchImagery",
       "name": "MD Latest 6 Inch Aerial Imagery",
       "type": "wms",
