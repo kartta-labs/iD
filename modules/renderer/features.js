@@ -71,6 +71,15 @@ export function rendererFeatures(context) {
             } else {
                 delete q.disable_features;
             }
+            
+            if (context.features().dateRange && disabled.includes('date_range')){
+                q.start_date = context.features().dateRange[0];
+                q.end_date = context.features().dateRange[1];
+            } 
+            if (!disabled.includes('date_range')){
+               delete q.start_date;
+               delete q.end_date;
+            }
             window.location.replace('#' + utilQsString(q, true));
             context.storage('disabled-features', disabled.join(','));
         }
@@ -118,11 +127,19 @@ export function rendererFeatures(context) {
 
       // Convert the date range from the entity to a number
       tags = tags || {};
-      var startd = (valueToInt(tags['start_date']) == Infinity) ?  -Infinity : valueToInt(tags['start_date']);
-      var entityRange = {
-        'start_date': startd,
-        'end_date': valueToInt(tags['end_date'])
-      };
+      var entityRange;
+      if (tags['start_date'] || tags['end_date']){
+        var startd = (valueToInt(tags['start_date']) == Infinity) ?  -Infinity : valueToInt(tags['start_date']);
+        entityRange = {
+          'start_date': startd,
+          'end_date': valueToInt(tags['end_date'])
+        };
+      } else {
+        entityRange = {
+            'start_date': NaN,
+            'end_date': NaN
+          };
+      }
 
       // These will be pulled from the on-screen controls
       // Maybe put them in browser storage?
@@ -639,6 +656,30 @@ export function rendererFeatures(context) {
             var hashDisabled = q.disable_features.replace(/;/g, ',').split(',');
             hashDisabled.forEach(features.disable);
         }
+        if (q.start_date || q.end_date){
+            context.features().dateRange = [-Infinity, Infinity];
+            if (q.start_date){
+                var setStValue;
+                var sdate = q.start_date.replace(/-/g, '');
+                sdate  = sdate.padEnd(8, "0");
+                setStValue = parseInt(sdate, 10);
+                if (!isNaN(setStValue)){
+                    context.features().dateRange[0] = setStValue;
+                }
+            }
+            if (q.end_date){
+                var setEdValue;
+                var edate = q.start_date.replace(/-/g, '');
+                edate  = edate.padEnd(8, "0");
+                setEdValue = parseInt(edate, 10);
+                if (!isNaN(setEdValue)){
+                    context.features().dateRange[1] = setEdValue;
+                }
+            }
+           
+        }
+
+
     };
 
 

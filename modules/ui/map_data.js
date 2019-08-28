@@ -765,6 +765,12 @@ export function uiMapData(context) {
     function updateDateRanges() {
         _rangeList
             .call(drawListItems, dateRanges, 'text', 'date_ranges', setDateRanges, showsDateRanges);
+            if (context.features().dateRange){
+                _rangeList.selectAll('input').each(function(d, i){
+                    d3_select(this).attr("value",context.features().dateRange[i])
+                });
+            }
+
     }
 
 

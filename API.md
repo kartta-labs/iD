@@ -50,6 +50,8 @@ of iD (e.g. `http://preview.ideditor.com/release/`), the following parameters ar
 * __`source`__ - Prefills the changeset source. Pass a url encoded string.<br/>
   _Example:_ `source=Bing%3BMapillary`
 * __`walkthrough=true`__ - Start the walkthrough automatically
+* __`start_date`__ - The start date for the range filter .
+* __`end_date`__ - The end date for the range filter .  
 
 ##### iD on openstreetmap.org (Rails Port)
 
@@ -71,6 +73,8 @@ are available as **regular URL query parameters**:
 * __`hashtags`__ - same as standalone
 * __`locale`__ - same as standalone, but the default locale is set by the language settings in your OSM user account.
 * __`walkthrough`__ - same as standalone
+* __`start_date`__ -  same as standalone .
+* __`end_date`__ -  same as standalone .  
 
 
 ## CSS selectors
