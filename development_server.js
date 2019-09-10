@@ -53,7 +53,7 @@ if (isDevelopment) {
         });
     });
 
-    const server = new StaticServer({ rootPath: __dirname, port: 8080, followSymlink: true });
+    const server = new StaticServer({ rootPath: __dirname, port: 8081, followSymlink: true });
     server.start(function () {
         console.log(colors.yellow('Listening on ' + server.port));
     });

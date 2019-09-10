@@ -431,6 +431,8 @@ export function coreContext() {
     };
 
     context.loadLocale = function(callback) {
+        locale = "en";
+        // hardcode the locale for kartta labs
         if (locale && locale !== 'en' && dataLocales.hasOwnProperty(locale)) {
             localePath = localePath || context.asset('locales/' + locale + '.json');
             d3_json(localePath)

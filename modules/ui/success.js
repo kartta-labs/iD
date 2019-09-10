@@ -98,16 +98,16 @@ export function uiSuccess(context) {
             .append('tr')
             .attr('class', 'summary-row');
 
-        row
-            .append('td')
-            .attr('class', 'cell-icon summary-icon')
-            .append('a')
-            .attr('target', '_blank')
-            .attr('href', changesetURL)
-            .append('svg')
-            .attr('class', 'logo-small')
-            .append('use')
-            .attr('xlink:href', '#iD-logo-osm');
+        // row
+        //     .append('td')
+        //     .attr('class', 'cell-icon summary-icon')
+        //     .append('a')
+        //     .attr('target', '_blank')
+        //     .attr('href', changesetURL)
+        //     .append('svg')
+        //     .attr('class', 'logo-small')
+        //     .append('use')
+        //     .attr('xlink:href', '#iD-logo-osm');
 
         var summaryDetail = row
             .append('td')
@@ -153,8 +153,8 @@ export function uiSuccess(context) {
                 return aSize < bSize ? -1 : aSize > bSize ? 1 : bRank - aRank;
             });
 
-            body
-                .call(showCommunityLinks, matchResources);
+            // body
+            //     .call(showCommunityLinks, matchResources);
         }
     }
 
