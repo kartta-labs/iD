@@ -14,11 +14,13 @@ import { utilArrayChunk, utilArrayGroupBy, utilArrayUniq, utilRebind, utilTiler,
 
 var tiler = utilTiler();
 var dispatch = d3_dispatch('authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
-var urlroot = 'https://www.openstreetmap.org';
+var urlroot = 'http://localhost:8080';
 var oauth = osmAuth({
     url: urlroot,
-    oauth_consumer_key: '5A043yRSEugj4DJ5TljuapfnrflWDte8jTOcWLlT',
-    oauth_secret: 'aB3jKq1TRsCOUrfOIZ6oQMEDmv2ptV76PA54NGLL',
+ //   oauth_consumer_key: '5A043yRSEugj4DJ5TljuapfnrflWDte8jTOcWLlT',
+  //  oauth_secret: 'aB3jKq1TRsCOUrfOIZ6oQMEDmv2ptV76PA54NGLL',
+    oauth_consumer_key: 'eBAsGgHSfamTOUmEpes6xDnrpDBIXsqWqZsYMWAX',
+    oauth_secret: 'vkjxdkM1Lz4DtNcUtrwUziKtWWmFHz8vZEDXJt8N',
     loading: authLoading,
     done: authDone
 });

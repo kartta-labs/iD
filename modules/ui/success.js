@@ -80,10 +80,10 @@ export function uiSuccess(context) {
             .attr('class', 'link-out')
             .attr('target', '_blank')
             .attr('tabindex', -1)
-            .attr('href', t('success.help_link_url'))
-            .call(svgIcon('#iD-icon-out-link', 'inline'))
-            .append('span')
-            .text(t('success.help_link_text'));
+            // .attr('href', t('success.help_link_url'))
+            // .call(svgIcon('#iD-icon-out-link', 'inline'))
+            // .append('span')
+            // .text(t('success.help_link_text'));
 
         var osm = context.connection();
         if (!osm) return;
