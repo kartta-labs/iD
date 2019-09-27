@@ -669,7 +669,7 @@ export function rendererFeatures(context) {
             }
             if (q.end_date){
                 var setEdValue;
-                var edate = q.start_date.replace(/-/g, '');
+                var edate = q.end_date.replace(/-/g, '');
                 edate  = edate.padEnd(8, "0");
                 setEdValue = parseInt(edate, 10);
                 if (!isNaN(setEdValue)){

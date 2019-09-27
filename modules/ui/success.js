@@ -79,7 +79,7 @@ export function uiSuccess(context) {
             .append('a')
             .attr('class', 'link-out')
             .attr('target', '_blank')
-            .attr('tabindex', -1)
+            .attr('tabindex', -1);
             // .attr('href', t('success.help_link_url'))
             // .call(svgIcon('#iD-icon-out-link', 'inline'))
             // .append('span')
