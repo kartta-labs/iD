@@ -228,18 +228,18 @@ export function uiBackground(context) {
 
 
         // "Info / Report a Problem" link
-        selection.selectAll('.imagery-faq')
-            .data([0])
-            .enter()
-            .append('div')
-            .attr('class', 'imagery-faq')
-            .append('a')
-            .attr('target', '_blank')
-            .attr('tabindex', -1)
-            .call(svgIcon('#iD-icon-out-link', 'inline'))
-            .attr('href', 'https://github.com/openstreetmap/iD/blob/master/FAQ.md#how-can-i-report-an-issue-with-background-imagery')
-            .append('span')
-            .text(t('background.imagery_source_faq'));
+        // selection.selectAll('.imagery-faq')
+        //     .data([0])
+        //     .enter()
+        //     .append('div')
+        //     .attr('class', 'imagery-faq')
+        //     .append('a')
+        //     .attr('target', '_blank')
+        //     .attr('tabindex', -1)
+        //     .call(svgIcon('#iD-icon-out-link', 'inline'))
+        //     .attr('href', 'https://github.com/openstreetmap/iD/blob/master/FAQ.md#how-can-i-report-an-issue-with-background-imagery')
+        //     .append('span')
+        //     .text(t('background.imagery_source_faq'));
 
         updateBackgroundList();
     }

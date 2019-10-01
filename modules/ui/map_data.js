@@ -880,6 +880,7 @@ export function uiMapData(context) {
         content
             .append('div')
             .attr('class', 'map-data-photo-overlays')
+            .attr('style', 'display:none')
             .call(uiDisclosure(context, 'photo_overlays', false)
                 .title(t('photo_overlays.title'))
                 .content(renderPhotoOverlays)

@@ -166,28 +166,28 @@ export function uiHelp(context) {
             'offset',
             'offset_change'
         ]],
-        ['streetlevel', [
-            'intro',
-            'using_h',
-            'using',
-            'photos',
-            'viewer'
-        ]],
-        ['gps', [
-            'intro',
-            'survey',
-            'using_h',
-            'using',
-            'tracing',
-            'upload'
-        ]],
-        ['qa', [
-            'intro',
-            'tools_h',
-            'tools',
-            'issues_h',
-            'issues'
-        ]]
+        // ['streetlevel', [
+        //     'intro',
+        //     'using_h',
+        //     'using',
+        //     'photos',
+        //     'viewer'
+        // ]],
+        // ['gps', [
+        //     'intro',
+        //     'survey',
+        //     'using_h',
+        //     'using',
+        //     'tracing',
+        //     'upload'
+        // ]],
+        // ['qa', [
+        //     'intro',
+        //     'tools_h',
+        //     'tools',
+        //     'issues_h',
+        //     'issues'
+        // ]]
     ];
 
     var headings = {
