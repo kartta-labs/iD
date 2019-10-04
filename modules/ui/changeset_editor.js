@@ -85,7 +85,8 @@ export function uiChangesetEditor(context) {
         }
 
         // Add warning if comment mentions Google
-        var hasGoogle = _tags.comment.match(/google/i);
+        // var hasGoogle = _tags.comment.match(/google/i);
+        var hasGoogle = null;
         var commentWarning = selection.select('.form-field-comment').selectAll('.comment-warning')
             .data(hasGoogle ? [0] : []);
 
