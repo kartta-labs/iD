@@ -120,6 +120,10 @@ export function rendererFeatures(context) {
             value = value.replace(/-/g, '');
             value = value.padEnd(8, "0");
             int = parseInt(value, 10)
+            if (isNaN(int)){
+                //if the value is not a number (e.g. a non numerical string "foobar"), set it to infinity
+                int = Infinity;
+            }
         }
         return int;
 
@@ -136,8 +140,8 @@ export function rendererFeatures(context) {
         };
       } else {
         entityRange = {
-            'start_date': NaN,
-            'end_date': NaN
+            'start_date': -Infinity,
+            'end_date': Infinity
           };
       }
 
