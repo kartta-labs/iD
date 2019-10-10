@@ -534,6 +534,10 @@ export function rendererFeatures(context) {
 
         var test = preset.setTags({}, geometry);
         for (var key in _rules) {
+            //date range shouldn't disable a preset
+            if (key == "date_range") {
+                continue;
+            }
             if (_rules[key].filter(test, geometry)) {
                 if (_hidden.indexOf(key) !== -1) {
                     return key;
