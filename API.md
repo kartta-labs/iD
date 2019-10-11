@@ -317,3 +317,14 @@ var id = iD.coreContext()
 ```
 
 This should be set with caution for performance reasons. The OpenStreetMap API has a limitation of 50000 nodes per request.
+
+
+### Custom Nominatim API Base URL for Searches
+
+Nominatim is used for searches and also for reverse searching. By default the nominatim API URL is 'https://nominatim.openstreetmap.org/'. If you wish to use a different nominatim base URL **for searches only, at the moment** (it will use the default API for reverse searching), you can set this via initialising the iD context:
+
+```js
+var id = iD.coreContext()
+  .nominatim('http://nominatim.example.com/')
+
+```

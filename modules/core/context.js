@@ -352,6 +352,18 @@ export function coreContext() {
     };
 
 
+    /* Nominatim */
+    var nominatimUrl = 'https://nominatim.openstreetmap.org/';
+    context.nominatim = function (val) {
+        if (!arguments.length) return context;
+        nominatimUrl = val;
+        return context;
+    }
+
+    context.nominatimApibase = function () {
+        return nominatimUrl;
+    }
+
     /* Debug */
     var debugFlags = {
         tile: false,        // tile boundaries

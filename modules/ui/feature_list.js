@@ -334,7 +334,7 @@ export function uiFeatureList(context) {
 
 
         function geocoderSearch() {
-            services.geocoder.search(search.property('value'), function (err, resp) {
+            services.geocoder.search(context, search.property('value'), function (err, resp) {
                 _geocodeResults = resp || [];
                 drawList();
             });

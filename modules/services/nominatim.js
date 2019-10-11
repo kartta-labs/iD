@@ -72,8 +72,9 @@ export default {
     },
 
 
-    search: function (val, callback) {
+    search: function (context, val, callback) {
         var searchVal = encodeURIComponent(val);
+        apibase = context.nominatimApibase();
         var url = apibase + 'search/' + searchVal + '?limit=10&format=json';
 
         if (_inflight[url]) return;
