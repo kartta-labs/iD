@@ -27,18 +27,6 @@
 },
 
 {
-  "id": "MAPNIK",
-  "name": "OpenStreetMap (Standard)",
-  "type": "tms",
-  "template": "https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png",
-  "zoomExtent": [0, 19],
-  "terms_url": "https://www.openstreetmap.org",
-  "terms_text": "© OpenStreetMap contributors, CC-BY-SA",
-  "default": true,
-  "description": "The default OpenStreetMap layer.",
-  "icon": "https://osmlab.github.io/editor-layer-index/sources/world/OpenStreetMap-GPS.png"
-},
-{
   "id": "mapbox_locator_overlay",
   "name": "Locator Overlay",
   "type": "tms",

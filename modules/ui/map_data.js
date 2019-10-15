@@ -103,7 +103,10 @@ export function uiMapData(context) {
         setValue = isNaN(setValue) ? (d === 'start_date' ? -Infinity : Infinity) : setValue;
         context.features().dateRange = context.features().dateRange || [-Infinity,Infinity];
         context.features().dateRange[d === 'start_date' ? 0 : 1] = setValue;
-        context.flush()
+       
+        context.features().reset()
+        context.dispatchChange();
+
         update();
     }
 

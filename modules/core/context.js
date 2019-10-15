@@ -387,6 +387,10 @@ export function coreContext() {
     context.getDebug = function(flag) {
         return flag && debugFlags[flag];
     };
+ 
+    context.dispatchChange = function(){
+        dispatch.call('change');
+    }
 
 
     /* Container */
