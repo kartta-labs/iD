@@ -12,7 +12,7 @@ import { uiDisclosure } from './disclosure';
 import { uiSettingsCustomData } from './settings/custom_data';
 import { uiTooltipHtml } from './tooltipHtml';
 import { uiCmd } from './cmd';
-
+import { utilQsString, utilStringQs } from '../util';
 
 export function uiMapData(context) {
     var key = t('map_data.key');
@@ -97,7 +97,6 @@ export function uiMapData(context) {
       
         if (typeof this.value === 'string' && this.value.length > 0){
             var val = this.value.replace(/-/g, '');
-            val = val.padEnd(8, "0");
             setValue = parseInt(val, 10);
         }
         setValue = isNaN(setValue) ? (d === 'start_date' ? -Infinity : Infinity) : setValue;
@@ -799,6 +798,18 @@ export function uiMapData(context) {
 
         _QAList
             .call(drawListItems, ['keep-right'], 'checkbox', 'QA', function(d) { toggleLayer(d); }, showsQA);
+
+        if (!window.mocha) {
+            var q = utilStringQs(window.location.hash.substring(1));
+            const disable_features = (q.disable_features
+                                      ?  q.disable_features.replace(/;/g, ',').split(',')
+                                      : []);
+            if (context.features().dateRange && disable_features.includes('date_range')){
+                q.start_date = context.features().dateRange[0];
+                q.end_date = context.features().dateRange[1];
+            } 
+            window.location.replace('#' + utilQsString(q, true));
+        }
     }
 
 
