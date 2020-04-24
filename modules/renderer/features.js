@@ -152,8 +152,12 @@ export function rendererFeatures(context) {
         'end_date': Infinity // valueToInt(entity['end_date'])
       }
       if (context.features().dateRange) {
-        selectedRange.start_date = context.features().dateRange[0];
-        selectedRange.end_date = context.features().dateRange[1];
+        // The values in context.features().dateRange are the (unpadded) values from the ui
+        // input fields (converted to numbers).  We convert them to strings and run them
+        // through valueToInt here to get the corresponding YYYYMMDD values (as ints) for
+        // comparison with entityRange.
+        selectedRange.start_date = valueToInt(context.features().dateRange[0].toString());
+        selectedRange.end_date = valueToInt(context.features().dateRange[1].toString());
       }
 
     //   console.log('v---------------------------------------------v');
@@ -669,7 +673,6 @@ export function rendererFeatures(context) {
             if (q.start_date){
                 var setStValue;
                 var sdate = q.start_date.replace(/-/g, '');
-                sdate  = sdate.padEnd(8, "0");
                 setStValue = parseInt(sdate, 10);
                 if (!isNaN(setStValue)){
                     context.features().dateRange[0] = setStValue;
@@ -678,7 +681,6 @@ export function rendererFeatures(context) {
             if (q.end_date){
                 var setEdValue;
                 var edate = q.end_date.replace(/-/g, '');
-                edate  = edate.padEnd(8, "0");
                 setEdValue = parseInt(edate, 10);
                 if (!isNaN(setEdValue)){
                     context.features().dateRange[1] = setEdValue;
