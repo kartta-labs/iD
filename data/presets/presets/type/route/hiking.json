@@ -5,10 +5,13 @@
         "ref_route",
         "operator",
         "network_foot",
-        "description",
-        "distance",
-        "to", 
-        "from"
+        "network/type",
+        "from",
+        "to"
+    ],
+    "moreFields": [
+        "colour",
+        "distance"
     ],
     "geometry": [
         "relation"

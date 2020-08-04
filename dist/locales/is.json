@@ -7,16 +7,31 @@
             "undo": "afturkalla",
             "zoom_to": "renna að",
             "copy": "afrita",
-            "open_wikidata": "opna á wikidata.org"
+            "view_on": "skoða á {domain}",
+            "favorite": "eftirlæti",
+            "list": "listi",
+            "text": "texti",
+            "deselect": "afvelja"
         },
         "toolbar": {
-            "recent": "Nýlega"
+            "inspect": "Yfirfara",
+            "undo_redo": "Afturkalla / Endurtaka",
+            "recent": "Nýlegt",
+            "favorites": "Eftirlæti",
+            "add_feature": "Bæta við fitju"
         },
         "modes": {
+            "add_feature": {
+                "title": "Bæta við fitju",
+                "description": "Leita að fitjum til að bæta við landakortið.",
+                "result": "{count} niðurstaða",
+                "results": "{count} niðurstöður"
+            },
             "add_area": {
                 "title": "Svæði",
                 "description": "Bættu landsvæðum, byggingum, vötnum eða öðrum svæðum á kortið.",
-                "tail": "Smelltu á kortið til að teikna svæði, til dæmis garð, vatn eða byggingu."
+                "tail": "Smelltu á kortið til að teikna svæði, til dæmis garð, vatn eða byggingu.",
+                "filter_tooltip": "svæði"
             },
             "add_line": {
                 "title": "Lína",
@@ -28,12 +43,17 @@
                 "title": "Punktur",
                 "description": "Bættu veitingastöðum, minnismerkjum, póstkössum eða öðrum punktum við kortið.",
                 "tail": "Smelltu á kortið til að bæta við punkti.",
-                "filter_tooltip": "stig"
+                "filter_tooltip": "punktar"
             },
             "add_note": {
                 "title": "Minnispunktur",
+                "label": "Bæta við minnispunkti",
                 "description": "Fannstu hnökra? Láttu annað kortagerðarfólk vita.",
-                "tail": "Smelltu á kortið til að bæta við minnispunkti."
+                "tail": "Smelltu á kortið til að bæta við minnispunkti.",
+                "key": "N"
+            },
+            "add_preset": {
+                "title": "Bæta við {feature}"
             },
             "browse": {
                 "title": "Fletta",
@@ -52,7 +72,7 @@
         "operations": {
             "add": {
                 "annotation": {
-                    "point": "Bætti punkti við.",
+                    "point": "Bætti við punkti.",
                     "vertex": "Bætti hnúti við leið.",
                     "relation": "Bætti við venslum.",
                     "note": "Bætti við minnispunkti."
@@ -79,7 +99,7 @@
                 "annotation": "Hætti við að teikna."
             },
             "change_role": {
-                "annotation": "Breytti hlutverki tengds aðila."
+                "annotation": "Breytti hlutverki tengds staks."
             },
             "change_tags": {
                 "annotation": "Breytti merkingum."
@@ -87,35 +107,36 @@
             "circularize": {
                 "title": "Hringlaga",
                 "description": {
-                    "line": "Gera línu að hring.",
-                    "area": "Gera svæðið hringlaga."
+                    "single": "Gera þessa fitju hringlaga.",
+                    "multiple": "Gera þessar fitjur hringlaga."
                 },
                 "key": "O",
                 "annotation": {
-                    "line": "Gerði línu að hring.",
-                    "area": "Gerði svæði að hring."
-                },
-                "not_closed": "Það er ekki hægt að gera þetta hringlaga því að það er ekki samfelld röð hnúta.",
-                "too_large": "Ekki er hægt að gera þetta hringlaga því að það sést ekki í nógu mikið af því.",
-                "connected_to_hidden": "Ekki er hægt að gera þetta að hring því að það tengist földu eigindi."
+                    "single": "Gerði fitju hringlaga.",
+                    "multiple": "Gerði fitjur hringlaga."
+                }
             },
             "orthogonalize": {
                 "title": "Hornrétta",
                 "description": {
-                    "line": "Rétta horn þessarar línu.",
-                    "area": "Rétta horn þessa svæðis."
+                    "corner": {
+                        "single": "Rétta þetta horn.",
+                        "multiple": "Rétta þessi horn."
+                    }
                 },
-                "annotation": {
-                    "line": "Rétti horn á línu.",
-                    "area": "Rétti horn svæðis."
-                },
-                "not_squarish": "Það er ekki hægt að hornrétta þetta því að það er ekki kassalaga",
-                "too_large": "Ekki hægt að hornrétta þetta því ekki er nægur hluti þess sýnilegur.",
-                "connected_to_hidden": "Ekki er hægt að hornrétta þetta því að það tengist földu eigindi."
+                "key": "Q"
             },
             "straighten": {
                 "title": "Slétta",
+                "description": {
+                    "points": "Slétta þessa punkta.",
+                    "line": "Slétta þessa línu."
+                },
                 "key": "S",
+                "annotation": {
+                    "points": "Slétti nokkra punkta.",
+                    "line": "Slétti úr línu."
+                },
                 "too_bendy": "Það er ekki hægt að slétta úr þessu því að það beygir of skarplega"
             },
             "delete": {
@@ -150,10 +171,13 @@
                 }
             },
             "add_member": {
-                "annotation": "Bætti við vensl"
+                "annotation": "Bætti staki við vensl"
             },
             "delete_member": {
-                "annotation": "Fjarlægði úr venslum"
+                "annotation": "Fjarlægði stak úr venslum"
+            },
+            "reorder_members": {
+                "annotation": "Endurraðaði stökum vensla."
             },
             "connect": {
                 "annotation": {
@@ -182,7 +206,7 @@
                 "annotation": "Aðskilja línur/svæði.",
                 "not_connected": "Það eru ekki nógu margar línur/svæði hérna til að aftengja.",
                 "connected_to_hidden": "Ekki er hægt að aftengja þetta því að það tengist földu eigindi.",
-                "relation": "Ekki hægt að aftengja þetta því það tengir saman meðlimi í venslum."
+                "relation": "Ekki hægt að aftengja þetta því það tengir saman stök í venslum."
             },
             "merge": {
                 "title": "Sameina",
@@ -293,9 +317,7 @@
             },
             "reverse": {
                 "title": "Snúa við",
-                "description": "Láta þessa línu fara í öfuga átt.",
-                "key": "V",
-                "annotation": "Snéri við línu."
+                "key": "V"
             },
             "split": {
                 "title": "Aðskilja",
@@ -387,12 +409,6 @@
             "hidden_warning": "{count} faldar fitjur",
             "hidden_details": "Þessar fitjur eru núna faldar: {details}"
         },
-        "status": {
-            "error": "Get ekki tengst við API.",
-            "offline": "API er ekki tiltækur. Vinsamlegast reyndu að breyta aftur síðar.",
-            "readonly": "API er í lesham. Þú þarft að bíða með að vista breytingar.",
-            "rateLimit": "API-forritsviðmótið takmarkar nafnlausar tengingar. Þú getur lagað þetta með því að skrá þig inn."
-        },
         "commit": {
             "title": "Senda inn á OpenStreetMap",
             "upload_explanation": "Breytingarnar sem þú gerir verða sýnilegar á öllum kortum sem nota OpenStreetMap gögn.",
@@ -400,7 +416,6 @@
             "request_review": "Ég myndi vilja að einhver yfirfæri breytingarnar mínar.",
             "save": "Senda inn",
             "cancel": "Hætta við",
-            "changes": "{count} breytingar",
             "download_changes": "Sækja osmChange-skrá",
             "errors": "Villur",
             "warnings": "Aðvaranir",
@@ -491,20 +506,11 @@
         },
         "inspector": {
             "zoom_to": {
-                "key": "Z",
-                "title": "Renna að þessu",
-                "tooltip_feature": "Miðja og renna að þessari fitju á kortinu.",
-                "tooltip_note": "Miðja og renna að þessum minnispunkti á kortinu.",
-                "tooltip_data": "Miðja og renna að þessum gögnum á kortinu.",
-                "tooltip_issue": "Miðja og renna að þessu vandamáli á kortinu."
+                "key": "Z"
             },
             "show_more": "Sýna meira",
             "view_on_osm": "Skoða á openstreetmap.org",
             "view_on_keepRight": "Skoða á keepright.at",
-            "all_fields": "Öll gagnasvið",
-            "all_tags": "Öll merki",
-            "all_members": "Allir meðlimir",
-            "all_relations": "Öll vensl",
             "new_relation": "Ný vensl...",
             "choose_relation": "Veldu yfirvensl",
             "role": "Hlutverk",
@@ -513,10 +519,8 @@
             "edit_reference": "breyta/þýða",
             "wiki_reference": "Skoða hjálp/leiðbeiningar",
             "wiki_en_reference": "Skoða leiðbeiningar á ensku",
-            "back_tooltip": "Breyta eigindum",
             "remove": "Fjarlægja",
             "search": "Leita",
-            "multiselect": "Valdar fitjur",
             "unknown": "Óþekkt",
             "incomplete": "<ekki hlaðið niður>",
             "feature_list": "Leita að fitjum/eigindum",
@@ -539,10 +543,7 @@
             "way": "Leið",
             "relation": "Vensl",
             "location": "Staðsetning",
-            "add_fields": "Bæta við svæði:",
-            "lock": {
-                "suggestion": "Merkið \"{label}\" er læst því fyrir er Wikidata-merki. Þú getur eytt því eða breytt merkjunum í \"Öll merki\"."
-            }
+            "add_fields": "Bæta við svæði:"
         },
         "background": {
             "title": "Bakgrunnur",
@@ -554,7 +555,6 @@
             "switch": "Skipta aftur í þennan bakgrunn",
             "custom": "Sérsniðið",
             "overlays": "Þekjur",
-            "imagery_source_faq": "Upplýsingar myndefnis / Tilkynna vandamál",
             "reset": "endurstilla",
             "display_options": "Valkostir birtingar",
             "brightness": "Birtustig",
@@ -566,7 +566,6 @@
                 "tooltip": "Birta smágert yfirlitskort sem hjálpar til við að staðsetja svæðið sem verið er að vinna með í kortaglugganum.",
                 "key": "/"
             },
-            "fix_misalignment": "Laga hliðrun mynda",
             "offset": "Dragðu til í gráa svæðinu hér fyrir neðan til að laga til hliðrun myndefnis, eða settu inn gildi hliðrunar í metrum."
         },
         "map_data": {
@@ -584,11 +583,9 @@
                     "title": "OpenStreetMap minnispunktar"
                 },
                 "keepRight": {
-                    "tooltip": "Vandamál sem greind voru sjálfvirkt hjá keepright.at",
                     "title": "KeepRight-vandamál"
                 },
                 "improveOSM": {
-                    "tooltip": "improveosm.org greindi sjálfvirkt að gögn vantar",
                     "title": "ImproveOSM-vandamál"
                 },
                 "custom": {
@@ -597,7 +594,6 @@
                     "zoom": "Renna að gögnum"
                 }
             },
-            "fill_area": "Fylla svæði",
             "map_features": "Fitjur á korti",
             "autohidden": "Þessar fitjur hafa verið faldar sjálfvirkt því annars yrðu of margar sýndar á skjánum. Þú getur rennt að til að breyta þeim.",
             "osmhidden": "Þessar fitjur hafa verið faldar sjálfvirkt því að OpenStreetMap-lagið er falið."
@@ -679,7 +675,6 @@
             "custom_background": {
                 "tooltip": "Breyta sérsniðnum bakgrunni",
                 "header": "Sérsniðnar bakgrunnsstillingar",
-                "instructions": "Settu inn sniðmát slóðar á kortatígul. Gild viðföng eru:\n   {zoom} eða {z}, {x}, {y} fyrir Z/X/Y tíglaskema\n   {-y} eða {ty} fyrir flett TMS-stíls Y-hnit\n   {u} fyrir fjórtígla skema (quadtile)\n   {switch:a,b,c} fyrir fléttugreiningu á DNS-þjóni (multiplexing)\n\nDæmi:\n{example}",
                 "template": {
                     "placeholder": "Settu inn slóð á sniðmát"
                 }
@@ -727,7 +722,7 @@
                 "deleted": "Þessari fitju var eytt af {user}.",
                 "location": "Þessi fitja var færð bæði af þér og af {user}.",
                 "nodelist": "Hnútum var breytt bæði af þér og af {user}.",
-                "memberlist": "Meðlimum vensla var breytt bæði af þér og af {user}.",
+                "memberlist": "Stökum vensla var breytt bæði af þér og af {user}.",
                 "tags": "Þú breyttir <b>{tag}</b> merkinu í \"{local}\" og {user} breytti því í \"{remote}\"."
             }
         },
@@ -760,10 +755,6 @@
             "on_wiki": "{tag} á wiki.osm.org",
             "used_with": "notað með {type}"
         },
-        "zoom": {
-            "in": "Renna að",
-            "out": "Renna frá"
-        },
         "cannot_zoom": "Get ekki rennt lengra frá í núverandi ham.",
         "full_screen": "Víxla skjáfylli af/á",
         "QA": {
@@ -795,16 +786,11 @@
                 }
             },
             "keepRight": {
-                "title": "KeepRight-villa",
-                "detail_title": "Villa",
                 "detail_description": "Lýsing",
                 "comment": "Athugasemd",
                 "comment_placeholder": "Settu inn athugasemd sem deilt er með öðrum notendum.",
-                "close": "Loka (villa lagfærð)",
-                "ignore": "Hunsa (ekki villa)",
                 "save_comment": "Vista athugasemd",
                 "close_comment": "Loka og gera athugasemd",
-                "ignore_comment": "Hunsa og gera athugasemd",
                 "error_parts": {
                     "this_node": "þessi hnútur",
                     "this_way": "þessi leið",
@@ -824,7 +810,7 @@
                     "this_turn_restriction": "þessi takmörkun á beygju",
                     "this_roundabout": "þetta hringtorg",
                     "this_mini_roundabout": "þetta smáhringtorg",
-                    "this_track": "þessi slóð",
+                    "this_track": "þessi ferill",
                     "this_feature": "þessi fitja",
                     "highway": "þjóðvegur",
                     "railway": "lestarteinar",
@@ -935,6 +921,10 @@
                     "370": {
                         "title": "Tvíteknir staðir"
                     },
+                    "390": {
+                        "title": "Vantar gerð brautar (tracktype)",
+                        "description": "{var1} er ekki með \"tracktype\" merki."
+                    },
                     "401": {
                         "title": "Takmörkun á beygju vantar"
                     },
@@ -1008,8 +998,7 @@
                 "before_start_h": "Áður en þú byrjar",
                 "before_start": "Þú þyrftir að vera kunnug(ur) OpenStreetMap og þessum ritli áður en þú hefst handa við breytingar. iD kemur með skref-fyrir-skref leiðarvísi sem getur kennt þér grunnatriði við breytingar á OpenStreetMap. Smelltu á \"Skoða leiðarvísi\" á þessum skjá til að fara í kennsluna - þetta tekur einungis um 15 mínútur.",
                 "open_source_h": "Opinn hugbúnaður",
-                "open_source": "iD ritillinn er samstarfsverkefni um opinn og frjálsan hugbúnað, og ert þú að nota núna útgáfu {version}. Grunnkóðinn er til taks [á GitHub](https://github.com/openstreetmap/iD).",
-                "open_source_help": "Þú getur hjálpað iD með því að [þýða](https://github.com/openstreetmap/iD/blob/master/CONTRIBUTING.md#translating) hann eða með því að [tilkynna villur](https://github.com/openstreetmap/iD/issues)."
+                "open_source": "iD ritillinn er samstarfsverkefni um opinn og frjálsan hugbúnað, og ert þú að nota núna útgáfu {version}. Grunnkóðinn er til taks [á GitHub](https://github.com/openstreetmap/iD)."
             },
             "overview": {
                 "title": "Yfirlit",
@@ -1048,11 +1037,9 @@
                 "type": "Þú getur smellt á gerð fitjunnar til að breyta henni í einhverja aðra tegund. Öllu sem til er í raunheimum á að vera hægt að bæta inn í OpenStreetMap, þannig að það eru þúsundir mismunandi eiginda sem hægt er að velja úr.",
                 "type_picker": "Tegundavalið birtir algengustu gerðir eiginda, svo sem garða, sjúkrahús, veitingastaði, vegi og byggingar. Þú getur leitað að hverju sem er með því að skrifa inn í leitarreitinn. Þú getur líka smellt á {inspect} **upplýsinga** táknmyndina næst fitjutegundinni til að fræðast meira um hana.",
                 "fields_h": "Gagnasvið",
-                "fields_all_fields": "Hlutinn \"Öll gagnasvið\" inniheldur öll þau eigindi fitju sem þú getur breytt. Í OpenStreetMap eru öll gagnasviðin valkvæð, og það er í góðu lagi að skilja gagnasvið eftir autt ef þú ert ekki viss.",
                 "fields_example": "Hver gerð fitju mun birta mismunandi gagnasvið. Sem dæmi má nefna að gata mun birta svið fyrir vegyfirborð og hraðatakmarkanir, en veitingastaður mun aftur birta svið fyrir hvaða tegundir matar þar fást og á hvaða tímum hann er opinn.",
                 "fields_add_field": "Þú getur líka smellt á \"Bæta við gagnasviði\" fellilistann til að bæta við fleiri sviðum, svo sem lýsingu, Wikipedia-tengli, hjólastólaaðgangi, og fleiru.",
                 "tags_h": "Merki",
-                "tags_all_tags": "Fyrir neðan hlutann með gagnasviðunum, er annar hluti með heitinu \"Öll merki\" sem þú getur flett út til að vinna með hvert einasta OpenStreetMap *merki* fyrir valda fitju. Hvert merki samanstendur af *lykill* (key) og *gildi* (value), gagnaeinindum sem skilgreina öll eigindi/fitjur sem geymd eru í OpenStreetMap.",
                 "tags_resources": "Breytingar á merkjum eiginda/fitja krefst nokkurrar þekkingar á OpenStreetMap. Þú ættir að fletta upp í heimildum á borð við [wiki-síður OpenStreetMap](https://wiki.openstreetmap.org/wiki/Main_Page) eða [Taginfo](https://taginfo.openstreetmap.org/) til að vita meira um ásættanlegar aðferðir við merkingar í OpenStreetMap."
             },
             "points": {
@@ -1111,28 +1098,24 @@
             },
             "relations": {
                 "title": "Vensl",
-                "intro": "*Vensl* (relation) er sérstök tegund eiginda í OpenStreetMap sem hópar saman önnur eigindi/fitjur. Fitjur eða eigindi sem tilheyra venslum kallast *meðlimir* (members), og getur hver meðlimur haft *hlutverk* (role) í venslunum.",
+                "intro": "*Vensl* (relation) er sérstök tegund eiginda í OpenStreetMap sem hópar saman önnur eigindi/fitjur. Fitjur eða eigindi sem tilheyra venslum kallast *stök* (members), og getur hvert stak haft *hlutverk* (role) í venslunum.",
                 "edit_relation_h": "Breytingar á venslum",
-                "edit_relation": "Neðst í fitjuritlinum geturðu flett út hlutanum \"Öll vensl\" til að sjá hvort valin fitja sé meðlimur í einhverjum venslum. Þú getur svo smellt á venslin til að velja þau og breyta þeim.",
-                "edit_relation_add": "Til að bæta fitju við vensl, veldu þá fitjuna, smelltu síðan á {plus} plúshnappinn í \"Öll vensl\" hluta fitjuritilsins. Þú getur þá valið úr lista yfir nálæg vensl eða farið á valkostinn \"Ný vensl...\".",
-                "edit_relation_delete": "Þú getur einnig smellt á {delete} **Eyða** hnappin til að fjarlægja völdu fitjuna úr venslunum. Ef þú fjarlægir alla meðlimi úr venslum, verður þeim venslum eytt sjálfvirkt.",
+                "edit_relation_delete": "Þú getur einnig smellt á {delete} **Eyða** hnappin til að fjarlægja völdu fitjuna úr venslunum. Ef þú fjarlægir öll stök úr venslum, verður þeim venslum eytt sjálfvirkt.",
                 "maintain_relation_h": "Viðhalda venslum",
-                "maintain_relation": "Oftast nær mun iD viðhalda venslum um leið og þú sýslar með breytingar. Þú ættir að fara varlega þegar þú ert að skipta út fitjum sem gætu verið meðlimir í venslum. Til dæmis ef þú eyðir vegbút og teiknar nýjan veghluta í stað hans, ættirðu að bæta nýja veghlutanum í sömu vensl (vegir, beygjutakmarkanir, o.s.frv.) eins og upprunalegi vegurinn hafði.",
+                "maintain_relation": "Oftast nær mun iD viðhalda venslum um leið og þú sýslar með breytingar. Þú ættir að fara varlega þegar þú ert að skipta út fitjum sem gætu verið stök í venslum. Til dæmis ef þú eyðir vegbút og teiknar nýjan veghluta í stað hans, ættirðu að bæta nýja veghlutanum í sömu vensl (vegir, beygjutakmarkanir, o.s.frv.) eins og upprunalegi vegurinn hafði.",
                 "relation_types_h": "Tegundir vensla",
                 "multipolygon_h": "Fjölhyrningar (Flákar)",
                 "multipolygon": "Venslin *fjölhyrningur* er hópur af einni eða fleiri *ytri* fitjum og einni eða fleiri *innri* fitjum. Ytri fitjurnar skilgreina útjaðra fjölhyrningsins og innri fitjurnar skilgreina undirsvæði eða holur sem skornar eru út úr innri fleti fjölhyrningsins.",
                 "multipolygon_create": "Til að búa til fjölhyrning, til dæmis byggingu með inngarði, teiknaðu þá útjaðarinn sem svæði og svo innri jaðrana sem línu eða annarskonar svæði. Síðan skaltu nota `{shift}`+{leftclick} vinstri-smell til að velja báðar fitjurnar, {rightclick} hægri-smella til að birta breytingavalmyndina, og velja síðan {merge} **Sameina** skipunina.",
-                "multipolygon_merge": "Sameining nokkurra lína eða svæða mun útbúa ný fjölhyrningsvensl með öll valin svæði sem meðlimi. iD mun velja innri og ytri hlutverkin sjálfvirkt, byggt á því hvaða fitjur eru innan í öðrum fitjum.",
+                "multipolygon_merge": "Sameining nokkurra lína eða svæða mun útbúa ný fjölhyrningsvensl með öll valin svæði sem stök. iD mun velja innri og ytri hlutverkin sjálfvirkt, byggt á því hvaða fitjur eru innan í öðrum fitjum.",
                 "turn_restriction_h": "Takmarkanir á beygjum",
                 "turn_restriction": "Venslin *takmörkun á beygjum* er hópur nokkurra vegbúta á vegamótum. Takmarkanir á beygjum samanstanda af *frá* (from) vegi, *gegnum* (via) hnút eða vegi, og *til* (to) vegar.",
                 "turn_restriction_field": "Til að breyta beygjutakmörkunum, veldu þá tengihnút þar sem tveir eða fleiri vegir mætast. Fitjuritillinn mun birta sérstakt \"Takmarkanir á beygjum\" gagnasvið sem sýnir líkan af gatnamótunum.",
                 "turn_restriction_editing": "Í gagnasviðinu \"Takmarkanir á beygjum\", smelltu til að velja \"frá\" (from) veg, og skoðaðu hvort beygjur séu leyfðar eða takmarkaðar við einhverja af \"til\" (to) vegina. Þú getur smellt á beygjutáknin til að víxla þeim á milli leyft og takmarkað. iD mun útbúa venslin sjálfvirkt og stilla hlutverkin 'frá', 'gegnum', og 'til' eftir því sem þú hefur valið.",
                 "route_h": "Leiðir",
                 "route": "Venslin *leið* er hópur einnar eða fleiri fitja sem saman mynda leiðakerfi, svo sem eins og strætisvagnaleið, gönguleið eða þjóðveg.",
-                "route_add": "Til að bæta fitju við leiðavensl, veldu þá fitjuna og skrunaðu niður í hlutann \"Öll vensl\" í fitjuritlinum, smelltu síðan á {plus} plúshnappinn til að bæta þessari fitju við einhver nærliggjandi vensl eða í ný vensl.",
                 "boundary_h": "Svæðamörk",
-                "boundary": "Venslin *svæðamörk* er hópur einnar eða fleiri línufitja sem saman mynda stjórnsýslutengd mörk svæða.",
-                "boundary_add": "Til að bæta fitju við svæðamarkavensl, veldu þá fitjuna og skrunaðu niður í hlutann \"Öll vensl\" í fitjuritlinum, smelltu síðan á {plus} plúshnappinn til að bæta þessari fitju við einhver nærliggjandi vensl eða í ný vensl."
+                "boundary": "Venslin *svæðamörk* er hópur einnar eða fleiri línufitja sem saman mynda stjórnsýslutengd mörk svæða."
             },
             "notes": {
                 "title": "Minnispunktar",
@@ -1176,7 +1159,6 @@
                 "title": "Gæðastýring",
                 "intro": "Verkfæri *Gæðastjórnunar* (Q/A) geta fundið gölluð merki, ótengda vegi og önnur vandamál í OpenStreetMap, sem kortagerðarfólk getur þá lagað. Til að skoða fyrirliggjandi Q/A vandamál, smelltu á spjaldið {data} **Kortagögn** til að virkja tiltekið Q/A-lag.",
                 "tools_h": "Verkfæri",
-                "tools": "Eftirfarandi verkfæri eru studd um þessar mundir: [KeepRight](https://www.keepright.at/) og [ImproveOSM](https://improveosm.org/en/). Stefnt er að því að iD styðji [Osmose](https://osmose.openstreetmap.fr/) og fleiri Q/A-verkfæri í framtíðinni.",
                 "issues_h": "Meðhöndlun vandamála"
             },
             "field": {
@@ -1221,6 +1203,12 @@
         "issues": {
             "warnings": {
                 "list_title": "Aðvaranir ({count})"
+            },
+            "missing_role": {
+                "message": "{member} hefur ekkert hlutverk innan {relation}"
+            },
+            "impossible_oneway": {
+                "title": "Ómögulegar einstefnur"
             },
             "fix": {
                 "connect_endpoints": {
@@ -1522,9 +1510,7 @@
                 },
                 "display_options": {
                     "title": "Valkostir birtingar",
-                    "background": "Birta valkosti bakgrunns",
                     "background_switch": "Skipta aftur í síðasta bakgrunn",
-                    "map_data": "Birta valkosti kortagagna",
                     "fullscreen": "Fara í skjáfylliham",
                     "sidebar": "Víxla hliðarspjaldi",
                     "wireframe": "Víxla útlínuham af/á",
@@ -1538,9 +1524,7 @@
                     "search": "Finna fitjur sem samsvara leitartexta"
                 },
                 "with_selected": {
-                    "title": "Með fitju valda",
-                    "edit_menu": "Víxla breytingavalmynd af/á",
-                    "zoom_to": "Renna að valinni fitju"
+                    "edit_menu": "Víxla breytingavalmynd af/á"
                 },
                 "vertex_selected": {
                     "title": "Með valinn hnút",
@@ -1569,7 +1553,6 @@
                     "merge": "Sameina (setja saman) valdar fitjur",
                     "disconnect": "Aftengja fitjur við valinn hnút",
                     "split": "Aðskilja línu í tvennt við valinn hnút",
-                    "reverse": "Snúa við línu",
                     "move": "Færa valdar fitjur",
                     "rotate": "Snúa völdum fitjum",
                     "circularize": "Gera lokaða línu eða svæði hringlaga",
@@ -1636,6 +1619,15 @@
                 "category-landuse": {
                     "name": "Fitjur fyrir landnotkun"
                 },
+                "category-natural": {
+                    "name": "Náttúrufyrirbæri"
+                },
+                "category-path": {
+                    "name": "Stígar"
+                },
+                "category-rail": {
+                    "name": "Lestarteinar"
+                },
                 "category-restriction": {
                     "name": "Takmörkunareigindi"
                 },
@@ -1653,6 +1645,9 @@
                 },
                 "category-utility": {
                     "name": "Eigindi aðstöðu"
+                },
+                "category-waterway": {
+                    "name": "Siglingaleiðir"
                 }
             },
             "fields": {
@@ -2025,7 +2020,7 @@
                         },
                         "track": {
                             "description": "Hjólabraut sem aðskilin er frá annarri umferð með eiginlegri hindrun",
-                            "title": "Hjólaslóð"
+                            "title": "Hjólabraut"
                         }
                     },
                     "placeholder": "ekkert",
@@ -2064,9 +2059,6 @@
                 "devices": {
                     "label": "Tæki",
                     "placeholder": "1, 2, 3..."
-                },
-                "diaper": {
-                    "label": "Bleyjuskipti í boði"
                 },
                 "diplomatic": {
                     "label": "Tegund"
@@ -2151,9 +2143,6 @@
                         "yes": "Já (óskilgreint)"
                     },
                     "placeholder": "Snertistrengur, rafteinar..."
-                },
-                "elevation": {
-                    "label": "Hæð"
                 },
                 "email": {
                     "label": "Tölvupóstur",
@@ -2271,7 +2260,6 @@
                     "label": "Handrið"
                 },
                 "hashtags": {
-                    "label": "Tillögur að myllumerkjum",
                     "placeholder": "#dæmi"
                 },
                 "healthcare": {
@@ -2361,7 +2349,6 @@
                     "label": "Tímabundið rennsli"
                 },
                 "internet_access": {
-                    "label": "Internetaðgangur",
                     "options": {
                         "no": "Nei",
                         "terminal": "Útstöð",
@@ -2369,9 +2356,6 @@
                         "wlan": "Þráðlaust",
                         "yes": "Já"
                     }
-                },
-                "internet_access/fee": {
-                    "label": "Gjald fyrir internetaðgang"
                 },
                 "junction_line": {
                     "options": {
@@ -2448,10 +2432,6 @@
                 },
                 "level": {
                     "label": "Hæð"
-                },
-                "levels": {
-                    "label": "Hæðir",
-                    "placeholder": "2, 4, 6..."
                 },
                 "liaison": {
                     "label": "Tegund"
@@ -2566,7 +2546,6 @@
                     "label": "Leiðakerfi"
                 },
                 "network_bicycle": {
-                    "label": "Tegund leiðakerfis",
                     "options": {
                         "icn": "Alþjóðlegt",
                         "lcn": "Staðarkerfi",
@@ -2576,7 +2555,6 @@
                     "placeholder": "Staðarkerfi, Héraðskerfi, Landskerfi, Alþjóðlegt"
                 },
                 "network_foot": {
-                    "label": "Tegund kerfis",
                     "options": {
                         "iwn": "Alþjóðlegt",
                         "lwn": "Staðarkerfi",
@@ -2586,7 +2564,6 @@
                     "placeholder": "Staðarkerfi, Héraðskerfi, Landskerfi, Alþjóðlegt"
                 },
                 "network_horse": {
-                    "label": "Tegund leiðakerfis",
                     "options": {
                         "ihn": "Alþjóðlegt",
                         "lhn": "Staðarkerfi",
@@ -2780,15 +2757,6 @@
                 },
                 "playground": {
                     "label": "Tegund"
-                },
-                "playground/baby": {
-                    "label": "Barnastóll"
-                },
-                "playground/max_age": {
-                    "label": "Hámarksaldur"
-                },
-                "playground/min_age": {
-                    "label": "Lágmarksaldur"
                 },
                 "population": {
                     "label": "Íbúafjöldi"
@@ -3403,9 +3371,6 @@
                 "advertising/billboard": {
                     "name": "Auglýsingaspjald"
                 },
-                "aerialway": {
-                    "name": "Víralyfta"
-                },
                 "aerialway/cable_car": {
                     "name": "Kláfur"
                 },
@@ -3414,9 +3379,6 @@
                 },
                 "aerialway/drag_lift": {
                     "name": "Toglyfta"
-                },
-                "aerialway/gondola": {
-                    "name": "Eggjalyfta"
                 },
                 "aerialway/goods": {
                     "name": "Vöruvíralyfta"
@@ -3435,15 +3397,6 @@
                 },
                 "aerialway/rope_tow": {
                     "name": "Kaðallyfta"
-                },
-                "aerialway/station": {
-                    "name": "Lyftustöð"
-                },
-                "aerialway/t-bar": {
-                    "name": "T-lyfta"
-                },
-                "aeroway": {
-                    "name": "Loftlína"
                 },
                 "aeroway/aerodrome": {
                     "name": "Flugvöllur"
@@ -3533,14 +3486,8 @@
                     "name": "Kaffihús",
                     "terms": "tehús"
                 },
-                "amenity/car_pooling": {
-                    "name": "Bílasamnýting"
-                },
                 "amenity/car_rental": {
                     "name": "Bílaleiga"
-                },
-                "amenity/car_sharing": {
-                    "name": "Bíladeiling"
                 },
                 "amenity/car_wash": {
                     "name": "Bílaþvottur"
@@ -3663,9 +3610,6 @@
                 "amenity/internet_cafe": {
                     "name": "Netkaffihús"
                 },
-                "amenity/kindergarten": {
-                    "name": "Forskóla-/Leikskólalóð"
-                },
                 "amenity/language_school": {
                     "name": "Tungumálaskóli"
                 },
@@ -3699,9 +3643,6 @@
                 "amenity/parking/multi-storey": {
                     "name": "Bílastæðahús á mörgum hæðum"
                 },
-                "amenity/parking_entrance": {
-                    "name": "Inngangur/Útgangur bílastæðahúss"
-                },
                 "amenity/parking_space": {
                     "name": "Bílastæðarými"
                 },
@@ -3734,9 +3675,6 @@
                     "name": "Lögregla",
                     "terms": "löggan"
                 },
-                "amenity/post_box": {
-                    "name": "Póstkassi"
-                },
                 "amenity/post_office": {
                     "name": "Pósthús"
                 },
@@ -3766,9 +3704,6 @@
                 },
                 "amenity/recycling_container": {
                     "name": "Endurvinnslugámur"
-                },
-                "amenity/register_office": {
-                    "name": "Skráningarskrifstofa"
                 },
                 "amenity/restaurant": {
                     "name": "Veitingahús"
@@ -3833,9 +3768,6 @@
                 "amenity/school": {
                     "name": "Skólalóð"
                 },
-                "amenity/scrapyard": {
-                    "name": "Brotajárnshaugur"
-                },
                 "amenity/shelter": {
                     "name": "Skýli"
                 },
@@ -3865,9 +3797,6 @@
                 },
                 "amenity/studio": {
                     "name": "Upptökustúdíó"
-                },
-                "amenity/swimming_pool": {
-                    "name": "Sundlaug"
                 },
                 "amenity/taxi": {
                     "name": "Leigubílastæði"
@@ -3962,17 +3891,11 @@
                 "area": {
                     "name": "Svæði"
                 },
-                "area/highway": {
-                    "name": "Yfirborð vegar"
-                },
                 "attraction/amusement_ride": {
                     "name": "Skemmtitæki"
                 },
                 "attraction/big_wheel": {
                     "name": "Parísarhjól"
-                },
-                "attraction/bumper_car": {
-                    "name": "Ákeyrslubílar"
                 },
                 "attraction/bungee_jumping": {
                     "name": "Teygjustökk"
@@ -3983,17 +3906,8 @@
                 "attraction/dark_ride": {
                     "name": "Draugahús"
                 },
-                "attraction/drop_tower": {
-                    "name": "Fallturn"
-                },
                 "attraction/maze": {
                     "name": "Völundarhús"
-                },
-                "attraction/pirate_ship": {
-                    "name": "Sjóræningjaskip"
-                },
-                "attraction/river_rafting": {
-                    "name": "Flúðasiglingar"
                 },
                 "attraction/roller_coaster": {
                     "name": "Rússíbani"
@@ -4155,9 +4069,6 @@
                 "building/industrial": {
                     "name": "Iðnaðarhúsnæði"
                 },
-                "building/kindergarten": {
-                    "name": "Forskóla-/Leikskólabygging"
-                },
                 "building/mosque": {
                     "name": "Moskubygging"
                 },
@@ -4288,9 +4199,6 @@
                 "craft/insulator": {
                     "name": "Einangrun"
                 },
-                "craft/jeweler": {
-                    "name": "Skartgripasali"
-                },
                 "craft/key_cutter": {
                     "name": "Lyklaþjónusta"
                 },
@@ -4299,9 +4207,6 @@
                 },
                 "craft/metal_construction": {
                     "name": "Málmsmíði (byggingar)"
-                },
-                "craft/optician": {
-                    "name": "Gleraugnasali"
                 },
                 "craft/painter": {
                     "name": "Málari"
@@ -4317,9 +4222,6 @@
                 },
                 "craft/plumber": {
                     "name": "Pípari"
-                },
-                "craft/pottery": {
-                    "name": "Leirkeragerð"
                 },
                 "craft/rigger": {
                     "name": "Stagari (rigger)"
@@ -4417,9 +4319,6 @@
                 "emergency/yes": {
                     "name": "Neyðaraðgangur: Já"
                 },
-                "entrance": {
-                    "name": "Inngangur/Útgangur"
-                },
                 "ford": {
                     "name": "Vað"
                 },
@@ -4485,9 +4384,6 @@
                 },
                 "healthcare/speech_therapist": {
                     "name": "Talmeinafræðingur"
-                },
-                "highway": {
-                    "name": "Þjóðvegur"
                 },
                 "highway/bridleway": {
                     "name": "Reiðleið"
@@ -4589,7 +4485,10 @@
                     "name": "Stofnrein"
                 },
                 "highway/raceway": {
-                    "name": "Keppnisbraut (mótorsport)"
+                    "name": "Kappakstursbraut"
+                },
+                "highway/raceway/motocross": {
+                    "name": "Mótocrossbraut"
                 },
                 "highway/residential": {
                     "name": "Íbúðagata"
@@ -4650,7 +4549,8 @@
                     "name": "Safnbrautarrein"
                 },
                 "highway/track": {
-                    "name": "Vegslóði án viðhalds"
+                    "name": "Vegslóði án viðhalds",
+                    "terms": "vegslóði án þjónustu,skógarvegur,aðkoma slökkviliðs,bændaslóðar,virkjanavegir,fjórhjóladrifs,4x4,utanvegaslóð"
                 },
                 "highway/traffic_mirror": {
                     "name": "Umferðarspegill"
@@ -4715,15 +4615,6 @@
                 "junction": {
                     "name": "Tenging"
                 },
-                "junction/roundabout": {
-                    "name": "Hringtorg"
-                },
-                "landuse": {
-                    "name": "Landnotkun"
-                },
-                "landuse/allotments": {
-                    "name": "Samfélagsgarður"
-                },
                 "landuse/aquaculture": {
                     "name": "Vatnseldi"
                 },
@@ -4741,9 +4632,6 @@
                 },
                 "landuse/commercial": {
                     "name": "Atvinnusvæði"
-                },
-                "landuse/construction": {
-                    "name": "Byggingarframkvæmdir"
                 },
                 "landuse/farm": {
                     "name": "Akurlendi"
@@ -4799,14 +4687,8 @@
                 "landuse/military/naval_base": {
                     "name": "Flotastöð"
                 },
-                "landuse/military/obstacle_course": {
-                    "name": "Hindrunarhlaupabraut"
-                },
                 "landuse/military/range": {
                     "name": "Hersvæði"
-                },
-                "landuse/military/training_area": {
-                    "name": "Æfingasvæði"
                 },
                 "landuse/orchard": {
                     "name": "Aldingarður"
@@ -4841,9 +4723,6 @@
                 "landuse/vineyard": {
                     "name": "Vínekra"
                 },
-                "leisure": {
-                    "name": "Skemmtun"
-                },
                 "leisure/adult_gaming_centre": {
                     "name": "Fjárhættuspilasalur"
                 },
@@ -4873,9 +4752,6 @@
                 },
                 "leisure/dog_park": {
                     "name": "Hundagarður"
-                },
-                "leisure/firepit": {
-                    "name": "Eldstæði"
                 },
                 "leisure/fishing": {
                     "name": "Veiðistaður"
@@ -5039,6 +4915,12 @@
                 "leisure/track": {
                     "name": "Keppnisbraut (ekki mótorsport)"
                 },
+                "leisure/track/cycling": {
+                    "name": "Hjólreiðabraut"
+                },
+                "leisure/track/horse_racing": {
+                    "name": "Kappreiðabraut"
+                },
                 "leisure/track/running": {
                     "name": "Hlaupabraut"
                 },
@@ -5048,9 +4930,6 @@
                 "line": {
                     "name": "Lína"
                 },
-                "man_made": {
-                    "name": "Manngert"
-                },
                 "man_made/adit": {
                     "name": "Námuinngangur"
                 },
@@ -5059,9 +4938,6 @@
                 },
                 "man_made/breakwater": {
                     "name": "Sjóvarnargarður"
-                },
-                "man_made/bridge": {
-                    "name": "Brú"
                 },
                 "man_made/chimney": {
                     "name": "Skorsteinn"
@@ -5080,9 +4956,6 @@
                 },
                 "man_made/gasometer": {
                     "name": "Gasmælir"
-                },
-                "man_made/groyne": {
-                    "name": "Öldubrjótur"
                 },
                 "man_made/lighthouse": {
                     "name": "Viti"
@@ -5147,9 +5020,6 @@
                 "man_made/tower/communication": {
                     "name": "Samkiptaturn"
                 },
-                "man_made/tunnel": {
-                    "name": "Göng"
-                },
                 "man_made/wastewater_plant": {
                     "name": "Skólphreinsistöð"
                 },
@@ -5170,18 +5040,6 @@
                 },
                 "man_made/works": {
                     "name": "Verksmiðja"
-                },
-                "manhole": {
-                    "name": "Mannop"
-                },
-                "manhole/drain": {
-                    "name": "Yfirfall"
-                },
-                "manhole/telecom": {
-                    "name": "Mannop fyrir fjarskipti"
-                },
-                "natural": {
-                    "name": "Náttúrulegt"
                 },
                 "natural/bare_rock": {
                     "name": "Berar klappir"
@@ -5253,9 +5111,6 @@
                 "natural/water": {
                     "name": "Vatn"
                 },
-                "natural/water/canal": {
-                    "name": "Síki"
-                },
                 "natural/water/lake": {
                     "name": "Stöðuvatn"
                 },
@@ -5265,17 +5120,8 @@
                 "natural/water/reservoir": {
                     "name": "Lón"
                 },
-                "natural/water/river": {
-                    "name": "Á"
-                },
-                "natural/water/stream": {
-                    "name": "Lækur"
-                },
                 "natural/wetland": {
                     "name": "Votlendi"
-                },
-                "natural/wood": {
-                    "name": "Skógur"
                 },
                 "noexit/yes": {
                     "name": "Enginn útgangur"
@@ -5370,9 +5216,6 @@
                 "office/physician": {
                     "name": "Læknir"
                 },
-                "office/political_party": {
-                    "name": "Stjórnmálaflokkur"
-                },
                 "office/private_investigator": {
                     "name": "Einkaspæjaraskrifstofa"
                 },
@@ -5400,29 +5243,8 @@
                 "office/water_utility": {
                     "name": "Skrifstofa vatnsveitu"
                 },
-                "piste/downhill": {
-                    "name": "Rennslis/gönguskíðaleið"
-                },
-                "piste/hike": {
-                    "name": "Snjóþrúgu eða vetrargönguleið"
-                },
-                "piste/ice_skate": {
-                    "name": "Skautabraut"
-                },
-                "piste/nordic": {
-                    "name": "Gönguskíðaleið"
-                },
-                "piste/piste": {
-                    "name": "Vetraríþróttaleiðir"
-                },
                 "piste/skitour": {
                     "name": "Ferðaskíðaleið"
-                },
-                "piste/sled": {
-                    "name": "Sleðabraut"
-                },
-                "piste/sleigh": {
-                    "name": "Sleðabraut"
                 },
                 "place": {
                     "name": "Staður"
@@ -5517,9 +5339,6 @@
                 "point": {
                     "name": "Punktur"
                 },
-                "power": {
-                    "name": "Orka"
-                },
                 "power/cable/underground": {
                     "name": "Jarðstrengur"
                 },
@@ -5546,9 +5365,6 @@
                 },
                 "power/pole": {
                     "name": "Rafmagnsstaur"
-                },
-                "power/sub_station": {
-                    "name": "Undirstöð"
                 },
                 "power/substation": {
                     "name": "Undirstöð"
@@ -5632,9 +5448,6 @@
                 "public_transport/stop_position_trolleybus": {
                     "name": "Staðsetning stöðvunar rafknúinna strætisvagna"
                 },
-                "railway": {
-                    "name": "Lest"
-                },
                 "railway/abandoned": {
                     "name": "Yfirgefnir lestarteinar"
                 },
@@ -5651,41 +5464,20 @@
                 "railway/disused": {
                     "name": "Ónotaðir lestarteinar"
                 },
-                "railway/funicular": {
-                    "name": "Toglest"
-                },
                 "railway/halt": {
                     "name": "Lestarstöð (stöðvun / beiðni)"
                 },
                 "railway/level_crossing": {
                     "name": "Þverun járnbrautar (vegur)"
                 },
-                "railway/light_rail": {
-                    "name": "Léttlest"
-                },
                 "railway/milestone": {
                     "name": "Vegalengdarmerki járnbrautar"
-                },
-                "railway/miniature": {
-                    "name": "Smájárnbraut"
-                },
-                "railway/monorail": {
-                    "name": "Einteinungur"
-                },
-                "railway/narrow_gauge": {
-                    "name": "Mjótt lestarspor"
-                },
-                "railway/rail": {
-                    "name": "Lestarteinar"
                 },
                 "railway/signal": {
                     "name": "Lestarmerki"
                 },
                 "railway/station": {
                     "name": "Lestarstöð"
-                },
-                "railway/subway": {
-                    "name": "Neðanjarðarlest"
                 },
                 "railway/subway_entrance": {
                     "name": "Inngangur að neðanjarðarlest"
@@ -5695,9 +5487,6 @@
                 },
                 "railway/train_wash": {
                     "name": "Lestarvagnaþvottur"
-                },
-                "railway/tram": {
-                    "name": "Sporvagn"
                 },
                 "railway/tram_stop": {
                     "name": "Staðsetning stöðvunar sporvagna"
@@ -5737,9 +5526,6 @@
                 },
                 "shop/alcohol": {
                     "name": "Vínbúð"
-                },
-                "shop/anime": {
-                    "name": "Anime-búð"
                 },
                 "shop/antiques": {
                     "name": "Antíkverslun"
@@ -5840,9 +5626,6 @@
                 "shop/cosmetics": {
                     "name": "Snyrtivöruverslun"
                 },
-                "shop/craft": {
-                    "name": "Handverksverslun"
-                },
                 "shop/curtain": {
                     "name": "Gluggatjaldaverslun"
                 },
@@ -5879,23 +5662,14 @@
                 "shop/fashion": {
                     "name": "Tískuverslun"
                 },
-                "shop/fishmonger": {
-                    "name": "Fisksali"
-                },
                 "shop/florist": {
                     "name": "Blómabúð"
                 },
                 "shop/frame": {
                     "name": "Innrömmun"
                 },
-                "shop/frozen_food": {
-                    "name": "Frosin matvæli"
-                },
                 "shop/funeral_directors": {
                     "name": "Útfararheimili"
-                },
-                "shop/furnace": {
-                    "name": "Arinvöruverslun"
                 },
                 "shop/furniture": {
                     "name": "Húsgagnaverslun"
@@ -6123,9 +5897,6 @@
                 "shop/wine": {
                     "name": "Vínbúð"
                 },
-                "tourism": {
-                    "name": "Ferðaþjónusta"
-                },
                 "tourism/alpine_hut": {
                     "name": "Fjallakofi"
                 },
@@ -6342,9 +6113,6 @@
                 "type/waterway": {
                     "name": "Siglingaleið"
                 },
-                "waterway": {
-                    "name": "Siglingaleið"
-                },
                 "waterway/boatyard": {
                     "name": "Bátalægi"
                 },
@@ -6412,9 +6180,6 @@
                 "name": "Heimsmyndir frá Esri (Clarity) prófun"
             },
             "MAPNIK": {
-                "attribution": {
-                    "text": "© Þátttakendur í OpenStreetMap, CC-BY-SA"
-                },
                 "description": "Sjálfgefna OpenStreetMap-lagið.",
                 "name": "OpenStreetMap (staðlað)"
             },
@@ -6576,13 +6341,6 @@
                 },
                 "description": "GSI Kiban 2500 í gegnum finds.jp. Gott til að teikna eftir, en dálítið eldra.",
                 "name": "Japan GSI KIBAN 2500"
-            },
-            "gsi.go.jp": {
-                "attribution": {
-                    "text": "GSI Japan"
-                },
-                "description": "Japan GSI uppréttar ortho loftmyndir. Venjulega betra en Bing, en dálítið eldra.",
-                "name": "Japan GSI uppréttar ortho loftmyndir"
             },
             "gsi.go.jp_airphoto": {
                 "attribution": {
@@ -6787,215 +6545,8 @@
             }
         },
         "community": {
-            "cape-coast-youthmappers": {
-                "description": "Fylgstu með okkur á Twitter: {url}"
-            },
-            "osm-gh-facebook": {
-                "description": "Facebook-hópur fyrir fólk sem hefur áhuga á OpenStreetMap."
-            },
-            "osm-gh-twitter": {
-                "name": "OpenStreetMap Ghana á Twitter",
-                "description": "Fylgstu með okkur á Twitter: {url}"
-            },
-            "talk-gh": {
-                "name": "Talk-gh póstlistinn"
-            },
-            "talk-mg": {
-                "name": "Talk-mg póstlistinn"
-            },
-            "OSM-BGD-facebook": {
-                "name": "OpenStreetMap Bangladesh"
-            },
-            "OSM-India-facebook": {
-                "name": "OpenStreetMap India - Kortagerð með þáttöku nágranna",
-                "description": "Bætum OpenStreetMap-gögn á Indlandi"
-            },
-            "OSM-india-mailinglist": {
-                "name": "Póstlisti OpenStreetMap Indland"
-            },
-            "OSM-india-twitter": {
-                "name": "Twitter-hópur OpenStreetMap Indland"
-            },
-            "OSM-japan-facebook": {
-                "name": "OpenStreetMap Japan samfélagið",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í Japan"
-            },
-            "OSM-japan-mailinglist": {
-                "name": "Póstlisti OpenStreetMap Japan",
-                "description": "Talk-ja er opinber póstlisti japanska OSM-hópsins"
-            },
-            "OSM-japan-twitter": {
-                "name": "Twitter-hópur OpenStreetMap Japan",
-                "description": "Myllumerki á Twitter á {url}"
-            },
-            "OSM-japan-website": {
-                "name": "OpenStreetMap Japan"
-            },
-            "OSM-Nepal-facebook": {
-                "name": "OpenStreetMap Nepal"
-            },
-            "OSM-PH-facebook": {
-                "name": "Facebook-hópur OpenStreetMap PH",
-                "description": "Velkomin í filipeyska OpenStreetMap hópinn, þar sem við hvetjum alla aðra filipseyinga til að taka þátt í OpenStreetMap-verkefninu."
-            },
-            "OSM-PH-mailinglist": {
-                "name": "Talk-ph póstlistinn",
-                "description": "Póstlisti til að ræða OpenStreetMap á Filipseyjum"
-            },
-            "OSM-PH-slack": {
-                "name": "OpenStreetMap PH Slack",
-                "description": "Allir velkomnir! Skráðu þig á {signupUrl}"
-            },
-            "OSM-PH-telegram": {
-                "name": "Telegram-hópur OpenStreetMap PH",
-                "description": "Óopinber staðvær Telegram-hópur OpenStreetMap þátttakenda og vina á Filipseyjum"
-            },
-            "OSM-RU-forum": {
-                "name": "OpenStreetMap RU vefspjall",
-                "description": "Vefspjall (forum) OpenStreetMap Rússland"
-            },
-            "OSM-RU-telegram": {
-                "name": "Telegram-hópur OpenStreetMap RU",
-                "description": "Telegram-hópur OpenStreetMap Rússland"
-            },
-            "OSM-TW-facebook": {
-                "name": "OpenStreetMap Tævan samfélagið",
-                "description": "Facebook-hópur fyrir kortagerðarfólk og notendur OpenStreetMap í Tævan"
-            },
-            "OSM-TW-mailinglist": {
-                "name": "Póstlisti OpenStreetMap Tævan",
-                "description": "Talk-ja er opinber póstlisti tævanska OSM-hópsins"
-            },
-            "at-mailinglist": {
-                "name": "Talk-at póstlistinn"
-            },
-            "at-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Austurríki",
-                "description": "Twitter-hópur OpenStreetMap í Austurríki: {url}"
-            },
-            "osmgraz-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Graz",
-                "description": "Twitter-hópur OpenStreetMap í Graz"
-            },
-            "osm-at": {
-                "name": "OpenStreetMap Austurríki"
-            },
-            "byosm": {
-                "name": "OpenStreetMap Hvítarússland",
-                "description": "Telegram-hópur OpenStreetMap Hvítarússlands"
-            },
-            "be-mailinglist": {
-                "name": "Talk-be póstlistinn"
-            },
-            "be-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Belgíu",
-                "description": "Twitter-hópur OpenStreetMap í Belgíu: @osm_be"
-            },
-            "hr-mailinglist": {
-                "name": "Talk-hr póstlistinn",
-                "description": "Talk-hr póstlistinn"
-            },
-            "talk-cz-mailinglist": {
-                "name": "Tékkneski póstlistinn (talk-cz)",
-                "description": "Talk-cz er opinber póstlisti tékkneska OSM-hópsins"
-            },
-            "dk-forum": {
-                "name": "Vefspjall (forum) OpenStreetMap Danmörk",
-                "description": "Vefspjall (forum) OpenStreetMap Danmörk"
-            },
-            "dk-irc": {
-                "name": "IRC-rás OpenStreetMap Danmörk",
-                "description": "Taktu þátt á #osm-dk á irc.oftc.net (gátt 6667)"
-            },
-            "dk-mailinglist": {
-                "name": "Talk-dk póstlistinn",
-                "description": "Póstlisti til að ræða OpenStreetMap í Danmörku"
-            },
-            "fi-mailinglist": {
-                "name": "Talk-fi póstlistinn"
-            },
-            "fr-mailinglist": {
-                "name": "Talk-fr póstlistinn",
-                "description": "Talk-fr póstlistinn"
-            },
-            "fr-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Frakklandi",
-                "description": "Twitter-hópur OpenStreetMap í Frakklandi: {url}"
-            },
-            "de-berlin-mailinglist": {
-                "name": "Berlín-póstlistinn"
-            },
-            "de-berlin-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Berlín",
-                "description": "Fylgstu með okkur á Twitter: {url}"
-            },
-            "de-mailinglist": {
-                "name": "Talk-de póstlistinn"
-            },
-            "de-ostwestfalen-lippe-mailinglist": {
-                "name": "OWL-póstlistinn"
-            },
-            "osm-de": {
-                "name": "OpenStreetMap Þýskalandi"
-            },
-            "is-facebook": {
-                "name": "OSM Íslandi á Facebook",
-                "description": "Síða OpenStreetMap á Íslandi"
-            },
-            "is-mailinglist": {
-                "name": "Talk-is póstlistinn",
-                "description": "Talk-is er opinber póstlisti íslenska OSM-hópsins"
-            },
-            "is-twitter": {
-                "name": "OSM Íslandi á Twitter"
-            },
-            "it-mailinglist": {
-                "name": "Talk-it póstlistinn",
-                "description": "Talk-it er opinber póstlisti ítalska OSM-hópsins"
-            },
-            "it-twitter": {
-                "name": "Twitter-hópur OpenStreetMap á Ítalíu",
-                "description": "Fylgstu með okkur á Twitter á {url}"
-            },
-            "si-mailinglist": {
-                "name": "Slóvenski OpenStreetMap póstlistinn"
-            },
-            "OSM-ES-mailinglist": {
-                "name": "Talk-es póstlistinn"
-            },
-            "OSM-ES-telegram": {
-                "name": "@OSMes á Telegram",
-                "description": "Telegram-hópur OpenStreetMap Spánn"
-            },
-            "osm-se": {
-                "name": "OpenStreetMap.se"
-            },
-            "se-facebook": {
-                "name": "OpenStreetMap Sweden Facebook",
-                "description": "OpenStreetMap í Svíþjóð á Facebook"
-            },
-            "se-forum": {
-                "name": "Vefspjall (forum) OpenStreetMap Svíþjóð",
-                "description": "Vefspjall (forum) OpenStreetMap Svíþjóð"
-            },
-            "se-irc": {
-                "name": "IRC-rás OpenStreetMap Svíþjóð",
-                "description": "Taktu þátt á #osm-se á irc.oftc.net (gátt 6667)"
-            },
-            "se-mailinglist": {
-                "name": "Talk-se póstlistinn",
-                "description": "Póstlisti til að ræða OpenStreetMap í Svíþjóð"
-            },
-            "se-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Svíþjóð",
-                "description": "Fylgstu með okkur á Twitter: {url}"
-            },
-            "gb-mailinglist": {
-                "name": "Talk-gb póstlistinn"
-            },
-            "OSM-Vancouver-meetup": {
-                "name": "OpenStreetMap Vancouver",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í Vancouver, BC-svæðinu"
+            "Bahia-telegram": {
+                "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
             },
             "Bay-Area-OpenStreetMappers": {
                 "name": "Bay Area OpenStreetMappers",
@@ -7006,6 +6557,9 @@
             },
             "Code-for-San-Jose-Slack": {
                 "description": "Allir eru velkomnir! Skráðu þig á {signupUrl}, taktu síðan þátt á #osm IRC-rásinni"
+            },
+            "DF-telegram": {
+                "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
             },
             "Dallas-Fort-Worth-OSM": {
                 "name": "Dallas-Fort Worth OSM",
@@ -7021,86 +6575,6 @@
             "Maptime-ME-meetup": {
                 "name": "MaptimeME",
                 "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Portland, ME"
-            },
-            "us-ma-mailinglist": {
-                "name": "Talk-us-massachusetts póstlistinn"
-            },
-            "OpenCleveland-meetup": {
-                "name": "Open Cleveland",
-                "description": "Bætum OpenStreetMap-gögn á Cleveland-svæðinu"
-            },
-            "OSM-Boston": {
-                "name": "OpenStreetMap Boston",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap á Boston-svæðinu"
-            },
-            "OSM-Central-Salish-Sea": {
-                "name": "OpenStreetMap Central Salish Sea",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Mount Vernon, WA",
-                "extendedDescription": "OpenStreetMap er landakort af heiminum gert af fólki eins og þér. Kort sem þú byggir upp, sem er öllum frjálst, rétt eins og Wikipedia. Skoðaðu osm.org til að sjá nánari upplýsingar. Við hittumst mjög oft til að tala um kort, gera kort, og skemmta okkur!"
-            },
-            "OSM-Chattanooga": {
-                "name": "OSM Chattanooga",
-                "description": "Notendur OpenStreetMap í Chattanooga"
-            },
-            "OSM-Colorado": {
-                "name": "OpenStreetMap Colorado",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í Colorado-fylki, BNA"
-            },
-            "OSM-NYC": {
-                "name": "OpenStreetMap NYC",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap, forritarar og áhugafólk á New York Metropolitan-svæðinu"
-            },
-            "OSM-Portland": {
-                "name": "OpenStreetMap Portland",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap á Portland-svæðinu",
-                "extendedDescription": "OpenStreetMap (OSM) er landakort af heiminum gert af fólki eins og þér. Kort sem þú byggir upp, sem er öllum frjálst, rétt eins og Wikipedia. Skoðaðu osm.org til að sjá nánari upplýsingar, og kíktu við á fundum til að tala um kort, gera OSM-kort, og skemmta þér!"
-            },
-            "OSM-Seattle": {
-                "name": "OpenStreetMap Seattle",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap á Seattle-svæðinu"
-            },
-            "OSM-SoCal": {
-                "name": "OpenStreetMap Southern California",
-                "description": "Skemmtum okkur, gerum eitthvað fyrir Los Angeles, og lærum í leiðinni um kortagerð!"
-            },
-            "OSM-South-Bay": {
-                "name": "OSM South Bay"
-            },
-            "OSM-Tampa-Bay": {
-                "name": "OpenStreetMap Tampa Bay",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap á Tampa Bay-svæðinu"
-            },
-            "OSM-US-Slack": {
-                "name": "OpenStreetMap US Slack",
-                "description": "Allir velkomnir! Skráðu þig á {signupUrl}"
-            },
-            "OSM-US": {
-                "name": "OpenStreetMap US",
-                "description": "Við hjálpum til við að auka og bæta OpenStreetMap-gögn í Bandaríkjunum"
-            },
-            "OSM-Utah": {
-                "name": "OpenStreetMap Utah",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap á Salt Lake City-svæðinu"
-            },
-            "OSM-Wyoming": {
-                "name": "OpenStreetMap Wyoming",
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í Wyoming-fylki, BNA"
-            },
-            "PHXGeo-meetup": {
-                "description": "Kortagerðarfólk og notendur OpenStreetMap á Phoenix, AZ-svæðinu"
-            },
-            "PHXGeo-twitter": {
-                "name": "Twitter-hópur PHXGeo",
-                "description": "Fylgstu með okkur á Twitter á {url}"
-            },
-            "Western-Slope-facebook": {
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Grand Junction, CO"
-            },
-            "Western-Slope-meetup": {
-                "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Grand Junction, CO"
-            },
-            "talk-au": {
-                "name": "Talk-au póstlistinn"
             },
             "OSM-AR-facebook": {
                 "name": "Facebook-hópur OpenStreetMap Argentína",
@@ -7127,26 +6601,16 @@
                 "name": "Twitter-hópur OpenStreetMap Argentína",
                 "description": "Fylgstu með okkur á Twitter á {url}"
             },
+            "OSM-BGD-facebook": {
+                "name": "OpenStreetMap Bangladesh"
+            },
             "OSM-BO-mailinglist": {
                 "name": "Talk-bo póstlistinn",
                 "description": "Talk-bo er opinber póstlisti bólivíska OSM-hópsins"
             },
-            "Bahia-telegram": {
-                "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
-            },
-            "DF-telegram": {
-                "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
-            },
-            "OSM-br-mailinglist": {
-                "name": "Talk-br póstlistinn",
-                "description": "Póstlisti til að ræða OpenStreetMap í Brasilíu"
-            },
-            "OSM-br-telegram": {
-                "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
-            },
-            "OSM-br-twitter": {
-                "name": "Twitter-hópur OpenStreetMap í Brasilíu",
-                "description": "Fylgstu með okkur á Twitter á {url}"
+            "OSM-Boston": {
+                "name": "OpenStreetMap Boston",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap á Boston-svæðinu"
             },
             "OSM-CL-facebook": {
                 "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
@@ -7173,6 +6637,42 @@
                 "name": "Twitter-hópur OpenStreetMap í Kólumbíu",
                 "description": "Fylgstu með okkur á Twitter á {url}"
             },
+            "OSM-Central-Salish-Sea": {
+                "name": "OpenStreetMap Central Salish Sea",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Mount Vernon, WA",
+                "extendedDescription": "OpenStreetMap er landakort af heiminum gert af fólki eins og þér. Kort sem þú byggir upp, sem er öllum frjálst, rétt eins og Wikipedia. Skoðaðu osm.org til að sjá nánari upplýsingar. Við hittumst mjög oft til að tala um kort, gera kort, og skemmta okkur!"
+            },
+            "OSM-Chattanooga": {
+                "name": "OSM Chattanooga",
+                "description": "Notendur OpenStreetMap í Chattanooga"
+            },
+            "OSM-Colorado": {
+                "name": "OpenStreetMap Colorado",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap í Colorado-fylki, BNA"
+            },
+            "OSM-ES-mailinglist": {
+                "name": "Talk-es póstlistinn"
+            },
+            "OSM-ES-telegram": {
+                "name": "@OSMes á Telegram",
+                "description": "Telegram-hópur OpenStreetMap Spánn"
+            },
+            "OSM-Facebook": {
+                "name": "OpenStreetMap á Facebook"
+            },
+            "OSM-IRC": {
+                "name": "OpenStreetMap IRC"
+            },
+            "OSM-India-facebook": {
+                "name": "OpenStreetMap India - Kortagerð með þáttöku nágranna",
+                "description": "Bætum OpenStreetMap-gögn á Indlandi"
+            },
+            "OSM-Nepal-facebook": {
+                "name": "OpenStreetMap Nepal"
+            },
+            "OSM-PE": {
+                "name": "OpenStreetMap í Perú"
+            },
             "OSM-PE-mailinglist": {
                 "name": "Talk-pe póstlistinn"
             },
@@ -7183,21 +6683,61 @@
                 "name": "Twitter-hópur OpenStreetMap í Perú",
                 "description": "Fylgstu með okkur á Twitter á {url}"
             },
-            "OSM-PE": {
-                "name": "OpenStreetMap í Perú"
+            "OSM-PH-facebook": {
+                "name": "Facebook-hópur OpenStreetMap PH",
+                "description": "Velkomin í filipeyska OpenStreetMap hópinn, þar sem við hvetjum alla aðra filipseyinga til að taka þátt í OpenStreetMap-verkefninu."
             },
-            "OSM-Facebook": {
-                "name": "OpenStreetMap á Facebook"
+            "OSM-PH-mailinglist": {
+                "name": "Talk-ph póstlistinn",
+                "description": "Póstlisti til að ræða OpenStreetMap á Filipseyjum"
             },
-            "OSM-help": {
-                "name": "Aðstoð með OpenStreetMap"
+            "OSM-PH-slack": {
+                "name": "OpenStreetMap PH Slack",
+                "description": "Allir velkomnir! Skráðu þig á {signupUrl}"
             },
-            "OSM-IRC": {
-                "name": "OpenStreetMap IRC"
+            "OSM-PH-telegram": {
+                "name": "Telegram-hópur OpenStreetMap PH",
+                "description": "Óopinber staðvær Telegram-hópur OpenStreetMap þátttakenda og vina á Filipseyjum"
+            },
+            "OSM-Portland": {
+                "name": "OpenStreetMap Portland",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap á Portland-svæðinu",
+                "extendedDescription": "OpenStreetMap (OSM) er landakort af heiminum gert af fólki eins og þér. Kort sem þú byggir upp, sem er öllum frjálst, rétt eins og Wikipedia. Skoðaðu osm.org til að sjá nánari upplýsingar, og kíktu við á fundum til að tala um kort, gera OSM-kort, og skemmta þér!"
+            },
+            "OSM-RU-forum": {
+                "name": "OpenStreetMap RU vefspjall",
+                "description": "Vefspjall (forum) OpenStreetMap Rússland"
+            },
+            "OSM-RU-telegram": {
+                "name": "Telegram-hópur OpenStreetMap RU",
+                "description": "Telegram-hópur OpenStreetMap Rússland"
             },
             "OSM-Reddit": {
                 "name": "OpenStreetMap á Reddit",
                 "description": "/r/openstreetmap/ er góður staður til að læra meira um OpenStreetMap.  Spurðu okkur um allt milli himins og jarðar!"
+            },
+            "OSM-Seattle": {
+                "name": "OpenStreetMap Seattle",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap á Seattle-svæðinu"
+            },
+            "OSM-SoCal": {
+                "name": "OpenStreetMap Southern California",
+                "description": "Skemmtum okkur, gerum eitthvað fyrir Los Angeles, og lærum í leiðinni um kortagerð!"
+            },
+            "OSM-South-Bay": {
+                "name": "OSM South Bay"
+            },
+            "OSM-TW-facebook": {
+                "name": "OpenStreetMap Tævan samfélagið",
+                "description": "Facebook-hópur fyrir kortagerðarfólk og notendur OpenStreetMap í Tævan"
+            },
+            "OSM-TW-mailinglist": {
+                "name": "Póstlisti OpenStreetMap Tævan",
+                "description": "Talk-ja er opinber póstlisti tævanska OSM-hópsins"
+            },
+            "OSM-Tampa-Bay": {
+                "name": "OpenStreetMap Tampa Bay",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap á Tampa Bay-svæðinu"
             },
             "OSM-Telegram": {
                 "name": "Telegram fyrir OpenStreetMap"
@@ -7206,14 +6746,218 @@
                 "name": "Twitter-hópur OpenStreetMap",
                 "description": "Fylgstu með okkur á Twitter á {url}"
             },
+            "OSM-US": {
+                "name": "OpenStreetMap US",
+                "description": "Við hjálpum til við að auka og bæta OpenStreetMap-gögn í Bandaríkjunum"
+            },
+            "OSM-US-Slack": {
+                "name": "OpenStreetMap US Slack",
+                "description": "Allir velkomnir! Skráðu þig á {signupUrl}"
+            },
+            "OSM-Utah": {
+                "name": "OpenStreetMap Utah",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap á Salt Lake City-svæðinu"
+            },
+            "OSM-Wyoming": {
+                "name": "OpenStreetMap Wyoming",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap í Wyoming-fylki, BNA"
+            },
+            "OSM-br-mailinglist": {
+                "name": "Talk-br póstlistinn",
+                "description": "Póstlisti til að ræða OpenStreetMap í Brasilíu"
+            },
+            "OSM-br-telegram": {
+                "extendedDescription": "Gakktu til liðs við teymið til að læra meira um OpenStreetMap, spyrja spurninga eða taka þátt í fundum. Allir eru velkomnir!"
+            },
+            "OSM-br-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Brasilíu",
+                "description": "Fylgstu með okkur á Twitter á {url}"
+            },
+            "OSM-help": {
+                "name": "Aðstoð með OpenStreetMap"
+            },
+            "OSM-india-mailinglist": {
+                "name": "Póstlisti OpenStreetMap Indland"
+            },
+            "OSM-india-twitter": {
+                "name": "Twitter-hópur OpenStreetMap Indland"
+            },
+            "OSM-japan-facebook": {
+                "name": "OpenStreetMap Japan samfélagið",
+                "description": "Kortagerðarfólk og notendur OpenStreetMap í Japan"
+            },
+            "OSM-japan-mailinglist": {
+                "name": "Póstlisti OpenStreetMap Japan",
+                "description": "Talk-ja er opinber póstlisti japanska OSM-hópsins"
+            },
+            "OSM-japan-twitter": {
+                "name": "Twitter-hópur OpenStreetMap Japan",
+                "description": "Myllumerki á Twitter á {url}"
+            },
+            "OSM-japan-website": {
+                "name": "OpenStreetMap Japan"
+            },
             "OSMF": {
-                "name": "OpenStreetMap sjálfseignarstofnunin",
-                "events": {
-                    "sotm2018": {
-                        "name": "Ástand landakortsins 2018",
-                        "where": "Mílanó, Ítalíu"
-                    }
-                }
+                "name": "OpenStreetMap sjálfseignarstofnunin"
+            },
+            "OpenCleveland-meetup": {
+                "name": "Open Cleveland",
+                "description": "Bætum OpenStreetMap-gögn á Cleveland-svæðinu"
+            },
+            "PHXGeo-meetup": {
+                "description": "Kortagerðarfólk og notendur OpenStreetMap á Phoenix, AZ-svæðinu"
+            },
+            "PHXGeo-twitter": {
+                "name": "Twitter-hópur PHXGeo",
+                "description": "Fylgstu með okkur á Twitter á {url}"
+            },
+            "Western-Slope-facebook": {
+                "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Grand Junction, CO"
+            },
+            "Western-Slope-meetup": {
+                "description": "Kortagerðarfólk og notendur OpenStreetMap í kringum Grand Junction, CO"
+            },
+            "at-mailinglist": {
+                "name": "Talk-at póstlistinn"
+            },
+            "at-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Austurríki",
+                "description": "Twitter-hópur OpenStreetMap í Austurríki: {url}"
+            },
+            "be-mailinglist": {
+                "name": "Talk-be póstlistinn"
+            },
+            "be-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Belgíu",
+                "description": "Twitter-hópur OpenStreetMap í Belgíu: @osm_be"
+            },
+            "byosm": {
+                "name": "OpenStreetMap Hvítarússland",
+                "description": "Telegram-hópur OpenStreetMap Hvítarússlands"
+            },
+            "cape-coast-youthmappers": {
+                "description": "Fylgstu með okkur á Twitter: {url}"
+            },
+            "de-berlin-mailinglist": {
+                "name": "Berlín-póstlistinn"
+            },
+            "de-berlin-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Berlín",
+                "description": "Fylgstu með okkur á Twitter: {url}"
+            },
+            "de-mailinglist": {
+                "name": "Talk-de póstlistinn"
+            },
+            "de-ostwestfalen-lippe-mailinglist": {
+                "name": "OWL-póstlistinn"
+            },
+            "dk-forum": {
+                "name": "Vefspjall (forum) OpenStreetMap Danmörk",
+                "description": "Vefspjall (forum) OpenStreetMap Danmörk"
+            },
+            "dk-irc": {
+                "name": "IRC-rás OpenStreetMap Danmörk",
+                "description": "Taktu þátt á #osm-dk á irc.oftc.net (gátt 6667)"
+            },
+            "dk-mailinglist": {
+                "name": "Talk-dk póstlistinn",
+                "description": "Póstlisti til að ræða OpenStreetMap í Danmörku"
+            },
+            "fi-mailinglist": {
+                "name": "Talk-fi póstlistinn"
+            },
+            "fr-mailinglist": {
+                "name": "Talk-fr póstlistinn",
+                "description": "Talk-fr póstlistinn"
+            },
+            "fr-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Frakklandi",
+                "description": "Twitter-hópur OpenStreetMap í Frakklandi: {url}"
+            },
+            "gb-mailinglist": {
+                "name": "Talk-gb póstlistinn"
+            },
+            "hr-mailinglist": {
+                "name": "Talk-hr póstlistinn",
+                "description": "Talk-hr póstlistinn"
+            },
+            "is-facebook": {
+                "name": "OSM Íslandi á Facebook",
+                "description": "Síða OpenStreetMap á Íslandi"
+            },
+            "is-mailinglist": {
+                "name": "Talk-is póstlistinn",
+                "description": "Talk-is er opinber póstlisti íslenska OSM-hópsins"
+            },
+            "is-twitter": {
+                "name": "OSM Íslandi á Twitter"
+            },
+            "it-mailinglist": {
+                "name": "Talk-it póstlistinn",
+                "description": "Talk-it er opinber póstlisti ítalska OSM-hópsins"
+            },
+            "it-twitter": {
+                "name": "Twitter-hópur OpenStreetMap á Ítalíu",
+                "description": "Fylgstu með okkur á Twitter á {url}"
+            },
+            "osm-at": {
+                "name": "OpenStreetMap Austurríki"
+            },
+            "osm-de": {
+                "name": "OpenStreetMap Þýskalandi"
+            },
+            "osm-gh-facebook": {
+                "description": "Facebook-hópur fyrir fólk sem hefur áhuga á OpenStreetMap."
+            },
+            "osm-gh-twitter": {
+                "name": "OpenStreetMap Ghana á Twitter",
+                "description": "Fylgstu með okkur á Twitter: {url}"
+            },
+            "osm-se": {
+                "name": "OpenStreetMap.se"
+            },
+            "osmgraz-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Graz",
+                "description": "Twitter-hópur OpenStreetMap í Graz"
+            },
+            "se-facebook": {
+                "name": "OpenStreetMap Sweden Facebook",
+                "description": "OpenStreetMap í Svíþjóð á Facebook"
+            },
+            "se-forum": {
+                "name": "Vefspjall (forum) OpenStreetMap Svíþjóð",
+                "description": "Vefspjall (forum) OpenStreetMap Svíþjóð"
+            },
+            "se-irc": {
+                "name": "IRC-rás OpenStreetMap Svíþjóð",
+                "description": "Taktu þátt á #osm-se á irc.oftc.net (gátt 6667)"
+            },
+            "se-mailinglist": {
+                "name": "Talk-se póstlistinn",
+                "description": "Póstlisti til að ræða OpenStreetMap í Svíþjóð"
+            },
+            "se-twitter": {
+                "name": "Twitter-hópur OpenStreetMap í Svíþjóð",
+                "description": "Fylgstu með okkur á Twitter: {url}"
+            },
+            "si-mailinglist": {
+                "name": "Slóvenski OpenStreetMap póstlistinn"
+            },
+            "talk-au": {
+                "name": "Talk-au póstlistinn"
+            },
+            "talk-cz-mailinglist": {
+                "name": "Tékkneski póstlistinn (talk-cz)",
+                "description": "Talk-cz er opinber póstlisti tékkneska OSM-hópsins"
+            },
+            "talk-gh": {
+                "name": "Talk-gh póstlistinn"
+            },
+            "talk-mg": {
+                "name": "Talk-mg póstlistinn"
+            },
+            "us-ma-mailinglist": {
+                "name": "Talk-us-massachusetts póstlistinn"
             }
         }
     }

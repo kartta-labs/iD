@@ -1,5 +1,5 @@
 {
-    "icon": "maki-lodging",
+    "icon": "temaki-cabin",
     "fields": [
         "name",
         "operator",
@@ -8,29 +8,34 @@
         "internet_access",
         "internet_access/fee"
     ],
-    "moreFields" : [
+    "moreFields": [
         "air_conditioning",
         "building/levels_building",
-        "height_building",
-        "smoking",
-        "payment_multi",
-        "internet_access/ssid",
-        "website",
-        "phone",
         "email",
         "fax",
-        "wheelchair",
-        "reservation"
+        "gnis/feature_id",
+        "height_building",
+        "internet_access/ssid",
+        "payment_multi",
+        "phone",
+        "reservation",
+        "smoking",
+        "website",
+        "wheelchair"
     ],
     "geometry": [
         "point",
         "area"
     ],
     "terms": [
-        "holiday",
+        "chalet",
+        "holiday cabin",
         "holiday cottage",
         "holiday home",
-        "vacation",
+        "lodge",
+        "lodging",
+        "overnight accommodations",
+        "vacation cabin",
         "vacation home"
     ],
     "tags": {

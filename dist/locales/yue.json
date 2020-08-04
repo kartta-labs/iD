@@ -68,32 +68,10 @@
             },
             "circularize": {
                 "title": "整圓",
-                "description": {
-                    "line": "整圓條綫",
-                    "area": "整圓範圍"
-                },
-                "key": "O",
-                "annotation": {
-                    "line": "整圓條綫。",
-                    "area": "整圓範圍。"
-                },
-                "not_closed": "無得整圓，根本唔係圈。",
-                "too_large": "無得整圓，睇到嘅部份唔夠做。",
-                "connected_to_hidden": "無得整圓，佢連咗去隱藏地貌。"
+                "key": "O"
             },
             "orthogonalize": {
-                "title": "整方",
-                "description": {
-                    "line": "整方個綫角",
-                    "area": "整方範圍角"
-                },
-                "annotation": {
-                    "line": "整方咗綫角。",
-                    "area": "整方咗範圍角。"
-                },
-                "not_squarish": "無得整方，佢太唔似方。",
-                "too_large": "無得整方，睇到嘅部份唔夠做。",
-                "connected_to_hidden": "無得整方，佢連咗去隱藏地貌。"
+                "title": "整方"
             },
             "straighten": {
                 "title": "拉直",
@@ -177,9 +155,7 @@
             },
             "reverse": {
                 "title": "倒向。",
-                "description": "整到修綫方向相反。",
-                "key": "V",
-                "annotation": "條綫方向倒咗轉。"
+                "key": "V"
             },
             "split": {
                 "title": "斬開",
@@ -228,11 +204,6 @@
             "hidden_warning": "隱藏地貌 {count} 個",
             "hidden_details": "爾啲地貌，家陣隱藏之中。詳情： {details}"
         },
-        "status": {
-            "error": "駁唔通程式接口。",
-            "offline": "程式接口收工。遲啲再改啦。",
-            "readonly": "程式接口，只讀不寫。你要等下先記到你修改。"
-        },
         "commit": {
             "title": "傳上去公家街圖",
             "upload_explanation": "你嘅修改，傳咗上去公家街圖。凢用公家街圖資料，地圖都會見到。",
@@ -240,7 +211,6 @@
             "request_review": "想有人翻睇我修改。",
             "save": "傳上",
             "cancel": "唔記",
-            "changes": "變更 {count} 個",
             "download_changes": "公家街圖修改嘅檔案，傳落來",
             "warnings": "警告",
             "modified": "改咗",
@@ -284,15 +254,10 @@
         "inspector": {
             "show_more": "睇多啲",
             "view_on_osm": "入公家街圖睇",
-            "all_fields": "所有欄位",
-            "all_tags": "所有籤",
-            "all_members": "所有成員",
-            "all_relations": "所有關聯",
             "new_relation": "開新關聯⋯⋯",
             "role": "作用",
             "choose": "揀地貌",
             "results": "{search}搵出{n}項",
-            "back_tooltip": "轉地貌",
             "remove": "移走",
             "search": "搵",
             "unknown": "未知",
@@ -322,14 +287,12 @@
             "minimap": {
                 "tooltip": "開個縮圖，幫手搵返家下睇到嘅範圍。"
             },
-            "fix_misalignment": "校正背圖對位誤差",
             "offset": "下面灰帶內，拖到任何位，去校正背圖對位誤差，又或者，以米為單位，入返啲差額。"
         },
         "map_data": {
             "title": "地圖資料",
             "description": "地圖資料",
             "data_layers": "資料層",
-            "fill_area": "填範圍",
             "map_features": "地圖地貌",
             "autohidden": "依啲地貌，會自收埋，皆因螢幕太多嘢。放大啲先改。"
         },
@@ -446,10 +409,6 @@
             "description": "描述",
             "on_wiki": "喺公家街圖百科度嘅{tag}",
             "used_with": "同{type}一齊用"
-        },
-        "zoom": {
-            "in": "放大",
-            "out": "縮細"
         },
         "cannot_zoom": "今下模式，無得再縮。",
         "full_screen": "來回全螢幕",
@@ -864,9 +823,6 @@
                 "devices": {
                     "placeholder": "1, 2, 3..."
                 },
-                "diaper": {
-                    "label": "換得尿片"
-                },
                 "direction": {
                     "placeholder": "45, 90, 180, 270"
                 },
@@ -916,9 +872,6 @@
                         "yes": "係（無指名）"
                     },
                     "placeholder": "電纜、有電軌道⋯⋯"
-                },
-                "elevation": {
-                    "label": "海拔"
                 },
                 "email": {
                     "label": "電郵",
@@ -1032,7 +985,6 @@
                     "label": "類"
                 },
                 "internet_access": {
-                    "label": "用到互聯網",
                     "options": {
                         "no": "無",
                         "terminal": "終端機",
@@ -1040,9 +992,6 @@
                         "wlan": "無綫上網",
                         "yes": "有"
                     }
-                },
-                "internet_access/fee": {
-                    "label": "上網費"
                 },
                 "lamp_type": {
                     "label": "類"
@@ -1101,10 +1050,6 @@
                 },
                 "level": {
                     "label": "層"
-                },
-                "levels": {
-                    "label": "樓",
-                    "placeholder": "2, 4, 6..."
                 },
                 "lit": {
                     "label": "有燈"
@@ -1181,7 +1126,6 @@
                     "label": "網絡"
                 },
                 "network_bicycle": {
-                    "label": "網類",
                     "options": {
                         "icn": "國際",
                         "lcn": "本地",
@@ -1191,7 +1135,6 @@
                     "placeholder": "本地、域內、國內、國際"
                 },
                 "network_foot": {
-                    "label": "網類",
                     "options": {
                         "iwn": "國際",
                         "lwn": "本地",
@@ -1201,7 +1144,6 @@
                     "placeholder": "本地、域內、國內、國際"
                 },
                 "network_horse": {
-                    "label": "網類",
                     "options": {
                         "ihn": "國際",
                         "lhn": "本地",
@@ -1579,9 +1521,6 @@
                     "name": "地埗",
                     "terms": "Address,地址,地埗,址"
                 },
-                "aerialway": {
-                    "name": "吊道"
-                },
                 "aerialway/cable_car": {
                     "name": "吊車",
                     "terms": "Cable Car,吊車,䌫車"
@@ -1589,10 +1528,6 @@
                 "aerialway/chair_lift": {
                     "name": "吊櫈",
                     "terms": "Chair Lift,吊櫈"
-                },
-                "aerialway/gondola": {
-                    "name": "吊船",
-                    "terms": "Gondola,吊船"
                 },
                 "aerialway/magic_carpet": {
                     "name": "輸送帶",
@@ -1605,9 +1540,6 @@
                 "aerialway/pylon": {
                     "name": "吊車塔",
                     "terms": "Areialway Pylon,吊車塔,纜車纜塔"
-                },
-                "aeroway": {
-                    "name": "航空設施"
                 },
                 "aeroway/aerodrome": {
                     "name": "飛機場",
@@ -1675,10 +1607,6 @@
                 "amenity/car_rental": {
                     "name": "租車舖",
                     "terms": "Car Rental,汽車租賃,汽車租賃處,租車,租車店,租車舖"
-                },
-                "amenity/car_sharing": {
-                    "name": "共用車處",
-                    "terms": "Car Sharing,公用車處,共用車,共用車處,汽車共享站"
                 },
                 "amenity/car_wash": {
                     "name": "洗車舖",
@@ -1750,10 +1678,6 @@
                     "name": "差館",
                     "terms": "Police,差館,派出所,警察局,警局,警署"
                 },
-                "amenity/post_box": {
-                    "name": "郵筒",
-                    "terms": "Mailbox,Post,Post Box,郵筒,郵箱"
-                },
                 "amenity/post_office": {
                     "name": "郵政局",
                     "terms": "Post Office,書信館,郵局,郵政局"
@@ -1773,9 +1697,6 @@
                 "amenity/shelter": {
                     "name": "天遮或亭",
                     "terms": "Shelter,亭,天遮,蓋,避難,避難所"
-                },
-                "amenity/swimming_pool": {
-                    "name": "游水池"
                 },
                 "amenity/taxi": {
                     "name": "的士站",
@@ -1804,9 +1725,6 @@
                 "area": {
                     "name": "範圍",
                     "terms": "Area,區域,範圍"
-                },
-                "area/highway": {
-                    "name": "道面"
                 },
                 "barrier": {
                     "name": "屏障",
@@ -1955,9 +1873,6 @@
                 "golf/tee": {
                     "name": "發球區",
                     "terms": "Tee Box,發球區,開球區"
-                },
-                "highway": {
-                    "name": "公路"
                 },
                 "highway/bridleway": {
                     "name": "馬徑",
@@ -2136,10 +2051,6 @@
                 "landuse/commercial": {
                     "name": "商地"
                 },
-                "landuse/construction": {
-                    "name": "地盤",
-                    "terms": "Construction,地盤,建築工程,建築物"
-                },
                 "landuse/farm": {
                     "name": "田地"
                 },
@@ -2187,9 +2098,6 @@
                 "landuse/vineyard": {
                     "name": "葡萄園",
                     "terms": "Vineyard,葡萄園,酒莊"
-                },
-                "leisure": {
-                    "name": "消閒"
                 },
                 "leisure/common": {
                     "name": "公地",
@@ -2263,9 +2171,6 @@
                     "name": "綫",
                     "terms": "Line,綫,線"
                 },
-                "man_made": {
-                    "name": "人造"
-                },
                 "man_made/breakwater": {
                     "name": "防波堤",
                     "terms": "Breakwater,防波堤"
@@ -2312,9 +2217,6 @@
                 "man_made/water_works": {
                     "name": "供水廠",
                     "terms": "Water Works,供水廠,水務設施"
-                },
-                "natural": {
-                    "name": "天然"
                 },
                 "natural/bare_rock": {
                     "name": "石地"
@@ -2401,10 +2303,6 @@
                     "name": "澤",
                     "terms": "Wetland,潮間帶,澤,濕地"
                 },
-                "natural/wood": {
-                    "name": "林",
-                    "terms": "Wood,林,樹林"
-                },
                 "office": {
                     "name": "寫字樓",
                     "terms": "Office,寫字樓,辦公室"
@@ -2446,10 +2344,6 @@
                 },
                 "office/physician": {
                     "name": "醫生"
-                },
-                "office/political_party": {
-                    "name": "政黨",
-                    "terms": "Political Party,政黨"
                 },
                 "office/research": {
                     "name": "研究所",
@@ -2512,9 +2406,6 @@
                     "name": "點",
                     "terms": "Point,點"
                 },
-                "power": {
-                    "name": "發電廠"
-                },
                 "power/generator": {
                     "name": "發電機",
                     "terms": "Power Generator,發電機"
@@ -2531,9 +2422,6 @@
                     "name": "電綫杆",
                     "terms": "Power Pole,電綫杆,電線桿"
                 },
-                "power/sub_station": {
-                    "name": "配電站"
-                },
                 "power/tower": {
                     "name": "高壓電塔",
                     "terms": "High-Voltage Tower,高壓輸電塔,高壓電塔"
@@ -2541,9 +2429,6 @@
                 "power/transformer": {
                     "name": "火牛房",
                     "terms": "Transformer,火牛房,變電所"
-                },
-                "railway": {
-                    "name": "鐵路"
                 },
                 "railway/abandoned": {
                     "name": "廢鐵路",
@@ -2556,29 +2441,9 @@
                 "railway/level_crossing": {
                     "name": "鐵道口（車道）"
                 },
-                "railway/monorail": {
-                    "name": "單軌",
-                    "terms": "Monorail,單軌,單軌鐵路,單軌電車"
-                },
-                "railway/narrow_gauge": {
-                    "name": "窄軌火車",
-                    "terms": "Narrow Gauge Rails,窄軌火車,窄軌,窄軌鐵路"
-                },
-                "railway/rail": {
-                    "name": "路軌",
-                    "terms": "Rail,火車軌,路軌,軌,鐵軌"
-                },
-                "railway/subway": {
-                    "name": "地下鐵路",
-                    "terms": "MTR,Mass Transit Railway,Subway,地下鐵,地下鐵路,地鐵"
-                },
                 "railway/subway_entrance": {
                     "name": "地下鐵路入口",
                     "terms": "Subway Entrance,地下鐵路入口,地鐵入口,地鐵口"
-                },
-                "railway/tram": {
-                    "name": "電車",
-                    "terms": "Tram,電車"
                 },
                 "relation": {
                     "name": "關係",
@@ -2662,9 +2527,6 @@
                 "shop/farm": {
                     "name": "檔",
                     "terms": "Produce Stand,檔,水果攤,農場"
-                },
-                "shop/fishmonger": {
-                    "name": "魚檔"
                 },
                 "shop/florist": {
                     "name": "花舖",
@@ -2790,9 +2652,6 @@
                 "shop/wine": {
                     "name": "酒舖",
                     "terms": "Wine Shop,酒舖"
-                },
-                "tourism": {
-                    "name": "旅行"
                 },
                 "tourism/alpine_hut": {
                     "name": "高山屋仔",
@@ -2941,9 +2800,6 @@
                     "name": "路綫總管",
                     "terms": "Route Master,線路總管,路綫總管,路線總目"
                 },
-                "waterway": {
-                    "name": "水路"
-                },
                 "waterway/canal": {
                     "name": "水道",
                     "terms": "Canal,水道,運河"
@@ -2993,9 +2849,6 @@
                 }
             },
             "MAPNIK": {
-                "attribution": {
-                    "text": "版權所有，公家街圖協力人。共創之下，任發任改，然而必須提及協力者，改咗必以同樣條款發放。"
-                },
                 "description": "預設公家街圖層",
                 "name": "公家街圖（一般）"
             },

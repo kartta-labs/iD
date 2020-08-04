@@ -6,6 +6,7 @@
         "operator",
         "address",
         "opening_hours",
+        "opening_hours/covid19",
         "building_area"
     ],
     "moreFields": [
@@ -15,6 +16,7 @@
         "internet_access",
         "internet_access/fee",
         "internet_access/ssid",
+        "level",
         "phone",
         "website",
         "wheelchair"

@@ -1,10 +1,11 @@
 {
-    "icon": "temaki-pedestrian",
+    "icon": "temaki-pedestrian_crosswalk",
     "fields": [
         "crossing",
         "access",
         "surface",
-        "tactile_paving"
+        "tactile_paving",
+        "crossing/island"
     ],
     "geometry": [
         "line"

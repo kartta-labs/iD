@@ -55,9 +55,12 @@ export function uiZoom(context) {
             .data(zooms)
             .enter()
             .append('button')
-            .attr('tabindex', -1)
             .attr('class', function(d) { return d.id; })
-            .on('click.editor', function(d) { d.action(); })
+            .on('click.editor', function(d) {
+                if (!d3_select(this).classed('disabled')) {
+                    d.action();
+                }
+            })
             .call(tooltip()
                 .placement((textDirection === 'rtl') ? 'right' : 'left')
                 .html(true)
@@ -80,5 +83,19 @@ export function uiZoom(context) {
             context.keybinding().on([key], zoomOut);
             context.keybinding().on([uiCmd('⌘' + key)], zoomOutFurther);
         });
+
+        function updateButtonStates() {
+            var canZoomIn = context.map().canZoomIn();
+            selection.select('button.zoom-in')
+                .classed('disabled', !canZoomIn);
+
+            var canZoomOut = context.map().canZoomOut();
+            selection.select('button.zoom-out')
+                .classed('disabled', !canZoomOut);
+        }
+
+        updateButtonStates();
+
+        context.map().on('move.uiZoom', updateButtonStates);
     };
 }

@@ -19,13 +19,13 @@ export function presetIndex(context) {
     // a presetCollection with methods for
     // loading new data and returning defaults
 
-    var dispatch = d3_dispatch('recentsChange', 'favoritePreset');
+    var dispatch = d3_dispatch('recentsChange');
 
     var all = presetCollection([]);
     var _defaults = { area: all, line: all, point: all, vertex: all, relation: all };
     var _fields = {};
     var _universal = [];
-    var _favorites, _recents;
+    var _recents;
     // presets that the user can add
     var _addablePresetIDs;
 
@@ -114,7 +114,7 @@ export function presetIndex(context) {
     // and the subkeys form the blacklist.
     all.areaKeys = function() {
         var areaKeys = {};
-        var ignore = ['barrier', 'highway', 'footway', 'railway', 'type'];  // probably a line..
+        var ignore = ['barrier', 'highway', 'footway', 'railway', 'junction', 'type'];  // probably a line..
 
         // ignore name-suggestion-index and deprecated presets
         var presets = all.collection.filter(function(p) {
@@ -134,15 +134,14 @@ export function presetIndex(context) {
 
         // blacklist
         presets.forEach(function(d) {
-            for (var key in d.tags) break;
-            if (!key) return;
-            if (ignore.indexOf(key) !== -1) return;
-
-            var value = d.tags[key];
-            if (key in areaKeys &&                      // probably an area...
-                d.geometry.indexOf('line') !== -1 &&    // but sometimes a line
-                value !== '*') {
-                areaKeys[key][value] = true;
+            for (var key in d.addTags) {
+                // examine all addTags to get a better sense of what can be tagged on lines - #6800
+                var value = d.addTags[key];
+                if (key in areaKeys &&                      // probably an area...
+                    d.geometry.indexOf('line') !== -1 &&    // but sometimes a line
+                    value !== '*') {
+                    areaKeys[key][value] = true;
+                }
             }
         });
 
@@ -185,7 +184,7 @@ export function presetIndex(context) {
         }, {});
     };
 
-    all.build = function(d, visible) {
+    all.build = function(d, addable) {
         if (d.fields) {
             Object.keys(d.fields).forEach(function(id) {
                 var f = d.fields[id];
@@ -201,11 +200,11 @@ export function presetIndex(context) {
             Object.keys(d.presets).forEach(function(id) {
                 var p = d.presets[id];
                 var existing = all.index(id);
-                var isVisible = typeof visible === 'function' ? visible(id, p) : visible;
+                var isAddable = typeof addable === 'function' ? addable(id, p) : addable;
                 if (existing !== -1) {
-                    all.collection[existing] = presetPreset(id, p, _fields, isVisible, rawPresets);
+                    all.collection[existing] = presetPreset(id, p, _fields, isAddable, rawPresets);
                 } else {
-                    all.collection.push(presetPreset(id, p, _fields, isVisible, rawPresets));
+                    all.collection.push(presetPreset(id, p, _fields, isAddable, rawPresets));
                 }
             });
         }
@@ -255,21 +254,20 @@ export function presetIndex(context) {
 
     all.init = function(addablePresetIDs) {
         all.collection = [];
-        _favorites = null;
         _recents = null;
         _addablePresetIDs = addablePresetIDs;
         _fields = {};
         _universal = [];
         _index = { point: {}, vertex: {}, line: {}, area: {}, relation: {} };
 
-        var show = true;
+        var addable = true;
         if (addablePresetIDs) {
-            show = function(presetID) {
+            addable = function(presetID) {
                 return addablePresetIDs.indexOf(presetID) !== -1;
             };
         }
 
-        return all.build(data.presets, show);
+        return all.build(data.presets, addable);
     };
 
 
@@ -278,7 +276,6 @@ export function presetIndex(context) {
         _defaults = { area: all, line: all, point: all, vertex: all, relation: all };
         _fields = {};
         _universal = [];
-        _favorites = null;
         _recents = null;
 
         // Index of presets by (geometry, tag key).
@@ -297,8 +294,11 @@ export function presetIndex(context) {
         all.reset();
         d3_json(external)
             .then(function(externalPresets) {
-                all.build(data.presets, false);    // make default presets hidden to begin
-                all.build(externalPresets, true);  // make the external visible
+                all.build(data.presets, false);    // load the default presets as non-addable to start
+
+                _addablePresetIDs = externalPresets.presets && Object.keys(externalPresets.presets);
+
+                all.build(externalPresets, true);  // then load the external presets as addable
             })
             .catch(function() {
                 all.init();
@@ -337,9 +337,6 @@ export function presetIndex(context) {
         item.geometry = geometry;
         item.source = source;
 
-        item.isFavorite = function() {
-            return item.source === 'favorite';
-        };
         item.isRecent = function() {
             return item.source === 'recent';
         };
@@ -373,32 +370,6 @@ export function presetIndex(context) {
         return null;
     }
 
-    function setFavorites(items) {
-        _favorites = items;
-        var minifiedItems = items.map(function(d) { return d.minified(); });
-        context.storage('preset_favorites', JSON.stringify(minifiedItems));
-
-        // call update
-        dispatch.call('favoritePreset');
-    }
-
-    all.getFavorites = function() {
-        if (!_favorites) {
-            // fetch from local storage
-            _favorites = (JSON.parse(context.storage('preset_favorites')) || [
-                    // use the generic presets as the default favorites
-                    { pID: 'point', geom: 'point'},
-                    { pID: 'line', geom: 'line'},
-                    { pID: 'area', geom: 'area'}
-                ]).reduce(function(output, d) {
-                    var item = ribbonItemForMinified(d, 'favorite');
-                    if (item) output.push(item);
-                    return output;
-                }, []);
-        }
-        return _favorites;
-    };
-
     function setRecents(items) {
         _recents = items;
         var minifiedItems = items.map(function(d) { return d.minified(); });
@@ -413,39 +384,11 @@ export function presetIndex(context) {
             _recents = (JSON.parse(context.storage('preset_recents')) || [])
                 .reduce(function(output, d) {
                     var item = ribbonItemForMinified(d, 'recent');
-                    if (item) output.push(item);
+                    if (item && item.preset.addable()) output.push(item);
                     return output;
                 }, []);
         }
         return _recents;
-    };
-
-    all.toggleFavorite = function(preset, geometry) {
-        geometry = all.fallback(geometry).id;
-        var favs = all.getFavorites();
-        var favorite = all.favoriteMatching(preset, geometry);
-        if (favorite) {
-            favs.splice(favs.indexOf(favorite), 1);
-        } else {
-            // only allow 10 favorites
-            if (favs.length === 10) {
-                // remove the last favorite (last in, first out)
-                favs.pop();
-            }
-            // append array
-            favs.push(RibbonItem(preset, geometry, 'favorite'));
-        }
-        setFavorites(favs);
-    };
-
-    all.removeFavorite = function(preset, geometry) {
-        geometry = all.fallback(geometry).id;
-        var item = all.favoriteMatching(preset, geometry);
-        if (item) {
-            var items = all.getFavorites();
-            items.splice(items.indexOf(item), 1);
-            setFavorites(items);
-        }
     };
 
     all.removeRecent = function(preset, geometry) {
@@ -457,16 +400,6 @@ export function presetIndex(context) {
         }
     };
 
-    all.favoriteMatching = function(preset, geometry) {
-        geometry = all.fallback(geometry).id;
-        var favs = all.getFavorites();
-        for (var index in favs) {
-            if (favs[index].matches(preset, geometry)) {
-                return favs[index];
-            }
-        }
-        return null;
-    };
     all.recentMatching = function(preset, geometry) {
         geometry = all.fallback(geometry).id;
         var items = all.getRecents();
@@ -484,11 +417,6 @@ export function presetIndex(context) {
             fromIndex >= items.length || toIndex >= items.length) return null;
         items.splice(toIndex, 0, items.splice(fromIndex, 1)[0]);
         return items;
-    };
-
-    all.moveFavorite = function(fromIndex, toIndex) {
-        var items = all.moveItem(all.getFavorites(), fromIndex, toIndex);
-        if (items) setFavorites(items);
     };
 
     all.moveRecent = function(item, beforeItem) {
@@ -514,7 +442,7 @@ export function presetIndex(context) {
         }
         // allow 30 recents
         if (items.length === 30) {
-            // remove the last favorite (first in, first out)
+            // remove the last recent (first in, first out)
             items.pop();
         }
         // prepend array

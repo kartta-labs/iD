@@ -2,9 +2,10 @@ import _throttle from 'lodash-es/throttle';
 
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { xml as d3_xml } from 'd3-fetch';
+import { json as d3_json } from 'd3-fetch';
 
 import osmAuth from 'osm-auth';
-import rbush from 'rbush';
+import RBush from 'rbush';
 
 import { JXON } from '../util/jxon';
 import { geoExtent, geoRawMercator, geoVecAdd, geoZoomToScale } from '../geo';
@@ -13,7 +14,7 @@ import { utilArrayChunk, utilArrayGroupBy, utilArrayUniq, utilRebind, utilTiler,
 
 
 var tiler = utilTiler();
-var dispatch = d3_dispatch('authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
+var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
 var urlroot = 'http://localhost:8080';
 var oauth = osmAuth({
     url: urlroot,
@@ -26,9 +27,10 @@ var oauth = osmAuth({
 });
 
 var _blacklists = ['.*\.google(apis)?\..*/(vt|kh)[\?/].*([xyz]=.*){3}.*'];
-var _tileCache = { toLoad: {}, loaded: {}, inflight: {}, seen: {}, rtree: rbush() };
-var _noteCache = { toLoad: {}, loaded: {}, inflight: {}, inflightPost: {}, note: {}, closed: {}, rtree: rbush() };
+var _tileCache = { toLoad: {}, loaded: {}, inflight: {}, seen: {}, rtree: new RBush() };
+var _noteCache = { toLoad: {}, loaded: {}, inflight: {}, inflightPost: {}, note: {}, closed: {}, rtree: new RBush() };
 var _userCache = { toLoad: {}, user: {} };
+var _cachedApiStatus;
 var _changeset = {};
 
 var _deferred = new Set();
@@ -90,6 +92,14 @@ function getNodes(obj) {
     return nodes;
 }
 
+function getNodesJSON(obj) {
+    var elems = obj.nodes;
+    var nodes = new Array(elems.length);
+    for (var i = 0, l = elems.length; i < l; i++) {
+        nodes[i] = 'n' + elems[i];
+    }
+    return nodes;
+}
 
 function getTags(obj) {
     var elems = obj.getElementsByTagName('tag');
@@ -117,6 +127,19 @@ function getMembers(obj) {
     return members;
 }
 
+function getMembersJSON(obj) {
+    var elems = obj.members;
+    var members = new Array(elems.length);
+    for (var i = 0, l = elems.length; i < l; i++) {
+        var attrs = elems[i];
+        members[i] = {
+            id: attrs.type[0] + attrs.ref,
+            type: attrs.type,
+            role: attrs.role
+        };
+    }
+    return members;
+}
 
 function getVisible(attrs) {
     return (!attrs.visible || attrs.visible.value !== 'false');
@@ -166,6 +189,94 @@ function encodeNoteRtree(note) {
     };
 }
 
+
+var jsonparsers = {
+
+    node: function nodeData(obj, uid) {
+        return new osmNode({
+            id:  uid,
+            visible: true,
+            version: obj.version.toString(),
+            changeset: obj.changeset.toString(),
+            timestamp: obj.timestamp,
+            user: obj.user,
+            uid: obj.uid.toString(),
+            loc: [parseFloat(obj.lon), parseFloat(obj.lat)],
+            tags: obj.tags
+        });
+    },
+
+    way: function wayData(obj, uid) {
+        return new osmWay({
+            id:  uid,
+            visible: true,
+            version: obj.version.toString(),
+            changeset: obj.changeset.toString(),
+            timestamp: obj.timestamp,
+            user: obj.user,
+            uid: obj.uid.toString(),
+            tags: obj.tags,
+            nodes: getNodesJSON(obj)
+        });
+    },
+
+    relation: function relationData(obj, uid) {
+        return new osmRelation({
+            id:  uid,
+            visible: true,
+            version: obj.version.toString(),
+            changeset: obj.changeset.toString(),
+            timestamp: obj.timestamp,
+            user: obj.user,
+            uid: obj.uid.toString(),
+            tags: obj.tags,
+            members: getMembersJSON(obj)
+        });
+    }
+};
+
+function parseJSON(payload, callback, options) {
+    options = Object.assign({ skipSeen: true }, options);
+    if (!payload)  {
+        return callback({ message: 'No JSON', status: -1 });
+    }
+
+    var json = payload;
+    if (typeof json !== 'object')
+       json = JSON.parse(payload);
+
+    if (!json.elements)
+        return callback({ message: 'No JSON', status: -1 });
+
+    var children = json.elements;
+
+    var handle = window.requestIdleCallback(function() {
+        var results = [];
+        var result;
+        for (var i = 0; i < children.length; i++) {
+            result = parseChild(children[i]);
+            if (result) results.push(result);
+        }
+        callback(null, results);
+    });
+
+    _deferred.add(handle);
+
+    function parseChild(child) {
+        var parser = jsonparsers[child.type];
+        if (!parser) return null;
+
+        var uid;
+
+        uid = osmEntity.id.fromOSM(child.type, child.id);
+        if (options.skipSeen) {
+            if (_tileCache.seen[uid]) return null;  // avoid reparsing a "seen" entity
+            _tileCache.seen[uid] = true;
+        }
+
+        return parser(child, uid);
+    }
+}
 
 var parsers = {
     node: function nodeData(obj, uid) {
@@ -260,7 +371,8 @@ var parsers = {
             id: uid,
             display_name: attrs.display_name && attrs.display_name.value,
             account_created: attrs.account_created && attrs.account_created.value,
-            changesets_count: 0
+            changesets_count: '0',
+            active_blocks: '0'
         };
 
         var img = obj.getElementsByTagName('img');
@@ -271,6 +383,14 @@ var parsers = {
         var changesets = obj.getElementsByTagName('changesets');
         if (changesets && changesets[0] && changesets[0].getAttribute('count')) {
             user.changesets_count = changesets[0].getAttribute('count');
+        }
+
+        var blocks = obj.getElementsByTagName('blocks');
+        if (blocks && blocks[0]) {
+            var received = blocks[0].getElementsByTagName('received');
+            if (received && received[0] && received[0].getAttribute('active')) {
+                user.active_blocks = received[0].getAttribute('active');
+            }
         }
 
         _userCache.user[uid] = user;
@@ -382,9 +502,10 @@ export default {
         Object.values(_noteCache.inflightPost).forEach(abortRequest);
         if (_changeset.inflight) abortRequest(_changeset.inflight);
 
-        _tileCache = { toLoad: {}, loaded: {}, inflight: {}, seen: {}, rtree: rbush() };
-        _noteCache = { toLoad: {}, loaded: {}, inflight: {}, inflightPost: {}, note: {}, closed: {}, rtree: rbush() };
+        _tileCache = { toLoad: {}, loaded: {}, inflight: {}, seen: {}, rtree: new RBush() };
+        _noteCache = { toLoad: {}, loaded: {}, inflight: {}, inflightPost: {}, note: {}, closed: {}, rtree: new RBush() };
         _userCache = { toLoad: {}, user: {} };
+        _cachedApiStatus = undefined;
         _changeset = {};
 
         return this;
@@ -442,7 +563,7 @@ export default {
         var that = this;
         var cid = _connectionID;
 
-        function done(err, xml) {
+        function done(err, payload) {
             if (that.getConnectionId() !== cid) {
                 if (callback) callback({ message: 'Connection Switched', status: -1 });
                 return;
@@ -465,13 +586,20 @@ export default {
                         (err.status === 509 || err.status === 429)) {
                     _rateLimitError = err;
                     dispatch.call('change');
+                    that.reloadApiStatus();
+
+                } else if ((err && _cachedApiStatus === 'online') ||
+                    (!err && _cachedApiStatus !== 'online')) {
+                    // If the response's error state doesn't match the status,
+                    // it's likely we lost or gained the connection so reload the status
+                    that.reloadApiStatus();
                 }
 
                 if (callback) {
                     if (err) {
                         return callback(err);
                     } else {
-                        return parseXML(xml, callback, options);
+                        return parseXML(payload, callback, options);
                     }
                 }
             }
@@ -540,6 +668,7 @@ export default {
 
     // Load multiple entities in chunks
     // (note: callback may be called multiple times)
+    // Unlike `loadEntity`, child nodes and members are not fetched
     // GET /api/0.6/[nodes|ways|relations]?#parameters
     loadMultiple: function(ids, callback) {
         var that = this;
@@ -780,7 +909,10 @@ export default {
             .catch(function(err) { errback(err.message); });
 
         function done(err, xml) {
-            if (err) { return callback(err); }
+            if (err) {
+                // the status is null if no response could be retrieved
+                return callback(err, null);
+            }
 
             // update blacklists
             var elements = xml.getElementsByTagName('blacklist');
@@ -803,6 +935,24 @@ export default {
                 return callback(undefined, val);
             }
         }
+    },
+
+    // Calls `status` and dispatches an `apiStatusChange` event if the returned
+    // status differs from the cached status.
+    reloadApiStatus: function() {
+        // throttle to avoid unncessary API calls
+        if (!this.throttledReloadApiStatus) {
+            var that = this;
+            this.throttledReloadApiStatus = _throttle(function() {
+                that.status(function(err, status) {
+                    if (status !== _cachedApiStatus) {
+                        _cachedApiStatus = status;
+                        dispatch.call('apiStatusChange', that, err, status);
+                    }
+                });
+            }, 500);
+        }
+        this.throttledReloadApiStatus();
     },
 
 
@@ -843,24 +993,26 @@ export default {
 
         _tileCache.inflight[tile.id] = this.loadFromAPI(
             path + tile.extent.toParam(),
-            function(err, parsed) {
-                delete _tileCache.inflight[tile.id];
-                if (!err) {
-                    delete _tileCache.toLoad[tile.id];
-                    _tileCache.loaded[tile.id] = true;
-                    var bbox = tile.extent.bbox();
-                    bbox.id = tile.id;
-                    _tileCache.rtree.insert(bbox);
-                }
-                if (callback) {
-                    callback(err, Object.assign({ data: parsed }, tile));
-                }
-                if (!hasInflightRequests(_tileCache)) {
-                    dispatch.call('loaded');     // stop the spinner
-                }
-            },
+            tileCallback,
             options
         );
+
+        function tileCallback(err, parsed) {
+            delete _tileCache.inflight[tile.id];
+            if (!err) {
+                delete _tileCache.toLoad[tile.id];
+                _tileCache.loaded[tile.id] = true;
+                var bbox = tile.extent.bbox();
+                bbox.id = tile.id;
+                _tileCache.rtree.insert(bbox);
+            }
+            if (callback) {
+                callback(err, Object.assign({ data: parsed }, tile));
+            }
+            if (!hasInflightRequests(_tileCache)) {
+                dispatch.call('loaded');     // stop the spinner
+            }
+        }
     },
 
 
@@ -1068,7 +1220,7 @@ export default {
             var target = {};
             Object.keys(source).forEach(function(k) {
                 if (k === 'rtree') {
-                    target.rtree = rbush().fromJSON(source.rtree.toJSON());  // clone rbush
+                    target.rtree = new RBush().fromJSON(source.rtree.toJSON());  // clone rbush
                 } else if (k === 'note') {
                     target.note = {};
                     Object.keys(source.note).forEach(function(id) {

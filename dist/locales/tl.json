@@ -66,32 +66,10 @@
             },
             "circularize": {
                 "title": "Pina-bilog",
-                "description": {
-                    "line": "Gawing pabilog ang linyang ito.",
-                    "area": "Gawing pabilog ang area o poligong ito."
-                },
-                "key": "O",
-                "annotation": {
-                    "line": "Ginawang pabilog and isang linya.",
-                    "area": "Ginawang pabilog and isang area o poligon."
-                },
-                "not_closed": "Hindi ito maaaring gawing pabilog dahil hindi ito isang \"loop\".",
-                "too_large": "Hindi na ito maaaring gawing pabilog dahil hindi sapat ang kasalukuyang nakikita sa mapa.",
-                "connected_to_hidden": "Hindi magawang pabilog dahil may nakatagong feature na konektado dito."
+                "key": "O"
             },
             "orthogonalize": {
-                "title": "Iskawalado",
-                "description": {
-                    "line": "Gawing iskwalado ang mga kanto ng linyang ito.",
-                    "area": "Gawing iskwalado ang mga kanto ng area o poligong ito."
-                },
-                "annotation": {
-                    "line": "Ginawang iskawalado ang bawat kanto ng linya.",
-                    "area": "Ginawang iskawalado ang bawat kanto ng area o poligon."
-                },
-                "not_squarish": "Hindi maaring gawing iskwalado.",
-                "too_large": "Hindi ito maaaring gawing iskuwalado dahil hindi sapat ang kasalukuyang nakikita sa mapa.",
-                "connected_to_hidden": "Hindi magawang iskawaldo dahil may nakatagong feature na konektado dito."
+                "title": "Iskawalado"
             },
             "straighten": {
                 "title": "Ituwid",
@@ -226,9 +204,7 @@
             },
             "reverse": {
                 "title": "Baliktarin",
-                "description": "Baliktarin ang direksyon ng linyang ito.",
-                "key": "V",
-                "annotation": "Binaliktad ang direksyon ng linya."
+                "key": "V"
             },
             "split": {
                 "title": "Hatiin",
@@ -284,18 +260,12 @@
             "hidden_warning": "{count} na nakatagong features",
             "hidden_details": "Nakatago ang mga features na ito: {details}"
         },
-        "status": {
-            "error": "Hindi maka-konekta sa API.",
-            "offline": "Kasalukuyang offline ang API. Subukang mag-edit muli sa ibang pagkakataon.",
-            "readonly": "Kasalukuyang nasa read-only ang API. Kailangan mong maghintay upang i-save ang iyong mga pagbabago."
-        },
         "commit": {
             "title": "Nai-upload sa OpenStreetMap",
             "upload_explanation": "Ang mga pagbabagong na-upload ay makikita sa lahat ng mapang gumagamit ng datos ng OpenStreetMap.",
             "upload_explanation_with_user": "Ang mga pagbabagong na-upload bilang {user} ay makikita sa lahat ng mapang gumagamit ng datos ng OpenStreetMap.",
             "save": "I-upload",
             "cancel": "Kanselahin",
-            "changes": "{count} Changes",
             "warnings": "Mga babala",
             "modified": "Binago",
             "deleted": "Binura",
@@ -344,17 +314,12 @@
         "inspector": {
             "show_more": "Higit pang detalye",
             "view_on_osm": "Tingnan sa openstreetmap.org",
-            "all_tags": "Lahat ng tags",
-            "all_members": "Lahat ng kasapi",
-            "all_relations": "Lahat ng \"relation\"",
             "new_relation": "Bagong relation ...",
             "role": "Kasapi",
             "choose": "Pumili ng uri ng \"features\"",
             "results": "{n} mga resulta para sa {search}",
-            "back_tooltip": "Baguhin ang \"feature\"",
             "remove": "Alisin",
             "search": "Mag-search",
-            "multiselect": "Mga piniling tampok",
             "unknown": "Unknown",
             "incomplete": "<not downloaded>",
             "feature_list": "Mag-hanap ng \"feature\"",
@@ -379,8 +344,7 @@
             "reset": "I-reset",
             "minimap": {
                 "tooltip": "Ipakita ang naka-zoom out na mapa upang makatulong na mahanap ang mga lugar na kasalukuyang ipinapakita."
-            },
-            "fix_misalignment": "Baguhin ang imagery offset"
+            }
         },
         "map_data": {
             "title": "Data ng mapa",

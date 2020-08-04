@@ -5,7 +5,7 @@ import {
     select as d3_select
 } from 'd3-selection';
 
-import { t } from '../util/locale';
+import { currentLocale, t } from '../util/locale';
 import { modeBrowse } from '../modes/browse';
 import { uiDisclosure } from './disclosure';
 import { uiField } from './field';
@@ -25,7 +25,7 @@ export function uiPresetEditor(context) {
 
     function presetEditor(selection) {
         selection.call(uiDisclosure(context, 'preset_fields', true)
-            .title(t('inspector.all_fields'))
+            .title(t('inspector.fields'))
             .content(render)
         );
     }
@@ -55,11 +55,12 @@ export function uiPresetEditor(context) {
 
             var additionalFields = utilArrayUnion(_preset.moreFields, presets.universal());
             additionalFields.sort(function(field1, field2) {
-                return field1.label() > field2.label();
+                return field1.label().localeCompare(field2.label(), currentLocale);
             });
 
             additionalFields.forEach(function(field) {
-                if (_preset.fields.indexOf(field) === -1) {
+                if (_preset.fields.indexOf(field) === -1 &&
+                    field.matchGeometry(geometry)) {
                     _fieldsArr.push(
                         uiField(context, field, entity, { show: false })
                     );

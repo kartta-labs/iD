@@ -2,8 +2,12 @@
     "icon": "temaki-pedestrian",
     "fields": [
         "name",
+        "depth",
         "access",
         "seasonal"
+    ],
+    "moreFields": [
+        "gnis/feature_id"
     ],
     "geometry": [
         "vertex"

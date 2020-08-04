@@ -3,7 +3,7 @@
     "fields": [
         "name",
         "operator",
-        "elevation",
+        "ele_node",
         "address",
         "access_simple",
         "fee",
@@ -11,7 +11,9 @@
         "charge_fee"
     ],
     "moreFields": [
-        "opening_hours"
+        "gnis/feature_id",
+        "opening_hours",
+        "opening_hours/covid19"
     ],
     "geometry": [
         "vertex"

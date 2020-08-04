@@ -25,7 +25,11 @@ export function coreContext() {
     var context = utilRebind({}, dispatch, 'on');
     var _deferred = new Set();
 
-    context.version = '2.15.4';
+    context.version = '2.17.3';
+    context.privacyVersion = '20200407';
+
+    // iD will alter the hash so cache the parameters intended to setup the session
+    context.initialHashParams = window.location.hash ? utilStringQs(window.location.hash) : {};
 
     // create a special translation that contains the keys in place of the strings
     var tkeys = JSON.parse(JSON.stringify(dataEn));  // clone deep
@@ -137,7 +141,7 @@ export function coreContext() {
     context.loadTiles = function(projection, callback) {
         var handle = window.requestIdleCallback(function() {
             _deferred.delete(handle);
-            if (connection && context.editable()) {
+            if (connection && context.editableDataEnabled()) {
                 var cid = connection.getConnectionId();
                 connection.loadTiles(projection, afterLoad(cid, callback));
             }
@@ -148,7 +152,7 @@ export function coreContext() {
     context.loadTileAtLoc = function(loc, callback) {
         var handle = window.requestIdleCallback(function() {
             _deferred.delete(handle);
-            if (connection && context.editable()) {
+            if (connection && context.editableDataEnabled()) {
                 var cid = connection.getConnectionId();
                 connection.loadTileAtLoc(loc, afterLoad(cid, callback));
             }
@@ -346,7 +350,15 @@ export function coreContext() {
     context.map = function() { return map; };
     context.layers = function() { return map.layers; };
     context.surface = function() { return map.surface; };
-    context.editable = function() { return map.editable(); };
+    context.editableDataEnabled = function() { return map.editableDataEnabled(); };
+    context.editable = function() {
+
+       // don't allow editing during save
+       var mode = context.mode();
+       if (!mode || mode.id === 'save') return false;
+
+       return map.editableDataEnabled();
+    };
     context.surfaceRect = function() {
         return map.surface.node().getBoundingClientRect();
     };
@@ -394,11 +406,11 @@ export function coreContext() {
 
 
     /* Container */
-    var container = d3_select(document.body);
+    var container = d3_select(null);
     context.container = function(val) {
         if (!arguments.length) return container;
         container = val;
-        container.classed('id-container', true);
+        container.classed('ideditor', true);
         return context;
     };
     var embed;
@@ -541,8 +553,8 @@ export function coreContext() {
     photos = rendererPhotos(context);
     presets = presetIndex(context);
 
-    if (services.maprules && utilStringQs(window.location.hash).maprules) {
-        var maprules = utilStringQs(window.location.hash).maprules;
+    if (services.maprules && context.initialHashParams.maprules) {
+        var maprules = context.initialHashParams.maprules;
         d3_json(maprules)
             .then(function(mapcss) {
                 services.maprules.init();
@@ -576,7 +588,7 @@ export function coreContext() {
     features.init();
     photos.init();
 
-    var presetsParameter = utilStringQs(window.location.hash).presets;
+    var presetsParameter = context.initialHashParams.presets;
     if (presetsParameter && presetsParameter.indexOf('://') !== -1) {
         // assume URL of external presets file
 

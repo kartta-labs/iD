@@ -23,11 +23,13 @@ import { uiHelp } from './help';
 import { uiInfo } from './info';
 import { uiIntro } from './intro';
 import { uiIssues } from './issues';
+import { uiIssuesInfo } from './issues_info';
 import { uiLoading } from './loading';
 import { uiMapData } from './map_data';
 import { uiMapInMap } from './map_in_map';
 import { uiNotice } from './notice';
 import { uiPhotoviewer } from './photoviewer';
+import { uiPreferences } from './preferences';
 import { uiRestore } from './restore';
 import { uiScale } from './scale';
 import { uiShortcuts } from './shortcuts';
@@ -76,6 +78,8 @@ export function uiInit(context) {
         // Top toolbar
         content
             .append('div')
+            .attr('id', 'bar-wrap')
+            .append('div')
             .attr('id', 'bar')
             .attr('class', 'fillD')
             .call(uiTopToolbar(context));
@@ -119,6 +123,12 @@ export function uiInit(context) {
             .append('div')
             .attr('class', 'map-control map-issues-control')
             .call(issues.renderToggleButton);
+
+        var preferences = uiPreferences(context);
+        controls
+            .append('div')
+            .attr('class', 'map-control preferences-control')
+            .call(preferences.renderToggleButton);
 
         var help = uiHelp(context);
         controls
@@ -184,30 +194,34 @@ export function uiInit(context) {
             .attr('class', 'version')
             .call(uiVersion(context));
 
-        //  var issueLinks = aboutList
+        //var issueLinks = aboutList
         //    .append('li');
-
-        // issueLinks
-        //     .append('a')
-        //     .attr('target', '_blank')
-        //     .attr('tabindex', -1)
-        //     .attr('href', 'https://github.com/openstreetmap/iD/issues')
-        //     .call(svgIcon('#iD-icon-bug', 'light'))
-        //     .call(tooltip().title(t('report_a_bug')).placement('top'));
-
-        // issueLinks
-        //     .append('a')
-        //     .attr('target', '_blank')
-        //     .attr('tabindex', -1)
-        //     .attr('href', 'https://github.com/openstreetmap/iD/blob/master/CONTRIBUTING.md#translating')
-        //     .call(svgIcon('#iD-icon-translate', 'light'))
-        //     .call(tooltip().title(t('help_translate')).placement('top'));
+        //
+        //issueLinks
+        //    .append('a')
+        //    .attr('target', '_blank')
+        //    .attr('href', 'https://github.com/openstreetmap/iD/issues')
+        //    .call(svgIcon('#iD-icon-bug', 'light'))
+        //    .call(tooltip().title(t('report_a_bug')).placement('top'));
+        //
+        //issueLinks
+        //    .append('a')
+        //    .attr('target', '_blank')
+        //    .attr('href', 'https://github.com/openstreetmap/iD/blob/develop/CONTRIBUTING.md#translating')
+        //    .call(svgIcon('#iD-icon-translate', 'light'))
+        //    .call(tooltip().title(t('help_translate')).placement('top'));
 
         aboutList
             .append('li')
             .attr('class', 'feature-warning')
             .attr('tabindex', -1)
             .call(uiFeatureInfo(context));
+
+        aboutList
+            .append('li')
+            .attr('class', 'issues-info')
+            .attr('tabindex', -1)
+            .call(uiIssuesInfo(context));
 
         aboutList
             .append('li')
@@ -242,13 +256,16 @@ export function uiInit(context) {
             .call(background.renderPane)
             .call(mapData.renderPane)
             .call(issues.renderPane)
+            .call(preferences.renderPane)
             .call(help.renderPane);
+
+        ui.info = uiInfo(context);
 
         // Add absolutely-positioned elements that sit on top of the map
         // This should happen after the map is ready (center/zoom)
         overMap
             .call(uiMapInMap(context))
-            .call(uiInfo(context))
+            .call(ui.info)
             .call(uiNotice(context));
 
 
@@ -278,7 +295,7 @@ export function uiInit(context) {
         var panPixels = 80;
         context.keybinding()
             .on('⌫', function() { d3_event.preventDefault(); })
-            .on([t('sidebar.key'), '`', '²'], ui.sidebar.toggle)   // #5663 - common QWERTY, AZERTY
+            .on([t('sidebar.key'), '`', '²', '@'], ui.sidebar.toggle)   // #5663, #6864 - common QWERTY, AZERTY
             .on('←', pan([panPixels, 0]))
             .on('↑', pan([0, panPixels]))
             .on('→', pan([-panPixels, 0]))
@@ -363,7 +380,6 @@ export function uiInit(context) {
             }
         });
     };
-
 
     ui.sidebar = uiSidebar(context);
 

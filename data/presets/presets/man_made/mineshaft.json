@@ -1,5 +1,5 @@
 {
-    "icon": "maki-triangle",
+    "icon": "temaki-mineshaft_cage",
     "geometry": [
         "point",
         "area"
@@ -8,6 +8,9 @@
         "name",
         "operator",
         "resource"
+    ],
+    "moreFields": [
+        "gnis/feature_id"
     ],
     "terms": [
         "cave",

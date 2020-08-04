@@ -7,20 +7,22 @@
         "address",
         "website",
         "internet_access",
-        "internet_access/fee"
+        "internet_access/fee",
+        "internet_access/ssid"
     ],
     "moreFields": [
-        "religion",
         "denomination",
-        "internet_access/ssid",
-        "phone",
         "email",
         "fax",
+        "gnis/feature_id",
+        "not/name",
+        "phone",
+        "religion",
         "wheelchair"
     ],
     "geometry": [
-        "point",
-        "area"
+        "area",
+        "point"
     ],
     "terms": [
         "university",

@@ -7,7 +7,6 @@ import { tooltip } from '../util/tooltip';
 import { actionChangeTags } from '../actions/change_tags';
 import { modeBrowse } from '../modes/browse';
 import { svgIcon } from '../svg/icon';
-import { uiPresetFavoriteButton } from './preset_favorite_button';
 import { uiPresetIcon } from './preset_icon';
 import { uiQuickLinks } from './quick_links';
 import { uiRawMemberEditor } from './raw_member_editor';
@@ -30,7 +29,6 @@ export function uiEntityEditor(context) {
     var _entityID;
     var _activePreset;
     var _tagReference;
-    var _presetFavorite;
 
     var entityIssues = uiEntityIssues(context);
     var quickLinks = uiQuickLinks();
@@ -133,11 +131,6 @@ export function uiEntityEditor(context) {
         // Update
         body = body
             .merge(bodyEnter);
-
-        if (_presetFavorite) {
-            body.selectAll('.preset-list-button-wrap')
-                .call(_presetFavorite.button);
-        }
 
         // update header
         if (_tagReference) {
@@ -262,6 +255,16 @@ export function uiEntityEditor(context) {
             // Don't replace a weak preset with a fallback preset (e.g. "Point")
             if (!(weakPreset && match.isFallback())) {
                 entityEditor.preset(match);
+
+                if (match.id !== activePreset.id) {
+                    // flash the button to indicate the preset changed
+                    selection
+                        .selectAll('button.preset-reset .label')
+                        .style('background-color', '#fff')
+                        .transition()
+                        .duration(500)
+                        .style('background-color', null);
+                }
             }
             entityEditor.modified(_base !== graph);
             entityEditor(selection);
@@ -354,7 +357,6 @@ export function uiEntityEditor(context) {
             _tagReference = uiTagReference(_activePreset.reference(context.geometry(_entityID)), context)
                 .showing(false);
         }
-        _presetFavorite = uiPresetFavoriteButton(_activePreset, context.geometry(_entityID), context);
         return entityEditor;
     };
 

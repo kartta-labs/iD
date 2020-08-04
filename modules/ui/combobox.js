@@ -14,7 +14,6 @@ var _comboHideTimerID;
 
 export function uiCombobox(context, klass) {
     var dispatch = d3_dispatch('accept', 'cancel');
-    var container = context.container();
 
     var _suggestions = [];
     var _data = [];
@@ -25,6 +24,7 @@ export function uiCombobox(context, klass) {
     var _cancelFetch = false;
     var _minItems = 2;
     var _tDown = 0;
+    var _mouseEnterHandler, _mouseLeaveHandler;
 
     var _fetcher = function(val, cb) {
         cb(_data.filter(function(d) {
@@ -99,7 +99,7 @@ export function uiCombobox(context, klass) {
             if (start !== end) return;  // exit if user is selecting
 
             // not showing or showing for a different field - try to show it.
-            var combo = container.selectAll('.combobox');
+            var combo = context.container().selectAll('.combobox');
             if (combo.empty() || combo.datum() !== input.node()) {
                 var tOrig = _tDown;
                 window.setTimeout(function() {
@@ -129,7 +129,7 @@ export function uiCombobox(context, klass) {
         function show() {
             hide();   // remove any existing
 
-            container
+            context.container()
                 .insert('div', ':first-child')
                 .datum(input.node())
                 .attr('class', 'combobox' + (klass ? ' combobox-' + klass : ''))
@@ -152,7 +152,7 @@ export function uiCombobox(context, klass) {
                 _comboHideTimerID = undefined;
             }
 
-            container.selectAll('.combobox')
+            context.container().selectAll('.combobox')
                 .remove();
 
             d3_select('body')
@@ -161,7 +161,7 @@ export function uiCombobox(context, klass) {
 
 
         function keydown() {
-            var shown = !container.selectAll('.combobox').empty();
+            var shown = !context.container().selectAll('.combobox').empty();
             var tagName = input.node() ? input.node().tagName.toLowerCase() : '';
 
             switch (d3_event.keyCode) {
@@ -237,7 +237,7 @@ export function uiCombobox(context, klass) {
                 }
 
                 if (val.length) {
-                    var combo = container.selectAll('.combobox');
+                    var combo = context.container().selectAll('.combobox');
                     if (combo.empty()) {
                         show();
                     }
@@ -274,10 +274,10 @@ export function uiCombobox(context, klass) {
 
 
         function ensureVisible() {
-            var combo = container.selectAll('.combobox');
+            var combo = context.container().selectAll('.combobox');
             if (combo.empty()) return;
 
-            var containerRect = container.node().getBoundingClientRect();
+            var containerRect = context.container().node().getBoundingClientRect();
             var comboRect = combo.node().getBoundingClientRect();
 
             if (comboRect.bottom > containerRect.bottom) {
@@ -364,10 +364,10 @@ export function uiCombobox(context, klass) {
                 return;
             }
 
-            var shown = !container.selectAll('.combobox').empty();
+            var shown = !context.container().selectAll('.combobox').empty();
             if (!shown) return;
 
-            var combo = container.selectAll('.combobox');
+            var combo = context.container().selectAll('.combobox');
             var options = combo.selectAll('.combobox-option')
                 .data(_suggestions, function(d) { return d.value; });
 
@@ -380,18 +380,21 @@ export function uiCombobox(context, klass) {
                 .attr('class', 'combobox-option')
                 .attr('title', function(d) { return d.title; })
                 .text(function(d) { return d.display || d.value; })
+                .on('mouseenter', _mouseEnterHandler)
+                .on('mouseleave', _mouseLeaveHandler)
                 .merge(options)
                 .classed('selected', function(d) { return d.value === _selected; })
                 .on('click.combo-option', accept)
                 .order();
 
             var node = attachTo ? attachTo.node() : input.node();
+            var containerRect = context.container().node().getBoundingClientRect();
             var rect = node.getBoundingClientRect();
 
             combo
-                .style('left', (rect.left + 5) + 'px')
+                .style('left', (rect.left + 5 - containerRect.left) + 'px')
                 .style('width', (rect.width - 10) + 'px')
-                .style('top', rect.height + rect.top + 'px');
+                .style('top', (rect.height + rect.top - containerRect.top) + 'px');
         }
 
 
@@ -467,6 +470,17 @@ export function uiCombobox(context, klass) {
         return combobox;
     };
 
+    combobox.itemsMouseEnter = function(val) {
+        if (!arguments.length) return _mouseEnterHandler;
+        _mouseEnterHandler = val;
+        return combobox;
+    };
+
+    combobox.itemsMouseLeave = function(val) {
+        if (!arguments.length) return _mouseLeaveHandler;
+        _mouseLeaveHandler = val;
+        return combobox;
+    };
 
     return utilRebind(combobox, dispatch, 'on');
 }

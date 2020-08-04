@@ -5,8 +5,13 @@
         "ref_route",
         "network_bicycle",
         "cycle_network",
-        "to",
-        "from"
+        "network/type",
+        "from",
+        "to"
+    ],
+    "moreFields": [
+        "colour",
+        "distance"
     ],
     "geometry": [
         "relation"

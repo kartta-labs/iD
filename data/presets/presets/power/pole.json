@@ -1,8 +1,13 @@
 {
+    "icon": "temaki-power_pole",
     "fields": [
         "ref",
-        "material",
         "operator",
+        "height",
+        "material",
+        "line_attachment"
+    ],
+    "moreFields": [
         "manufacturer"
     ],
     "geometry": [

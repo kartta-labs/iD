@@ -62,7 +62,7 @@ export function uiIntroArea(context, reveal) {
             var tooltip = reveal('button.add-area',
                 t('intro.areas.add_playground', { button: icon('#iD-icon-area', 'pre-text') }));
 
-            tooltip.selectAll('.tooltip-inner')
+            tooltip.selectAll('.popover-inner')
                 .insert('svg', 'span')
                 .attr('class', 'tooltip-illustration')
                 .append('use')
@@ -470,11 +470,11 @@ export function uiIntroArea(context, reveal) {
 
     function play() {
         dispatch.call('done');
-        reveal('#id-container',
+        reveal('.ideditor',
             t('intro.areas.play', { next: t('intro.lines.title') }), {
                 tooltipBox: '.intro-nav-wrap .chapter-line',
                 buttonText: t('intro.ok'),
-                buttonCallback: function() { reveal('#id-container'); }
+                buttonCallback: function() { reveal('.ideditor'); }
             }
         );
     }

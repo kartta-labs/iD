@@ -1,5 +1,5 @@
 {
-    "icon": "maki-aerialway",
+    "icon": "temaki-gondola_lift",
     "geometry": [
         "line"
     ],
@@ -15,5 +15,11 @@
     "tags": {
         "aerialway": "gondola"
     },
-    "name": "Gondola"
+    "terms": [
+        "aerial cable",
+        "lift",
+        "skiing",
+        "snowboarding"
+    ],
+    "name": "Gondola Lift"
 }

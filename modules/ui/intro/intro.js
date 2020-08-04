@@ -10,7 +10,6 @@ import { coreGraph } from '../../core/graph';
 import { dataIntroGraph } from '../../../data/intro_graph.json';
 import { modeBrowse } from '../../modes/browse';
 import { osmEntity } from '../../osm/entity';
-import { services } from '../../services';
 import { svgIcon } from '../../svg/icon';
 import { uiCurtain } from '../curtain';
 import { utilArrayDifference, utilArrayUniq } from '../../util';
@@ -70,7 +69,6 @@ export function uiIntro(context) {
         var opacity = d3_selectAll('#map .layer-background').style('opacity');
         var caches = osm && osm.caches();
         var baseEntities = context.history().graph().base().entities;
-        var countryCode = services.geocoder.countryCode;
 
         // Show sidebar and disable the sidebar resizing button
         // (this needs to be before `context.inIntro(true)`)
@@ -105,11 +103,6 @@ export function uiIntro(context) {
                 item.layer.enabled(item.id === 'osm');
             }
         });
-
-        // Mock geocoder
-        services.geocoder.countryCode = function(location, callback) {
-            callback(null, t('intro.graph.countrycode'));
-        };
 
 
         d3_selectAll('#map .layer-background').style('opacity', 1);
@@ -168,7 +161,6 @@ export function uiIntro(context) {
             if (history) { context.history().fromJSON(history, false); }
             context.map().centerZoom(center, zoom);
             window.location.replace(hash);
-            services.geocoder.countryCode = countryCode;
             context.inIntro(false);
         });
 

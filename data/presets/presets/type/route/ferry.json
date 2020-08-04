@@ -1,9 +1,9 @@
 {
-    "icon": "maki-ferry",
+    "icon": "temaki-ferry",
     "fields": [
         "{route/ferry}"
     ],
-    "moreFields" : [
+    "moreFields": [
         "{route/ferry}"
     ],
     "geometry": [

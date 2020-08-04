@@ -185,11 +185,10 @@ Work in Progress.  Don't start work on these, somebody else already did!
 
 ## Verifying Bug Fixes
 
-To verify a bug fix (or test a new feature), use the [master deployment](http://preview.ideditor.com/master/)
-(http://preview.ideditor.com/master/), which is updated every 10 minutes with the
+To verify a bug fix (or test a new feature), use the [`develop` branch preview deployment](https://ideditor.netlify.com), which is updated every 10 minutes with the
 latest code and translation strings.
 
-The deployments on openstreetmap.org and http://preview.ideditor.com/release/ are updated only
+The deployments on openstreetmap.org and https://preview.ideditor.com/release are updated only
 with stable releases. Issues that are marked fixed in the tracker may still be present.
 
 
@@ -216,8 +215,7 @@ preset fields, and lists of search terms. You do _not_ need to translate the
 search terms literally -- use a set of synonyms and related terms appropriate
 to the target language, separated by commas.
 
-You can check your translations in the [master deployment](http://preview.ideditor.com/master/)
-(http://preview.ideditor.com/master/), which is updated every 10 minutes with the
+You can check your translations in the [`develop` branch preview deployment](https://ideditor.netlify.com), which is updated every 10 minutes with the
 latest code and translation strings.
 
 [iD translation project on Transifex](https://www.transifex.com/projects/p/id-editor/)
@@ -228,7 +226,7 @@ project** button near the bottom of the project page. You can edit your
 getting too many notifications.
 
 Translations are licensed under
-[ISC](https://raw.github.com/openstreetmap/iD/master/LICENSE.md), the same license
+[ISC](https://raw.github.com/openstreetmap/iD/develop/LICENSE.md), the same license
 as iD.
 
 **Why are there so many duplicate "Type" translations?** There are multiple
@@ -290,33 +288,17 @@ you're going to update the presets, [review the Presets README](/data/presets/RE
 
 ## JavaScript
 
-iD uses ES5 syntax throughout the code, with the following exceptions:
-- [ES6 modules](http://exploringjs.com/es6/ch_modules.html) using `import` and
-`export` constructs. These are processed by [Rollup.js](https://rollupjs.org/guide/en)
-and not present in the distributed iD bundle.
-- Polyfills provided by [browser-polyfills](https://github.com/tiagomapmarques/browser-polyfills#what-does-it-have)
-  - `Promise`
-  - `fetch`
-  - `Map`
-  - `Set`
-  - `Array.find`
-  - `Array.findIndex`
-  - `Array.from`
-  - `Object.values`
-  - `Object.assign`
-  - `requestAnimationFrame (rAF)`
+Legacy iD code was written with ES5 syntax, however we now support most ES6 syntax via [Rollup.js](https://rollupjs.org/guide/en) and the [Rollup Bublé plugin](https://github.com/rollup/plugins/tree/master/packages/buble). You can find details about Bublé [here](https://buble.surge.sh/guide/).
 
-ES5 syntax is required for:
-* IE11, which about 15-20% of our users still use
-* PhantomJS which runs our tests (it would be great to replace this!)
+In order to continue to support older browsers like IE11 and our PhantomJS-based test runner, we also include the [browser-polyfills](https://github.com/tiagomapmarques/browser-polyfills#what-does-it-have) package.
 
-We will introduce ES6 syntax eventually when it makes sense to do so.
+We mostly follow the Airbnb style guide for JavaScript:
+- [Modern ES6](https://github.com/airbnb/javascript)
+- [Legacy ES5](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
 
-We use the [ES5 Airbnb style guide for JavaScript](https://github.com/airbnb/javascript/tree/es5-deprecated/es5) with
-only one difference:  **4 space soft tabs always for JavaScript, not 2.**
+We ask that you follow the convention of using 4 space indent in ES5 files and 2 space indent in ES6 files. While the indenting doesn't matter to the compiler, it does make it easier for us humans to see at a glance whether a file has been "upgraded" to ES6.
 
-No aligned `=`, no aligned arguments, spaces are either indents or the 1
-space between expressions. No hard tabs, ever.
+Always spaces, never tabs.
 
 JavaScript code should pass through [ESLint](http://eslint.org/) with no warnings.
 
@@ -338,7 +320,7 @@ always, indented by the level of the tree:
 Just like HTML and JavaScript, 4 space soft tabs always.
 
 ```css
-.radial-menu-tooltip {
+.menu-tooltip {
     background: rgba(255, 255, 255, 0.8);
 }
 ```
@@ -407,7 +389,7 @@ Additionally here is a step-by-step workflow example for beginners:
 
 4. Clone or download your local copy of iD from your GitHub account using https `git clone https://github.com/<yourgithubaccount>/iD.git` or using ssh `git clone git@github.com:{{yourgithubaccount}}/iD.git`. In your local copy you'll have a "remote" called origin.
 
-5. Switch to the iD directory, create a working branch (choose a descriptive name) and switch to it : `cd iD ; git checkout -b <working-branch-name>`. Never do anything in master branch.
+5. Switch to the iD directory, create a working branch (choose a descriptive name) and switch to it : `cd iD ; git checkout -b <working-branch-name>`. Never do anything in the `develop` branch.
 
 6. Edit file(s) and try your change locally (See above).
 
@@ -428,13 +410,13 @@ you can clean up by deleting the branch from your GitHub-iD-Clone and your local
 
 ### Restart with another PR after some while
 
-If you did not use your copy of iD for some while, other Pull Request gets merged and you don't have the latest version of iD. You can replace your master with whatever is in our master. If you have not done so yet: Add the main repo as an "upstream" remote:
+If you did not use your copy of iD for some while, other Pull Request gets merged and you don't have the latest version of iD. You can replace your `develop` with whatever is in our `develop`. If you have not done so yet: Add the main repo as an "upstream" remote:
 
 `git remote add upstream git@github.com:openstreetmap/iD.git`
 
-Then change to the master branch and get everything from upstream (the main repository)
+Then change to the `develop` branch and get everything from upstream (the main repository)
 
-`git checkout master ; git fetch --all && git reset --hard upstream/master`
+`git checkout develop ; git fetch --all && git reset --hard upstream/develop`
 
 
 ## Submitting directly in the Browser
@@ -451,7 +433,7 @@ Additionally here is a step-by-step workflow example for beginners:
 
 2. Go to the [iD main repository](https://github.com/openstreetmap/iD) and fork iD into your GitHub account (Fork is top right).
 
-3. Create a New Branch by clicking on "Branch: master" and entering the name of a new branch (choose a descriptive name).
+3. Create a New Branch by clicking on "Branch: develop" and entering the name of a new branch (choose a descriptive name).
 
 4. Navigate to the file you want to edit and click on "Edit this file" and apply your changes to the file. Alternatively, you could also "Create a new file".
 

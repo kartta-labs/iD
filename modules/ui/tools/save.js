@@ -1,5 +1,5 @@
 import { interpolateRgb as d3_interpolateRgb } from 'd3-interpolate';
-import { event as d3_event } from 'd3-selection';
+import { event as d3_event, select as d3_select } from 'd3-selection';
 
 import { t } from '../../util/locale';
 import { modeSave } from '../../modes';
@@ -79,12 +79,12 @@ export function uiToolSave(context) {
         tooltipBehavior = tooltip()
             .placement('bottom')
             .html(true)
-            .title(uiTooltipHtml(t('save.no_changes'), key));
+            .title(uiTooltipHtml(t('save.no_changes'), key))
+            .scrollContainer(d3_select('#bar'));
 
         button = selection
             .append('button')
             .attr('class', 'save disabled bar-button')
-            .attr('tabindex', -1)
             .on('click', save)
             .call(tooltipBehavior);
 
@@ -94,6 +94,7 @@ export function uiToolSave(context) {
         button
             .append('span')
             .attr('class', 'count')
+            .attr('aria-hidden', 'true')
             .text('0');
 
         updateCount();

@@ -1,5 +1,6 @@
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { select as d3_select, event as d3_event } from 'd3-selection';
+import * as countryCoder from '@ideditor/country-coder';
 
 import { currentLocale, t, languageName } from '../../util/locale';
 import { dataLanguages } from '../../../data';
@@ -15,12 +16,22 @@ var languagesArray = [];
 function loadLanguagesArray() {
     if (languagesArray.length !== 0) return;
 
+    // some conversion is needed to ensure correct OSM tags are used
+    var replacements = {
+        sr: 'sr-Cyrl',      // in OSM, `sr` implies Cyrillic
+        'sr-Cyrl': false    // `sr-Cyrl` isn't used in OSM
+    };
+
     for (var code in dataLanguages) {
+        if (replacements[code] === false) continue;
+        var metaCode = code;
+        if (replacements[code]) metaCode = replacements[code];
+
         languagesArray.push({
-            localName: languageName(code, { localOnly: true }),
-            nativeName: dataLanguages[code].nativeName,
+            localName: languageName(metaCode, { localOnly: true }),
+            nativeName: dataLanguages[metaCode].nativeName,
             code: code,
-            label: languageName(code)
+            label: languageName(metaCode)
         });
     }
 }
@@ -290,6 +301,11 @@ export function uiFieldLocalized(field, context) {
                 if (value && value.length > 2) {
                     for (var i = 0; i < suggestions.length; i++) {
                         var s = suggestions[i];
+
+                        // don't suggest brands from incompatible countries
+                        if (_countryCode && s.countryCodes &&
+                            s.countryCodes.indexOf(_countryCode) === -1) continue;
+
                         var sTag = s.id.split('/', 2);
                         var sKey = sTag[0];
                         var sValue = sTag[1];
@@ -564,11 +580,8 @@ export function uiFieldLocalized(field, context) {
 
     function loadCountryCode() {
         var center = _entity.extent(context.graph()).center();
-        services.geocoder.countryCode(center, function(err, result) {
-            if (!err && result) {
-                _countryCode = result;
-            }
-        });
+        var countryCode = countryCoder.iso1A2Code(center);
+        _countryCode = countryCode && countryCode.toLowerCase();
     }
 
     return utilRebind(localized, dispatch, 'on');

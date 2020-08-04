@@ -3,6 +3,8 @@ export function osmIsInterestingTag(key) {
         key !== 'created_by' &&
         key !== 'source' &&
         key !== 'odbl' &&
+        key.indexOf('source:') !== 0 &&
+        key.indexOf('source_ref') !== 0 && // purposely exclude colon
         key.indexOf('tiger:') !== 0;
 }
 
@@ -72,12 +74,14 @@ export var osmOneWayTags = {
         'canal': true,
         'ditch': true,
         'drain': true,
+        'fish_pass': true,
         'river': true,
-        'stream': true
+        'stream': true,
+        'tidal_channel': true
     }
 };
 
-
+// solid and smooth surfaces akin to the assumed default road surface in OSM
 export var osmPavedTags = {
     'surface': {
         'paved': true,
@@ -88,6 +92,19 @@ export var osmPavedTags = {
     },
     'tracktype': {
         'grade1': true
+    }
+};
+
+// solid, if somewhat uncommon surfaces with a high range of smoothness
+export var osmSemipavedTags = {
+    'surface': {
+        'cobblestone': true,
+        'cobblestone:flattened': true,
+        'unhewn_cobblestone': true,
+        'sett': true,
+        'paving_stones': true,
+        'metal': true,
+        'wood': true
     }
 };
 
@@ -132,5 +149,5 @@ export var osmRailwayTrackTagValues = {
 
 // "waterway" tag values for line features representing water flow
 export var osmFlowingWaterwayTagValues = {
-    canal: true, ditch: true, drain: true, river: true, stream: true
+    canal: true, ditch: true, drain: true, fish_pass: true, river: true, stream: true, tidal_channel: true
 };

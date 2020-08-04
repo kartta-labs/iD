@@ -1,8 +1,8 @@
 {
     "icon": "maki-heliport",
     "geometry": [
-        "point",
-        "area"
+        "area",
+        "point"
     ],
     "fields": [
         "name",
@@ -16,7 +16,8 @@
         "address",
         "charge_fee",
         "fee",
-        "opening_hours"
+        "opening_hours",
+        "opening_hours/covid19"
     ],
     "terms": [
         "helicopter",

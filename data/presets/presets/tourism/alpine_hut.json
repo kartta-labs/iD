@@ -1,5 +1,5 @@
 {
-    "icon": "maki-lodging",
+    "icon": "temaki-cabin",
     "fields": [
         "name",
         "operator",
@@ -11,9 +11,10 @@
         "payment_multi_fee",
         "charge_fee"
     ],
-    "moreFields" : [
+    "moreFields": [
         "email",
         "fax",
+        "gnis/feature_id",
         "internet_access/ssid",
         "phone",
         "reservation",
@@ -25,7 +26,12 @@
         "area"
     ],
     "terms": [
-        "climbing hut"
+        "cabin",
+        "climbing hut",
+        "lodge",
+        "lodging",
+        "overnight accommodations",
+        "wilderness hut"
     ],
     "tags": {
         "tourism": "alpine_hut"

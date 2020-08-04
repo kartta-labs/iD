@@ -7,21 +7,23 @@
         "fee",
         "payment_multi_fee",
         "charge_fee",
-        "opening_hours"
+        "opening_hours",
+        "opening_hours/covid19"
     ],
     "moreFields": [
         "address",
         "dog",
         "email",
         "fax",
+        "gnis/feature_id",
         "lit",
         "phone",
         "website",
         "wheelchair"
     ],
     "geometry": [
-        "point",
-        "area"
+        "area",
+        "point"
     ],
     "tags": {
         "leisure": "disc_golf_course"

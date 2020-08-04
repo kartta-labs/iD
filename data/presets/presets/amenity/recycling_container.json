@@ -3,14 +3,18 @@
     "fields": [
         "operator",
         "recycling_accepts",
-        "collection_times",
-        "material",
-        "colour"
+        "opening_hours",
+        "opening_hours/covid19",
+        "collection_times"
     ],
     "moreFields": [
+        "colour",
         "covered",
         "indoor",
-        "manufacturer"
+        "level",
+        "manufacturer",
+        "material",
+        "ref"
     ],
     "geometry": [
         "point",

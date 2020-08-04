@@ -33,18 +33,6 @@
               "separator": ","
             },
             {
-              "section": "help",
-              "text": "shortcuts.browsing.help.title"
-            },
-            {
-              "shortcuts": ["help.key"],
-              "text": "shortcuts.browsing.help.help"
-            },
-            {
-              "shortcuts": ["shortcuts.toggle.key", "?"],
-              "text": "shortcuts.browsing.help.keyboard"
-            },
-            {
               "section": "display_options",
               "text": "shortcuts.browsing.display_options.title"
             },
@@ -60,6 +48,14 @@
             {
               "shortcuts": ["map_data.key"],
               "text": "shortcuts.browsing.display_options.map_data"
+            },
+            {
+              "shortcuts": ["issues.key"],
+              "text": "shortcuts.browsing.display_options.issues"
+            },
+            {
+              "shortcuts": ["preferences.key"],
+              "text": "shortcuts.browsing.display_options.preferences"
             },
             {
               "modifiers": ["⌃", "⌘"],
@@ -82,11 +78,27 @@
             {
               "shortcuts": ["background.minimap.key"],
               "text": "shortcuts.browsing.display_options.minimap"
+            },
+            {
+              "shortcuts": ["map_data.highlight_edits.key"],
+              "text": "shortcuts.browsing.display_options.highlight_edits"
             }
           ]
         },
         {
           "rows": [
+            {
+              "section": "help",
+              "text": "shortcuts.browsing.help.title"
+            },
+            {
+              "shortcuts": ["help.key"],
+              "text": "shortcuts.browsing.help.help"
+            },
+            {
+              "shortcuts": ["shortcuts.toggle.key", "?"],
+              "text": "shortcuts.browsing.help.keyboard"
+            },
             {
               "section": "selecting",
               "text": "shortcuts.browsing.selecting.title"
@@ -162,14 +174,16 @@
               "text": "shortcuts.editing.drawing.title"
             },
             {
-              "shortcuts": ["modes.add_feature.key"],
-              "text": "shortcuts.editing.drawing.focus_add_feature"
+              "shortcuts": ["1"],
+              "text": "shortcuts.editing.drawing.add_point"
             },
             {
-              "shortcuts": ["1", "2", "3"],
-              "text": "shortcuts.editing.drawing.add_favorite",
-              "separator": ",",
-              "suffix": "…"
+              "shortcuts": ["2"],
+              "text": "shortcuts.editing.drawing.add_line"
+            },
+            {
+              "shortcuts": ["3"],
+              "text": "shortcuts.editing.drawing.add_area"
             },
             {
               "shortcuts": ["modes.add_note.key"],

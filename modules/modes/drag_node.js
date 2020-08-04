@@ -131,7 +131,7 @@ export function modeDragNode(context) {
     function start(entity) {
         _wasMidpoint = entity.type === 'midpoint';
         var hasHidden = context.features().hasHiddenConnections(entity, context.graph());
-        _isCancelled = d3_event.sourceEvent.shiftKey || hasHidden;
+        _isCancelled = !context.editable() || d3_event.sourceEvent.shiftKey || hasHidden;
 
 
         if (_isCancelled) {
@@ -362,6 +362,8 @@ export function modeDragNode(context) {
     function end(entity) {
         if (_isCancelled) return;
 
+        var wasPoint = entity.geometry(context.graph()) === 'point';
+
         var d = datum();
         var nope = (d && d.properties && d.properties.nope) || context.surface().classed('nope');
         var target = d && d.properties && d.properties.entity;   // entity to snap to
@@ -400,14 +402,19 @@ export function modeDragNode(context) {
             );
         }
 
-        var reselection = _restoreSelectedIDs.filter(function(id) {
-            return context.graph().hasEntity(id);
-        });
+        if (wasPoint) {
+            context.enter(modeSelect(context, [entity.id]));
 
-        if (reselection.length) {
-            context.enter(modeSelect(context, reselection));
         } else {
-            context.enter(modeBrowse(context));
+            var reselection = _restoreSelectedIDs.filter(function(id) {
+                return context.graph().hasEntity(id);
+            });
+
+            if (reselection.length) {
+                context.enter(modeSelect(context, reselection));
+            } else {
+                context.enter(modeBrowse(context));
+            }
         }
     }
 

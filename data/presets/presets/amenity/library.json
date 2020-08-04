@@ -11,12 +11,17 @@
         "internet_access/fee",
         "internet_access/ssid"
     ],
-    "moreFields" : [
+    "moreFields": [
         "access_simple",
         "air_conditioning",
+        "baby_feeding",
         "email",
         "fax",
+        "gnis/feature_id",
+        "level",
+        "not/name",
         "opening_hours",
+        "opening_hours/covid19",
         "payment_multi",
         "phone",
         "polling_station",

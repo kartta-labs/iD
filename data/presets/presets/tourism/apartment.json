@@ -9,12 +9,13 @@
         "internet_access",
         "internet_access/fee"
     ],
-    "moreFields" : [
+    "moreFields": [
         "building/levels_building",
-        "height_building",
         "email",
         "fax",
+        "height_building",
         "internet_access/ssid",
+        "level",
         "payment_multi",
         "phone",
         "reservation",
@@ -29,5 +30,12 @@
     "tags": {
         "tourism": "apartment"
     },
+    "terms": [
+        "bnb",
+        "holiday rental",
+        "lodging",
+        "overnight accommodations",
+        "vacation rental"
+    ],
     "name": "Guest Apartment / Condo"
 }

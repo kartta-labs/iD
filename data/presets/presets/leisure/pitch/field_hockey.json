@@ -1,8 +1,8 @@
 {
-    "icon": "maki-pitch",
+    "icon": "temaki-field_hockey",
     "geometry": [
-        "point",
-        "area"
+        "area",
+        "point"
     ],
     "tags": {
         "leisure": "pitch",

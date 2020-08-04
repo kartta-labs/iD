@@ -85,7 +85,7 @@ export function uiIntroBuilding(context, reveal) {
             var tooltip = reveal('button.add-area',
                 t('intro.buildings.add_building', { button: icon('#iD-icon-area', 'pre-text') }));
 
-            tooltip.selectAll('.tooltip-inner')
+            tooltip.selectAll('.popover-inner')
                 .insert('svg', 'span')
                 .attr('class', 'tooltip-illustration')
                 .append('use')
@@ -402,7 +402,7 @@ export function uiIntroBuilding(context, reveal) {
 
             // Something changed.  Wait for transition to complete and check undo annotation.
             timeout(function() {
-                if (context.history().undoAnnotation() === t('operations.orthogonalize.annotation.area')) {
+                if (context.history().undoAnnotation() === t('operations.orthogonalize.annotation.feature.single')) {
                     continueTo(doneSquare);
                 } else {
                     continueTo(retryClickSquare);
@@ -724,7 +724,7 @@ export function uiIntroBuilding(context, reveal) {
 
             // Something changed.  Wait for transition to complete and check undo annotation.
             timeout(function() {
-                if (context.history().undoAnnotation() === t('operations.circularize.annotation.area')) {
+                if (context.history().undoAnnotation() === t('operations.circularize.annotation.single')) {
                     continueTo(play);
                 } else {
                     continueTo(retryClickCircle);
@@ -757,11 +757,11 @@ export function uiIntroBuilding(context, reveal) {
 
     function play() {
         dispatch.call('done');
-        reveal('#id-container',
+        reveal('.ideditor',
             t('intro.buildings.play', { next: t('intro.startediting.title') }), {
                 tooltipBox: '.intro-nav-wrap .chapter-startEditing',
                 buttonText: t('intro.ok'),
-                buttonCallback: function() { reveal('#id-container'); }
+                buttonCallback: function() { reveal('.ideditor'); }
             }
         );
     }

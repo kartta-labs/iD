@@ -4,6 +4,9 @@
         "historic",
         "inscription"
     ],
+    "moreFields": [
+        "gnis/feature_id"
+    ],
     "geometry": [
         "point",
         "vertex",
@@ -13,5 +16,6 @@
     "tags": {
         "historic": "*"
     },
+    "matchScore": 0.5,
     "name": "Historic Site"
 }

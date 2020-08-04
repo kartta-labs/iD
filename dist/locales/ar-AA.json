@@ -52,18 +52,8 @@
             "change_tags": {
                 "annotation": ".العلامات المتغيرة"
             },
-            "circularize": {
-                "annotation": {
-                    "line": ".جعل خط دائري",
-                    "area": "جعل مساحة  دائرية"
-                }
-            },
             "orthogonalize": {
-                "title": "مربع",
-                "annotation": {
-                    "line": ".جعل زوايا الخط مربعة",
-                    "area": ".جعل زوايا المساحة مربعة"
-                }
+                "title": "مربع"
             },
             "delete": {
                 "title": "حذف",
@@ -100,9 +90,7 @@
                 }
             },
             "reverse": {
-                "title": "عكس",
-                "description": ".عكس إتجاه الخط",
-                "annotation": ".تم عكس إتجاه الخط"
+                "title": "عكس"
             },
             "split": {
                 "title": "تقسيم"

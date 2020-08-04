@@ -1,19 +1,21 @@
 {
-    "icon": "maki-beach",
+    "icon": "fas-umbrella-beach",
     "fields": [
         "name",
         "address",
         "opening_hours",
+        "opening_hours/covid19",
         "fee",
         "payment_multi_fee",
         "charge_fee"
     ],
     "moreFields": [
-        "smoking",
-        "website",
-        "phone",
         "email",
-        "fax"
+        "fax",
+        "gnis/feature_id",
+        "phone",
+        "smoking",
+        "website"
     ],
     "geometry": [
         "point",

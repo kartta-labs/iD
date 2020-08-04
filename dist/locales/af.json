@@ -48,21 +48,7 @@
             },
             "circularize": {
                 "title": "Maak rond",
-                "description": {
-                    "line": "Maak hierdie lyn rond.",
-                    "area": "Maak die area rond."
-                },
-                "key": "O",
-                "annotation": {
-                    "line": "Maak 'n lyn rond.",
-                    "area": "Maak 'n area rond."
-                }
-            },
-            "orthogonalize": {
-                "annotation": {
-                    "line": "Maak die hoeke van 'n lyn reghoekig.",
-                    "area": "Maak die hoeke van 'n area reghoekig."
-                }
+                "key": "O"
             },
             "delete": {
                 "title": "Verwyder",
@@ -106,9 +92,7 @@
             },
             "reverse": {
                 "title": "Draai om",
-                "description": "Maak die lyn ander kant toe gaan.",
-                "key": "V",
-                "annotation": "'n Lyn is omgedraai."
+                "key": "V"
             },
             "split": {
                 "title": "Split",
@@ -134,11 +118,6 @@
             "nothing": "Niks om weer te doen nie."
         },
         "loading_auth": "Maak kontak met OpenStreetMap...",
-        "status": {
-            "error": "Kan nie aan die API koppel nie.",
-            "offline": "Die API is aflyn, probeer asseblief later weer.",
-            "readonly": "Die API is lees alleenliks. Jy sal so bietjie moet wag voordat jy verandering kan bêre."
-        },
         "commit": {
             "cancel": "Kanseleer",
             "warnings": "Waarskuwings",
@@ -302,9 +281,6 @@
                 "description": {
                     "label": "Beskrywing"
                 },
-                "elevation": {
-                    "label": "Hoogte bo seespiëel"
-                },
                 "emergency": {
                     "label": "Noodgeval"
                 },
@@ -331,7 +307,6 @@
                     "label": "Steilte"
                 },
                 "internet_access": {
-                    "label": "Internet Toegang",
                     "options": {
                         "terminal": "Terminaal",
                         "wired": "Bedraad",
@@ -350,10 +325,6 @@
                 },
                 "leisure": {
                     "label": "Tipe"
-                },
-                "levels": {
-                    "label": "Vlakke",
-                    "placeholder": "2, 4, 6..."
                 },
                 "location": {
                     "label": "Plek"
@@ -480,9 +451,6 @@
                 "address": {
                     "name": "Adres"
                 },
-                "aeroway": {
-                    "name": "Aanloopbaan"
-                },
                 "aeroway/aerodrome": {
                     "name": "Lughawe"
                 },
@@ -527,9 +495,6 @@
                 },
                 "amenity/car_rental": {
                     "name": "Kar huur"
-                },
-                "amenity/car_sharing": {
-                    "name": "Kardeel"
                 },
                 "amenity/car_wash": {
                     "name": "Karwas"
@@ -577,9 +542,6 @@
                 "amenity/police": {
                     "name": "Polisie"
                 },
-                "amenity/post_box": {
-                    "name": "Posbus"
-                },
                 "amenity/post_office": {
                     "name": "Poskantoor"
                 },
@@ -588,9 +550,6 @@
                 },
                 "amenity/restaurant": {
                     "name": "Restaurant"
-                },
-                "amenity/swimming_pool": {
-                    "name": "Swembad"
                 },
                 "amenity/taxi": {
                     "name": "Taxi staanplek"
@@ -669,9 +628,6 @@
                 },
                 "emergency/phone": {
                     "name": "Noodtelefoon"
-                },
-                "highway": {
-                    "name": "Snelweg"
                 },
                 "highway/bridleway": {
                     "name": "Perdepaaidjie"
@@ -767,10 +723,6 @@
                     "name": "Begrafplaas",
                     "terms": "begrafplaas, kerkhof, dodeakker, godsakker"
                 },
-                "landuse/construction": {
-                    "name": "Konstruksie",
-                    "terms": "Konstruksie"
-                },
                 "landuse/farmyard": {
                     "name": "Plaaswerf",
                     "terms": "plaaswerf"
@@ -794,9 +746,6 @@
                 "landuse/vineyard": {
                     "name": "Druiweprieel",
                     "terms": "wingerd"
-                },
-                "leisure": {
-                    "name": "Gemak"
                 },
                 "leisure/dog_park": {
                     "name": "Hondepark",
@@ -862,9 +811,6 @@
                     "name": "Lyn",
                     "terms": "Lyn"
                 },
-                "man_made": {
-                    "name": "Mens gemaak"
-                },
                 "man_made/breakwater": {
                     "name": "Breekwater",
                     "terms": "breekwater,seebreker,golfbreker"
@@ -899,9 +845,6 @@
                 "man_made/water_works": {
                     "name": "Waterwerke",
                     "terms": "waterwerke"
-                },
-                "natural": {
-                    "name": "Natuur"
                 },
                 "natural/bay": {
                     "name": "Baai"
@@ -959,10 +902,6 @@
                 "natural/wetland": {
                     "name": "Vleiland"
                 },
-                "natural/wood": {
-                    "name": "Woud",
-                    "terms": "Woud"
-                },
                 "office": {
                     "name": "Kantoor",
                     "terms": "Kantoor"
@@ -998,9 +937,6 @@
                 "point": {
                     "name": "Punt"
                 },
-                "power": {
-                    "name": "Krag"
-                },
                 "power/line": {
                     "name": "Kraglyn",
                     "terms": "Kraglyn,kragdraad"
@@ -1008,9 +944,6 @@
                 "power/pole": {
                     "name": "Kragpaal",
                     "terms": "Kragpaal"
-                },
-                "power/sub_station": {
-                    "name": "Substasie"
                 },
                 "power/tower": {
                     "name": "Hoogspanningstoring",
@@ -1020,29 +953,14 @@
                     "name": "Transformator",
                     "terms": "transformator"
                 },
-                "railway": {
-                    "name": "Spoorlyn"
-                },
                 "railway/abandoned": {
                     "name": "Verlate spoorlyn"
                 },
                 "railway/disused": {
                     "name": "Ongebruikte spoorweg"
                 },
-                "railway/monorail": {
-                    "name": "Enkelspoorbaan"
-                },
-                "railway/rail": {
-                    "name": "Treinspoor"
-                },
-                "railway/subway": {
-                    "name": "Metro"
-                },
                 "railway/subway_entrance": {
                     "name": "Metro Ingang"
-                },
-                "railway/tram": {
-                    "name": "Trem"
                 },
                 "relation": {
                     "name": "Verhouding"
@@ -1106,9 +1024,6 @@
                 },
                 "shop/farm": {
                     "name": "Padstal"
-                },
-                "shop/fishmonger": {
-                    "name": "Viswinkel"
                 },
                 "shop/florist": {
                     "name": "Bloemiste"
@@ -1184,9 +1099,6 @@
                 },
                 "shop/video": {
                     "name": "Videowinkel"
-                },
-                "tourism": {
-                    "name": "Toerisme"
                 },
                 "tourism/alpine_hut": {
                     "name": "Berghuisie"
@@ -1274,9 +1186,6 @@
                 },
                 "type/route/tram": {
                     "name": "Tremroete"
-                },
-                "waterway": {
-                    "name": "Waterweg"
                 },
                 "waterway/canal": {
                     "name": "Kanaal"

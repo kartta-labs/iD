@@ -8,9 +8,10 @@
         "operator"
     ],
     "moreFields": [
-        "address",
         "access_simple",
-        "opening_hours"
+        "address",
+        "opening_hours",
+        "opening_hours/covid19"
     ],
     "tags": {
         "landuse": "winter_sports"

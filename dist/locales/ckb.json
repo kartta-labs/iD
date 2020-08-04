@@ -4,8 +4,7 @@
             "download": "دابەزاندن",
             "information": "زانیاری",
             "remove": "لابردن",
-            "copy": "لەبەرگرتنەوە",
-            "open_wikidata": "کردنەوە لە ماڵپەڕی wikidata.org"
+            "copy": "لەبەرگرتنەوە"
         },
         "modes": {
             "add_feature": {
@@ -31,12 +30,6 @@
         "operations": {
             "continue": {
                 "title": "بەردەوامبوون"
-            },
-            "circularize": {
-                "description": {
-                    "line": "پێدانی شێوەی بازنەیی بەم هێڵە.",
-                    "area": "پێدانی شێوەی بازنەیی بەم ناوچەیە."
-                }
             },
             "orthogonalize": {
                 "title": "چوارگۆشە"
@@ -74,7 +67,6 @@
             "title": "بەرزکردنەوە بۆ OpenStreetMap",
             "request_review": "پێم باشە کەسێک پێداچوونەوە بە دەستکارییکانم بکات.",
             "cancel": "پاشگەزبوونەوە",
-            "changes": "{count} دەستکاری",
             "warnings": "ئاگادارکردنەوەکان",
             "deleted": "سڕایەوە",
             "created": "دروستکرا",
@@ -129,7 +121,6 @@
             "locating": "شوێنهەڵگرتن، تکایە چاوەڕوانبە..."
         },
         "inspector": {
-            "all_members": "هەموو ئەندامان",
             "remove": "لابردن",
             "search": "گەڕان",
             "unknown": "نەناسراو",
@@ -319,9 +310,6 @@
             }
         },
         "issues": {
-            "fixme_tag": {
-                "title": "داواکاری \"چاکم بکەوە\""
-            },
             "invalid_format": {
                 "email": {
                     "reference": "پێویستە پۆستی ئەلیکترۆنییەکەت لەوە بچێت\n\"user@example.com\"."
@@ -333,12 +321,6 @@
             "fix": {
                 "select_road_type": {
                     "title": "هەڵبژاردنی جۆری ڕێگا"
-                },
-                "use_bridge_or_tunnel": {
-                    "title": "پرد یان تونێل بەکاربهێنە"
-                },
-                "use_tunnel": {
-                    "title": "تونێل بەکاربهێنە"
                 }
             }
         },
@@ -395,18 +377,13 @@
                     "keyboard": "پیشاندانی کورتبڕەکانی تەختەکلیل"
                 },
                 "display_options": {
-                    "title": "پیشاندانی بژاردەکان",
-                    "background": "پیشاندانی بژاردەکانی پاشبنەما",
-                    "map_data": "پیشاندانی بژاردەکانی دراوەی نەخشە"
+                    "title": "پیشاندانی بژاردەکان"
                 }
             },
             "editing": {
                 "title": "دەستکاریکردن",
                 "drawing": {
                     "title": "کێشان"
-                },
-                "operations": {
-                    "reverse": "پێچەوانەکردنەوەی هێڵێک"
                 },
                 "commands": {
                     "save": "پاشەکەوتکردنی دەستاکرییەکان"
@@ -567,9 +544,6 @@
                         "no": "نەخێر"
                     }
                 },
-                "elevation": {
-                    "label": "بەرزی"
-                },
                 "entrance": {
                     "label": "جۆر"
                 },
@@ -651,9 +625,6 @@
                     "options": {
                         "mixed": "تێکەڵاو"
                     }
-                },
-                "levels": {
-                    "placeholder": "٢، ٤، ٦..."
                 },
                 "location": {
                     "label": "شوێن"
@@ -747,15 +718,6 @@
                 },
                 "phone": {
                     "label": "تەلەفۆن"
-                },
-                "playground/baby": {
-                    "label": "شوێنی دانیشتنی منداڵ"
-                },
-                "playground/max_age": {
-                    "label": "بەرزترین تەمەن"
-                },
-                "playground/min_age": {
-                    "label": "کەمترین تەمەن"
                 },
                 "population": {
                     "label": "دانیشتوان"
@@ -974,9 +936,6 @@
                 "amenity/studio": {
                     "name": "ستۆدیۆ"
                 },
-                "amenity/swimming_pool": {
-                    "name": "حەزی مەلەوانی"
-                },
                 "amenity/telephone": {
                     "name": "تەلەفۆن"
                 },
@@ -1066,9 +1025,6 @@
                 },
                 "craft/plumber": {
                     "name": "بۆڕیچی"
-                },
-                "craft/pottery": {
-                    "name": " قوڕکاریی"
                 },
                 "craft/shoemaker": {
                     "name": "پینەدۆز"
@@ -1186,25 +1142,11 @@
             }
         },
         "community": {
-            "it-twitter": {
-                "description": "لەسەر تویتەر شوێنمان بکەوە {url}"
-            },
-            "osm-latam": {
-                "events": {
-                    "sotm-latam-2018": {
-                        "where": "بۆینس ئایرس، ئەرجەنتین"
-                    }
-                }
-            },
             "OSM-Facebook": {
                 "name": "OpenStreetMap لە فەیسبووک"
             },
-            "OSMF": {
-                "events": {
-                    "sotm2018": {
-                        "where": "میلان، ئیتاڵیا"
-                    }
-                }
+            "it-twitter": {
+                "description": "لەسەر تویتەر شوێنمان بکەوە {url}"
             }
         }
     }

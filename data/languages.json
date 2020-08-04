@@ -86,7 +86,7 @@
             "nativeName": "нохчийн"
         },
         "ceb": {
-            "nativeName": "Cebuano"
+            "nativeName": "Binisaya"
         },
         "cgg": {
             "nativeName": "Rukiga"
@@ -454,6 +454,9 @@
         },
         "nyn": {
             "nativeName": "Runyankore"
+        },
+        "oc": {
+            "nativeName": "Occitan"
         },
         "om": {
             "nativeName": "Oromoo"

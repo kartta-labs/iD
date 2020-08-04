@@ -1,12 +1,15 @@
 {
-    "icon": "tnp-2009642",
+    "icon": "temaki-tunnel",
     "fields": [
         "name",
-        "tunnel",
+        "tunnel_combo",
         "layer",
         "width",
         "length",
         "height"
+    ],
+    "moreFields": [
+        "gnis/feature_id"
     ],
     "geometry": [
         "area"
@@ -33,5 +36,5 @@
         "underground passage",
         "underpass"
     ],
-    "name": "Tunnel"
+    "name": "Tunnel Area"
 }

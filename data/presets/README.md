@@ -62,7 +62,7 @@ The complete JSON schema for presets can be found in [`data/presets/schema/prese
 
 The primary name of the feature type in American English.
 
-Upon merging with `master`, this is sent to Transifex for translating to other localizations. Changing the name of an existing preset will require it to be re-translated to all localizations.
+Upon merging with `develop`, this is sent to Transifex for translating to other localizations. Changing the name of an existing preset will require it to be re-translated to all localizations.
 
 This property is required. There is no default.
 
@@ -77,6 +77,8 @@ An array of possible geometry types that a feature must have in order to match t
 * `relation`: an OSM relation
 
 Closed ways can be treated as both `line` or `area` geometry. If a preset allows both, iD will add an additional `area=yes` tag when choosing the preset for an area feature.
+
+The geometry types should be listed in order of preference. For example, the preset for `leisure=swimming_pool` lists `area` before `point`.
 
 This property is required. There is no default.
 
@@ -147,9 +149,9 @@ preset are generally not inherited. E.g. the `shop` field is not inherited by `s
 
 The name of a local SVG icon file. You can use icons from any of the following icon sets. When specifying an icon, use the prefixed version of the name, for example `"icon": "maki-park"` or `"icon": "tnp-2009223"`.
 
-* [iD's spritesheet](https://github.com/openstreetmap/iD/tree/master/svg/iD-sprite/presets) (`iD-`)
-* [Maki](http://www.mapbox.com/maki/) (`maki-`), map-specific icons from Mapbox
-* [Temaki](http://bhousel.github.io/temaki/docs/) (`temaki-`), an expansion pack for Maki
+* [iD's spritesheet](https://github.com/openstreetmap/iD/tree/develop/svg/iD-sprite/presets) (`iD-`)
+* [Maki](https://labs.mapbox.com/maki-icons/) (`maki-`), map-specific icons from Mapbox
+* [Temaki](https://ideditor.github.io/temaki/docs/) (`temaki-`), an expansion pack for Maki
     * This is the best place to submit a PR if you want to create a preset icon!
 * [Font Awesome](https://fontawesome.com/icons?d=gallery&m=free), thousands of general-purpose icons
     * There is a free and pro tier. You can use any icon from the free tier in the following styles:
@@ -189,9 +191,13 @@ The default is `1.0`.
 
 ##### `countryCodes`
 
-An array of two-letter, lowercase [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. The preset will only be searchable when the user is editing over the specified countries. The locale and language of iD are not factors, just the position of the map.
+An array of two-letter, lowercase [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. The preset will only be searchable when the user is editing over the specified, whitelisted countries. The locale and language of iD are not factors, just the position of the map.
 
 By default, presets are available everywhere.
+
+##### `notCountryCodes`
+
+An array of two-letter, lowercase [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. Similar to `countryCodes` except a blacklist instead of a whitelist.
 
 ##### `replacement`
 
@@ -203,7 +209,7 @@ When possible, use `deprecated.json` instead to specify upgrade paths for old ta
 
 A key and optionally a value to link to the wiki documentation for this preset. Only necessary if the preset consists of several tags.
 
-For example, 
+For example,
 ```javascript
 "reference": {
     "key": "tower:type",
@@ -256,6 +262,7 @@ A string specifying the UI and behavior of the field. Must be one of the followi
 * `tel` - Text field for entering phone numbers (localized for editing location)
 * `email` - Text field for entering email addresses
 * `url` - Text field for entering URLs
+* `identifier` - Text field for foreign IDs (e.g. `gnis:feature_id`)
 * `textarea` - Multi-line text area (e.g. `description=*`)
 
 ###### Combo/Dropdown fields
@@ -384,14 +391,18 @@ For number fields, the greatest valid value. There is no default.
 
 ##### `prerequisiteTag`
 
-An object defining the tags the feature needs before this field will be displayed. It must have this property:
+An object defining the tags the feature needs before this field will be displayed. It may have this property:
 
 - `key`: The key for the required tag.
 
-And may optionally have one of these properties:
+And may optionally be combined with one of these properties:
 
 - `value`: The value that the key must have.
 - `valueNot`: The value that the key must not have.
+
+Alternatively, the object may contain a single property:
+
+- `keyNot`: The key that must not be present.
 
 For example, this is how we show the Internet Access Fee field only if the feature has an `internet_access` tag not equal to `no`.
 
@@ -401,6 +412,30 @@ For example, this is how we show the Internet Access Fee field only if the featu
     "valueNot": "no"
 }
 ```
+
+If a feature has a value for this field's `key` or `keys`, it will display regardless of the `prerequisiteTag` property.
+
+##### `countryCodes`
+
+An array of two-letter, lowercase [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. The field will only be available for features in the specified, whitelisted countries.
+
+By default, fields are available everywhere.
+
+##### `notCountryCodes`
+
+An array of two-letter, lowercase [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes. Similar to `countryCodes` except a blacklist instead of a whitelist.
+
+##### `urlFormat`
+
+For `identifier` fields, the permalink URL of the external record. It must contain a `{value}` placeholder where the tag value will be inserted. For example:
+
+```js
+"urlFormat": "https://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:{value}"
+```
+
+##### `pattern`
+
+For `identifier` fields, the regular expression that valid values are expected to match to be linkable.
 
 
 ## Building

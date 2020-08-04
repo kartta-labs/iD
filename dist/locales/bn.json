@@ -4,7 +4,6 @@
             "information": "তথ্য",
             "remove": "অপসারণ",
             "copy": "অনুলিপি",
-            "open_wikidata": "wikidata.org তে খুলুন",
             "favorite": "প্রিয়"
         },
         "toolbar": {
@@ -93,26 +92,10 @@
             },
             "circularize": {
                 "title": "বৃত্তাকার করুন",
-                "description": {
-                    "line": "এই রেখাটিকে গোল করুন।",
-                    "area": "এই এলাকাটিকে গোল করুন।"
-                },
-                "key": "O",
-                "annotation": {
-                    "line": "একটি রেখাকে গোল করা হয়েছে।",
-                    "area": "একটি এলাকাকে গোল করা হয়েছে।"
-                }
+                "key": "O"
             },
             "orthogonalize": {
-                "title": "বর্গাকৃতি",
-                "description": {
-                    "line": "এই রেখার কোণাসমূহ বর্গাকৃতি করুন।",
-                    "area": "এই ক্ষেত্রটির কোণাসমূহ বর্গাকৃতি করুন।"
-                },
-                "annotation": {
-                    "line": "একটি রেখার কোনাগুলিকে চৌকো করা হয়েছে।",
-                    "area": "একটি এলাকার কোনাগুলিকে চৌকো করা হয়েছে।"
-                }
+                "title": "বর্গাকৃতি"
             },
             "straighten": {
                 "title": "সোজা করুন",
@@ -175,9 +158,7 @@
             },
             "reverse": {
                 "title": "উল্টো করুন",
-                "description": "এই রেখাটিকে উল্টোদিকে পাঠান।",
-                "key": "V",
-                "annotation": "একটি রেখাকে উল্টো করা হয়েছে।"
+                "key": "V"
             },
             "split": {
                 "title": "ভাগ করুন",
@@ -219,15 +200,10 @@
         "feature_info": {
             "hidden_warning": "{count}টি লুকানো বৈশিষ্ট্য"
         },
-        "status": {
-            "error": "API-এর সাথে যোগাযোগ করা যাচ্ছে না।",
-            "offline": "API-টি এই মুহুর্তে অফলাইন। একটু পরে চেষ্টা করুন।"
-        },
         "commit": {
             "title": "ওপেনস্ট্রীটম্যাপে আপলোড করুন",
             "save": "আপলোড করুন",
             "cancel": "বাতিল করুন",
-            "changes": "{count}টি পরিবর্তন",
             "warnings": "সতর্কতা",
             "modified": "পরিবর্তিত",
             "deleted": "মুছে ফেলা হয়েছে",
@@ -275,26 +251,18 @@
         },
         "geocoder": {
             "search": "বিশ্বব্যাপী খুঁজুন...",
-            "no_results_visible": "দৃশ্যমান মানচিত্রের এলাকায় কোন ফলাফল নেই",
             "no_results_worldwide": "কোন ফলাফল পাওয়া যায় নি"
         },
         "geolocate": {
             "title": "আমার অবস্থানটি দেখান"
         },
         "inspector": {
-            "zoom_to": {
-                "title": "এটিতে জুম করুন"
-            },
             "show_more": "আরো দেখান",
             "view_on_osm": "openstreetmap.org-এ দেখুন",
-            "all_tags": "সমস্ত ট্যাগ",
-            "all_members": "সকল সদস্যগন",
-            "all_relations": "সকল সম্পর্কসমুহ",
             "new_relation": "নতুন সম্পর্ক...",
             "role": "ভূমিকা",
             "choose": "বৈশিষ্ট্যের প্রকার নির্বাচন করুন",
             "results": "{search}-এর জন্য {n}-টি ফলাফল ",
-            "back_tooltip": "বৈশিষ্ট্য পরিবর্তন করুন",
             "remove": "অপসারণ",
             "search": "কিছু খুঁজুন",
             "unknown": "অজানা",
@@ -388,10 +356,6 @@
             "on_wiki": "wiki.osm.org-এ {tag}",
             "used_with": "{type}-এর সাথে ব্যবহার করা হয়"
         },
-        "zoom": {
-            "in": "জুম করুন",
-            "out": "জুম থেকে বাহির হোন"
-        },
         "cannot_zoom": "বর্তমান মোডে আরও জুম আউট করা যাবে না।",
         "help": {
             "title": "সাহায্য",
@@ -448,11 +412,6 @@
             }
         },
         "shortcuts": {
-            "browsing": {
-                "with_selected": {
-                    "zoom_to": "নির্বাচিত বৈশিষ্ট্যে জুম করুন"
-                }
-            },
             "editing": {
                 "title": "সম্পাদনা করছেন",
                 "commands": {
@@ -588,9 +547,6 @@
                 "description": {
                     "label": "বর্ননা"
                 },
-                "elevation": {
-                    "label": "উচ্চতা"
-                },
                 "emergency": {
                     "label": "জরুরি"
                 },
@@ -647,7 +603,6 @@
                     "label": "ধরন"
                 },
                 "internet_access": {
-                    "label": "ইন্টারনেট সুবিধা",
                     "options": {
                         "no": "না",
                         "terminal": "টার্মিনাল",
@@ -671,10 +626,6 @@
                 },
                 "length": {
                     "label": "দৈর্ঘ্য (মিটার)"
-                },
-                "levels": {
-                    "label": "স্তর",
-                    "placeholder": "২, ৪, ৬..."
                 },
                 "location": {
                     "label": "অবস্থান"
@@ -866,9 +817,6 @@
                 "amenity/police": {
                     "name": "পুলিশ"
                 },
-                "amenity/post_box": {
-                    "name": "ডাকবাক্স"
-                },
                 "amenity/post_office": {
                     "name": "ডাকঘর"
                 },
@@ -877,9 +825,6 @@
                 },
                 "amenity/restaurant": {
                     "name": "রেস্তোরাঁ"
-                },
-                "amenity/swimming_pool": {
-                    "name": "সাঁতার কাটার পুকুর"
                 },
                 "amenity/telephone": {
                     "name": "টেলিফোন"
@@ -934,9 +879,6 @@
                 },
                 "emergency/phone": {
                     "name": "জরুরি ফোন"
-                },
-                "highway": {
-                    "name": "রাজপথ"
                 },
                 "highway/cycleway": {
                     "name": "সাইকেলের রাস্তা"
@@ -998,9 +940,6 @@
                 "landuse/cemetery": {
                     "name": "কবরখানা"
                 },
-                "landuse/construction": {
-                    "name": "মেরামত"
-                },
                 "landuse/farmyard": {
                     "name": "খামার"
                 },
@@ -1018,9 +957,6 @@
                 },
                 "landuse/vineyard": {
                     "name": "আঙুরখেত"
-                },
-                "leisure": {
-                    "name": "অবসর"
                 },
                 "leisure/garden": {
                     "name": "বাগান"
@@ -1058,9 +994,6 @@
                 "line": {
                     "name": "রেখা"
                 },
-                "man_made": {
-                    "name": "মানুষ নির্মিত"
-                },
                 "man_made/lighthouse": {
                     "name": "বাতিঘর"
                 },
@@ -1075,9 +1008,6 @@
                 },
                 "man_made/water_tower": {
                     "name": "জল স্তম্ভ"
-                },
-                "natural": {
-                    "name": "প্রাকৃতিক"
                 },
                 "natural/bay": {
                     "name": "উপসাগর"
@@ -1121,9 +1051,6 @@
                 "natural/wetland": {
                     "name": "জলাজমি"
                 },
-                "natural/wood": {
-                    "name": "অরন্য"
-                },
                 "office": {
                     "name": "কার্যালয়"
                 },
@@ -1132,9 +1059,6 @@
                 },
                 "office/physician": {
                     "name": "চিকিত্সক"
-                },
-                "office/political_party": {
-                    "name": "রাজনৈতিক দল"
                 },
                 "office/telecommunication": {
                     "name": "টেলিকম অফিস"
@@ -1160,29 +1084,14 @@
                 "point": {
                     "name": "বিন্দু"
                 },
-                "railway": {
-                    "name": "রেলপথ"
-                },
                 "railway/abandoned": {
                     "name": "পরিত্যক্ত রেলপথ"
                 },
                 "railway/disused": {
                     "name": "অব্যবহৃত রেলপথ"
                 },
-                "railway/monorail": {
-                    "name": "মনোরেল"
-                },
-                "railway/rail": {
-                    "name": "রেল"
-                },
-                "railway/subway": {
-                    "name": "ভূতলপথ"
-                },
                 "railway/subway_entrance": {
                     "name": "ভূতলপথ দ্বার"
-                },
-                "railway/tram": {
-                    "name": "ট্রাম"
                 },
                 "relation": {
                     "name": "সম্পর্ক"
@@ -1226,9 +1135,6 @@
                 "shop/electronics": {
                     "name": "ইলেকট্রনিক্স-এর দোকান"
                 },
-                "shop/fishmonger": {
-                    "name": "মৎস্য ব্যবসায়ী"
-                },
                 "shop/florist": {
                     "name": "ফুল ব্যবসায়ী"
                 },
@@ -1261,9 +1167,6 @@
                 },
                 "shop/toys": {
                     "name": "খেলনার দোকান"
-                },
-                "tourism": {
-                    "name": "পর্যটন"
                 },
                 "tourism/attraction": {
                     "name": "পর্যটক আকর্ষণ"
@@ -1304,9 +1207,6 @@
                 "type/route/bicycle": {
                     "name": "সাইকেলের রাস্তা"
                 },
-                "waterway": {
-                    "name": "পানিপথ"
-                },
                 "waterway/canal": {
                     "name": "খাল"
                 },
@@ -1343,9 +1243,6 @@
                 }
             },
             "MAPNIK": {
-                "attribution": {
-                    "text": "© ওপেনস্ট্রীটম্যাপের অবদানকারীগণ, সিসি-বাই-এসএ"
-                },
                 "name": "ওপেনস্ট্রীটম্যাপ (মানক)"
             },
             "Mapbox": {

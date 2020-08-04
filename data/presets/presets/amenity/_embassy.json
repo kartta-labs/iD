@@ -1,5 +1,5 @@
 {
-    "icon": "maki-embassy",
+    "icon": "temaki-embassy",
     "fields": [
         "name",
         "country",
@@ -7,10 +7,10 @@
         "building_area"
     ],
     "moreFields": [
-        "website",
-        "phone",
         "email",
         "fax",
+        "phone",
+        "website",
         "wheelchair"
     ],
     "geometry": [

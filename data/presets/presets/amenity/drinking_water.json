@@ -6,11 +6,13 @@
         "fee",
         "payment_multi_fee",
         "charge_fee",
-        "wheelchair"
+        "wheelchair",
+        "bottle"
     ],
     "moreFields": [
         "covered",
         "indoor",
+        "level",
         "lit"
     ],
     "geometry": [

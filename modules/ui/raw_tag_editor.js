@@ -20,7 +20,8 @@ export function uiRawTagEditor(context) {
 
     var _tagView = (context.storage('raw-tag-editor-view') || 'list');   // 'list, 'text'
     var _readOnlyTags = [];
-    var _indexedKeys = [];
+    // the keys in the order we want them to display
+    var _orderedKeys = [];
     var _showBlank = false;
     var _updatePreference = true;
     var _expanded = false;
@@ -35,7 +36,7 @@ export function uiRawTagEditor(context) {
         var count = Object.keys(_tags).filter(function(d) { return d; }).length;
 
         var disclosure = uiDisclosure(context, 'raw_tag_editor', false)
-            .title(t('inspector.all_tags') + ' (' + count + ')')
+            .title(t('inspector.tags_count', { count: count }))
             .on('toggled', toggled)
             .updatePreference(_updatePreference)
             .content(content);
@@ -58,27 +59,31 @@ export function uiRawTagEditor(context) {
 
 
     function content(wrap) {
+
+        // remove deleted keys
+        _orderedKeys = _orderedKeys.filter(function(key) {
+            return _tags[key] !== undefined;
+        });
+
         // When switching to a different entity or changing the state (hover/select)
         // reorder the keys alphabetically.
-        // We trigger this by emptying the `_indexedKeys` array, then it will be rebuilt here.
+        // We trigger this by emptying the `_orderedKeys` array, then it will be rebuilt here.
         // Otherwise leave their order alone - #5857, #5927
         var all = Object.keys(_tags).sort();
-        var known = _indexedKeys.map(function(t) { return t.key; });
-        var missing = utilArrayDifference(all, known);
-        for (var i = 0; i < missing.length; i++) {
-            _indexedKeys.push({ index: _indexedKeys.length, key: missing[i] });
+        var missingKeys = utilArrayDifference(all, _orderedKeys);
+        for (var i in missingKeys) {
+            _orderedKeys.push(missingKeys[i]);
         }
 
-        // assemble row data, excluding any deleted tags
-        var rowData = _indexedKeys.map(function(row) {
-            var v = _tags[row.key];
-            return (v === undefined) ? null : Object.assign(row, { value: v });
-        }).filter(Boolean);
+        // assemble row data
+        var rowData = _orderedKeys.map(function(key, i) {
+            return { index: i, key: key, value: _tags[key] };
+        });
 
         // append blank row last, if necessary
-        if (!_indexedKeys.length || _showBlank) {
+        if (!rowData.length || _showBlank) {
             _showBlank = false;
-            rowData.push({ index: _indexedKeys.length, key: '', value: '' });
+            rowData.push({ index: rowData.length, key: '', value: '' });
         }
 
 
@@ -138,14 +143,6 @@ export function uiRawTagEditor(context) {
             .on('input', setTextareaHeight)
             .on('blur', textChanged)
             .on('change', textChanged);
-
-        // If All Fields section is hidden, focus textarea and put cursor at end..
-        var fieldsExpanded = d3_select('.hide-toggle-preset_fields.expanded').size();
-        if (_state !== 'hover' && _tagView === 'text' && !fieldsExpanded) {
-            var element = textarea.node();
-            element.focus();
-            element.setSelectionRange(textData.length, textData.length);
-        }
 
 
         // View as List
@@ -268,12 +265,16 @@ export function uiRawTagEditor(context) {
         items.selectAll('input.key')
             .attr('title', function(d) { return d.key; })
             .call(utilGetSetValue, function(d) { return d.key; })
-            .property('disabled', isReadOnly);
+            .attr('readonly', function(d) {
+                return isReadOnly(d) || null;
+            });
 
         items.selectAll('input.value')
             .attr('title', function(d) { return d.value; })
             .call(utilGetSetValue, function(d) { return d.value; })
-            .property('disabled', isReadOnly);
+            .attr('readonly', function(d) {
+                return isReadOnly(d) || null;
+            });
 
         items.selectAll('button.remove')
             .on('mousedown', removeTag);  // 'click' fires too late - #5878
@@ -321,7 +322,10 @@ export function uiRawTagEditor(context) {
         function rowsToText(rows) {
             var str = rows
                 .filter(function(row) { return row.key && row.key.trim() !== ''; })
-                .map(function(row) { return stringify(row.key) + '=' + stringify(row.value); })
+                .map(function(row) {
+                    var val = row.value ? stringify(row.value) : '';
+                    return stringify(row.key) + '=' + val;
+                })
                 .join('\n');
 
             return _state === 'hover' ? str : str + '\n';
@@ -360,8 +364,10 @@ export function uiRawTagEditor(context) {
 
 
         function pushMore() {
+            // if pressing Tab on the last value field with content, add a blank row
             if (d3_event.keyCode === 9 && !d3_event.shiftKey &&
-                list.selectAll('li:last-child input.value').node() === this) {
+                list.selectAll('li:last-child input.value').node() === this &&
+                utilGetSetValue(d3_select(this))) {
                 addTag();
             }
         }
@@ -465,6 +471,10 @@ export function uiRawTagEditor(context) {
 
             _pendingChange[kNew] = vNew;
 
+            // update the ordered key index so this row doesn't change position
+            var existingKeyIndex = _orderedKeys.indexOf(kOld);
+            if (existingKeyIndex !== -1) _orderedKeys[existingKeyIndex] = kNew;
+
             d.key = kNew;    // update datum to avoid exit/enter on tag update
             d.value = vNew;
 
@@ -495,9 +505,8 @@ export function uiRawTagEditor(context) {
                 content(wrap);
 
             } else {
-                // remove from indexedKeys too, so that if the user puts it back,
-                // it will be sorted to the end and not back to its original position
-                _indexedKeys = _indexedKeys.filter(function(row) { return row.key !== d.key; });
+                // remove the key from the ordered key index
+                _orderedKeys = _orderedKeys.filter(function(key) { return key !== d.key; });
 
                 _pendingChange  = _pendingChange || {};
                 _pendingChange[d.key] = undefined;
@@ -531,7 +540,7 @@ export function uiRawTagEditor(context) {
     rawTagEditor.state = function(val) {
         if (!arguments.length) return _state;
         if (_state !== val) {
-            _indexedKeys = [];
+            _orderedKeys = [];
             _state = val;
         }
         return rawTagEditor;
@@ -562,7 +571,7 @@ export function uiRawTagEditor(context) {
     rawTagEditor.entityID = function(val) {
         if (!arguments.length) return _entityID;
         if (_entityID !== val) {
-            _indexedKeys = [];
+            _orderedKeys = [];
             _entityID = val;
         }
         return rawTagEditor;

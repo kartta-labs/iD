@@ -79,8 +79,7 @@
         "natural/coastline",
         "natural/tree_row",
         "natural/peak",
-        "natural/cliff",
-        "natural/beach"
+        "natural/cliff"
       ]
     },
     "category-path": {
@@ -98,7 +97,7 @@
       ]
     },
     "category-rail": {
-      "icon": "iD-railway-rail",
+      "icon": "temaki-railway_track",
       "name": "Rails",
       "members": [
         "railway/rail",

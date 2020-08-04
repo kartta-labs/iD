@@ -224,7 +224,7 @@ export function uiIssues(context) {
 
         _options[d] = val;
         context.storage('validate-' + d, val);
-        update();
+        context.validator().validate();
     }
 
 
@@ -302,7 +302,7 @@ export function uiIssues(context) {
     function renderIgnoredIssuesReset(selection) {
 
         var ignoredIssues = context.validator()
-            .getIssues(Object.assign({ includeIgnored: 'only' }, _options));
+            .getIssues({ what: 'all', where: 'all', includeDisabledRules: true, includeIgnored: 'only' });
 
         var resetIgnored = selection.selectAll('.reset-ignored')
             .data(ignoredIssues.length ? [0] : []);
@@ -328,8 +328,8 @@ export function uiIssues(context) {
             .text(t('issues.reset_ignored', { count: ignoredIssues.length.toString() }));
 
         resetIgnored.on('click', function() {
-                context.validator().resetIgnoredIssues();
-            });
+            context.validator().resetIgnoredIssues();
+        });
     }
 
 
@@ -422,9 +422,9 @@ export function uiIssues(context) {
 
             checkForHiddenIssues({
                 elsewhere: { what: 'edited', where: 'all' },
-                other_features: { what: 'all', where: 'visible' },
+                everything_else: { what: 'all', where: 'visible' },
                 disabled_rules: { what: 'edited', where: 'visible', includeDisabledRules: 'only' },
-                other_features_elsewhere: { what: 'all', where: 'all' },
+                everything_else_elsewhere: { what: 'all', where: 'all' },
                 disabled_rules_elsewhere: { what: 'edited', where: 'all', includeDisabledRules: 'only' },
                 ignored_issues: { what: 'edited', where: 'visible', includeIgnored: 'only' },
                 ignored_issues_elsewhere: { what: 'edited', where: 'all', includeIgnored: 'only' }
@@ -435,7 +435,7 @@ export function uiIssues(context) {
             messageType = 'edits';
 
             checkForHiddenIssues({
-                other_features: { what: 'all', where: 'all' },
+                everything_else: { what: 'all', where: 'all' },
                 disabled_rules: { what: 'edited', where: 'all', includeDisabledRules: 'only' },
                 ignored_issues: { what: 'edited', where: 'all', includeIgnored: 'only' }
             });
@@ -459,6 +459,10 @@ export function uiIssues(context) {
                 disabled_rules: { what: 'all', where: 'all', includeDisabledRules: 'only' },
                 ignored_issues: { what: 'all', where: 'all', includeIgnored: 'only' }
             });
+        }
+
+        if (_options.what === 'edited' && context.history().difference().summary().length === 0) {
+            messageType = 'no_edits';
         }
 
         _pane.select('.issues-none .message')
@@ -510,6 +514,7 @@ export function uiIssues(context) {
             if (!_pane.select('.disclosure-wrap-issues_warnings').classed('hide')) {
                 _warningsSelection
                     .call(drawIssuesList, 'warnings', _warnings);
+                renderIgnoredIssuesReset(_warningsSelection);
             }
         }
 
@@ -608,9 +613,6 @@ export function uiIssues(context) {
             .attr('step', '0.5')
             .attr('class', 'square-degrees-input')
             .call(utilNoAuto)
-            .on('input', function() {
-                this.style.width = (this.value.length + 2.5) + 'ch';   // resize
-            })
             .on('click', function () {
                 d3_event.preventDefault();
                 d3_event.stopPropagation();
@@ -624,8 +626,7 @@ export function uiIssues(context) {
             })
             .on('blur', changeSquare)
             .merge(input)
-            .property('value', degStr)
-            .style('width', (degStr.length + 2.5) + 'ch');   // resize
+            .property('value', degStr);
     }
 
 
@@ -646,11 +647,10 @@ export function uiIssues(context) {
         degStr = '' + degNum;
 
         input
-            .property('value', degStr)
-            .style('width', (degStr.length + 2.5) + 'ch');   // resize
+            .property('value', degStr);
 
         context.storage('validate-square-degrees', degStr);
-        context.validator().changeSquareThreshold(degNum);
+        context.validator().reloadUnsquareIssues();
     }
 
 
@@ -669,7 +669,7 @@ export function uiIssues(context) {
 
     uiIssues.togglePane = function() {
         if (d3_event) d3_event.preventDefault();
-        paneTooltip.hide(_toggleButton);
+        paneTooltip.hide();
         context.ui().togglePanes(!_pane.classed('shown') ? _pane : undefined);
     };
 
@@ -677,7 +677,6 @@ export function uiIssues(context) {
     uiIssues.renderToggleButton = function(selection) {
         _toggleButton = selection
             .append('button')
-            .attr('tabindex', -1)
             .on('click', uiIssues.togglePane)
             .call(svgIcon('#iD-icon-alert', 'light'))
             .call(addNotificationBadge)

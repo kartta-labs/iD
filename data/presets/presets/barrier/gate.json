@@ -1,8 +1,18 @@
 {
-    "icon": "maki-barrier",
+    "icon": "temaki-gate",
     "fields": [
         "access",
-        "opening_hours"
+        "wheelchair",
+        "opening_hours",
+        "opening_hours/covid19",
+        "height",
+        "material"
+    ],
+    "moreFields": [
+        "colour",
+        "manufacturer",
+        "operator",
+        "ref"
     ],
     "geometry": [
         "vertex",

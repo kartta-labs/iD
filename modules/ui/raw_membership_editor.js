@@ -24,7 +24,13 @@ export function uiRawMembershipEditor(context) {
     var taginfo = services.taginfo;
     var nearbyCombo = uiCombobox(context, 'parent-relation')
         .minItems(1)
-        .fetcher(fetchNearbyRelations);
+        .fetcher(fetchNearbyRelations)
+        .itemsMouseEnter(function(d) {
+            if (d.relation) utilHighlightEntities([d.relation.id], true, context);
+        })
+        .itemsMouseLeave(function(d) {
+            if (d.relation) utilHighlightEntities([d.relation.id], false, context);
+        });
     var _inChange = false;
     var _entityID;
     var _showBlank;
@@ -170,7 +176,7 @@ export function uiRawMembershipEditor(context) {
 
         var gt = parents.length > 1000 ? '>' : '';
         selection.call(uiDisclosure(context, 'raw_membership_editor', true)
-            .title(t('inspector.all_relations') + ' (' + gt + memberships.length + ')')
+            .title(t('inspector.relations_count', { count: gt + memberships.length }))
             .expanded(true)
             .updatePreference(false)
             .on('toggled', function(expanded) {
@@ -359,6 +365,9 @@ export function uiRawMembershipEditor(context) {
                     cancelEntity();
                     return;
                 }
+                // remove hover-higlighting
+                if (d.relation) utilHighlightEntities([d.relation.id], false, context);
+
                 var role = list.selectAll('.member-row-new .member-role').property('value');
                 addMembership(d, role);
             }
@@ -367,6 +376,10 @@ export function uiRawMembershipEditor(context) {
             function cancelEntity() {
                 var input = newMembership.selectAll('.member-entity-input');
                 input.property('value', '');
+
+                // remove hover-higlighting
+                context.surface().selectAll('.highlighted')
+                    .classed('highlighted', false);
             }
 
 

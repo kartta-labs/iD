@@ -85,7 +85,7 @@ export function uiIntroLine(context, reveal) {
             var tooltip = reveal('button.add-line',
                 t('intro.lines.add_line', { button: icon('#iD-icon-line', 'pre-text') }));
 
-            tooltip.selectAll('.tooltip-inner')
+            tooltip.selectAll('.popover-inner')
                 .insert('svg', 'span')
                 .attr('class', 'tooltip-illustration')
                 .append('use')
@@ -1036,11 +1036,11 @@ export function uiIntroLine(context, reveal) {
 
     function play() {
         dispatch.call('done');
-        reveal('#id-container',
+        reveal('.ideditor',
             t('intro.lines.play', { next: t('intro.buildings.title') }), {
                 tooltipBox: '.intro-nav-wrap .chapter-building',
                 buttonText: t('intro.ok'),
-                buttonCallback: function() { reveal('#id-container'); }
+                buttonCallback: function() { reveal('.ideditor'); }
             }
         );
    }

@@ -1,5 +1,7 @@
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { event as d3_event, select as d3_select } from 'd3-selection';
+import { drag as d3_drag } from 'd3-drag';
+import * as countryCoder from '@ideditor/country-coder';
 
 import { osmEntity } from '../../osm/entity';
 import { t } from '../../util/locale';
@@ -17,7 +19,6 @@ export {
 
 export function uiFieldCombo(field, context) {
     var dispatch = d3_dispatch('change');
-    var nominatim = services.geocoder;
     var taginfo = services.taginfo;
     var isMulti = (field.type === 'multiCombo');
     var isNetwork = (field.type === 'networkCombo');
@@ -35,7 +36,7 @@ export function uiFieldCombo(field, context) {
     var _comboData = [];
     var _multiData = [];
     var _entity;
-    var _country;
+    var _countryCode;
 
     // ensure multiCombo field.key ends with a ':'
     if (isMulti && /[^:]$/.test(field.key)) {
@@ -163,9 +164,9 @@ export function uiFieldCombo(field, context) {
     function setTaginfoValues(q, callback) {
         var fn = isMulti ? 'multikeys' : 'values';
         var query = (isMulti ? field.key : '') + q;
-        var hasCountryPrefix = isNetwork && _country && _country.indexOf(q.toLowerCase()) === 0;
+        var hasCountryPrefix = isNetwork && _countryCode && _countryCode.indexOf(q.toLowerCase()) === 0;
         if (hasCountryPrefix) {
-            query = _country + ':';
+            query = _countryCode + ':';
         }
 
         var params = {
@@ -181,6 +182,17 @@ export function uiFieldCombo(field, context) {
         taginfo[fn](params, function(err, data) {
             if (err) return;
 
+            data = data.filter(function(d) {
+
+                if (field.type === 'typeCombo' && d.value === 'yes') {
+                    // don't show the fallback value
+                    return false;
+                }
+
+                // don't show values with very low usage
+                return !d.count || d.count > 10;
+            });
+
             var deprecatedValues = osmEntity.deprecatedTagValuesByKey()[field.key];
             if (deprecatedValues) {
                 // don't suggest deprecated tag values
@@ -191,7 +203,7 @@ export function uiFieldCombo(field, context) {
 
             if (hasCountryPrefix) {
                 data = data.filter(function(d) {
-                    return d.value.toLowerCase().indexOf(_country + ':') === 0;
+                    return d.value.toLowerCase().indexOf(_countryCode + ':') === 0;
                 });
             }
 
@@ -351,11 +363,10 @@ export function uiFieldCombo(field, context) {
             .call(initCombo, selection)
             .merge(input);
 
-        if (isNetwork && nominatim && _entity) {
+        if (isNetwork && _entity) {
             var center = _entity.extent(context.graph()).center();
-            nominatim.countryCode(center, function (err, code) {
-                _country = code;
-            });
+            var countryCode = countryCoder.iso1A2Code(center);
+            _countryCode = countryCode && countryCode.toLowerCase();
         }
 
         input
@@ -427,7 +438,7 @@ export function uiFieldCombo(field, context) {
 
 
             // Render chips
-            var chips = container.selectAll('.chips')
+            var chips = container.selectAll('.chip')
                 .data(_multiData);
 
             chips.exit()
@@ -435,12 +446,18 @@ export function uiFieldCombo(field, context) {
 
             var enter = chips.enter()
                 .insert('li', '.input-wrap')
-                .attr('class', 'chips');
+                .attr('class', 'chip')
+                .classed('draggable', isSemi);
 
             enter.append('span');
             enter.append('a');
 
-            chips = chips.merge(enter);
+            chips = chips.merge(enter)
+                .order();
+
+            if (isSemi) { // only semiCombo values are ordered
+                registerDragAndDrop(chips);
+            }
 
             chips.select('span')
                 .text(function(d) { return d.value; });
@@ -454,6 +471,125 @@ export function uiFieldCombo(field, context) {
             utilGetSetValue(input, displayValue(tags[field.key]));
         }
     };
+
+    function registerDragAndDrop(selection) {
+
+        // allow drag and drop re-ordering of chips
+        var dragOrigin, targetIndex;
+        selection.call(d3_drag()
+            .on('start', function() {
+                dragOrigin = {
+                    x: d3_event.x,
+                    y: d3_event.y
+                };
+                targetIndex = null;
+            })
+            .on('drag', function(d, index) {
+                var x = d3_event.x - dragOrigin.x,
+                    y = d3_event.y - dragOrigin.y;
+
+                if (!d3_select(this).classed('dragging') &&
+                    // don't display drag until dragging beyond a distance threshold
+                    Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) <= 5) return;
+
+                d3_select(this)
+                    .classed('dragging', true);
+
+                targetIndex = null;
+                var targetIndexOffsetTop = null;
+                var draggedTagWidth = d3_select(this).node().offsetWidth;
+
+                if (field.id === 'destination_oneway') { // meaning tags are full width
+                    container.selectAll('.chip')
+                        .style('transform', function(d2, index2) {
+                            var node = d3_select(this).node();
+
+                            if (index === index2) {
+                                return 'translate(' + x + 'px, ' + y + 'px)';
+                            // move the dragged tag up the order
+                            } else if (index2 > index && d3_event.y > node.offsetTop) {
+                                if (targetIndex === null || index2 > targetIndex) {
+                                    targetIndex = index2;
+                                }
+                                return 'translateY(-100%)';
+                            // move the dragged tag down the order
+                            } else if (index2 < index && d3_event.y < node.offsetTop + node.offsetHeight) {
+                                if (targetIndex === null || index2 < targetIndex) {
+                                    targetIndex = index2;
+                                }
+                                return 'translateY(100%)';
+                            }
+                            return null;
+                        });
+                } else {
+                    container.selectAll('.chip')
+                        .each(function(d2, index2) {
+                            var node = d3_select(this).node();
+
+                            // check the cursor is in the bounding box
+                            if (
+                                index !== index2 &&
+                                d3_event.x < node.offsetLeft + node.offsetWidth + 5 &&
+                                d3_event.x > node.offsetLeft &&
+                                d3_event.y < node.offsetTop + node.offsetHeight &&
+                                d3_event.y > node.offsetTop
+                            ) {
+                                targetIndex = index2;
+                                targetIndexOffsetTop = node.offsetTop;
+                            }
+                        })
+                        .style('transform', function(d2, index2) {
+                            var node = d3_select(this).node();
+
+                            if (index === index2) {
+                                return 'translate(' + x + 'px, ' + y + 'px)';
+                            }
+
+                            // only translate tags in the same row
+                            if (node.offsetTop === targetIndexOffsetTop) {
+                                if (index2 < index && index2 >= targetIndex) {
+                                    return 'translateX(' + draggedTagWidth + 'px)';
+                                } else if (index2 > index && index2 <= targetIndex) {
+                                    return 'translateX(-' + draggedTagWidth + 'px)';
+                                }
+                            }
+                            return null;
+                        });
+                    }
+            })
+            .on('end', function(d, index) {
+                if (!d3_select(this).classed('dragging')) {
+                    return;
+                }
+
+                d3_select(this)
+                    .classed('dragging', false);
+
+                container.selectAll('.chip')
+                    .style('transform', null);
+
+                if (typeof targetIndex === 'number') {
+                    var element = _multiData[index];
+                    _multiData.splice(index, 1);
+                    _multiData.splice(targetIndex, 0, element);
+
+                    var t = {};
+
+                    if (_multiData.length) {
+                        t[field.key] = _multiData.map(function(element) {
+                            return element.key;
+                        }).join(';');
+                    } else {
+                        t[field.key] = undefined;
+                    }
+
+                    dispatch.call('change', this, t);
+                }
+                dragOrigin = undefined;
+                targetIndex = undefined;
+            })
+        );
+    }
 
 
     combo.focus = function() {

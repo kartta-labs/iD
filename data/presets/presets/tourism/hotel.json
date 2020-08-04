@@ -5,8 +5,8 @@
     ],
     "moreFields": [
         "{tourism/motel}",
-        "stars",
-        "bar"
+        "bar",
+        "stars"
     ],
     "geometry": [
         "point",
@@ -15,5 +15,11 @@
     "tags": {
         "tourism": "hotel"
     },
+    "terms": [
+        "concierge",
+        "lodge",
+        "lodging",
+        "overnight accommodations"
+    ],
     "name": "Hotel"
 }

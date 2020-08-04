@@ -1,11 +1,5 @@
 {
-    "fields": [
-        "name",
-        "operator",
-        "voltage",
-        "ref",
-        "layer"
-    ],
+    "icon": "temaki-cable",
     "geometry": [
         "line"
     ],

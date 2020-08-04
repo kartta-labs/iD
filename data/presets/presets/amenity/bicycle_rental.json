@@ -1,5 +1,5 @@
 {
-    "icon": "maki-bicycle",
+    "icon": "temaki-bicycle_rental",
     "fields": [
         "capacity",
         "network",
@@ -10,10 +10,12 @@
     ],
     "moreFields": [
         "address",
-        "email",
         "covered",
+        "email",
         "fax",
+        "level",
         "opening_hours",
+        "opening_hours/covid19",
         "phone",
         "website",
         "wheelchair"
@@ -29,8 +31,10 @@
         "bikeshare",
         "bike share",
         "bicycle share",
-        "hub",
-        "dock"
+        "cycle dock",
+        "cycle hub",
+        "cycleshare",
+        "cycling"
     ],
     "tags": {
         "amenity": "bicycle_rental"

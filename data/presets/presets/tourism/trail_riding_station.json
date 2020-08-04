@@ -7,15 +7,17 @@
         "horse_dressage"
     ],
     "moreFields": [
+        "address",
+        "email",
+        "fax",
+        "gnis/feature_id",
         "internet_access",
         "internet_access/fee",
         "internet_access/ssid",
-        "address",
         "opening_hours",
-        "website",
+        "opening_hours/covid19",
         "phone",
-        "email",
-        "fax"
+        "website"
     ],
     "geometry": [
         "point",
@@ -25,5 +27,5 @@
         "tourism": "trail_riding_station"
     },
     "name": "Trail Riding Station",
-    "matchScore": 2.0
+    "matchScore": 2
 }

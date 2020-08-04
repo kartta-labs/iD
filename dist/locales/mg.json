@@ -1,9 +1,19 @@
 {
     "mg": {
         "icons": {
+            "download": "alaina",
             "information": "fanazavana",
             "remove": "hanala",
-            "undo": "hanafoana"
+            "undo": "hanafoana",
+            "zoom_to": "hanakely/hanalehibe ho",
+            "copy": "handika",
+            "view_on": "jereo ao amin'i (domain)",
+            "favorite": "ankafizina"
+        },
+        "toolbar": {
+            "inspect": "hadihadio",
+            "undo_redo": "Aoka ihany / Avereno",
+            "favorites": "Ankafizina"
         },
         "modes": {
             "add_area": {
@@ -74,32 +84,10 @@
             },
             "circularize": {
                 "title": "Hanaboribory.",
-                "description": {
-                    "line": "Hanaboribory ity tsipika ity.",
-                    "area": "Hanaboribory ity faritra ity."
-                },
-                "key": "O",
-                "annotation": {
-                    "line": "Nanaboribory an'ilay tsipika.",
-                    "area": "Nanaboribory an'ilay faritra."
-                },
-                "not_closed": "Tsy mety atao boribory ity satria tsy mihodina tanteraka.",
-                "too_large": "Tsy mety atao boribory ity satria tsy ampy ny faritra miseho aminy.",
-                "connected_to_hidden": "Tsy mety atao boribory ity satria mifampitohy amina zavatra tsy miseho."
+                "key": "O"
             },
             "orthogonalize": {
-                "title": "Efajoro",
-                "description": {
-                    "line": "Hampahitsy ny zoron'ito tsipika ito.",
-                    "area": "Hampahitsy ireo zoron'ito faritra ito."
-                },
-                "annotation": {
-                    "line": "Nampahitsy ny zoron'ilay tsipika.",
-                    "area": "Nampahitsy ireo zoron'ilay faritra."
-                },
-                "not_squarish": "Tsy mety atao efajoro mahitsy ito satria tsy manakaiky ny endrika efajoro.",
-                "too_large": "Tsy mety atao efajoro mahitsy ito satria tsy ampy ny faritra miseho aminy.",
-                "connected_to_hidden": "Tsy mety atao efajoro mahitsy ito satria mifampitohy amina zavatra tsy miseho."
+                "title": "Efajoro"
             },
             "straighten": {
                 "title": "Hampahitsy",
@@ -247,9 +235,7 @@
             },
             "reverse": {
                 "title": "Hamototra",
-                "description": "Hamototra ny fizotran'ito tsipika ito.",
-                "key": "V",
-                "annotation": "Namototra an'ilay tsipika."
+                "key": "V"
             },
             "split": {
                 "title": "Hizara",
@@ -328,12 +314,6 @@
             "hidden_warning": "Singa miafina {count}",
             "hidden_details": "Miafina ireto singa ireto zao: {details}"
         },
-        "status": {
-            "error": "Tsy afaka mifandray amin'ny API.",
-            "offline": "Tsy mandeha ny API amin'izao. Manandràmana indray mandeha rehefa afaka kelikely.",
-            "readonly": "Maody mamaky fotsiny ny API. Mila miandry ianao hihazonana ny fanovana nataonao.",
-            "rateLimit": "Mametra ny fifandraisana avy amin'olon-tsy fantatra ny API. Azonao andramana atao ny miditra amin'ny alalan'ny kaontinao."
-        },
         "commit": {
             "title": "Handefa mankany amin'ny OpenStreetMap",
             "upload_explanation": "Ny fanovana alefanao dia ho hita amin'ny sarintany rehetra izay mampiasa ny angon-drakitra OpenStreetMap.",
@@ -341,7 +321,6 @@
             "request_review": "Tiako hisy hanamarina ny fanovana nataoko.",
             "save": "Handefa",
             "cancel": "Hanafoana",
-            "changes": "Fanovana {count}",
             "download_changes": "Haka ny rakitra osmChange",
             "warnings": "Fampitandremana",
             "modified": "Voaova",
@@ -413,17 +392,11 @@
         "inspector": {
             "show_more": "Hampiseho Misimisy Kokoa",
             "view_on_osm": "Hijery ao amin'ny openstreetmap.org",
-            "all_fields": "Ny saha rehetra",
-            "all_tags": "Ny tags rehetra",
-            "all_members": "Ny mpikambana rehetra",
-            "all_relations": "Ny relations rehetra",
             "role": "Anjara asa",
             "choose": "Safidio ny karazan'ny singa",
             "results": "Vokatra {n} hoan'ny {search}",
-            "back_tooltip": "Hanova ny singa",
             "remove": "Hanala",
             "search": "Hikaroka",
-            "multiselect": "Singa voafidy",
             "unknown": "Tsy fantatra",
             "feature_list": "Hikaroka singa",
             "edit": "Hanova ny singa",
@@ -456,7 +429,6 @@
             "switch": "Hiverina amin'ity lafika ity",
             "custom": "Manokana",
             "overlays": "Rakotra",
-            "imagery_source_faq": "Fanazavana Momba ny Sary / Hampita Olana",
             "reset": "Hamerina amin'ny voalohany",
             "display_options": "Safidy Momba ny Fisehoana",
             "brightness": "Hazava",
@@ -467,7 +439,6 @@
                 "description": "Hampiseho ny sarintany kely",
                 "tooltip": "Hampiseho sarintany jerena lavitra mba hanampy amin'ny fahitana ny toerana misy ny sarintany miseho."
             },
-            "fix_misalignment": "Hanamboatra ny fihitsin'ny ny sary",
             "offset": "Akisaho mankany amin'izay tianao eo amin'ny faritra volondavenona eto ambany mba hanovana ny fihitsin'ny sary, na ampidiro ny sandan'ny fikisahana amin'ny metatra."
         },
         "map_data": {
@@ -485,7 +456,6 @@
                     "title": "Fanamarihana OpenStreetMap"
                 }
             },
-            "fill_area": "Hameno ireo Faritra",
             "map_features": "Singa ao amin'ny Sarintany",
             "autohidden": "Fanahy iniana nafenina ireo singa ireo satria maro loatra no ho niseho teo amin'ny efijery. Hakaikezo raha hanova azy ireo.",
             "osmhidden": "Fanahy iniana nafenina ireo singa ireo satria miafina ny sosona OpenStreetMap."
@@ -608,10 +578,6 @@
             "on_wiki": "{tag} ao amin'ny wiki.osm.org",
             "used_with": "ampiasaina miaraka amin'ny {type}"
         },
-        "zoom": {
-            "in": "Hanakaiky",
-            "out": "Hanalavitra"
-        },
         "cannot_zoom": "Tsy afaka manalavitra noho izao intsony amin'ity maody ity.",
         "full_screen": "Hameno ny Efijery",
         "note": {
@@ -652,8 +618,7 @@
                 "before_start_h": "Alohan'ny hanombohanao",
                 "before_start": "Tokony ho efa mifankazatra ny OpenStreetMap sy ity éditeur ity ianao mialohan'ny hanaovanao fanovana. Misy fanoroana atolotr'i iD hampianarana anao ny fototra amin'ny fanovana an'i OpenStreetMap. Tsindrio eo amin'ny \"Hanomboka ny Fanoroana\" eto amin'ity efijery ity raha hanomboka hianatra - 15 minitra eo ho eo fotsiny ny halavan'ilay izy.",
                 "open_source_h": "Hanokatra Loharano",
-                "open_source": "Ny éditeur iD dia tetikasa ifarimbonana manana kaody misokatra, ary ny fivoahana faha-{version} ity ampiasainao ity. Ny loharanon'ny kaody dia azo alaina [ao amin'ny GitHub](https://github.com/openstreetmap/iD).",
-                "open_source_help": "Afaka manampy ny iD ianao amin'ny alalan'ny [fandikàna](https://github.com/openstreetmap/iD/blob/master/CONTRIBUTING.md#translating) na [fitaterana tsy fetezana](https://github.com/openstreetmap/iD/issues)."
+                "open_source": "Ny éditeur iD dia tetikasa ifarimbonana manana kaody misokatra, ary ny fivoahana faha-{version} ity ampiasainao ity. Ny loharanon'ny kaody dia azo alaina [ao amin'ny GitHub](https://github.com/openstreetmap/iD)."
             },
             "overview": {
                 "title": "Jery Ankapobeny",
@@ -716,6 +681,12 @@
             }
         },
         "community": {
+            "OSM-Facebook": {
+                "name": "OpenStreetMap ao amin'ny Facebook"
+            },
+            "OSM-help": {
+                "name": "Fanampiana OpenStreetMap"
+            },
             "bw-facebook": {
                 "description": "Pejy OpenStreetMap Botswana"
             },
@@ -732,19 +703,6 @@
             "talk-mg": {
                 "name": "Mailaka fiseraserana Talk-mg",
                 "description": "Toerana ahafahan'ny mpandray anjara sy ny mpampiasa ny OpenStreetMap eto Madagasikara mifanakalo hevitra sy miresaka."
-            },
-            "OSM-Facebook": {
-                "name": "OpenStreetMap ao amin'ny Facebook"
-            },
-            "OSM-help": {
-                "name": "Fanampiana OpenStreetMap"
-            },
-            "OSMF": {
-                "events": {
-                    "sotm2018": {
-                        "where": "Milan, Italie"
-                    }
-                }
             }
         }
     }

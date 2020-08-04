@@ -25,7 +25,6 @@ export function uiVersion(context) {
         selection
             .append('a')
             .attr('target', '_blank')
-            .attr('tabindex', -1)
             .attr('href', 'https://github.com/openstreetmap/iD')
             .text(currVersion);
 
@@ -36,8 +35,7 @@ export function uiVersion(context) {
                 .attr('class', 'badge')
                 .append('a')
                 .attr('target', '_blank')
-                .attr('tabindex', -1)
-                .attr('href', 'https://github.com/openstreetmap/iD/blob/master/CHANGELOG.md#whats-new')
+                .attr('href', 'https://github.com/openstreetmap/iD/blob/release/CHANGELOG.md#whats-new')
                 .call(svgIcon('#maki-gift-11'))
                 .call(tooltip()
                     .title(t('version.whats_new', { version: currVersion }))

@@ -19,7 +19,9 @@
         "maxspeed/advisory",
         "maxweight_bridge",
         "oneway/bicycle",
-        "trolley_wire"
+        "smoothness",
+        "trolley_wire",
+        "width"
     ],
     "geometry": [
         "line"

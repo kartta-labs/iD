@@ -4,8 +4,13 @@
         "name",
         "operator",
         "address",
+        "plant/source",
+        "plant/method",
         "plant/output/electricity",
         "start_date"
+    ],
+    "moreFields": [
+        "gnis/feature_id"
     ],
     "geometry": [
         "area"

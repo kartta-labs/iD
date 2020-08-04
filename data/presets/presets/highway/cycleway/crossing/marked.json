@@ -1,19 +1,16 @@
 {
-    "icon": "fas-biking",
+    "icon": "temaki-cyclist_crosswalk",
     "fields": [
         "crossing",
         "access",
         "surface",
-        "tactile_paving"
+        "tactile_paving",
+        "crossing/island"
     ],
     "geometry": [
         "line"
     ],
     "tags": {
-        "cycleway": "crossing",
-        "crossing": "marked"
-    },
-    "addTags": {
         "highway": "cycleway",
         "cycleway": "crossing",
         "crossing": "marked"
@@ -29,5 +26,6 @@
         "bicycle crossing",
         "bike crossing"
     ],
+    "matchScore": 0.95,
     "name": "Marked Cycle Crossing"
 }

@@ -1,5 +1,5 @@
 import { select as d3_select } from 'd3-selection';
-import { osmPavedTags } from '../osm/tags';
+import { osmPathHighwayTagValues, osmPavedTags, osmSemipavedTags } from '../osm/tags';
 
 
 export function svgTagClasses() {
@@ -10,8 +10,18 @@ export function svgTagClasses() {
         'building:part', 'indoor'
     ];
     var statuses = [
-        'proposed', 'construction', 'disused', 'abandoned', 'dismantled',
-        'razed', 'demolished', 'obliterated', 'intermittent'
+        // nonexistent, might be built
+        'proposed', 'planned',
+        // under maintentance or between groundbreaking and opening
+        'construction',
+        // existent but not functional
+        'disused',
+        // dilapidated to nonexistent
+        'abandoned',
+        // nonexistent, still may appear in imagery
+        'dismantled', 'razed', 'demolished', 'obliterated',
+        // existent occasionally, e.g. stormwater drainage basin
+        'intermittent'
     ];
     var secondaries = [
         'oneway', 'bridge', 'tunnel', 'embankment', 'cutting', 'barrier',
@@ -32,7 +42,7 @@ export function svgTagClasses() {
 
             var t = _tags(entity);
 
-            var computed = tagClasses.getClassesString(t, value, entity);
+            var computed = tagClasses.getClassesString(t, value);
 
             if (computed !== value) {
                 d3_select(this).attr('class', computed);
@@ -41,17 +51,15 @@ export function svgTagClasses() {
     };
 
 
-    tagClasses.getClassesString = function(t, value, entity) {
+    tagClasses.getClassesString = function(t, value) {
         var primary, status;
-        var i, k, v;
+        var i, j, k, v;
 
         // in some situations we want to render perimeter strokes a certain way
         var overrideGeometry;
         if (/\bstroke\b/.test(value)) {
             if (!!t.barrier && t.barrier !== 'no') {
                 overrideGeometry = 'line';
-            } else if (t.type === 'multipolygon' && !entity.hasInterestingTags()) {
-                overrideGeometry = 'area';
             }
         }
 
@@ -86,6 +94,19 @@ export function svgTagClasses() {
             }
 
             break;
+        }
+
+        if (!primary) {
+            for (i = 0; i < statuses.length; i++) {
+                for (j = 0; j < primaries.length; j++) {
+                    k = statuses[i] + ':' + primaries[j];  // e.g. `demolished:building=yes`
+                    v = t[k];
+                    if (!v || v === 'no') continue;
+
+                    status = statuses[i];
+                    break;
+                }
+            }
         }
 
         // add at most one status tag, only if relates to primary tag..
@@ -125,18 +146,18 @@ export function svgTagClasses() {
         }
 
         // For highways, look for surface tagging..
-        if (primary === 'highway' || primary === 'aeroway') {
-            var paved = (t.highway !== 'track');
+        if ((primary === 'highway' && !osmPathHighwayTagValues[t.highway]) || primary === 'aeroway') {
+            var surface = t.highway === 'track' ? 'unpaved' : 'paved';
             for (k in t) {
                 v = t[k];
                 if (k in osmPavedTags) {
-                    paved = !!osmPavedTags[k][v];
-                    break;
+                    surface = osmPavedTags[k][v] ? 'paved' : 'unpaved';
+                }
+                if (k in osmSemipavedTags && !!osmSemipavedTags[k][v]) {
+                    surface = 'semipaved';
                 }
             }
-            if (!paved) {
-                classes.push('tag-unpaved');
-            }
+            classes.push('tag-' + surface);
         }
 
         // If this is a wikidata-tagged item, add a class for that..

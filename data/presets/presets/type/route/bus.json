@@ -1,9 +1,9 @@
 {
-    "icon": "maki-bus",
+    "icon": "temaki-bus",
     "fields": [
         "{type/route/train}"
     ],
-    "moreFields" : [
+    "moreFields": [
         "{type/route/train}"
     ],
     "geometry": [

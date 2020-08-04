@@ -173,7 +173,6 @@ export function uiRawMemberEditor(context) {
                         .append('button')
                         .attr('class', 'member-zoom')
                         .attr('title', t('icons.zoom_to'))
-                        .attr('tabindex', -1)
                         .call(svgIcon('#iD-icon-geolocate'))
                         .on('click', zoomToMember);
 
@@ -369,7 +368,7 @@ export function uiRawMemberEditor(context) {
 
         var gt = entity.members.length > _maxMembers ? '>' : '';
         selection.call(uiDisclosure(context, 'raw_member_editor', true)
-            .title(t('inspector.all_members') + ' (' + gt + entity.members.slice(0, _maxMembers).length + ')')
+            .title(t('inspector.members_count', { count: gt + entity.members.slice(0, _maxMembers).length }))
             .expanded(true)
             .updatePreference(false)
             .on('toggled', function(expanded) {

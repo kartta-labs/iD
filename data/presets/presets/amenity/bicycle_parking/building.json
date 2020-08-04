@@ -1,8 +1,9 @@
 {
-    "icon": "maki-bicycle",
+    "icon": "temaki-bicycle_structure",
     "fields": [
         "{amenity/bicycle_parking}",
         "opening_hours",
+        "opening_hours/covid19",
         "building_area"
     ],
     "geometry": [
@@ -18,9 +19,11 @@
         "key": "bicycle_parking"
     },
     "terms": [
+        "Bike Parking Station",
+        "cycle parking",
+        "cycling",
         "Multi-Storey Bicycle Park",
-        "Multi-Storey Bike Park",
-        "Bike Parking Station"
+        "Multi-Storey Bike Park"
     ],
     "name": "Bicycle Parking Garage"
 }

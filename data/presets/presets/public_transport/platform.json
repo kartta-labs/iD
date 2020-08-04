@@ -1,5 +1,5 @@
 {
-    "icon": "temaki-pedestrian",
+    "icon": "temaki-board_transit",
     "fields": [
         "ref_platform",
         "network",
@@ -12,6 +12,7 @@
         "covered",
         "indoor",
         "layer",
+        "level",
         "lit",
         "wheelchair"
     ],

@@ -1,10 +1,11 @@
 {
-    "icon": "fas-biking",
+    "icon": "temaki-cyclist_crosswalk",
     "fields": [
         "crossing",
         "access",
         "surface",
-        "tactile_paving"
+        "tactile_paving",
+        "crossing/island"
     ],
     "geometry": [
         "line"

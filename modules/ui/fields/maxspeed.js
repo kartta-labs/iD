@@ -1,8 +1,7 @@
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { select as d3_select } from 'd3-selection';
+import * as countryCoder from '@ideditor/country-coder';
 
-import { dataMPH } from '../../../data';
-import { geoPointInPolygon } from '../../geo';
 import { uiCombobox } from '../combobox';
 import { utilGetSetValue, utilNoAuto, utilRebind } from '../../util';
 
@@ -49,19 +48,9 @@ export function uiFieldMaxspeed(field, context) {
             .on('change', change)
             .on('blur', change);
 
-        var loc;
-        if (_entity.type === 'node') {
-            loc = _entity.loc;
-        } else {
-            var childNodes = context.graph().childNodes(context.entity(_entity.id));
-            loc = childNodes[~~(childNodes.length/2)].loc;
-        }
+        var loc = _entity.extent(context.graph()).center();
 
-        _isImperial = dataMPH.features.some(function(f) {
-            return f.geometry.coordinates.some(function(d) {
-                return geoPointInPolygon(loc, d);
-            });
-        });
+        _isImperial = countryCoder.roadSpeedUnit(loc) === 'mph';
 
         unitInput = wrap.selectAll('input.maxspeed-unit')
             .data([0]);

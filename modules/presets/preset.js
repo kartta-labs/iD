@@ -1,12 +1,16 @@
 import { t } from '../util/locale';
 import { osmAreaKeys } from '../osm/tags';
 import { utilArrayUniq, utilObjectOmit } from '../util';
+import { utilSafeClassName } from '../util/util';
 
 
-export function presetPreset(id, preset, fields, visible, rawPresets) {
+export function presetPreset(id, preset, fields, addable, rawPresets) {
     preset = Object.assign({}, preset);   // shallow copy
 
     preset.id = id;
+
+    // for use in classes, element ids, css selectors
+    preset.safeid = utilSafeClassName(id);
 
     preset.parentPresetID = function() {
         var endIndex = preset.id.lastIndexOf('/');
@@ -93,7 +97,7 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
     preset.moreFields = (preset.moreFields || []).map(getFields);
     preset.geometry = (preset.geometry || []);
 
-    visible = visible || false;
+    addable = addable || false;
 
     function getFields(f) {
         return fields[f];
@@ -110,20 +114,33 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
 
     preset.matchScore = function(entityTags) {
         var tags = preset.tags;
+        var seen = {};
         var score = 0;
+        var k;
 
-        for (var t in tags) {
-            if (entityTags[t] === tags[t]) {
+        // match on tags
+        for (k in tags) {
+            seen[k] = true;
+            if (entityTags[k] === tags[k]) {
                 score += preset.originalScore;
-            } else if (tags[t] === '*' && t in entityTags) {
+            } else if (tags[k] === '*' && k in entityTags) {
                 score += preset.originalScore / 2;
             } else {
                 return -1;
             }
         }
 
+        // boost score for additional matches in addTags - #6802
+        var addTags = preset.addTags;
+        for (k in addTags) {
+            if (!seen[k] && entityTags[k] === addTags[k]) {
+                score += preset.originalScore;
+            }
+        }
+
         return score;
     };
+
 
     var _textCache = {};
 
@@ -165,10 +182,10 @@ export function presetPreset(id, preset, fields, visible, rawPresets) {
         return tagCount === 0 || (tagCount === 1 && preset.tags.hasOwnProperty('area'));
     };
 
-    preset.visible = function(val) {
-        if (!arguments.length) return visible;
-        visible = val;
-        return visible;
+    preset.addable = function(val) {
+        if (!arguments.length) return addable;
+        addable = val;
+        return addable;
     };
 
 
