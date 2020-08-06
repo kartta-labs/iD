@@ -34,7 +34,7 @@ function buildSrc() {
       console.error(err);
       console.log('');
       _currBuild = null;
-      process.exit(1);
+      //process.exit(1);
     });
 }
 

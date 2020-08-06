@@ -1,0 +1,5 @@
+# launch script for use inside docker container
+cd /iD
+npm install
+npm run all
+npm start

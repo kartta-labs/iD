@@ -1,5 +1,9 @@
 FROM node:8
 
+RUN apt-get update -qq
+RUN apt-get install -y emacs
+
+
 # Create app directory
 WORKDIR /iD
 
