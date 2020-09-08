@@ -449,10 +449,10 @@ en:
     hidden_details: "These features are currently hidden: {details}"
   osm_api_status:
     message:
-      error: Unable to reach the OpenStreetMap API. Your edits are safe locally. Check your network connection.
-      offline: The OpenStreetMap API is offline. Your edits are safe locally. Please come back later.
-      readonly: The OpenStreetMap API is currently read-only. You can continue editing, but must wait to save your changes.
-      rateLimit: The OpenStreetMap API is limiting anonymous connections. You can fix this by logging in.
+      error: Unable to reach the Kartta Labs API. Your edits are safe locally. Check your network connection.
+      offline: The Kartta Labs API is offline. Your edits are safe locally. Please come back later.
+      readonly: The Kartta Labs API is currently read-only. You can continue editing, but must wait to save your changes.
+      rateLimit: The Kartta Labs API is limiting anonymous connections. You can fix this by logging in.
     retry: Retry
   commit:
     title: Upload to Kartta Labs
