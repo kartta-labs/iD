@@ -1,3 +1,4 @@
+export * from './associate';
 export * from './modes';
 export * from './notes';
 export * from './save';
