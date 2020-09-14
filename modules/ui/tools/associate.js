@@ -74,8 +74,7 @@ export function uiToolAssociate(context) {
 	  var height = 500;
 	  var left = (screen.width - width) / 2;
 	  var top = (screen.height - height) /4;
-      var nfUrl = location.protocol + location.host + '/nf';
-      var my_window = window.open(nfUrl + '/?query=' + footprintId, "Footprint facade association",
+      var my_window = window.open(location.origin + '/nf/?query=' + footprintId, "Footprint facade association",
                                   "height=" + height + ",width=" + width + ",left=" + left + ",top=" + top);
       }
     }
