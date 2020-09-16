@@ -757,18 +757,15 @@ function translationsToYAML(translations) {
 function writeEnJson(tstrings) {
   const readCoreYaml = readFileProm('data/core.yaml', 'utf8');
   const readImagery = readFileProm('node_modules/editor-layer-index/i18n/en.yaml', 'utf8');
-  const readCommunity = readFileProm('node_modules/osm-community-index/i18n/en.yaml', 'utf8');
 
-  return Promise.all([readCoreYaml, readImagery, readCommunity])
+  return Promise.all([readCoreYaml, readImagery])
     .then(data => {
       let core = YAML.load(data[0]);
       let imagery = YAML.load(data[1]);
-      let community = YAML.load(data[2]);
 
       let enjson = core;
       enjson.en.presets = tstrings;
       enjson.en.imagery = imagery.en.imagery;
-      enjson.en.community = community.en;
 
       return writeFileProm('dist/locales/en.json', JSON.stringify(enjson, null, 4));
     });

@@ -112,86 +112,9 @@ export function uiSuccess(context) {
       .html(t('success.changeset_id', {
         changeset_id: `<a href="${changesetURL}" target="_blank">${_changeset.id}</a>`
       }));
-
-
-    // Get community index features intersecting the map..
-    let communities = [];
-    const properties = data.community.query(context.map().center(), true) || [];
-
-    // Gather the communities from the result
-    properties.forEach(props => {
-      const resourceIDs = Array.from(props.resourceIDs);
-      resourceIDs.forEach(resourceID => {
-        const resource = data.community.resources[resourceID];
-        communities.push({
-          area: props.area || Infinity,
-          order: resource.order || 0,
-          resource: resource
-        });
-      });
-    });
-
-    // sort communities by feature area ascending, community order descending
-    communities.sort((a, b) => a.area - b.area || b.order - a.order);
-
-    body
-      .call(showCommunityLinks, communities.map(c => c.resource));
   }
 
-
-  function showCommunityLinks(selection, resources) {
-    let communityLinks = selection
-      .append('div')
-      .attr('class', 'save-communityLinks');
-
-    communityLinks
-      .append('h3')
-      .text(t('success.like_osm'));
-
-    let table = communityLinks
-      .append('table')
-      .attr('class', 'community-table');
-
-    let row = table.selectAll('.community-row')
-      .data(resources);
-
-    let rowEnter = row.enter()
-      .append('tr')
-      .attr('class', 'community-row');
-
-    rowEnter
-      .append('td')
-      .attr('class', 'cell-icon community-icon')
-      .append('a')
-      .attr('target', '_blank')
-      .attr('href', d => d.url)
-      .append('svg')
-      .attr('class', 'logo-small')
-      .append('use')
-      .attr('xlink:href', d => `#community-${d.type}`);
-
-    let communityDetail = rowEnter
-      .append('td')
-      .attr('class', 'cell-detail community-detail');
-
-    communityDetail
-      .each(showCommunityDetails);
-
-    communityLinks
-      .append('div')
-      .attr('class', 'community-missing')
-      .text(t('success.missing'))
-      .append('a')
-      .attr('class', 'link-out')
-      .attr('target', '_blank')
-      .attr('tabindex', -1)
-      .call(svgIcon('#iD-icon-out-link', 'inline'))
-      .attr('href', 'https://github.com/osmlab/osm-community-index/issues')
-      .append('span')
-      .text(t('success.tell_us'));
-  }
-
-
+  // TODO: delete more community-advertisement code below.
   function showCommunityDetails(d) {
     let selection = d3_select(this);
     let communityID = d.id;
