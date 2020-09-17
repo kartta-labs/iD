@@ -1210,8 +1210,8 @@ en:
       before_start_h: "Before you start"
       before_start: "You should be familiar with the project and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing. Click \"Start the Walkthrough\" on this screen to take the tutorial - it takes only about 15 minutes."
       open_source_h: "Open Source"
-      open_source: "This is based on the iD editor which is a collaborative open source project, and you are using version {version} now. The source code is available [on GitHub](https://github.com/openstreetmap/iD)."
-      open_source_help: "You can help iD by [translating](https://github.com/openstreetmap/iD/blob/develop/CONTRIBUTING.md#translating) or [reporting bugs](https://github.com/openstreetmap/iD/issues)."
+      open_source: "This version of iD is based on a collaborative open source project [by OpenStreetMaps](https://github.com/openstreetmap/iD), version {version}. The source code is available [on GitHub](https://github.com/kartta-labs/iD)."
+      open_source_help: "You can help us by [reporting bugs or feature requests](https://github.com/kartta-labs/iD/issues)."
     overview:
       title: Overview
       navigation_h: "Navigation"
@@ -1343,7 +1343,7 @@ en:
       intro: "The background imagery that appears beneath the map data is an important resource for mapping. This imagery can be aerial photos collected from satellites, airplanes, and drones, or it can be scanned historical maps or other freely available source data."
       sources_h: "Imagery Sources"
       choosing: "To see which imagery sources are available for editing, click the {layers} **Background settings** button on the side of the map."
-      sources: "By default, a [Bing Maps](https://www.bing.com/maps/) satellite layer is chosen as the background image. Depending on where you are editing, other imagery sources will be available. Some may be newer or have higher resolution, so it is always useful to check and see which layer is the best one to use as a mapping reference."
+      sources: "By default, a current map you are working on is chosen as the background image when you click Trace in rǝ warpǝr, with time filter set to the year of the map."
       offsets_h: "Adjusting Imagery Offset"
       offset: "Imagery is sometimes offset slightly from accurate map data. If you see a lot of roads or buildings shifted from the background imagery, it may be the imagery that's incorrect, so don't move them all to match the background. Instead, you can adjust the background so that it matches the existing data by expanding the \"Adjust Imagery Offset\" section at the bottom of the Background Settings pane."
       offset_change: "Click on the small triangles to adjust the imagery offset in small steps, or hold the {leftclick} left mouse button and drag within the gray square to slide the imagery into alignment."
@@ -1354,14 +1354,6 @@ en:
       using: "To use street level photos for mapping, click the {data} **Map data** panel on the side of the map to enable or disable the available photo layers."
       photos: "When enabled, the photo layer displays a line along the sequence of photos. At higher zoom levels, a circle marks at each photo location, and at even higher zoom levels, a cone indicates the direction the camera was facing when the photo was taken."
       viewer: "When you click on one of the photo locations, a photo viewer appears in the bottom corner of the map. The photo viewer contains controls to step forward and backward in the image sequence. It also shows the username of the person who captured the image, the date it was captured, and a link to view the image on the original site."
-    gps:
-      title: GPS Traces
-      intro: "Collected GPS traces are a valuable source of data for the project. This editor supports *.gpx*, *.geojson*, and *.kml* files on your local computer. You can collect GPS traces with a smartphone, sports watch, or other GPS device."
-      survey: "For information on how to perform a GPS survey, read [Mapping with a smartphone, GPS, or paper](http://learnosm.org/en/mobile-mapping/)."
-      using_h: "Using GPS Traces"
-      using: "To use a GPS trace for mapping, drag and drop the data file onto the map editor. If it's recognized, it will be drawn on the map as a bright purple line. Click the {data} **Map data** panel on the side of the map to enable, disable, or zoom to your GPS data."
-      tracing: "The GPS track isn't sent to the server - the best way to use it is to draw on the map, using it as a guide for the new features that you add."
-      upload: "Unfortunately you cannot upload your GPS data to the server currently."
     qa:
       title: Quality Assurance
       intro: "*Quality Assurance* (Q/A) tools can find improper tags, disconnected roads, and other issues with the map, which mappers can then fix. To view existing Q/A issues, click the {data} **Map data** panel to enable a specific Q/A layer."
