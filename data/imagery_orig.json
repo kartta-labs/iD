@@ -37181,28 +37181,6 @@
       "description": "Japan GSI Standard Map. Widely covered."
     },
     {
-      "id": "juno-gps",
-      "name": "Juno GPS traces",
-      "type": "tms",
-      "template": "https://gps-tile.junolab.net/{zoom}/{x}/{y}.png",
-      "startDate": "2019-01-01T00:00:00.000Z",
-      "zoomExtent": [0, 19],
-      "polygon": [
-        [
-          [-74.337, 40.484],
-          [-73.572, 40.484],
-          [-73.572, 40.957],
-          [-74.337, 40.957],
-          [-74.337, 40.484]
-        ]
-      ],
-      "terms_url": "https://gps-tile.junolab.net/about.html",
-      "terms_text": "© 2019 Juno",
-      "description": "Juno drivers' GPS traces from two days ago, updated daily",
-      "icon": "https://osmlab.github.io/editor-layer-index/sources/north-america/us/ny/Juno-GPS.png",
-      "overlay": true
-    },
-    {
       "id": "kalmar-orto-2014",
       "name": "Kalmar North Orthophoto 2014",
       "type": "wms",
@@ -51996,19 +51974,6 @@
       "default": true,
       "description": "The default OpenStreetMap layer.",
       "icon": "https://osmlab.github.io/editor-layer-index/sources/world/OpenStreetMap-GPS.png"
-    },
-    {
-      "id": "osm-gps",
-      "name": "OpenStreetMap GPS traces",
-      "type": "tms",
-      "template": "https://{switch:a,b,c}.gps-tile.openstreetmap.org/lines/{zoom}/{x}/{y}.png",
-      "zoomExtent": [0, 20],
-      "terms_url": "https://www.openstreetmap.org/copyright",
-      "terms_text": "© OpenStreetMap contributors",
-      "terms_html": "<span style='display: inline-block; padding: 0 8px; background-color: rgba(0,0,0,0.5);'><span style='color: #eee;'>GPS Direction:</span> <span style='font-size: 15px; padding-left: 2px; font-weight: bold;'> <span style='color: #0ee;'>&larr;</span> <span style='color: #96f;'>&darr;</span> <span style='color: #6e0;'>&uarr;</span> <span style='color: #f63;'>&rarr;</span> </span></span> © <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap contributors</a>.",
-      "description": "Public GPS traces uploaded to OpenStreetMap.",
-      "icon": "https://osmlab.github.io/editor-layer-index/sources/world/OpenStreetMap-GPS.png",
-      "overlay": true
     },
     {
       "id": "osm-hu-ortho",

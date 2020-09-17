@@ -173,14 +173,6 @@ export function uiHelp(context) {
         //     'photos',
         //     'viewer'
         // ]],
-        // ['gps', [
-        //     'intro',
-        //     'survey',
-        //     'using_h',
-        //     'using',
-        //     'tracing',
-        //     'upload'
-        // ]],
         // ['qa', [
         //     'intro',
         //     'tools_h',
@@ -233,7 +225,6 @@ export function uiHelp(context) {
         'help.imagery.sources_h': 3,
         'help.imagery.offsets_h': 3,
         'help.streetlevel.using_h': 3,
-        'help.gps.using_h': 3,
         'help.qa.tools_h': 3,
         'help.qa.issues_h': 3
     };
