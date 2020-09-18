@@ -6,21 +6,16 @@
         "operator/type",
         "healthcare/speciality",
         "address",
-        "building_area",
-        "opening_hours",
-        "opening_hours/covid19"
+        "building_area"
     ],
     "moreFields": [
-        "air_conditioning",
         "brand",
         "email",
         "fax",
         "gnis/feature_id",
         "level",
-        "payment_multi",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

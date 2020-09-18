@@ -10,17 +10,12 @@
         "website"
     ],
     "moreFields": [
-        "charge_fee",
         "email",
         "fax",
-        "fee",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/ssid",
         "level",
         "phone",
-        "polling_station",
-        "wheelchair"
+        "polling_station"
     ],
     "geometry": [
         "area",

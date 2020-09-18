@@ -5,10 +5,7 @@
         "operator",
         "operator/type",
         "address",
-        "website",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid"
+        "website"
     ],
     "moreFields": [
         "denomination",
@@ -17,8 +14,7 @@
         "gnis/feature_id",
         "not/name",
         "phone",
-        "religion",
-        "wheelchair"
+        "religion"
     ],
     "geometry": [
         "area",

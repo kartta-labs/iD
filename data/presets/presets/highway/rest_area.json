@@ -2,17 +2,14 @@
     "icon": "maki-car",
     "fields": [
         "name",
-        "operator",
-        "opening_hours",
-        "opening_hours/covid19"
+        "operator"
     ],
     "moreFields": [
         "address",
         "email",
         "fax",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

@@ -9,9 +9,7 @@
     ],
     "moreFields": [
         "access_simple",
-        "address",
-        "opening_hours",
-        "opening_hours/covid19"
+        "address"
     ],
     "tags": {
         "landuse": "winter_sports"

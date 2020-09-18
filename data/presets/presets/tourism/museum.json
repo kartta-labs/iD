@@ -7,26 +7,17 @@
         "museum",
         "address",
         "building_area",
-        "opening_hours",
-        "opening_hours/covid19"
+        "opening_hours"
     ],
     "moreFields": [
-        "air_conditioning",
         "building/levels_building",
-        "charge_fee",
         "email",
         "fax",
-        "fee",
         "gnis/feature_id",
         "height_building",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "level",
-        "payment_multi",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

@@ -1,12 +1,9 @@
 {
     "icon": "maki-suitcase",
     "fields": [
-        "{office}",
-        "internet_access"
+        "{office}"
     ],
     "moreFields": [
-        "internet_access/fee",
-        "internet_access/ssid"
     ],
     "geometry": [
         "point",

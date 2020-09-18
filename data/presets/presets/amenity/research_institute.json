@@ -5,17 +5,13 @@
         "operator",
         "operator/type",
         "address",
-        "website",
-        "internet_access",
-        "internet_access/fee"
+        "website"
     ],
     "moreFields": [
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access/ssid",
-        "phone",
-        "wheelchair"
+        "phone"
     ],
     "geometry": [
         "point",

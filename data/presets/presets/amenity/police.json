@@ -4,9 +4,7 @@
         "name",
         "operator",
         "address",
-        "building_area",
-        "opening_hours",
-        "opening_hours/covid19"
+        "building_area"
     ],
     "moreFields": [
         "email",
@@ -15,8 +13,7 @@
         "level",
         "phone",
         "polling_station",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

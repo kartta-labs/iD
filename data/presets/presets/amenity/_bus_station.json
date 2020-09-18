@@ -3,10 +3,7 @@
     "fields": [
         "name",
         "building_area",
-        "operator",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid"
+        "operator"
     ],
     "geometry": [
         "point",

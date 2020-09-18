@@ -4,8 +4,6 @@
         "name",
         "operator",
         "address",
-        "opening_hours",
-        "opening_hours/covid19",
         "fuel_multi"
     ],
     "moreFields": [
@@ -16,8 +14,7 @@
         "payment_multi",
         "phone",
         "seamark/type",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

@@ -4,10 +4,7 @@
         "name",
         "brand",
         "address",
-        "building_area",
-        "opening_hours",
-        "opening_hours/covid19",
-        "payment_multi"
+        "building_area"
     ],
     "moreFields": [
         "currency_multi",
@@ -15,8 +12,7 @@
         "fax",
         "level",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

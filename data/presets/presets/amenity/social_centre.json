@@ -9,19 +9,13 @@
         "building_area"
     ],
     "moreFields": [
-        "air_conditioning",
-        "baby_feeding",
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "level",
         "phone",
         "polling_station",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

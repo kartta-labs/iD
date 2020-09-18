@@ -3,18 +3,12 @@
     "fields": [
         "name",
         "attraction",
-        "operator",
-        "opening_hours",
-        "opening_hours/covid19",
-        "fee",
-        "charge_fee"
+        "operator"
     ],
     "moreFields": [
         "address",
         "email",
         "fax",
-        "opening_hours",
-        "opening_hours/covid19",
         "payment_multi",
         "phone",
         "website"

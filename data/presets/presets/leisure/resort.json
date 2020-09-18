@@ -4,18 +4,13 @@
         "name",
         "operator",
         "resort",
-        "address",
-        "opening_hours",
-        "opening_hours/covid19"
+        "address"
     ],
     "moreFields": [
         "access_simple",
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "payment_multi",
         "phone",
         "website"

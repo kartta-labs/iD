@@ -12,10 +12,7 @@
         "colour",
         "distance",
         "duration",
-        "interval",
-        "opening_hours",
-        "opening_hours/covid19",
-        "wheelchair"
+        "interval"
     ],
     "geometry": [
         "relation"

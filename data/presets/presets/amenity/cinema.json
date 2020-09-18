@@ -4,13 +4,9 @@
         "name",
         "address",
         "screen",
-        "building_area",
-        "opening_hours",
-        "opening_hours/covid19",
-        "payment_multi"
+        "building_area"
     ],
     "moreFields": [
-        "air_conditioning",
         "brand",
         "email",
         "fax",
@@ -18,8 +14,7 @@
         "level",
         "min_age",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

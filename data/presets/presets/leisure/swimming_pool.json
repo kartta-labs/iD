@@ -12,8 +12,6 @@
         "address",
         "level",
         "gnis/feature_id",
-        "opening_hours",
-        "opening_hours/covid19",
         "operator"
     ],
     "geometry": [

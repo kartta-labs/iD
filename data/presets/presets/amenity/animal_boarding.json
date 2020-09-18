@@ -5,8 +5,6 @@
         "operator",
         "address",
         "building_area",
-        "opening_hours",
-        "opening_hours/covid19",
         "animal_boarding"
     ],
     "moreFields": [
@@ -14,10 +12,8 @@
         "fax",
         "gnis/feature_id",
         "level",
-        "payment_multi",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

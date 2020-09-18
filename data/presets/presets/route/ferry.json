@@ -17,13 +17,8 @@
         "distance",
         "dog",
         "interval",
-        "maxheight",
-        "maxweight",
         "network",
-        "opening_hours",
-        "opening_hours/covid19",
-        "ref_route",
-        "wheelchair"
+        "ref_route"
     ],
     "tags": {
         "route": "ferry"
