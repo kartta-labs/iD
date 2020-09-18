@@ -9,20 +9,13 @@
         "service_times"
     ],
     "moreFields": [
-        "air_conditioning",
-        "baby_feeding",
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/ssid",
         "level",
-        "opening_hours",
-        "opening_hours/covid19",
         "phone",
         "polling_station",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

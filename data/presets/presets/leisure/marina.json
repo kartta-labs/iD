@@ -4,9 +4,6 @@
         "name",
         "operator",
         "capacity",
-        "fee",
-        "payment_multi_fee",
-        "charge_fee",
         "sanitary_dump_station",
         "power_supply"
     ],
@@ -15,9 +12,6 @@
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "phone",
         "seamark/type",
         "website"

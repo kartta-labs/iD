@@ -3,9 +3,7 @@
     "fields": [
         "name",
         "operator",
-        "address",
-        "opening_hours",
-        "opening_hours/covid19"
+        "address"
     ],
     "geometry": [
         "point",

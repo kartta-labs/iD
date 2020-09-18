@@ -3,23 +3,16 @@
     "fields": [
         "operator",
         "phone",
-        "fee",
-        "payment_multi_fee",
-        "charge_fee",
         "booth"
     ],
     "moreFields": [
         "covered",
         "indoor",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "level",
         "lit",
         "ref",
         "sms",
-        "video_calls",
-        "wheelchair"
+        "video_calls"
     ],
     "geometry": [
         "point",

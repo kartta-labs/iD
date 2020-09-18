@@ -4,22 +4,15 @@
         "name",
         "operator",
         "address",
-        "building_area",
-        "internet_access",
-        "internet_access/fee",
-        "fee",
-        "payment_multi_fee",
-        "charge_fee"
+        "building_area"
     ],
     "moreFields": [
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access/ssid",
         "phone",
         "reservation",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

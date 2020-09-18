@@ -3,18 +3,14 @@
     "fields": [
         "name",
         "operator",
-        "address",
-        "opening_hours",
-        "opening_hours/covid19",
-        "payment_multi"
+        "address"
     ],
     "moreFields": [
         "brand",
         "email",
         "fax",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

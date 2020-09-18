@@ -5,17 +5,11 @@
         "access_simple",
         "gender",
         "changing_table",
-        "wheelchair",
         "building_area"
     ],
     "moreFields": [
-        "charge_fee",
-        "fee",
         "level",
-        "opening_hours",
-        "opening_hours/covid19",
         "operator",
-        "payment_multi_fee",
         "toilets/handwashing",
         "toilets/position"
     ],

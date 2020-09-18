@@ -5,15 +5,10 @@
         "operator",
         "ele_node",
         "address",
-        "access_simple",
-        "fee",
-        "payment_multi_fee",
-        "charge_fee"
+        "access_simple"
     ],
     "moreFields": [
-        "gnis/feature_id",
-        "opening_hours",
-        "opening_hours/covid19"
+        "gnis/feature_id"
     ],
     "geometry": [
         "vertex"

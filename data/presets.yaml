@@ -253,7 +253,6 @@ en:
       backcountry:
         label#: backcountry=*
         label: Backcountry
-        terms: '[translate with synonyms or related terms for ''Backcountry'', separated by commas]'
       backrest:
         label#: backrest=*
         label: Backrest
@@ -1009,7 +1008,6 @@ en:
       group_only:
         label#: group_only=*
         label: Groups Only
-        terms: '[translate with synonyms or related terms for ''Groups Only'', separated by commas]'
       guest_house:
         label#: guest_house=*
         label: Type
@@ -1160,39 +1158,6 @@ en:
       intermittent_yes:
         label#: intermittent=*
         label: Intermittent
-      internet_access:
-        label#: internet_access=*
-        label: Internet Connection
-        options:
-          no#: internet_access=no
-          'no': 'No'
-          terminal#: internet_access=terminal
-          terminal: Terminal
-          wired#: internet_access=wired
-          wired: Wired
-          wlan#: internet_access=wlan
-          wlan: Wifi
-          yes#: internet_access=yes
-          'yes': 'Yes'
-        terms#: 'terms: wifi,wlan'
-        terms: '[translate with synonyms or related terms for ''Internet Connection'', separated by commas]'
-      internet_access/fee:
-        label#: 'internet_access:fee=*'
-        label: Internet Access
-        options:
-          customers#: 'internet_access:fee=customers'
-          customers: Customers Only
-          no#: 'internet_access:fee=no'
-          'no': Free
-          yes#: 'internet_access:fee=yes'
-          'yes': Paid
-        terms#: 'terms: wifi fee'
-        terms: '[translate with synonyms or related terms for ''Internet Access'', separated by commas]'
-      internet_access/ssid:
-        label#: 'internet_access:ssid=*'
-        label: Wifi Network Name
-        terms#: 'terms: ssid'
-        terms: '[translate with synonyms or related terms for ''Wifi Network Name'', separated by commas]'
       interval:
         label#: interval=*
         label: Interval
@@ -1394,11 +1359,9 @@ en:
       maxstay:
         label#: maxstay=*
         label: Max Stay
-        terms: '[translate with synonyms or related terms for ''Max Stay'', separated by commas]'
       maxweight:
         label#: maxweight=*
         label: Max Weight
-        terms: '[translate with synonyms or related terms for ''Max Weight'', separated by commas]'
       maxweight_bridge:
         label#: maxweight=*
         label: Max Weight
@@ -1600,7 +1563,6 @@ en:
       openfire:
         label#: openfire=*
         label: Open Fires Allowed
-        terms: '[translate with synonyms or related terms for ''Open Fires Allowed'', separated by commas]'
       opening_date:
         label#: opening_date=*
         label: Expected Opening Date
@@ -1612,11 +1574,6 @@ en:
         placeholder#: opening_hours field placeholder
         placeholder: Unknown
         terms: '[translate with synonyms or related terms for ''Hours'', separated by commas]'
-      opening_hours/covid19:
-        label#: 'opening_hours:covid19=*'
-        label: COVID-19 Pandemic Hours
-        terms#: 'terms: coronavirus,lockdown,opening hours,SARS‑CoV‑2'
-        terms: '[translate with synonyms or related terms for ''COVID-19 Pandemic Hours'', separated by commas]'
       operator:
         label#: operator=*
         label: Operator
@@ -1871,7 +1828,6 @@ en:
       power_supply:
         label#: power_supply=*
         label: Power Supply
-        terms: '[translate with synonyms or related terms for ''Power Supply'', separated by commas]'
       preschool:
         label#: preschool=*
         label: Preschool
@@ -2064,7 +2020,6 @@ en:
       sanitary_dump_station:
         label#: sanitary_dump_station=*
         label: Toilet Disposal
-        terms: '[translate with synonyms or related terms for ''Toilet Disposal'', separated by commas]'
       screen:
         label#: screen=*
         label: Screens
@@ -2251,7 +2206,6 @@ en:
       shower:
         label#: shower=*
         label: Showers
-        terms: '[translate with synonyms or related terms for ''Showers'', separated by commas]'
       siren/purpose:
         label#: 'siren:purpose=*'
         label: Purpose
@@ -2501,7 +2455,6 @@ en:
       toilets:
         label#: toilets=*
         label: Toilets
-        terms: '[translate with synonyms or related terms for ''Toilets'', separated by commas]'
       toilets/disposal:
         label#: 'toilets:disposal=*'
         label: Disposal
@@ -3351,10 +3304,6 @@ en:
         name: Preschool / Kindergarten Grounds
         terms#: 'terms: kindergarden,pre-school'
         terms: '<translate with synonyms or related terms for ''Preschool / Kindergarten Grounds'', separated by commas>'
-      amenity/kneipp_water_cure:
-        name#: amenity=kneipp_water_cure
-        name: Kneipp Water Cure
-        terms: '<translate with synonyms or related terms for ''Kneipp Water Cure'', separated by commas>'
       amenity/language_school:
         name#: amenity=language_school
         name: Language School
@@ -3393,11 +3342,6 @@ en:
         name: Monastery Grounds
         terms#: 'terms: abbey,basilica,bethel,cathedral,chancel,chantry,chapel,church,fold,house of God,house of prayer,house of worship,minster,mission,monastery,mosque,oratory,parish,sacellum,sanctuary,shrine,synagogue,tabernacle,temple'
         terms: '<translate with synonyms or related terms for ''Monastery Grounds'', separated by commas>'
-      amenity/money_transfer:
-        name#: amenity=money_transfer
-        name: Money Transfer Station
-        terms#: 'terms: money order,check,bill,currency,finance,wire transfer,cable,person to person,cash to cash,exchange'
-        terms: '<translate with synonyms or related terms for ''Money Transfer Station'', separated by commas>'
       amenity/motorcycle_parking:
         name#: amenity=motorcycle_parking
         name: Motorcycle Parking
@@ -3607,26 +3551,11 @@ en:
       amenity/recycling:
         name#: amenity=recycling
         name: Recycling
-      amenity/recycling/container/electrical_items:
-        name#: 'amenity=recycling, recycling_type=container, recycling:electrical_items=yes'
-        name: E-Waste Container
-        terms#: 'terms: computers,electronic waste,electronics recycling,ewaste bin,phones,tablets'
-        terms: '<translate with synonyms or related terms for ''E-Waste Container'', separated by commas>'
-      amenity/recycling/container/green_waste:
-        name#: 'amenity=recycling, recycling_type=container, recycling:green_waste=yes'
-        name: Green Waste Container
-        terms#: 'terms: biodegradable,biological,compost,decomposable,garbage bin,garden waste,organic,rubbish,food scrap'
-        terms: '<translate with synonyms or related terms for ''Green Waste Container'', separated by commas>'
       amenity/recycling_centre:
         name#: 'amenity=recycling, recycling_type=centre'
         name: Recycling Center
         terms#: 'terms: bottle,can,dump,glass,garbage,rubbish,scrap,trash'
         terms: '<translate with synonyms or related terms for ''Recycling Center'', separated by commas>'
-      amenity/recycling_container:
-        name#: 'amenity=recycling, recycling_type=container'
-        name: Recycling Container
-        terms#: 'terms: bin,can,bottle,glass,garbage,rubbish,scrap,trash'
-        terms: '<translate with synonyms or related terms for ''Recycling Container'', separated by commas>'
       amenity/research_institute:
         name#: amenity=research_institute
         name: Research Institute Grounds
@@ -4836,11 +4765,6 @@ en:
         name: Life Ring
         terms#: 'terms: life buoy,kisby ring,kisbie ring,perry buoy'
         terms: '<translate with synonyms or related terms for ''Life Ring'', separated by commas>'
-      emergency/lifeguard:
-        name#: emergency=lifeguard
-        name: Lifeguard
-        terms#: 'terms: CPR,rescue'
-        terms: '<translate with synonyms or related terms for ''Lifeguard'', separated by commas>'
       emergency/mountain_rescue:
         name#: emergency=mountain_rescue
         name: Mountain Rescue
@@ -5513,11 +5437,6 @@ en:
         name: Indoor Wall
         terms#: 'terms: indoor barrier,room divider,room partition'
         terms: '<translate with synonyms or related terms for ''Indoor Wall'', separated by commas>'
-      internet_access/wlan:
-        name#: internet_access=wlan
-        name: Wi-Fi Hotspot
-        terms#: 'terms: wi-fi,wifi,hotspot'
-        terms: '<translate with synonyms or related terms for ''Wi-Fi Hotspot'', separated by commas>'
       junction:
         name#: junction=yes
         name: Junction
@@ -5747,11 +5666,6 @@ en:
         name#: leisure=beach_resort
         name: Beach Resort
         terms: '<translate with synonyms or related terms for ''Beach Resort'', separated by commas>'
-      leisure/bird_hide:
-        name#: leisure=bird_hide
-        name: Bird Hide
-        terms#: 'terms: machan,ornithology'
-        terms: '<translate with synonyms or related terms for ''Bird Hide'', separated by commas>'
       leisure/bleachers:
         name#: leisure=bleachers
         name: Bleachers
@@ -5786,11 +5700,6 @@ en:
         name#: leisure=dog_park
         name: Dog Park
         terms: '<translate with synonyms or related terms for ''Dog Park'', separated by commas>'
-      leisure/escape_game:
-        name#: leisure=escape_game
-        name: Escape Room
-        terms#: 'terms: escape game,escape the room,puzzle room,quest room'
-        terms: '<translate with synonyms or related terms for ''Escape Room'', separated by commas>'
       leisure/firepit:
         name#: leisure=firepit
         name: Fire Pit
@@ -5896,11 +5805,6 @@ en:
         name: Hackerspace
         terms#: 'terms: makerspace,hackspace,hacklab'
         terms: '<translate with synonyms or related terms for ''Hackerspace'', separated by commas>'
-      leisure/horse_riding:
-        name#: leisure=horse_riding
-        name: Horseback Riding Facility
-        terms#: 'terms: equestrian,stable'
-        terms: '<translate with synonyms or related terms for ''Horseback Riding Facility'', separated by commas>'
       leisure/ice_rink:
         name#: leisure=ice_rink
         name: Ice Rink
@@ -8429,21 +8333,6 @@ en:
         name: Camp Pitch
         terms#: 'terms: tent,rv'
         terms: '<translate with synonyms or related terms for ''Camp Pitch'', separated by commas>'
-      tourism/camp_site:
-        name#: tourism=camp_site
-        name: Campground
-        terms#: 'terms: caravans,camp ground,camp pitch,camp site,campers,campground,campsite,mobile homes,recreational vehicles,rv,tenting'
-        terms: '<translate with synonyms or related terms for ''Campground'', separated by commas>'
-      tourism/camp_site/backcountry:
-        name#: 'tourism=camp_site, backcountry=yes'
-        name: Backcountry Camping Area
-        terms#: 'terms: alpine camping,backpacking site,backwoods camping,camp ground,camp pitch,camp site,campground,campsite,informal camping,primitive camping'
-        terms: '<translate with synonyms or related terms for ''Backcountry Camping Area'', separated by commas>'
-      tourism/camp_site/group_only:
-        name#: 'tourism=camp_site, group_only=yes'
-        name: Group Camping Area
-        terms#: 'terms: camp ground,camp pitch,camp site,campground,campsite,scout camping,youth camping'
-        terms: '<translate with synonyms or related terms for ''Group Camping Area'', separated by commas>'
       tourism/caravan_site:
         name#: tourism=caravan_site
         name: RV Park

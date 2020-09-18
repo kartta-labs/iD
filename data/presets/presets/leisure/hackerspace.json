@@ -4,25 +4,15 @@
         "name",
         "address",
         "building_area",
-        "opening_hours",
-        "opening_hours/covid19",
-        "website",
-        "fee",
-        "payment_multi_fee",
-        "charge_fee",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid"
+        "website"
     ],
     "moreFields": [
-        "air_conditioning",
         "email",
         "fax",
         "gnis/feature_id",
         "level",
         "phone",
-        "smoking",
-        "wheelchair"
+        "smoking"
     ],
     "geometry": [
         "point",

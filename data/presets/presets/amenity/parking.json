@@ -4,12 +4,7 @@
         "operator",
         "operator/type",
         "parking",
-        "capacity_parking",
-        "capacity/disabled_parking",
         "access_simple",
-        "fee",
-        "payment_multi_fee",
-        "charge_fee",
         "surface"
     ],
     "moreFields": [
@@ -17,16 +12,12 @@
         "covered",
         "email",
         "fax",
-        "maxstay",
         "name",
-        "opening_hours",
-        "opening_hours/covid19",
         "park_ride",
         "phone",
         "ref",
         "supervised",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "area",

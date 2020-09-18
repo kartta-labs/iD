@@ -4,16 +4,10 @@
         "operator",
         "access_simple",
         "gender",
-        "wheelchair",
         "building_area"
     ],
     "moreFields": [
-        "charge_fee",
-        "fee",
         "level",
-        "opening_hours",
-        "opening_hours/covid19",
-        "payment_multi_fee",
         "ref"
     ],
     "geometry": [

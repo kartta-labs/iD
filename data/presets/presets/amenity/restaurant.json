@@ -5,13 +5,10 @@
         "cuisine",
         "address",
         "building_area",
-        "opening_hours",
-        "opening_hours/covid19",
         "phone",
         "website"
     ],
     "moreFields": [
-        "air_conditioning",
         "bar",
         "brand",
         "brewery",
@@ -21,9 +18,6 @@
         "email",
         "fax",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "level",
         "microbrewery",
         "min_age",
@@ -33,8 +27,7 @@
         "reservation",
         "smoking",
         "stars",
-        "takeaway",
-        "wheelchair"
+        "takeaway"
     ],
     "geometry": [
         "point",

@@ -3,15 +3,12 @@
     "fields": [
         "name",
         "operator",
-        "address",
-        "opening_hours",
-        "opening_hours/covid19"
+        "address"
     ],
     "moreFields": [
         "email",
         "fax",
         "gnis/feature_id",
-        "payment_multi",
         "phone",
         "website"
     ],

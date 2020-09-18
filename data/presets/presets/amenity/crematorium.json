@@ -3,10 +3,7 @@
     "fields": [
         "name",
         "website",
-        "phone",
-        "opening_hours",
-        "opening_hours/covid19",
-        "wheelchair"
+        "phone"
     ],
     "moreFields": [
         "address",
@@ -15,8 +12,7 @@
         "gnis/feature_id",
         "level",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

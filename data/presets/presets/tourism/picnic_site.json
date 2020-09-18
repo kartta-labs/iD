@@ -4,23 +4,14 @@
         "name",
         "operator",
         "address",
-        "access_simple",
-        "capacity"
+        "access_simple"
     ],
     "moreFields": [
-        "charge_fee",
-        "fee",
         "gnis/feature_id",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "level",
-        "payment_multi_fee",
         "phone",
-        "reservation",
         "smoking",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",

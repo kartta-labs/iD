@@ -5,9 +5,7 @@
         "club",
         "operator",
         "address",
-        "building_area",
-        "opening_hours",
-        "opening_hours/covid19"
+        "building_area"
     ],
     "moreFields": [
         "access_simple",
@@ -16,15 +14,11 @@
         "fax",
         "gnis/feature_id",
         "height_building",
-        "internet_access",
-        "internet_access/fee",
-        "internet_access/ssid",
         "level",
         "max_age",
         "min_age",
         "phone",
-        "website",
-        "wheelchair"
+        "website"
     ],
     "geometry": [
         "point",
