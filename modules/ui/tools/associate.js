@@ -19,7 +19,7 @@ export function uiToolAssociate(context) {
     var button = null;
     var tooltipBehavior = null;
     var history = context.history();
-    var key = uiCmd('⌘A');
+    var key = 'a';
     var _current_footprint = null;
 
     function updateCurrentFootprint() {
@@ -70,8 +70,8 @@ export function uiToolAssociate(context) {
 	    }
 	  }
 	  var footprintId = context.selectedIDs()[0].replace("w", "");
-	  var width = 900;
-	  var height = 500;
+	  var width = 2000;
+	  var height = 1000;
 	  var left = (screen.width - width) / 2;
 	  var top = (screen.height - height) /4;
       var my_window = window.open(location.origin + '/nf/?query=' + footprintId, "Footprint facade association",
@@ -110,6 +110,9 @@ export function uiToolAssociate(context) {
 
         updateStatus();
 
+        context.keybinding()
+            .on(key, associate, true);
+
         context
             .on('enter.associate', function() {
                 if (button) {
@@ -122,6 +125,9 @@ export function uiToolAssociate(context) {
 
 
     tool.uninstall = function() {
+        context.keybinding()
+            .off(key, true);
+
         button = null;
         tooltipBehavior = null;
     };
