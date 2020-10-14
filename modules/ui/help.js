@@ -249,6 +249,7 @@ export function uiHelp(context) {
         close: icon('#iD-icon-close', 'pre-text'),
         undo: icon(textDirection === 'rtl' ? '#iD-icon-redo' : '#iD-icon-undo', 'pre-text'),
         redo: icon(textDirection === 'rtl' ? '#iD-icon-undo' : '#iD-icon-redo', 'pre-text'),
+        save: icon('#iD-icon-save', 'pre-text'),
         associate: icon('#iD-icon-out-link', 'pre-text'),
         leftclick: icon('#iD-walkthrough-mouse', 'pre-text mouseclick', 'left'),
         rightclick: icon('#iD-walkthrough-mouse', 'pre-text mouseclick', 'right'),
