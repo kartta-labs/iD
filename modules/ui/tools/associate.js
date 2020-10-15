@@ -19,7 +19,7 @@ export function uiToolAssociate(context) {
     var button = null;
     var tooltipBehavior = null;
     var history = context.history();
-    var key = uiCmd('⌘A');
+    var key = 'A';
     var _current_footprint = null;
 
     function updateCurrentFootprint() {
@@ -111,7 +111,7 @@ export function uiToolAssociate(context) {
         updateStatus();
 
         context.keybinding()
-            .on(key, associate, true);
+            .on(key, associate);
 
         context
             .on('enter.associate', function() {
