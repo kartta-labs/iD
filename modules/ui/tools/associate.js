@@ -111,7 +111,7 @@ export function uiToolAssociate(context) {
         updateStatus();
 
         context.keybinding()
-            .on(key, associate, true);
+            .on(key, associate);
 
         context
             .on('enter.associate', function() {

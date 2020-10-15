@@ -166,13 +166,15 @@ export function uiHelp(context) {
             'offset',
             'offset_change'
         ]],
-        // ['streetlevel', [
-        //     'intro',
-        //     'using_h',
-        //     'using',
-        //     'photos',
-        //     'viewer'
-        // ]],
+        ['streetlevel', [
+            'intro',
+            'using_h',
+            'using',
+	    'photos',
+	    'tools_h',
+	    'tool',
+	    'issues'
+        ]],
         // ['qa', [
         //     'intro',
         //     'tools_h',
@@ -248,6 +250,7 @@ export function uiHelp(context) {
         undo: icon(textDirection === 'rtl' ? '#iD-icon-redo' : '#iD-icon-undo', 'pre-text'),
         redo: icon(textDirection === 'rtl' ? '#iD-icon-undo' : '#iD-icon-redo', 'pre-text'),
         save: icon('#iD-icon-save', 'pre-text'),
+        associate: icon('#iD-icon-out-link', 'pre-text'),
         leftclick: icon('#iD-walkthrough-mouse', 'pre-text mouseclick', 'left'),
         rightclick: icon('#iD-walkthrough-mouse', 'pre-text mouseclick', 'right'),
         shift: uiCmd.display('⇧'),
