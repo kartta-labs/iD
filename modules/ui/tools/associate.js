@@ -19,7 +19,7 @@ export function uiToolAssociate(context) {
     var button = null;
     var tooltipBehavior = null;
     var history = context.history();
-    var key = 'A';
+    var key = 'a';
     var _current_footprint = null;
 
     function updateCurrentFootprint() {
